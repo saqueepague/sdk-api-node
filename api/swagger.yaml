@@ -11,7 +11,7 @@ info:
     url: "http://www.saqueepague.com.br"
     email: "captura_atm@saqueepague.com.br"
 host: "virtserver.swaggerhub.com"
-basePath: "/albertosep/SEPTransactions2/1.17.0"
+basePath: "/saqueepague/SEPTransactions2/1.17.0"
 tags: []
 schemes:
 - "https"
