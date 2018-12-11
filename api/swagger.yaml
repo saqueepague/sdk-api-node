@@ -1,0 +1,5113 @@
+---
+swagger: "2.0"
+info:
+  description: "Modelo de API para transações da Saque e Pague. O parceiro interessado\
+    \ deve implementar as operações desejadas para que a SeP consiga se comunicar\
+    \ com o mesmo."
+  version: "1.17.0"
+  title: "Saque e Pague Transaction"
+  contact:
+    name: "SEP Team"
+    url: "http://www.saqueepague.com.br"
+    email: "captura_atm@saqueepague.com.br"
+host: "virtserver.swaggerhub.com"
+basePath: "/albertosep/SEPTransactions2/1.17.0"
+tags: []
+schemes:
+- "https"
+- "http"
+consumes:
+- "application/json"
+produces:
+- "application/json"
+paths:
+  /autenticacao:
+    post:
+      summary: "Autenticacao_POST"
+      description: "Operação de autenticacao de cliente."
+      operationId: "AutenticacaoPost"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "authenticationType"
+        in: "header"
+        description: "Tipo de autenticação requerida."
+        required: true
+        type: "string"
+      - name: "clientId"
+        in: "header"
+        description: "Identificação do cliente."
+        required: true
+        type: "string"
+      - name: "token"
+        in: "header"
+        description: "Chave para validação do acesso ao serviço."
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        description: "Requisição de autenticação."
+        required: true
+        schema:
+          $ref: "#/definitions/autenticacaoReq"
+      responses:
+        200:
+          description: "Retorno com sucesso."
+          headers: {}
+          schema:
+            $ref: "#/definitions/autenticacaoResp"
+      x-swagger-router-controller: "Default"
+  /cancelaAgendamento:
+    post:
+      summary: "CancelaAgendamento_POST"
+      description: "Cancela um pagamento que está agendado."
+      operationId: "CancelaAgendamentoPost"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "authenticationType"
+        in: "header"
+        description: "Tipo de autenticação requerida."
+        required: true
+        type: "string"
+      - name: "clientId"
+        in: "header"
+        description: "Identificação do cliente."
+        required: true
+        type: "string"
+      - name: "token"
+        in: "header"
+        description: "Chave para validação do acesso ao serviço."
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        description: "Dados de identificação do agendamento."
+        required: true
+        schema:
+          $ref: "#/definitions/agendamentoIdentificaoReq"
+      responses:
+        200:
+          description: "Retorno com sucesso."
+          headers: {}
+          schema:
+            $ref: "#/definitions/agendamentoIdentificaoResp"
+      x-swagger-router-controller: "Default"
+  /consultaAgendamentos:
+    post:
+      summary: "ConsultaAgendamentos_POST"
+      description: "Operação de consulta de pagamentos agendados."
+      operationId: "ConsultaAgendamentosPost"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "authenticationType"
+        in: "header"
+        description: "Tipo de autenticação requerida."
+        required: true
+        type: "string"
+      - name: "clientId"
+        in: "header"
+        description: "Identificação do cliente."
+        required: true
+        type: "string"
+      - name: "token"
+        in: "header"
+        description: "Chave para validação do acesso ao serviço."
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Retorno com sucesso."
+          headers: {}
+          schema:
+            $ref: "#/definitions/consultaAgendamentoResp"
+      x-swagger-router-controller: "Default"
+  /consultaComprovantes:
+    post:
+      summary: "ConsultaComprovantes_POST"
+      description: "Operação de consulta de pagamentos já efetuados."
+      operationId: "ConsultaComprovantesPost"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "authenticationType"
+        in: "header"
+        description: "Tipo de autenticação requerida."
+        required: true
+        type: "string"
+      - name: "clientId"
+        in: "header"
+        description: "Identificação do cliente."
+        required: true
+        type: "string"
+      - name: "token"
+        in: "header"
+        description: "Chave para validação do acesso ao serviço."
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Retorno com sucesso."
+          headers: {}
+          schema:
+            $ref: "#/definitions/consultaComprovantesResp"
+      x-swagger-router-controller: "Default"
+  /consultaComprovantePagamento:
+    post:
+      summary: "ConsultaComprovantePagamento_POST"
+      description: "Obtém a segunda via do comprovante de um pagamento já efetuado."
+      operationId: "ConsultaComprovantePagamentoPost"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "authenticationType"
+        in: "header"
+        description: "Tipo de autenticação requerida."
+        required: true
+        type: "string"
+      - name: "clientId"
+        in: "header"
+        description: "Identificação do cliente."
+        required: true
+        type: "string"
+      - name: "token"
+        in: "header"
+        description: "Chave para validação do acesso ao serviço."
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        description: "Dados de identificação do pagamento a qual deseja-se obter uma\
+          \ segunda via do comprovante."
+        required: true
+        schema:
+          $ref: "#/definitions/infPagamentoComprovanteReq"
+      responses:
+        200:
+          description: "Retorno com sucesso."
+          headers: {}
+          schema:
+            $ref: "#/definitions/infPagamentoResp"
+      x-swagger-router-controller: "Default"
+  /consultaConta:
+    post:
+      summary: "ConsultaConta_POST"
+      description: "Operação de consulta de conta."
+      operationId: "ConsultaContaPost"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "authenticationType"
+        in: "header"
+        description: "Tipo de autenticação requerida."
+        required: true
+        type: "string"
+      - name: "clientId"
+        in: "header"
+        description: "Identificação do cliente."
+        required: true
+        type: "string"
+      - name: "token"
+        in: "header"
+        description: "Chave para validação do acesso ao serviço."
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        description: "Requisição de consulta de conta."
+        required: true
+        schema:
+          $ref: "#/definitions/consultaContaReq"
+      responses:
+        200:
+          description: "Retorno com sucesso."
+          headers: {}
+          schema:
+            $ref: "#/definitions/consultaContaResp"
+      x-swagger-router-controller: "Default"
+  /consultaLimitesEmprestimo:
+    post:
+      summary: "ConsultaLimitesEmprestimo_POST"
+      description: "Operação de consulta dos limites disponíveis para empréstimo."
+      operationId: "ConsultaLimitesEmprestimoPost"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "authenticationType"
+        in: "header"
+        description: "Tipo de autenticação requerida."
+        required: true
+        type: "string"
+      - name: "clientId"
+        in: "header"
+        description: "Identificação do cliente."
+        required: true
+        type: "string"
+      - name: "token"
+        in: "header"
+        description: "Chave para validação do acesso ao serviço."
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        description: "Requisição de consulta limites de empréstimo."
+        required: true
+        schema:
+          $ref: "#/definitions/consultaLimitesEmprestimoReq"
+      responses:
+        200:
+          description: "Retorno com sucesso."
+          headers: {}
+          schema:
+            $ref: "#/definitions/consultaLimitesEmprestimoResp"
+      x-swagger-router-controller: "Default"
+  /consultaPagamento:
+    post:
+      summary: "ConsultaPagamento_POST"
+      description: "Operação de consulta de pagamentos."
+      operationId: "ConsultaPagamentoPost"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "authenticationType"
+        in: "header"
+        description: "Tipo de autenticação requerida."
+        required: true
+        type: "string"
+      - name: "clientId"
+        in: "header"
+        description: "Identificação do cliente."
+        required: true
+        type: "string"
+      - name: "token"
+        in: "header"
+        description: "Chave para validação do acesso ao serviço."
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        description: "Requisição de consulta de pagamentos."
+        required: true
+        schema:
+          $ref: "#/definitions/consultaPagamentoReq"
+      responses:
+        200:
+          description: "Retorno com sucesso."
+          headers: {}
+          schema:
+            $ref: "#/definitions/consultaPagamentoResp"
+      x-swagger-router-controller: "Default"
+  /consultaParcelasEmprestimo:
+    post:
+      summary: "ConsultaParcelasEmprestimo_POST"
+      description: "Operação de consulta das parcelas do empréstimo."
+      operationId: "ConsultaParcelasEmprestimoPost"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "authenticationType"
+        in: "header"
+        description: "Tipo de autenticação requerida."
+        required: true
+        type: "string"
+      - name: "clientId"
+        in: "header"
+        description: "Identificação do cliente."
+        required: true
+        type: "string"
+      - name: "token"
+        in: "header"
+        description: "Chave para validação do acesso ao serviço."
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        description: "Requisição de consulta parcelas de empréstimo."
+        required: true
+        schema:
+          $ref: "#/definitions/consultaParcelasEmprestimoReq"
+      responses:
+        200:
+          description: "Retorno com sucesso."
+          headers: {}
+          schema:
+            $ref: "#/definitions/consultaParcelasEmprestimoResp"
+      x-swagger-router-controller: "Default"
+  /consultaProdutosRecarga:
+    post:
+      summary: "ConsultaProdutosRecarga_POST"
+      description: "Operação de consulta dos possíveis produtos de recarga de uma\
+        \ operadora."
+      operationId: "ConsultaProdutosRecargaPost"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "authenticationType"
+        in: "header"
+        description: "Tipo de autenticação requerida."
+        required: true
+        type: "string"
+      - name: "clientId"
+        in: "header"
+        description: "Identificação do cliente."
+        required: true
+        type: "string"
+      - name: "token"
+        in: "header"
+        description: "Chave para validação do acesso ao serviço."
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        description: "Requisição de consulta produtos de recarga."
+        required: true
+        schema:
+          $ref: "#/definitions/consultaProdutosRecargaReq"
+      responses:
+        200:
+          description: "Retorno com sucesso."
+          headers: {}
+          schema:
+            $ref: "#/definitions/consultaProdutosRecargaResp"
+      x-swagger-router-controller: "Default"
+  /consultaTitulosCapitalizacao:
+    post:
+      summary: "ConsultaTitulosCapitalizacao_POST"
+      description: "Operação de consulta dos possíveis produtos de títulos de capitalizaç\
+        ão de uma operadora."
+      operationId: "ConsultaTitulosCapitalizacaoPost"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "authenticationType"
+        in: "header"
+        description: "Tipo de autenticação requerida."
+        required: true
+        type: "string"
+      - name: "clientId"
+        in: "header"
+        description: "Identificação do cliente."
+        required: true
+        type: "string"
+      - name: "token"
+        in: "header"
+        description: "Chave para validação do acesso ao serviço."
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        description: "Requisição de consulta produtos de títulos de capitalização."
+        required: true
+        schema:
+          $ref: "#/definitions/consultaTitulosCapitalizacaoReq"
+      responses:
+        200:
+          description: "Retorno com sucesso."
+          headers: {}
+          schema:
+            $ref: "#/definitions/consultaTitulosCapitalizacaoResp"
+      x-swagger-router-controller: "Default"
+  /consultaSaque:
+    post:
+      summary: "ConsultaSaque_POST"
+      description: "Operação de consulta de saque."
+      operationId: "ConsultaSaquePost"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "authenticationType"
+        in: "header"
+        description: "Tipo de autenticação requerida."
+        required: true
+        type: "string"
+      - name: "clientId"
+        in: "header"
+        description: "Identificação do cliente."
+        required: true
+        type: "string"
+      - name: "token"
+        in: "header"
+        description: "Chave para validação do acesso ao serviço."
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        description: "Requisição de consulta de saque."
+        required: true
+        schema:
+          $ref: "#/definitions/consultaSaqueReq"
+      responses:
+        200:
+          description: "Retorno com sucesso."
+          headers: {}
+          schema:
+            $ref: "#/definitions/consultaSaqueResp"
+      x-swagger-router-controller: "Default"
+  /consultaTaxas:
+    post:
+      summary: "ConsultaTaxas_POST"
+      description: "Operação de consulta de taxas."
+      operationId: "ConsultaTaxasPost"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "authenticationType"
+        in: "header"
+        description: "Tipo de autenticação requerida."
+        required: true
+        type: "string"
+      - name: "clientId"
+        in: "header"
+        description: "Identificação do cliente."
+        required: true
+        type: "string"
+      - name: "token"
+        in: "header"
+        description: "Chave para validação do acesso ao serviço."
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        description: "Requisição de consulta de taxas."
+        required: true
+        schema:
+          $ref: "#/definitions/consultaTaxasReq"
+      responses:
+        200:
+          description: "Retorno com sucesso."
+          headers: {}
+          schema:
+            $ref: "#/definitions/consultaTaxasResp"
+      x-swagger-router-controller: "Default"
+  /consultaValoresRecarga:
+    post:
+      summary: "ConsultaValoresRecarga_POST"
+      description: "Operação de consulta dos possíveis valores de recarga."
+      operationId: "ConsultaValoresRecargaPost"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "authenticationType"
+        in: "header"
+        description: "Tipo de autenticação requerida."
+        required: true
+        type: "string"
+      - name: "clientId"
+        in: "header"
+        description: "Identificação do cliente."
+        required: true
+        type: "string"
+      - name: "token"
+        in: "header"
+        description: "Chave para validação do acesso ao serviço."
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        description: "Requisição de consulta valores de recarga."
+        required: true
+        schema:
+          $ref: "#/definitions/consultaValoresRecargaReq"
+      responses:
+        200:
+          description: "Retorno com sucesso."
+          headers: {}
+          schema:
+            $ref: "#/definitions/consultaValoresRecargaResp"
+      x-swagger-router-controller: "Default"
+  /compraTitulosCapitalizacao:
+    post:
+      summary: "CompraTitulosCapitalizacao_POST"
+      description: "Operação de compra de títulos de capitalização."
+      operationId: "CompraTitulosCapitalizacaoPost"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "authenticationType"
+        in: "header"
+        description: "Tipo de autenticação requerida."
+        required: true
+        type: "string"
+      - name: "clientId"
+        in: "header"
+        description: "Identificação do cliente."
+        required: true
+        type: "string"
+      - name: "token"
+        in: "header"
+        description: "Chave para validação do acesso ao serviço."
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        description: "Requisição de operação de compra de títulos de capitalizaçã\
+          o."
+        required: true
+        schema:
+          $ref: "#/definitions/compraTitulosCapitalizacaoReq"
+      responses:
+        200:
+          description: "Retorno com sucesso."
+          headers: {}
+          schema:
+            $ref: "#/definitions/compraTitulosCapitalizacaoResp"
+      x-swagger-router-controller: "Default"
+  /compraTitulosCapitalizacaoConf:
+    post:
+      summary: "CompraTitulosCapitalizacaoConf_POST"
+      description: "Confirmação de operação de compra de títulos de capitalização."
+      operationId: "CompraTitulosCapitalizacaoConfPost"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "authenticationType"
+        in: "header"
+        description: "Tipo de autenticação requerida."
+        required: true
+        type: "string"
+      - name: "clientId"
+        in: "header"
+        description: "Identificação do cliente."
+        required: true
+        type: "string"
+      - name: "token"
+        in: "header"
+        description: "Chave para validação do acesso ao serviço."
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        description: "Requisição de confirmação de operação de compra de titulos de\
+          \ capitalizacao"
+        required: true
+        schema:
+          $ref: "#/definitions/transacConf"
+      responses:
+        200:
+          description: "Retorno com sucesso."
+          headers: {}
+      x-swagger-router-controller: "Default"
+  /deposito:
+    post:
+      summary: "Deposito_POST"
+      description: "Operação de depósito."
+      operationId: "DepositoPost"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "authenticationType"
+        in: "header"
+        description: "Tipo de autenticação requerida."
+        required: true
+        type: "string"
+      - name: "clientId"
+        in: "header"
+        description: "Identificação do cliente."
+        required: true
+        type: "string"
+      - name: "token"
+        in: "header"
+        description: "Chave para validação do acesso ao serviço."
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        description: "Requisição de depósito."
+        required: true
+        schema:
+          $ref: "#/definitions/depositoReq"
+      responses:
+        200:
+          description: "Retorno com sucesso."
+          headers: {}
+          schema:
+            $ref: "#/definitions/depositoResp"
+      x-swagger-router-controller: "Default"
+  /depositoConf:
+    post:
+      summary: "DepositoConf_POST"
+      description: "Confirmação de operação de depósito."
+      operationId: "DepositoConfPost"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "authenticationType"
+        in: "header"
+        description: "Tipo de autenticação requerida."
+        required: true
+        type: "string"
+      - name: "clientId"
+        in: "header"
+        description: "Identificação do cliente."
+        required: true
+        type: "string"
+      - name: "token"
+        in: "header"
+        description: "Chave para validação do acesso ao serviço."
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        description: "Requisição de confirmação de operação de depósito."
+        required: true
+        schema:
+          $ref: "#/definitions/transacConf"
+      responses:
+        200:
+          description: "Retorno com sucesso."
+          headers: {}
+      x-swagger-router-controller: "Default"
+  /emprestimo:
+    post:
+      summary: "Emprestimo_POST"
+      description: "Operação de empréstimo."
+      operationId: "EmprestimoPost"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "authenticationType"
+        in: "header"
+        description: "Tipo de autenticação requerida."
+        required: true
+        type: "string"
+      - name: "clientId"
+        in: "header"
+        description: "Identificação do cliente."
+        required: true
+        type: "string"
+      - name: "token"
+        in: "header"
+        description: "Chave para validação do acesso ao serviço."
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        description: "Requisição de empréstimo."
+        required: true
+        schema:
+          $ref: "#/definitions/emprestimoReq"
+      responses:
+        200:
+          description: "Retorno com sucesso."
+          headers: {}
+          schema:
+            $ref: "#/definitions/emprestimoResp"
+      x-swagger-router-controller: "Default"
+  /emprestimoConf:
+    post:
+      summary: "EmprestimoConf_POST"
+      description: "Confirmação de operação de empréstimo."
+      operationId: "EmprestimoConfPost"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "authenticationType"
+        in: "header"
+        description: "Tipo de autenticação requerida."
+        required: true
+        type: "string"
+      - name: "clientId"
+        in: "header"
+        description: "Identificação do cliente."
+        required: true
+        type: "string"
+      - name: "token"
+        in: "header"
+        description: "Chave para validação do acesso ao serviço."
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        description: "Requisição de confirmação de operação de empréstimo."
+        required: true
+        schema:
+          $ref: "#/definitions/transacConf"
+      responses:
+        200:
+          description: "Retorno com sucesso."
+          headers: {}
+      x-swagger-router-controller: "Default"
+  /extrato:
+    post:
+      summary: "Extrato_POST"
+      description: "Operação de extrato."
+      operationId: "ExtratoPost"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "authenticationType"
+        in: "header"
+        description: "Tipo de autenticação requerida."
+        required: true
+        type: "string"
+      - name: "clientId"
+        in: "header"
+        description: "Identificação do cliente."
+        required: true
+        type: "string"
+      - name: "token"
+        in: "header"
+        description: "Chave para validação do acesso ao serviço."
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        description: "Requisição de operação de extrato."
+        required: true
+        schema:
+          $ref: "#/definitions/extratoReq"
+      responses:
+        200:
+          description: "Retorno com sucesso."
+          headers: {}
+          schema:
+            $ref: "#/definitions/extratoResp"
+      x-swagger-router-controller: "Default"
+  /extratoConf:
+    post:
+      summary: "ExtratoConf_POST"
+      description: "Confirmação de operação de extrato."
+      operationId: "ExtratoConfPost"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "authenticationType"
+        in: "header"
+        description: "Tipo de autenticação requerida."
+        required: true
+        type: "string"
+      - name: "clientId"
+        in: "header"
+        description: "Identificação do cliente."
+        required: true
+        type: "string"
+      - name: "token"
+        in: "header"
+        description: "Chave para validação do acesso ao serviço."
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        description: "Requisição de confirmação de operação de extrato."
+        required: true
+        schema:
+          $ref: "#/definitions/transacConf"
+      responses:
+        200:
+          description: "Retorno com sucesso."
+          headers: {}
+      x-swagger-router-controller: "Default"
+  /identificacao:
+    post:
+      summary: "Identificacao_POST"
+      description: "Operação de identificação de cliente através do cartão."
+      operationId: "IdentificacaoPost"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "authenticationType"
+        in: "header"
+        description: "Tipo de autenticação requerida."
+        required: true
+        type: "string"
+      - name: "clientId"
+        in: "header"
+        description: "Identificação do cliente."
+        required: true
+        type: "string"
+      - name: "token"
+        in: "header"
+        description: "Chave para validação do acesso ao serviço."
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        description: "Requisição de identificação."
+        required: true
+        schema:
+          $ref: "#/definitions/identificacaoReq"
+      responses:
+        200:
+          description: "Retorno com sucesso."
+          headers: {}
+          schema:
+            $ref: "#/definitions/identificacaoResp"
+      x-swagger-router-controller: "Default"
+  /pagamento:
+    post:
+      summary: "Pagamento_POST"
+      description: "Operação de pagamento ou agendamento de pagamento."
+      operationId: "PagamentoPost"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "authenticationType"
+        in: "header"
+        description: "Tipo de autenticação requerida."
+        required: true
+        type: "string"
+      - name: "clientId"
+        in: "header"
+        description: "Identificação do cliente."
+        required: true
+        type: "string"
+      - name: "token"
+        in: "header"
+        description: "Chave para validação do acesso ao serviço."
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        description: "Requisição de operação de pagamento ou agendamento de pagamento."
+        required: true
+        schema:
+          $ref: "#/definitions/pagamentoReq"
+      responses:
+        200:
+          description: "Retorno com sucesso."
+          headers: {}
+          schema:
+            $ref: "#/definitions/pagamentoResp"
+      x-swagger-router-controller: "Default"
+  /pagamentoConf:
+    post:
+      summary: "PagamentoConf_POST"
+      description: "Confirmação de operação de pagamento ou agendamento de pagamento."
+      operationId: "PagamentoConfPost"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "authenticationType"
+        in: "header"
+        description: "Tipo de autenticação requerida."
+        required: true
+        type: "string"
+      - name: "clientId"
+        in: "header"
+        description: "Identificação do cliente."
+        required: true
+        type: "string"
+      - name: "token"
+        in: "header"
+        description: "Chave para validação do acesso ao serviço."
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        description: "Requisição de confirmação de operação de pagamento ou agendamento\
+          \ de pagamento."
+        required: true
+        schema:
+          $ref: "#/definitions/transacConf"
+      responses:
+        200:
+          description: "Retorno com sucesso."
+          headers: {}
+      x-swagger-router-controller: "Default"
+  /recarga:
+    post:
+      summary: "Recarga_POST"
+      description: "Operação de recarga."
+      operationId: "RecargaPost"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "authenticationType"
+        in: "header"
+        description: "Tipo de autenticação requerida."
+        required: true
+        type: "string"
+      - name: "clientId"
+        in: "header"
+        description: "Identificação do cliente."
+        required: true
+        type: "string"
+      - name: "token"
+        in: "header"
+        description: "Chave para validação do acesso ao serviço."
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        description: "Requisição de operação de recarga."
+        required: true
+        schema:
+          $ref: "#/definitions/recargaReq"
+      responses:
+        200:
+          description: "Retorno com sucesso."
+          headers: {}
+          schema:
+            $ref: "#/definitions/recargaResp"
+      x-swagger-router-controller: "Default"
+  /recargaConf:
+    post:
+      summary: "RecargaConf_POST"
+      description: "Operação de confirmação de recarga."
+      operationId: "RecargaConfPost"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "authenticationType"
+        in: "header"
+        description: "Tipo de autenticação requerida."
+        required: true
+        type: "string"
+      - name: "clientId"
+        in: "header"
+        description: "Identificação do cliente."
+        required: true
+        type: "string"
+      - name: "token"
+        in: "header"
+        description: "Chave para validação do acesso ao serviço."
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        description: "Requisição de confirmação de operação de recarga."
+        required: true
+        schema:
+          $ref: "#/definitions/transacConf"
+      responses:
+        200:
+          description: "Retorno com sucesso."
+          headers: {}
+      x-swagger-router-controller: "Default"
+  /reimpressaoComprovante:
+    post:
+      summary: "ReimpressaoComprovante_POST"
+      description: "Imprime segunda via de um comprovante de pagamento."
+      operationId: "ReimpressaoComprovantePost"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "authenticationType"
+        in: "header"
+        description: "Tipo de autenticação requerida."
+        required: true
+        type: "string"
+      - name: "clientId"
+        in: "header"
+        description: "Identificação do cliente."
+        required: true
+        type: "string"
+      - name: "token"
+        in: "header"
+        description: "Chave para validação do acesso ao serviço."
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        description: "Dados de identificação do comprovante de pgamento."
+        required: true
+        schema:
+          $ref: "#/definitions/reimpressaoComprovanteReq"
+      responses:
+        200:
+          description: "Retorno com sucesso."
+          headers: {}
+          schema:
+            $ref: "#/definitions/reimpressaoComprovanteResp"
+      x-swagger-router-controller: "Default"
+  /saldo:
+    post:
+      summary: "Saldo_POST"
+      description: "Operação de consulta de saldo."
+      operationId: "SaldoPost"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "authenticationType"
+        in: "header"
+        description: "Tipo de autenticação requerida."
+        required: true
+        type: "string"
+      - name: "clientId"
+        in: "header"
+        description: "Identificação do cliente."
+        required: true
+        type: "string"
+      - name: "token"
+        in: "header"
+        description: "Chave para validação do acesso ao serviço."
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        description: "Requisição de operação de consulta de saldo."
+        required: true
+        schema:
+          $ref: "#/definitions/saldoReq"
+      responses:
+        200:
+          description: "Retorno com sucesso."
+          headers: {}
+          schema:
+            $ref: "#/definitions/saldoResp"
+      x-swagger-router-controller: "Default"
+  /saldoConf:
+    post:
+      summary: "SaldoConf_POST"
+      description: "Confirmação de operação de consulta de saldo."
+      operationId: "SaldoConfPost"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "authenticationType"
+        in: "header"
+        description: "Tipo de autenticação requerida."
+        required: true
+        type: "string"
+      - name: "clientId"
+        in: "header"
+        description: "Identificação do cliente."
+        required: true
+        type: "string"
+      - name: "token"
+        in: "header"
+        description: "Chave para validação do acesso ao serviço."
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        description: "Requisição de confirmação de operação de consulta de saldo."
+        required: true
+        schema:
+          $ref: "#/definitions/transacConf"
+      responses:
+        200:
+          description: "Retorno com sucesso."
+          headers: {}
+      x-swagger-router-controller: "Default"
+  /saque:
+    post:
+      summary: "Saque_POST"
+      description: "Operação de saque."
+      operationId: "SaquePost"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "authenticationType"
+        in: "header"
+        description: "Tipo de autenticação requerida."
+        required: true
+        type: "string"
+      - name: "clientId"
+        in: "header"
+        description: "Identificação do cliente."
+        required: true
+        type: "string"
+      - name: "token"
+        in: "header"
+        description: "Chave para validação do acesso ao serviço."
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        description: "Requisição de operação de saque."
+        required: true
+        schema:
+          $ref: "#/definitions/saqueReq"
+      responses:
+        200:
+          description: "Retorno com sucesso."
+          headers: {}
+          schema:
+            $ref: "#/definitions/saqueResp"
+      x-swagger-router-controller: "Default"
+  /saqueConf:
+    post:
+      summary: "SaqueConf_POST"
+      description: "Confirmação de operação de saque."
+      operationId: "SaqueConfPost"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "authenticationType"
+        in: "header"
+        description: "Tipo de autenticação requerida."
+        required: true
+        type: "string"
+      - name: "clientId"
+        in: "header"
+        description: "Identificação do cliente."
+        required: true
+        type: "string"
+      - name: "token"
+        in: "header"
+        description: "Chave para validação do acesso ao serviço."
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        description: "Requisição de confirmação de operação de saque."
+        required: true
+        schema:
+          $ref: "#/definitions/transacConf"
+      responses:
+        200:
+          description: "Retorno com sucesso."
+          headers: {}
+      x-swagger-router-controller: "Default"
+definitions:
+  agendamentoIdentificaoReq:
+    type: "object"
+    properties:
+      InfTransacao:
+        $ref: "#/definitions/infTransacaoReq"
+      Cartao:
+        $ref: "#/definitions/cartao"
+      Terminal:
+        $ref: "#/definitions/terminal"
+      InfAgendamento:
+        $ref: "#/definitions/infAgendamentoReq"
+    title: "agendamentoIdentificaoReq"
+  agendamentoIdentificaoResp:
+    type: "object"
+    properties:
+      InfTransacao:
+        $ref: "#/definitions/infTransacaoResp"
+      Terminal:
+        $ref: "#/definitions/terminal"
+      Cripto:
+        $ref: "#/definitions/criptoResp"
+      InfAgendamento:
+        $ref: "#/definitions/infAgendamentoResp"
+    title: "agendamentoIdentificaoResp"
+    example:
+      InfAgendamento:
+        recibo: "             TEU BILHETE ANTECIPADO             @               \
+          \ 036200005433591                @               13/10/2018  20:24     \
+          \          @           VALOR DA RECARGA: R$ 48,00           @          \
+          \       TAXAS: R$ 2,00                 @              TOTAL PAGO: R$ 50,00\
+          \              @   OS CRÉDITOS ADQUIRIDOS ESTARÃO DISPONÍVEIS   @      NOS\
+          \ VALIDADORES DOS ÔNIBUS DA REGIÃO      @     METROPOLITANA QUE ACEITAM\
+          \ O CARTÃO TEU     @ OU NAS CATRACAS DO METRÔ, NOS SEGUINTES PRAZOS @  \
+          \          RECARGAS ATÉ O MEIO DIA:            @ CRÉDITOS DISPONÍVEIS NO\
+          \ DIA SEGUINTE DA COMPRA @           RECARGAS APÓS O MEIO DIA:         \
+          \  @   CRÉDITOS DISPONÍVEIS EM 48H APÓS A COMPRA   "
+        valorNominal: "000000005000"
+        dataPagamento: "20181122"
+        valorJurosCalculado: "000000000499"
+        valorTotal: "000000005499"
+        modoEntrada: 0
+        modificado: 0
+        valorAbatimento: "000000000499"
+        codigoBarras: "84729304827364829301567829304562229483471004"
+        cedente: "Cedente"
+        valorMultaCalculadada: "000000000499"
+      InfTransacao:
+        cdProc: "029100"
+        mensagemCliente: "Não foi possível validar o cartão."
+        nsu: "000080247206"
+        codMoeda: "986"
+        codOperadora: "00000000914"
+        dataLocal: "1122"
+        valor: "5000"
+        errorMessage: "Cartão inválido."
+        nsuResposta: "820"
+        horaLocal: "151032"
+        dataHora: "1122151032"
+      Terminal:
+        codEstab: "000000000742673"
+        tipo: "008"
+        id: "05100004"
+      Cripto:
+        hash: "hash"
+  autenticacaoReq:
+    type: "object"
+    properties:
+      InfTransacao:
+        $ref: "#/definitions/infTransacaoReq"
+      Cartao:
+        $ref: "#/definitions/cartao"
+      Terminal:
+        $ref: "#/definitions/terminal"
+      Cripto:
+        $ref: "#/definitions/cripto"
+      InfAutenticacao:
+        $ref: "#/definitions/infAutenticacaoReq"
+    title: "autenticacaoReq"
+  autenticacaoResp:
+    type: "object"
+    properties:
+      InfTransacao:
+        $ref: "#/definitions/infTransacaoResp"
+      Terminal:
+        $ref: "#/definitions/terminal"
+      Cripto:
+        $ref: "#/definitions/criptoResp"
+      InfAutenticacao:
+        $ref: "#/definitions/infAutenticacaoResp"
+    title: "autenticacaoResp"
+    example:
+      InfTransacao:
+        cdProc: "029100"
+        mensagemCliente: "Não foi possível validar o cartão."
+        nsu: "000080247206"
+        codMoeda: "986"
+        codOperadora: "00000000914"
+        dataLocal: "1122"
+        valor: "5000"
+        errorMessage: "Cartão inválido."
+        nsuResposta: "820"
+        horaLocal: "151032"
+        dataHora: "1122151032"
+      Terminal:
+        codEstab: "000000000742673"
+        tipo: "008"
+        id: "05100004"
+      Cripto:
+        hash: "hash"
+      InfAutenticacao:
+        nomeCliente: "Carl Edward Sagan"
+  cartao:
+    type: "object"
+    properties:
+      modoEntrada:
+        $ref: "#/definitions/ModoEntrada"
+      pan:
+        type: "string"
+        example: "0000955707050150"
+        description: "PAN/Número do cartão utilizado (16 a 19 caracteres normais ou\
+          \ 48 criptografados)."
+        pattern: "^.{16,19}|.{48}$"
+      trilha2:
+        type: "string"
+        example: "5076415910012119\\u003d27086060000017290360"
+        description: "Trilha 2 do cartão utilizado (37 caracteres normais ou 80 criptografados)."
+        pattern: "^.{37}|.{80}$"
+    title: "cartao"
+  compraTitulosCapitalizacaoReq:
+    type: "object"
+    properties:
+      InfTransacao:
+        $ref: "#/definitions/infTransacaoReq"
+      Terminal:
+        $ref: "#/definitions/terminal"
+      InfCompraTitulosCapitalizacao:
+        $ref: "#/definitions/infCompraTitulosCapitalizacaoReq"
+    title: "compraTitulosCapitalizacaoReq"
+  compraTitulosCapitalizacaoResp:
+    type: "object"
+    properties:
+      InfTransacao:
+        $ref: "#/definitions/infTransacaoResp"
+      Terminal:
+        $ref: "#/definitions/terminal"
+      InfCompraTitulosCapitalizacao:
+        $ref: "#/definitions/infCompraTitulosCapitalizacaoResp"
+    title: "compraTitulosCapitalizacaoResp"
+    example:
+      InfCompraTitulosCapitalizacao:
+        recibo: "             TEU BILHETE ANTECIPADO             @               \
+          \ 036200005433591                @               13/10/2018  20:24     \
+          \          @           VALOR DA RECARGA: R$ 48,00           @          \
+          \       TAXAS: R$ 2,00                 @              TOTAL PAGO: R$ 50,00\
+          \              @   OS CRÉDITOS ADQUIRIDOS ESTARÃO DISPONÍVEIS   @      NOS\
+          \ VALIDADORES DOS ÔNIBUS DA REGIÃO      @     METROPOLITANA QUE ACEITAM\
+          \ O CARTÃO TEU     @ OU NAS CATRACAS DO METRÔ, NOS SEGUINTES PRAZOS @  \
+          \          RECARGAS ATÉ O MEIO DIA:            @ CRÉDITOS DISPONÍVEIS NO\
+          \ DIA SEGUINTE DA COMPRA @           RECARGAS APÓS O MEIO DIA:         \
+          \  @   CRÉDITOS DISPONÍVEIS EM 48H APÓS A COMPRA   "
+      InfTransacao:
+        cdProc: "029100"
+        mensagemCliente: "Não foi possível validar o cartão."
+        nsu: "000080247206"
+        codMoeda: "986"
+        codOperadora: "00000000914"
+        dataLocal: "1122"
+        valor: "5000"
+        errorMessage: "Cartão inválido."
+        nsuResposta: "820"
+        horaLocal: "151032"
+        dataHora: "1122151032"
+      Terminal:
+        codEstab: "000000000742673"
+        tipo: "008"
+        id: "05100004"
+  consultaAgendamentoResp:
+    type: "object"
+    properties:
+      InfTransacao:
+        $ref: "#/definitions/infTransacaoResp"
+      Terminal:
+        $ref: "#/definitions/terminal"
+      Cripto:
+        $ref: "#/definitions/criptoResp"
+      InfoAgendamentos:
+        type: "array"
+        description: "Listagem com todos pagamentos que estão agendados."
+        items:
+          $ref: "#/definitions/infAgendamentoReq"
+    title: "consultaAgendamentoResp"
+    example:
+      InfTransacao:
+        cdProc: "029100"
+        mensagemCliente: "Não foi possível validar o cartão."
+        nsu: "000080247206"
+        codMoeda: "986"
+        codOperadora: "00000000914"
+        dataLocal: "1122"
+        valor: "5000"
+        errorMessage: "Cartão inválido."
+        nsuResposta: "820"
+        horaLocal: "151032"
+        dataHora: "1122151032"
+      Terminal:
+        codEstab: "000000000742673"
+        tipo: "008"
+        id: "05100004"
+      Cripto:
+        hash: "hash"
+      InfoAgendamentos:
+      - dataPagamento: "20181122"
+        dataVencimento: "20181122"
+        valorTotal: "000000005000"
+        id: "234"
+        cedente: "Cedente"
+      - dataPagamento: "20181122"
+        dataVencimento: "20181122"
+        valorTotal: "000000005000"
+        id: "234"
+        cedente: "Cedente"
+  consultaComprovantesResp:
+    type: "object"
+    properties:
+      InfTransacao:
+        $ref: "#/definitions/infTransacaoResp"
+      Terminal:
+        $ref: "#/definitions/terminal"
+      Cripto:
+        $ref: "#/definitions/criptoResp"
+      InfComprovantes:
+        type: "array"
+        description: "Listagem com todos os comprovantes de pagamentos disponíveis\
+          \ para reimpressão."
+        items:
+          $ref: "#/definitions/infComprovantePagamento"
+    title: "consultaComprovantesResp"
+    example:
+      InfTransacao:
+        cdProc: "029100"
+        mensagemCliente: "Não foi possível validar o cartão."
+        nsu: "000080247206"
+        codMoeda: "986"
+        codOperadora: "00000000914"
+        dataLocal: "1122"
+        valor: "5000"
+        errorMessage: "Cartão inválido."
+        nsuResposta: "820"
+        horaLocal: "151032"
+        dataHora: "1122151032"
+      InfComprovantes:
+      - dataPagamento: "20181122"
+        dataVencimento: "20181122"
+        valor: "000000005000"
+        id: "036200001842241"
+        cedente: "Cedente"
+      - dataPagamento: "20181122"
+        dataVencimento: "20181122"
+        valor: "000000005000"
+        id: "036200001842241"
+        cedente: "Cedente"
+      Terminal:
+        codEstab: "000000000742673"
+        tipo: "008"
+        id: "05100004"
+      Cripto:
+        hash: "hash"
+  consultaContaReq:
+    type: "object"
+    properties:
+      InfTransacao:
+        $ref: "#/definitions/infTransacaoReq"
+      Cartao:
+        $ref: "#/definitions/cartao"
+      Terminal:
+        $ref: "#/definitions/terminal"
+      Cripto:
+        $ref: "#/definitions/cripto"
+      InfConsultaConta:
+        $ref: "#/definitions/infConsultaContaReq"
+    title: "consultaContaReq"
+  consultaContaResp:
+    type: "object"
+    properties:
+      InfTransacao:
+        $ref: "#/definitions/infTransacaoResp"
+      Terminal:
+        $ref: "#/definitions/terminal"
+      Cripto:
+        $ref: "#/definitions/criptoResp"
+      InfConsultaConta:
+        $ref: "#/definitions/infConsultaContaResp"
+    title: "consultaContaResp"
+    example:
+      InfTransacao:
+        cdProc: "029100"
+        mensagemCliente: "Não foi possível validar o cartão."
+        nsu: "000080247206"
+        codMoeda: "986"
+        codOperadora: "00000000914"
+        dataLocal: "1122"
+        valor: "5000"
+        errorMessage: "Cartão inválido."
+        nsuResposta: "820"
+        horaLocal: "151032"
+        dataHora: "1122151032"
+      InfConsultaConta:
+        solicDoc: 0
+        modalidadeDeposito: 0
+        nomeCliente: "Carl Edward Sagan"
+        habilitaDeposito: 0
+        depositoIdentificado: 0
+      Terminal:
+        codEstab: "000000000742673"
+        tipo: "008"
+        id: "05100004"
+      Cripto:
+        hash: "hash"
+  consultaLimitesEmprestimoReq:
+    type: "object"
+    properties:
+      InfTransacao:
+        $ref: "#/definitions/infTransacaoReq"
+      Cartao:
+        $ref: "#/definitions/cartao"
+      Terminal:
+        $ref: "#/definitions/terminal"
+    title: "consultaLimitesEmprestimoReq"
+  consultaLimitesEmprestimoResp:
+    type: "object"
+    properties:
+      InfTransacao:
+        $ref: "#/definitions/infTransacaoResp"
+      Terminal:
+        $ref: "#/definitions/terminal"
+      Cripto:
+        $ref: "#/definitions/criptoResp"
+      InfConsultaLimitesEmprestimo:
+        $ref: "#/definitions/infConsultaLimitesEmprestimoResp"
+    title: "consultaLimitesEmprestimoResp"
+    example:
+      InfTransacao:
+        cdProc: "029100"
+        mensagemCliente: "Não foi possível validar o cartão."
+        nsu: "000080247206"
+        codMoeda: "986"
+        codOperadora: "00000000914"
+        dataLocal: "1122"
+        valor: "5000"
+        errorMessage: "Cartão inválido."
+        nsuResposta: "820"
+        horaLocal: "151032"
+        dataHora: "1122151032"
+      InfConsultaLimitesEmprestimo:
+        limiteMinimoEmprestimo: "000000500000"
+        limiteMaximoEmprestimo: "000005000000"
+        nomeAgenciaBancaria: "Agência bancária"
+        nomeTitularConta: "Carl Edward Sagan"
+      Terminal:
+        codEstab: "000000000742673"
+        tipo: "008"
+        id: "05100004"
+      Cripto:
+        hash: "hash"
+  consultaPagamentoReq:
+    type: "object"
+    properties:
+      InfTransacao:
+        $ref: "#/definitions/infTransacaoReq"
+      Cartao:
+        $ref: "#/definitions/cartao"
+      Terminal:
+        $ref: "#/definitions/terminal"
+      InfConsultaPagamento:
+        $ref: "#/definitions/infConsultaPagamentoReq"
+    title: "consultaPagamentoReq"
+  consultaPagamentoResp:
+    type: "object"
+    properties:
+      InfTransacao:
+        $ref: "#/definitions/infTransacaoResp"
+      Terminal:
+        $ref: "#/definitions/terminal"
+      Cripto:
+        $ref: "#/definitions/criptoResp"
+      InfConsultaPagamento:
+        $ref: "#/definitions/infConsultaPagamentoResp"
+    title: "consultaPagamentoResp"
+    example:
+      InfTransacao:
+        cdProc: "029100"
+        mensagemCliente: "Não foi possível validar o cartão."
+        nsu: "000080247206"
+        codMoeda: "986"
+        codOperadora: "00000000914"
+        dataLocal: "1122"
+        valor: "5000"
+        errorMessage: "Cartão inválido."
+        nsuResposta: "820"
+        horaLocal: "151032"
+        dataHora: "1122151032"
+      Terminal:
+        codEstab: "000000000742673"
+        tipo: "008"
+        id: "05100004"
+      Cripto:
+        hash: "hash"
+      InfConsultaPagamento:
+        aceitaPagamentoParcial: 0
+        dda:
+        - aceitaPagamentoParcial: 0
+          tipo: "tipo"
+          numDDA: "7123"
+          sacado: "sacado"
+          dataVencimento: "20181122"
+          valor: "000000005000"
+          alegacao: "alegacao"
+          modificado: 0
+          cedente: "Cedente"
+        - aceitaPagamentoParcial: 0
+          tipo: "tipo"
+          numDDA: "7123"
+          sacado: "sacado"
+          dataVencimento: "20181122"
+          valor: "000000005000"
+          alegacao: "alegacao"
+          modificado: 0
+          cedente: "Cedente"
+        dataPagamento: "20181122"
+        nomeFavorecidoDoacao: "Carl Edward Sagan"
+        desconto: "000000000499"
+        valor: "valor"
+        cnpjFavorecidoDoacao: "cnpjFavorecidoDoacao"
+        modificado: 0
+        sistemaCobranca: 0
+        cip:
+          valorMaximoPermitidoPagamento: "000000050000"
+          NumeroIdentificacaoConsultaPagamento: "NumeroIdentificacaoConsultaPagamento"
+          valorMinimoPermitidoPagamento: "000000000500"
+          valorJurosCalculado: "000000000499"
+          valorAbatimento: "000000000499"
+          tipoValorAceito: "tipoValorAceito"
+          valorMultaCalculadada: "000000000499"
+        valorMinimo: "000000000500"
+        cedente: "Cedente"
+  consultaParcelasEmprestimoReq:
+    type: "object"
+    properties:
+      InfTransacao:
+        $ref: "#/definitions/infTransacaoReq"
+      Cartao:
+        $ref: "#/definitions/cartao"
+      Terminal:
+        $ref: "#/definitions/terminal"
+    title: "consultaParcelasEmprestimoReq"
+  consultaParcelasEmprestimoResp:
+    type: "object"
+    properties:
+      InfTransacao:
+        $ref: "#/definitions/infTransacaoResp"
+      Terminal:
+        $ref: "#/definitions/terminal"
+      Cripto:
+        $ref: "#/definitions/criptoResp"
+      InfConsultaParcelasEmprestimo:
+        $ref: "#/definitions/infConsultaParcelasEmprestimoResp"
+    title: "consultaParcelasEmprestimoResp"
+    example:
+      InfConsultaParcelasEmprestimo:
+        opcoesParcelas:
+        - valorParcela: "000000005000"
+          qntParcelas: "5"
+        - valorParcela: "000000005000"
+          qntParcelas: "5"
+        dataPrimeiraParcela: "20181122"
+      InfTransacao:
+        cdProc: "029100"
+        mensagemCliente: "Não foi possível validar o cartão."
+        nsu: "000080247206"
+        codMoeda: "986"
+        codOperadora: "00000000914"
+        dataLocal: "1122"
+        valor: "5000"
+        errorMessage: "Cartão inválido."
+        nsuResposta: "820"
+        horaLocal: "151032"
+        dataHora: "1122151032"
+      Terminal:
+        codEstab: "000000000742673"
+        tipo: "008"
+        id: "05100004"
+      Cripto:
+        hash: "hash"
+  consultaProdutosRecargaReq:
+    type: "object"
+    properties:
+      InfTransacao:
+        $ref: "#/definitions/infTransacaoReq"
+      Terminal:
+        $ref: "#/definitions/terminal"
+      InfConsultaProdutosRecarga:
+        $ref: "#/definitions/infConsultaProdutosRecargaReq"
+    title: "consultaProdutosRecargaReq"
+  consultaProdutosRecargaResp:
+    type: "object"
+    properties:
+      InfTransacao:
+        $ref: "#/definitions/infTransacaoResp"
+      Terminal:
+        $ref: "#/definitions/terminal"
+      Cripto:
+        $ref: "#/definitions/criptoResp"
+      InfConsultaProdutosRecarga:
+        $ref: "#/definitions/infConsultaProdutosRecargaResp"
+    title: "consultaProdutosRecargaResp"
+    example:
+      InfTransacao:
+        cdProc: "029100"
+        mensagemCliente: "Não foi possível validar o cartão."
+        nsu: "000080247206"
+        codMoeda: "986"
+        codOperadora: "00000000914"
+        dataLocal: "1122"
+        valor: "5000"
+        errorMessage: "Cartão inválido."
+        nsuResposta: "820"
+        horaLocal: "151032"
+        dataHora: "1122151032"
+      InfConsultaProdutosRecarga:
+        products:
+        - name: "Produto novo"
+          id: "5"
+        - name: "Produto novo"
+          id: "5"
+      Terminal:
+        codEstab: "000000000742673"
+        tipo: "008"
+        id: "05100004"
+      Cripto:
+        hash: "hash"
+  consultaTitulosCapitalizacaoReq:
+    type: "object"
+    properties:
+      InfTransacao:
+        $ref: "#/definitions/infTransacaoReq"
+      Terminal:
+        $ref: "#/definitions/terminal"
+    title: "consultaTitulosCapitalizacaoReq"
+  consultaTitulosCapitalizacaoResp:
+    type: "object"
+    properties:
+      InfTransacao:
+        $ref: "#/definitions/infTransacaoResp"
+      Terminal:
+        $ref: "#/definitions/terminal"
+      InfConsultaTitulosCapitalizacao:
+        $ref: "#/definitions/infConsultaTitulosCapitalizacaoResp"
+    title: "consultaTitulosCapitalizacaoResp"
+    example:
+      InfTransacao:
+        cdProc: "029100"
+        mensagemCliente: "Não foi possível validar o cartão."
+        nsu: "000080247206"
+        codMoeda: "986"
+        codOperadora: "00000000914"
+        dataLocal: "1122"
+        valor: "5000"
+        errorMessage: "Cartão inválido."
+        nsuResposta: "820"
+        horaLocal: "151032"
+        dataHora: "1122151032"
+      InfConsultaTitulosCapitalizacao:
+        produtos:
+        - limiteMaximoCompra: "4"
+          tema:
+            estilos:
+            - valor: "#00288C"
+              nome: "cor-fundo ou cor-botao"
+            - valor: "#00288C"
+              nome: "cor-fundo ou cor-botao"
+          valor: "000000000500"
+          nome: "Grêmio Mais"
+          id: "7"
+          dataFimVigencia: "20181130"
+          detalhes: "Edição ouro de mais um produto do Grêmio Mais"
+          dataInicioVigencia: "20181122"
+          descricao: "Edição 115 Anos"
+        - limiteMaximoCompra: "4"
+          tema:
+            estilos:
+            - valor: "#00288C"
+              nome: "cor-fundo ou cor-botao"
+            - valor: "#00288C"
+              nome: "cor-fundo ou cor-botao"
+          valor: "000000000500"
+          nome: "Grêmio Mais"
+          id: "7"
+          dataFimVigencia: "20181130"
+          detalhes: "Edição ouro de mais um produto do Grêmio Mais"
+          dataInicioVigencia: "20181122"
+          descricao: "Edição 115 Anos"
+      Terminal:
+        codEstab: "000000000742673"
+        tipo: "008"
+        id: "05100004"
+  consultaSaqueReq:
+    type: "object"
+    properties:
+      InfTransacao:
+        $ref: "#/definitions/infTransacaoReq"
+      Terminal:
+        $ref: "#/definitions/terminal"
+      Cripto:
+        $ref: "#/definitions/cripto"
+      InfConsultaSaque:
+        $ref: "#/definitions/infConsultaSaqueReq"
+    title: "consultaSaqueReq"
+  consultaSaqueResp:
+    type: "object"
+    properties:
+      InfTransacao:
+        $ref: "#/definitions/infTransacaoResp"
+      Terminal:
+        $ref: "#/definitions/terminal"
+      Cripto:
+        $ref: "#/definitions/criptoResp"
+      InfConsultaSaque:
+        $ref: "#/definitions/infConsultaSaqueResp"
+    title: "consultaSaqueResp"
+    example:
+      InfTransacao:
+        cdProc: "029100"
+        mensagemCliente: "Não foi possível validar o cartão."
+        nsu: "000080247206"
+        codMoeda: "986"
+        codOperadora: "00000000914"
+        dataLocal: "1122"
+        valor: "5000"
+        errorMessage: "Cartão inválido."
+        nsuResposta: "820"
+        horaLocal: "151032"
+        dataHora: "1122151032"
+      Terminal:
+        codEstab: "000000000742673"
+        tipo: "008"
+        id: "05100004"
+      Cripto:
+        hash: "hash"
+      InfConsultaSaque:
+        perguntas:
+        - pergunta: "Qual o nome do seu primeiro animal de estimação?"
+          tamResposta: "27"
+          id: "1"
+        - pergunta: "Qual o nome do seu primeiro animal de estimação?"
+          tamResposta: "27"
+          id: "1"
+        nomeCliente: "Carl Edward Sagan"
+  consultaTaxasReq:
+    type: "object"
+    properties:
+      InfTransacao:
+        $ref: "#/definitions/infTransacaoReq"
+      Terminal:
+        $ref: "#/definitions/terminal"
+    title: "consultaTaxasReq"
+  consultaTaxasResp:
+    type: "object"
+    properties:
+      InfTransacao:
+        $ref: "#/definitions/infTransacaoResp"
+      Terminal:
+        $ref: "#/definitions/terminal"
+      Cripto:
+        $ref: "#/definitions/criptoResp"
+      InfConsultaTaxas:
+        $ref: "#/definitions/infConsultaTaxasResp"
+    title: "consultaTaxasResp"
+    example:
+      InfTransacao:
+        cdProc: "029100"
+        mensagemCliente: "Não foi possível validar o cartão."
+        nsu: "000080247206"
+        codMoeda: "986"
+        codOperadora: "00000000914"
+        dataLocal: "1122"
+        valor: "5000"
+        errorMessage: "Cartão inválido."
+        nsuResposta: "820"
+        horaLocal: "151032"
+        dataHora: "1122151032"
+      InfConsultaTaxas:
+        transactions_fees:
+        - fees:
+          - min_amount: "000"
+            max_amount: "10000"
+            id: "0201"
+            value: "000"
+          - min_amount: "000"
+            max_amount: "10000"
+            id: "0201"
+            value: "000"
+          name: "deposit"
+          id: "01"
+        - fees:
+          - min_amount: "000"
+            max_amount: "10000"
+            id: "0201"
+            value: "000"
+          - min_amount: "000"
+            max_amount: "10000"
+            id: "0201"
+            value: "000"
+          name: "deposit"
+          id: "01"
+      Terminal:
+        codEstab: "000000000742673"
+        tipo: "008"
+        id: "05100004"
+      Cripto:
+        hash: "hash"
+  consultaValoresRecargaReq:
+    type: "object"
+    properties:
+      InfTransacao:
+        $ref: "#/definitions/infTransacaoReq"
+      Terminal:
+        $ref: "#/definitions/terminal"
+    title: "consultaValoresRecargaReq"
+  consultaValoresRecargaResp:
+    type: "object"
+    properties:
+      InfTransacao:
+        $ref: "#/definitions/infTransacaoResp"
+      Terminal:
+        $ref: "#/definitions/terminal"
+      Cripto:
+        $ref: "#/definitions/criptoResp"
+      InfConsultaValoresRecarga:
+        $ref: "#/definitions/infConsultaValoresRecargaResp"
+    title: "consultaValoresRecargaResp"
+    example:
+      InfTransacao:
+        cdProc: "029100"
+        mensagemCliente: "Não foi possível validar o cartão."
+        nsu: "000080247206"
+        codMoeda: "986"
+        codOperadora: "00000000914"
+        dataLocal: "1122"
+        valor: "5000"
+        errorMessage: "Cartão inválido."
+        nsuResposta: "820"
+        horaLocal: "151032"
+        dataHora: "1122151032"
+      InfConsultaValoresRecarga:
+        valores:
+          issuers:
+          - card_number_mask: "XXXXXXXXXXXXXX-X"
+            card_number_length: 15
+            name: "TEU"
+            id: 1
+            products:
+            - min_value: "1000"
+              fee: "200"
+              values:
+              - fee: "200"
+                id: "1"
+                value: "2000"
+              - fee: "200"
+                id: "1"
+                value: "2000"
+              name: "Bilhete Antecipado"
+              id: "7"
+              max_value: "9000"
+            - min_value: "1000"
+              fee: "200"
+              values:
+              - fee: "200"
+                id: "1"
+                value: "2000"
+              - fee: "200"
+                id: "1"
+                value: "2000"
+              name: "Bilhete Antecipado"
+              id: "7"
+              max_value: "9000"
+          - card_number_mask: "XXXXXXXXXXXXXX-X"
+            card_number_length: 15
+            name: "TEU"
+            id: 1
+            products:
+            - min_value: "1000"
+              fee: "200"
+              values:
+              - fee: "200"
+                id: "1"
+                value: "2000"
+              - fee: "200"
+                id: "1"
+                value: "2000"
+              name: "Bilhete Antecipado"
+              id: "7"
+              max_value: "9000"
+            - min_value: "1000"
+              fee: "200"
+              values:
+              - fee: "200"
+                id: "1"
+                value: "2000"
+              - fee: "200"
+                id: "1"
+                value: "2000"
+              name: "Bilhete Antecipado"
+              id: "7"
+              max_value: "9000"
+      Terminal:
+        codEstab: "000000000742673"
+        tipo: "008"
+        id: "05100004"
+      Cripto:
+        hash: "hash"
+  cripto:
+    type: "object"
+    properties:
+      senha:
+        type: "string"
+        description: "Senha numérica criptografada."
+      tamanhoSenha:
+        type: "string"
+        example: "15"
+        description: "Tamanho da senha numérica."
+        pattern: "^\\d+$"
+      idPositiva:
+        type: "string"
+        description: "Identificação positiva informada pelo usuário, caso utilizada.\
+          \ Corresponde às posições da tela selecionadas pelo usuário. Pode ser criptografada\
+          \ ou não."
+      token:
+        type: "string"
+        example: "02C47DF604EB43B1"
+        description: "Em caso de utilização de token para autenticação, contém o token\
+          \ informado pelo usuário."
+      templateBiometria:
+        type: "string"
+        description: "Em caso de biometria, contém o template gerado."
+      criptogramaChip:
+        type: "string"
+        description: "Em caso de cartão com chip, contém o criptograma dele."
+      hash:
+        type: "string"
+        description: "Hash de todos os campos que compõem a transação."
+      respostaCliente:
+        $ref: "#/definitions/RespostaCliente"
+    title: "cripto"
+    description: "Informações relacionadas a criptografia e senhas."
+  criptoResp:
+    type: "object"
+    properties:
+      hash:
+        type: "string"
+        description: "Hash de todos os campos que compõem a transação."
+    title: "criptoResp"
+    example:
+      hash: "hash"
+  depositoReq:
+    type: "object"
+    properties:
+      InfTransacao:
+        $ref: "#/definitions/infTransacaoReq"
+      Cartao:
+        $ref: "#/definitions/cartao"
+      Terminal:
+        $ref: "#/definitions/terminal"
+      Cripto:
+        $ref: "#/definitions/cripto"
+      InfDeposito:
+        $ref: "#/definitions/infDepositoReq"
+    title: "depositoReq"
+  depositoResp:
+    type: "object"
+    properties:
+      InfTransacao:
+        $ref: "#/definitions/infTransacaoResp"
+      Terminal:
+        $ref: "#/definitions/terminal"
+      Cripto:
+        $ref: "#/definitions/criptoResp"
+      InfDeposito:
+        $ref: "#/definitions/infDepositoResp"
+    title: "depositoResp"
+    example:
+      InfTransacao:
+        cdProc: "029100"
+        mensagemCliente: "Não foi possível validar o cartão."
+        nsu: "000080247206"
+        codMoeda: "986"
+        codOperadora: "00000000914"
+        dataLocal: "1122"
+        valor: "5000"
+        errorMessage: "Cartão inválido."
+        nsuResposta: "820"
+        horaLocal: "151032"
+        dataHora: "1122151032"
+      Terminal:
+        codEstab: "000000000742673"
+        tipo: "008"
+        id: "05100004"
+      Cripto:
+        hash: "hash"
+      InfDeposito:
+        recibo: "             TEU BILHETE ANTECIPADO             @               \
+          \ 036200005433591                @               13/10/2018  20:24     \
+          \          @           VALOR DA RECARGA: R$ 48,00           @          \
+          \       TAXAS: R$ 2,00                 @              TOTAL PAGO: R$ 50,00\
+          \              @   OS CRÉDITOS ADQUIRIDOS ESTARÃO DISPONÍVEIS   @      NOS\
+          \ VALIDADORES DOS ÔNIBUS DA REGIÃO      @     METROPOLITANA QUE ACEITAM\
+          \ O CARTÃO TEU     @ OU NAS CATRACAS DO METRÔ, NOS SEGUINTES PRAZOS @  \
+          \          RECARGAS ATÉ O MEIO DIA:            @ CRÉDITOS DISPONÍVEIS NO\
+          \ DIA SEGUINTE DA COMPRA @           RECARGAS APÓS O MEIO DIA:         \
+          \  @   CRÉDITOS DISPONÍVEIS EM 48H APÓS A COMPRA   "
+  emprestimoReq:
+    type: "object"
+    properties:
+      InfTransacao:
+        $ref: "#/definitions/infTransacaoReq"
+      Cartao:
+        $ref: "#/definitions/cartao"
+      Terminal:
+        $ref: "#/definitions/terminal"
+      Cripto:
+        $ref: "#/definitions/cripto"
+      InfEmprestimo:
+        $ref: "#/definitions/infEmprestimoReq"
+    title: "emprestimoReq"
+  emprestimoResp:
+    type: "object"
+    properties:
+      InfTransacao:
+        $ref: "#/definitions/infTransacaoResp"
+      Terminal:
+        $ref: "#/definitions/terminal"
+      Cripto:
+        $ref: "#/definitions/criptoResp"
+    title: "emprestimoResp"
+    example:
+      InfTransacao:
+        cdProc: "029100"
+        mensagemCliente: "Não foi possível validar o cartão."
+        nsu: "000080247206"
+        codMoeda: "986"
+        codOperadora: "00000000914"
+        dataLocal: "1122"
+        valor: "5000"
+        errorMessage: "Cartão inválido."
+        nsuResposta: "820"
+        horaLocal: "151032"
+        dataHora: "1122151032"
+      Terminal:
+        codEstab: "000000000742673"
+        tipo: "008"
+        id: "05100004"
+      Cripto:
+        hash: "hash"
+  extratoReq:
+    type: "object"
+    properties:
+      InfTransacao:
+        $ref: "#/definitions/infTransacaoReq"
+      Cartao:
+        $ref: "#/definitions/cartao"
+      Terminal:
+        $ref: "#/definitions/terminal"
+      Cripto:
+        $ref: "#/definitions/cripto"
+      InfExtrato:
+        $ref: "#/definitions/infExtratoReq"
+    title: "extratoReq"
+  extratoResp:
+    type: "object"
+    properties:
+      InfTransacao:
+        $ref: "#/definitions/infTransacaoResp"
+      Terminal:
+        $ref: "#/definitions/terminal"
+      Cripto:
+        $ref: "#/definitions/criptoResp"
+      InfExtrato:
+        $ref: "#/definitions/infExtratoResp"
+    title: "extratoResp"
+    example:
+      InfExtrato:
+        recibo: "             TEU BILHETE ANTECIPADO             @               \
+          \ 036200005433591                @               13/10/2018  20:24     \
+          \          @           VALOR DA RECARGA: R$ 48,00           @          \
+          \       TAXAS: R$ 2,00                 @              TOTAL PAGO: R$ 50,00\
+          \              @   OS CRÉDITOS ADQUIRIDOS ESTARÃO DISPONÍVEIS   @      NOS\
+          \ VALIDADORES DOS ÔNIBUS DA REGIÃO      @     METROPOLITANA QUE ACEITAM\
+          \ O CARTÃO TEU     @ OU NAS CATRACAS DO METRÔ, NOS SEGUINTES PRAZOS @  \
+          \          RECARGAS ATÉ O MEIO DIA:            @ CRÉDITOS DISPONÍVEIS NO\
+          \ DIA SEGUINTE DA COMPRA @           RECARGAS APÓS O MEIO DIA:         \
+          \  @   CRÉDITOS DISPONÍVEIS EM 48H APÓS A COMPRA   "
+      InfTransacao:
+        cdProc: "029100"
+        mensagemCliente: "Não foi possível validar o cartão."
+        nsu: "000080247206"
+        codMoeda: "986"
+        codOperadora: "00000000914"
+        dataLocal: "1122"
+        valor: "5000"
+        errorMessage: "Cartão inválido."
+        nsuResposta: "820"
+        horaLocal: "151032"
+        dataHora: "1122151032"
+      Terminal:
+        codEstab: "000000000742673"
+        tipo: "008"
+        id: "05100004"
+      Cripto:
+        hash: "hash"
+  identificacaoReq:
+    type: "object"
+    properties:
+      InfTransacao:
+        $ref: "#/definitions/infTransacaoReq"
+      Cartao:
+        $ref: "#/definitions/cartao"
+      Terminal:
+        $ref: "#/definitions/terminal"
+      Cripto:
+        $ref: "#/definitions/cripto"
+      InfIdentificacao:
+        $ref: "#/definitions/infIdentificacaoReq"
+    title: "identificacaoReq"
+  identificacaoResp:
+    type: "object"
+    properties:
+      InfTransacao:
+        $ref: "#/definitions/infTransacaoResp"
+      Terminal:
+        $ref: "#/definitions/terminal"
+      Cripto:
+        $ref: "#/definitions/criptoResp"
+      InfIdentificacao:
+        $ref: "#/definitions/infIdentificacaoResp"
+    title: "identificacaoResp"
+    example:
+      InfTransacao:
+        cdProc: "029100"
+        mensagemCliente: "Não foi possível validar o cartão."
+        nsu: "000080247206"
+        codMoeda: "986"
+        codOperadora: "00000000914"
+        dataLocal: "1122"
+        valor: "5000"
+        errorMessage: "Cartão inválido."
+        nsuResposta: "820"
+        horaLocal: "151032"
+        dataHora: "1122151032"
+      InfIdentificacao:
+        pedirToken: 0
+        frase: "Por favor, se identifique."
+        perguntas:
+        - pergunta: "Qual a sua senha?"
+          resposta: "mimimi"
+          tamResposta: "6"
+          id: "1"
+        - pergunta: "Qual a sua senha?"
+          resposta: "mimimi"
+          tamResposta: "6"
+          id: "1"
+        idPositiva:
+        - pos8: "A-C-D-3"
+          idTela: "1"
+          pos4: "A-C-D-3"
+          pos5: "A-C-D-3"
+          pos6: "A-C-D-3"
+          pos7: "A-C-D-3"
+          pos1: "A-C-D-3"
+          pos2: "A-C-D-3"
+          pos3: "A-C-D-3"
+        - pos8: "A-C-D-3"
+          idTela: "1"
+          pos4: "A-C-D-3"
+          pos5: "A-C-D-3"
+          pos6: "A-C-D-3"
+          pos7: "A-C-D-3"
+          pos1: "A-C-D-3"
+          pos2: "A-C-D-3"
+          pos3: "A-C-D-3"
+        transacValidas: "068101068010"
+        saldo: "saldo"
+      Terminal:
+        codEstab: "000000000742673"
+        tipo: "008"
+        id: "05100004"
+      Cripto:
+        hash: "hash"
+  infAgendamentoReq:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+        example: "234"
+        description: "Código de identificação do agendamento de pagamento."
+        pattern: "^\\d+$"
+      cedente:
+        type: "string"
+        example: "Cedente"
+        description: "Nome do cedente do pagamento (até 40 caracteres)."
+        pattern: "^.{0,40}$"
+      dataVencimento:
+        type: "string"
+        example: "20181122"
+        description: "Data de vencimento do pagamento (AAAAMMDD)."
+        pattern: "^\\d{8}$"
+      dataPagamento:
+        type: "string"
+        example: "20181122"
+        description: "Data de agendamento para o pagamento (AAAAMMDD)."
+        pattern: "^\\d{8}$"
+      valorTotal:
+        type: "string"
+        example: "000000005000"
+        description: "Valor total do pagamento (12 dígitos, incluindo centavos)."
+        pattern: "^\\d{12}$"
+    title: "infAgendamentoReq"
+    description: "Informações da resquisição de agendamento de pagamento."
+    example:
+      dataPagamento: "20181122"
+      dataVencimento: "20181122"
+      valorTotal: "000000005000"
+      id: "234"
+      cedente: "Cedente"
+  infAgendamentoResp:
+    type: "object"
+    properties:
+      codigoBarras:
+        type: "string"
+        example: "84729304827364829301567829304562229483471004"
+        description: "Código de barras (44 dígitos)."
+        pattern: "^\\d{44}$"
+      modoEntrada:
+        $ref: "#/definitions/ModoEntrada1"
+      cedente:
+        type: "string"
+        example: "Cedente"
+        description: "Cedente (até 40 caracteres)."
+        pattern: "^.{0,40}$"
+      dataPagamento:
+        type: "string"
+        example: "20181122"
+        description: "Data de pagamento atualizada pelo host (AAAAMMDD)."
+        pattern: "^\\d{8}$"
+      modificado:
+        $ref: "#/definitions/Modificado"
+      valorNominal:
+        type: "string"
+        example: "000000005000"
+        description: "Valor nominal do documento (12 dígitos, incluindo centavos)."
+        pattern: "^\\d{12}$"
+      valorJurosCalculado:
+        type: "string"
+        example: "000000000499"
+        description: "Valor dos juros calculados (12 dígitos, incluindo centavos)."
+        pattern: "^\\d{12}$"
+      valorMultaCalculadada:
+        type: "string"
+        example: "000000000499"
+        description: "Valor da multa calculada (12 dígitos, incluindo centavos)."
+        pattern: "^\\d{12}$"
+      valorAbatimento:
+        type: "string"
+        example: "000000000499"
+        description: "Valor de abatimento/desconto calculado (12 dígitos, incluindo\
+          \ centavos)."
+        pattern: "^\\d{12}$"
+      valorTotal:
+        type: "string"
+        example: "000000005499"
+        description: "Valor total calculado (12 dígitos, incluindo centavos)."
+        pattern: "^\\d{12}$"
+      recibo:
+        type: "string"
+        example: "             TEU BILHETE ANTECIPADO             @              \
+          \  036200005433591                @               13/10/2018  20:24    \
+          \           @           VALOR DA RECARGA: R$ 48,00           @         \
+          \        TAXAS: R$ 2,00                 @              TOTAL PAGO: R$ 50,00\
+          \              @   OS CRÉDITOS ADQUIRIDOS ESTARÃO DISPONÍVEIS   @      NOS\
+          \ VALIDADORES DOS ÔNIBUS DA REGIÃO      @     METROPOLITANA QUE ACEITAM\
+          \ O CARTÃO TEU     @ OU NAS CATRACAS DO METRÔ, NOS SEGUINTES PRAZOS @  \
+          \          RECARGAS ATÉ O MEIO DIA:            @ CRÉDITOS DISPONÍVEIS NO\
+          \ DIA SEGUINTE DA COMPRA @           RECARGAS APÓS O MEIO DIA:         \
+          \  @   CRÉDITOS DISPONÍVEIS EM 48H APÓS A COMPRA   "
+        description: "Recibo imprimível do agendamento. Linhas com 48 posições separadas\
+          \ por '@'."
+        pattern: "^[^@]{0,48}(\\@[^@]{0,48})*$"
+    title: "infAgendamentoResp"
+    description: "Informações da resposta de requisição de agendamento de pagameto."
+    example:
+      recibo: "             TEU BILHETE ANTECIPADO             @                036200005433591\
+        \                @               13/10/2018  20:24               @       \
+        \    VALOR DA RECARGA: R$ 48,00           @                 TAXAS: R$ 2,00\
+        \                 @              TOTAL PAGO: R$ 50,00              @   OS\
+        \ CRÉDITOS ADQUIRIDOS ESTARÃO DISPONÍVEIS   @      NOS VALIDADORES DOS ÔNIBUS\
+        \ DA REGIÃO      @     METROPOLITANA QUE ACEITAM O CARTÃO TEU     @ OU NAS\
+        \ CATRACAS DO METRÔ, NOS SEGUINTES PRAZOS @            RECARGAS ATÉ O MEIO\
+        \ DIA:            @ CRÉDITOS DISPONÍVEIS NO DIA SEGUINTE DA COMPRA @     \
+        \      RECARGAS APÓS O MEIO DIA:           @   CRÉDITOS DISPONÍVEIS EM 48H\
+        \ APÓS A COMPRA   "
+      valorNominal: "000000005000"
+      dataPagamento: "20181122"
+      valorJurosCalculado: "000000000499"
+      valorTotal: "000000005499"
+      modoEntrada: 0
+      modificado: 0
+      valorAbatimento: "000000000499"
+      codigoBarras: "84729304827364829301567829304562229483471004"
+      cedente: "Cedente"
+      valorMultaCalculadada: "000000000499"
+  infAutenticacaoReq:
+    type: "object"
+    properties:
+      cpf:
+        type: "string"
+        example: "02358422785"
+        description: "Número do CPF do cliente a autenticar (11 dígitos)."
+        pattern: "^\\d{11}$"
+      telefone:
+        type: "string"
+        example: "51999999999"
+        description: "Telefone do cliente favorecido a autenticar (11 dígitos = DDD\
+          \ com 0 quando número tem 8 dígitos, sem 0 quando número tem 9 dígitos)."
+        pattern: "^\\d{11}$"
+      token:
+        type: "string"
+        example: "02C47DF604EB43B1"
+        description: "Número do token do cliente se autenticando."
+    title: "infAutenticacaoReq"
+    description: "Informações da requisição de autenticação."
+  infAutenticacaoResp:
+    type: "object"
+    properties:
+      nomeCliente:
+        type: "string"
+        example: "Carl Edward Sagan"
+        description: "Nome do cliente se autenticando (até 60 caracteres)."
+        pattern: "^.{0,60}$"
+    title: "infAutenticacaoResp"
+    description: "Informações da resposta da requisição de autenticação."
+    example:
+      nomeCliente: "Carl Edward Sagan"
+  infCompraTitulosCapitalizacaoReq:
+    type: "object"
+    properties:
+      idProduto:
+        type: "string"
+        example: "7"
+        description: "Produto utilizado na operação."
+        pattern: "^\\d+$"
+      cpf:
+        type: "string"
+        example: "02358422785"
+        description: "Número do CPF do cliente favorecido da transação (11 dígitos)."
+        pattern: "^\\d{11}$"
+      telefone:
+        type: "string"
+        example: "05199999999"
+        description: "Telefone do cliente favorecido da transação (11 dígitos = DDD\
+          \ com 0 quando número tem 8 dígitos, sem 0 quando número tem 9 dígitos)."
+        pattern: "^\\d{11}$"
+      quantidade:
+        type: "string"
+        example: "2"
+        description: "Quantidade de itens do produtos."
+        pattern: "^\\d+$"
+    title: "infCompraTitulosCapitalizacaoReq"
+    description: "Informações da requisição de compra de títulos de capitalização."
+  infCompraTitulosCapitalizacaoResp:
+    type: "object"
+    properties:
+      recibo:
+        type: "string"
+        example: "             TEU BILHETE ANTECIPADO             @              \
+          \  036200005433591                @               13/10/2018  20:24    \
+          \           @           VALOR DA RECARGA: R$ 48,00           @         \
+          \        TAXAS: R$ 2,00                 @              TOTAL PAGO: R$ 50,00\
+          \              @   OS CRÉDITOS ADQUIRIDOS ESTARÃO DISPONÍVEIS   @      NOS\
+          \ VALIDADORES DOS ÔNIBUS DA REGIÃO      @     METROPOLITANA QUE ACEITAM\
+          \ O CARTÃO TEU     @ OU NAS CATRACAS DO METRÔ, NOS SEGUINTES PRAZOS @  \
+          \          RECARGAS ATÉ O MEIO DIA:            @ CRÉDITOS DISPONÍVEIS NO\
+          \ DIA SEGUINTE DA COMPRA @           RECARGAS APÓS O MEIO DIA:         \
+          \  @   CRÉDITOS DISPONÍVEIS EM 48H APÓS A COMPRA   "
+        description: "Recibo com informações da compra. Linhas com 48 posições separadas\
+          \ por '@'."
+        pattern: "^[^@]{0,48}(\\@[^@]{0,48})*$"
+    title: "infCompraTitulosCapitalizacaoResp"
+    description: "Informações da resposta da requisição de compra de títulos de capitalizaç\
+      ão."
+    example:
+      recibo: "             TEU BILHETE ANTECIPADO             @                036200005433591\
+        \                @               13/10/2018  20:24               @       \
+        \    VALOR DA RECARGA: R$ 48,00           @                 TAXAS: R$ 2,00\
+        \                 @              TOTAL PAGO: R$ 50,00              @   OS\
+        \ CRÉDITOS ADQUIRIDOS ESTARÃO DISPONÍVEIS   @      NOS VALIDADORES DOS ÔNIBUS\
+        \ DA REGIÃO      @     METROPOLITANA QUE ACEITAM O CARTÃO TEU     @ OU NAS\
+        \ CATRACAS DO METRÔ, NOS SEGUINTES PRAZOS @            RECARGAS ATÉ O MEIO\
+        \ DIA:            @ CRÉDITOS DISPONÍVEIS NO DIA SEGUINTE DA COMPRA @     \
+        \      RECARGAS APÓS O MEIO DIA:           @   CRÉDITOS DISPONÍVEIS EM 48H\
+        \ APÓS A COMPRA   "
+  infComprovantePagamento:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+        example: "036200001842241"
+        description: "Identificação do comprovante de pagamento."
+        pattern: "^\\d+$"
+      cedente:
+        type: "string"
+        example: "Cedente"
+        description: "Cedente (até 40 caracteres)."
+        pattern: "^.{0,40}$"
+      dataVencimento:
+        type: "string"
+        example: "20181122"
+        description: "Data de vencimento do Boleto/Título (AAAAMMDD)."
+        pattern: "^\\d{8}$"
+      dataPagamento:
+        type: "string"
+        example: "20181122"
+        description: "Data em que o Boleto/Título foi pago (AAAAMMDD)."
+        pattern: "^\\d{8}$"
+      valor:
+        type: "string"
+        example: "000000005000"
+        description: "Valor total pago (12 dpigitos, incluindo centavos)."
+        pattern: "^\\d{12}$"
+    title: "infComprovantePagamento"
+    description: "Informações da requisição de comprovante de pagamento."
+    example:
+      dataPagamento: "20181122"
+      dataVencimento: "20181122"
+      valor: "000000005000"
+      id: "036200001842241"
+      cedente: "Cedente"
+  infConsultaContaReq:
+    type: "object"
+    properties:
+      codBanco:
+        type: "string"
+        example: "237"
+        description: "Código do banco utilizado na operação (3 dígitos)."
+        pattern: "^\\d{3}$"
+      numAgencia:
+        type: "string"
+        example: "4029"
+        description: "Número da agência utilizada na operação."
+        pattern: "^\\d+$"
+      numConta:
+        type: "string"
+        example: "0082348296"
+        description: "Número da conta utilizada na operação (10 dígitos)."
+        pattern: "^\\d{10}$"
+      modalidadeDeposito:
+        $ref: "#/definitions/ModalidadeDeposito"
+      telefoneFavorecido:
+        type: "string"
+        example: "05199999999"
+        description: "Telefone do cliente favorecido da transação (11 dígitos = DDD\
+          \ com 0 quando número tem 8 dígitos, sem 0 quando número tem 9 dígitos)."
+        pattern: "^\\d{11}$"
+      cpfFavorecido:
+        type: "string"
+        example: "02358422785"
+        description: "Número do CPF do cliente favorecido da transação (11 dígitos)."
+        pattern: "^\\d{11}$"
+    title: "infConsultaContaReq"
+    description: "Informações da requisição de consulta de conta."
+  infConsultaContaResp:
+    type: "object"
+    properties:
+      modalidadeDeposito:
+        $ref: "#/definitions/ModalidadeDeposito1"
+      nomeCliente:
+        type: "string"
+        example: "Carl Edward Sagan"
+        description: "Nome do cliente titular da conta (até 60 caracteres)."
+        pattern: "^.{0,60}$"
+      solicDoc:
+        $ref: "#/definitions/SolicDoc"
+      habilitaDeposito:
+        $ref: "#/definitions/HabilitaDeposito"
+      depositoIdentificado:
+        $ref: "#/definitions/DepositoIdentificado"
+    title: "infConsultaContaResp"
+    description: "Informações da resposta da requisição de consulta de conta."
+    example:
+      solicDoc: 0
+      modalidadeDeposito: 0
+      nomeCliente: "Carl Edward Sagan"
+      habilitaDeposito: 0
+      depositoIdentificado: 0
+  infConsultaLimitesEmprestimoResp:
+    type: "object"
+    properties:
+      nomeAgenciaBancaria:
+        type: "string"
+        example: "Agência bancária"
+        description: "Nome da agencia bancária (até 60 caracteres)."
+        pattern: "^.{0,60}$"
+      nomeTitularConta:
+        type: "string"
+        example: "Carl Edward Sagan"
+        description: "Nome do titular da conta (até 60 caracteres)."
+        pattern: "^.{0,60}$"
+      limiteMinimoEmprestimo:
+        type: "string"
+        example: "000000500000"
+        description: "Valor mínimo permitido de empréstimo (12 caracteres, incluindo\
+          \ centavos)."
+        pattern: "^\\d{12}$"
+      limiteMaximoEmprestimo:
+        type: "string"
+        example: "000005000000"
+        description: "Valor máximo permitido de empréstimo (12 caracteres, incluindo\
+          \ centavos)."
+        pattern: "^\\d{12}$"
+    title: "infConsultaLimitesEmprestimoResp"
+    description: "Informações da resposta da requisição de consulta de limite de empré\
+      stimos."
+    example:
+      limiteMinimoEmprestimo: "000000500000"
+      limiteMaximoEmprestimo: "000005000000"
+      nomeAgenciaBancaria: "Agência bancária"
+      nomeTitularConta: "Carl Edward Sagan"
+  infConsultaPagamentoReq:
+    type: "object"
+    properties:
+      codBarras:
+        $ref: "#/definitions/CodBarras"
+      darf:
+        $ref: "#/definitions/Darf"
+      dda:
+        $ref: "#/definitions/Dda"
+      gps:
+        $ref: "#/definitions/Gps"
+    title: "infConsultaPagamentoReq"
+  infConsultaPagamentoResp:
+    type: "object"
+    properties:
+      valor:
+        type: "string"
+        description: "Valor do pagamento (12 dígitos, incluindo centavos)."
+        pattern: "^\\d{23}$"
+      cedente:
+        type: "string"
+        example: "Cedente"
+        description: "Cedente (até 40 caracteres)."
+        pattern: "^.{0,40}$"
+      dataPagamento:
+        type: "string"
+        example: "20181122"
+        description: "Data de pagamento atualizada pelo host (AAAAMMDD)."
+        pattern: "^\\d{8}$"
+      modificado:
+        $ref: "#/definitions/Modificado"
+      cnpjFavorecidoDoacao:
+        type: "string"
+        description: "CNPJ da instituição favorecida para doação (pagamento em dinheiro,\
+          \ obrigatório quando sem cartão)."
+      nomeFavorecidoDoacao:
+        type: "string"
+        example: "Carl Edward Sagan"
+        description: "Nome da instituição favorecida para doação (pagamento em dinheiro,\
+          \ obrigatório quando sem cartão, até 60 caracteres)."
+        pattern: "^.{0,60}$"
+      desconto:
+        type: "string"
+        example: "000000000499"
+        description: "Valor de desconto (12 dígitos, incluindo centavos)."
+        pattern: "^\\d{12}$"
+      sistemaCobranca:
+        $ref: "#/definitions/SistemaCobranca"
+      cip:
+        $ref: "#/definitions/Cip"
+      aceitaPagamentoParcial:
+        $ref: "#/definitions/AceitaPagamentoParcial"
+      valorMinimo:
+        type: "string"
+        example: "000000000500"
+        description: "Valor mínimo do pagamento (12 dígitos, incluindo centavos)."
+        pattern: "^\\d{12}$"
+      dda:
+        type: "array"
+        description: "Informações de retorno para consultas de DDA."
+        items:
+          $ref: "#/definitions/infDDA"
+    title: "infConsultaPagamentoResp"
+    description: "Informações da resposta da requisição de consulta de pagamento."
+    example:
+      aceitaPagamentoParcial: 0
+      dda:
+      - aceitaPagamentoParcial: 0
+        tipo: "tipo"
+        numDDA: "7123"
+        sacado: "sacado"
+        dataVencimento: "20181122"
+        valor: "000000005000"
+        alegacao: "alegacao"
+        modificado: 0
+        cedente: "Cedente"
+      - aceitaPagamentoParcial: 0
+        tipo: "tipo"
+        numDDA: "7123"
+        sacado: "sacado"
+        dataVencimento: "20181122"
+        valor: "000000005000"
+        alegacao: "alegacao"
+        modificado: 0
+        cedente: "Cedente"
+      dataPagamento: "20181122"
+      nomeFavorecidoDoacao: "Carl Edward Sagan"
+      desconto: "000000000499"
+      valor: "valor"
+      cnpjFavorecidoDoacao: "cnpjFavorecidoDoacao"
+      modificado: 0
+      sistemaCobranca: 0
+      cip:
+        valorMaximoPermitidoPagamento: "000000050000"
+        NumeroIdentificacaoConsultaPagamento: "NumeroIdentificacaoConsultaPagamento"
+        valorMinimoPermitidoPagamento: "000000000500"
+        valorJurosCalculado: "000000000499"
+        valorAbatimento: "000000000499"
+        tipoValorAceito: "tipoValorAceito"
+        valorMultaCalculadada: "000000000499"
+      valorMinimo: "000000000500"
+      cedente: "Cedente"
+  infConsultaParcelasEmprestimoResp:
+    type: "object"
+    properties:
+      opcoesParcelas:
+        type: "array"
+        items:
+          $ref: "#/definitions/OpcoesParcela"
+      dataPrimeiraParcela:
+        type: "string"
+        example: "20181122"
+        description: "Data da primeira parcela do empréstimo (AAAAMMDD)."
+        pattern: "^\\d{8}$"
+    title: "infConsultaParcelasEmprestimoResp"
+    description: "Informações da resposta da requisição de consulta de parcelas de\
+      \ empréstimo."
+    example:
+      opcoesParcelas:
+      - valorParcela: "000000005000"
+        qntParcelas: "5"
+      - valorParcela: "000000005000"
+        qntParcelas: "5"
+      dataPrimeiraParcela: "20181122"
+  infConsultaProdutosRecargaReq:
+    type: "object"
+    properties:
+      idOperadora:
+        type: "string"
+        example: "586"
+        description: "Operadora utilizada na operação."
+        pattern: "^\\d+$"
+      numCartao:
+        type: "string"
+        example: "574839201659236"
+        description: "Número do cartão utilizado na operação."
+        pattern: "^\\d+$"
+    title: "infConsultaProdutosRecargaReq"
+    description: "Informações da requisição de consulta de produtos de recarga."
+  infConsultaProdutosRecargaResp:
+    type: "object"
+    properties:
+      products:
+        type: "array"
+        description: "Identificador e nomes dos produtos associados ao cartão."
+        items:
+          $ref: "#/definitions/Product"
+    title: "infConsultaProdutosRecargaResp"
+    description: "Informações da resposta da requisição de consulta de produtos de\
+      \ recarga."
+    example:
+      products:
+      - name: "Produto novo"
+        id: "5"
+      - name: "Produto novo"
+        id: "5"
+  infConsultaTitulosCapitalizacaoResp:
+    type: "object"
+    properties:
+      produtos:
+        type: "array"
+        description: "Produtos de título de capitalização disponíveis."
+        items:
+          $ref: "#/definitions/Produto"
+    title: "infConsultaTitulosCapitalizacaoResp"
+    description: "Informações da requisição de consulta de produtos de título de capitalizaç\
+      ão."
+    example:
+      produtos:
+      - limiteMaximoCompra: "4"
+        tema:
+          estilos:
+          - valor: "#00288C"
+            nome: "cor-fundo ou cor-botao"
+          - valor: "#00288C"
+            nome: "cor-fundo ou cor-botao"
+        valor: "000000000500"
+        nome: "Grêmio Mais"
+        id: "7"
+        dataFimVigencia: "20181130"
+        detalhes: "Edição ouro de mais um produto do Grêmio Mais"
+        dataInicioVigencia: "20181122"
+        descricao: "Edição 115 Anos"
+      - limiteMaximoCompra: "4"
+        tema:
+          estilos:
+          - valor: "#00288C"
+            nome: "cor-fundo ou cor-botao"
+          - valor: "#00288C"
+            nome: "cor-fundo ou cor-botao"
+        valor: "000000000500"
+        nome: "Grêmio Mais"
+        id: "7"
+        dataFimVigencia: "20181130"
+        detalhes: "Edição ouro de mais um produto do Grêmio Mais"
+        dataInicioVigencia: "20181122"
+        descricao: "Edição 115 Anos"
+  infConsultaSaqueReq:
+    type: "object"
+    properties:
+      numAgencia:
+        type: "string"
+        example: "4029"
+        description: "Número da agência utilizada na operação (4 dígitos)."
+        pattern: "^\\d{4}$"
+      numConta:
+        type: "string"
+        example: "0082348296"
+        description: "Número da conta utilizada na operação (10 dígitos)."
+        pattern: "^\\d{10}$"
+      tokenFavorecido:
+        type: "string"
+        example: "02C47DF604EB43B1"
+        description: "Token gerado pela instituicao que identifica a transação."
+      cpfFavorecido:
+        type: "string"
+        example: "02358422785"
+        description: "Número do CPF do cliente favorecido da transação (11 dígitos)."
+        pattern: "^\\d{11}$"
+    title: "infConsultaSaqueReq"
+    description: "Informações da requisição de consulta de saque."
+  infConsultaSaqueResp:
+    type: "object"
+    properties:
+      nomeCliente:
+        type: "string"
+        example: "Carl Edward Sagan"
+        description: "Nome do cliente titular da conta (até 60 caracteres)."
+        pattern: "^.{0,60}$"
+      perguntas:
+        type: "array"
+        description: "Lista de possíveis perguntas a serem mostradas para o usuário\
+          \ para autenticá-lo."
+        items:
+          $ref: "#/definitions/Pergunta"
+    title: "infConsultaSaqueResp"
+    description: "Informações da resposta de requisiçãoi de consulta de saque."
+    example:
+      perguntas:
+      - pergunta: "Qual o nome do seu primeiro animal de estimação?"
+        tamResposta: "27"
+        id: "1"
+      - pergunta: "Qual o nome do seu primeiro animal de estimação?"
+        tamResposta: "27"
+        id: "1"
+      nomeCliente: "Carl Edward Sagan"
+  infConsultaTaxasResp:
+    type: "object"
+    properties:
+      transactions_fees:
+        type: "array"
+        items:
+          $ref: "#/definitions/TransactionsFee"
+    title: "infConsultaTaxasResp"
+    description: "Informações da resposta de consulta de taxas."
+    example:
+      transactions_fees:
+      - fees:
+        - min_amount: "000"
+          max_amount: "10000"
+          id: "0201"
+          value: "000"
+        - min_amount: "000"
+          max_amount: "10000"
+          id: "0201"
+          value: "000"
+        name: "deposit"
+        id: "01"
+      - fees:
+        - min_amount: "000"
+          max_amount: "10000"
+          id: "0201"
+          value: "000"
+        - min_amount: "000"
+          max_amount: "10000"
+          id: "0201"
+          value: "000"
+        name: "deposit"
+        id: "01"
+  infConsultaValoresRecargaResp:
+    type: "object"
+    properties:
+      valores:
+        $ref: "#/definitions/Valores"
+    title: "infConsultaValoresRecargaResp"
+    description: "Informações da resposta de requisição de valores de recarga."
+    example:
+      valores:
+        issuers:
+        - card_number_mask: "XXXXXXXXXXXXXX-X"
+          card_number_length: 15
+          name: "TEU"
+          id: 1
+          products:
+          - min_value: "1000"
+            fee: "200"
+            values:
+            - fee: "200"
+              id: "1"
+              value: "2000"
+            - fee: "200"
+              id: "1"
+              value: "2000"
+            name: "Bilhete Antecipado"
+            id: "7"
+            max_value: "9000"
+          - min_value: "1000"
+            fee: "200"
+            values:
+            - fee: "200"
+              id: "1"
+              value: "2000"
+            - fee: "200"
+              id: "1"
+              value: "2000"
+            name: "Bilhete Antecipado"
+            id: "7"
+            max_value: "9000"
+        - card_number_mask: "XXXXXXXXXXXXXX-X"
+          card_number_length: 15
+          name: "TEU"
+          id: 1
+          products:
+          - min_value: "1000"
+            fee: "200"
+            values:
+            - fee: "200"
+              id: "1"
+              value: "2000"
+            - fee: "200"
+              id: "1"
+              value: "2000"
+            name: "Bilhete Antecipado"
+            id: "7"
+            max_value: "9000"
+          - min_value: "1000"
+            fee: "200"
+            values:
+            - fee: "200"
+              id: "1"
+              value: "2000"
+            - fee: "200"
+              id: "1"
+              value: "2000"
+            name: "Bilhete Antecipado"
+            id: "7"
+            max_value: "9000"
+  infDDA:
+    type: "object"
+    properties:
+      numDDA:
+        type: "string"
+        example: "7123"
+        description: "Número ID DDA."
+        pattern: "^\\d+$"
+      cedente:
+        type: "string"
+        example: "Cedente"
+        description: "Cedente (até 40 caracteres)."
+        pattern: "^.{0,40}$"
+      sacado:
+        type: "string"
+        description: "Sacado."
+      dataVencimento:
+        type: "string"
+        example: "20181122"
+        description: "Data de vencimento (AAAAMMDD)."
+        pattern: "^\\d{8}$"
+      valor:
+        type: "string"
+        example: "000000005000"
+        description: "Valor do DDA (12 dígitos, incluindo centavos)."
+        pattern: "^\\d{12}$"
+      tipo:
+        type: "string"
+        description: "Tipo da DDA."
+      modificado:
+        $ref: "#/definitions/Modificado"
+      alegacao:
+        type: "string"
+        description: "Alegação."
+      aceitaPagamentoParcial:
+        $ref: "#/definitions/AceitaPagamentoParcial1"
+    title: "infDDA"
+    description: "Informações de retorno para consultas de DDA."
+    example:
+      aceitaPagamentoParcial: 0
+      tipo: "tipo"
+      numDDA: "7123"
+      sacado: "sacado"
+      dataVencimento: "20181122"
+      valor: "000000005000"
+      alegacao: "alegacao"
+      modificado: 0
+      cedente: "Cedente"
+  infDepositoReq:
+    type: "object"
+    properties:
+      nomeDepositante:
+        type: "string"
+        example: "Carl Edward Sagan"
+        description: "Nome do cliente realizando o depósito (até 60 caracteres)."
+        pattern: "^.{0,60}$"
+      telefoneDepositante:
+        type: "string"
+        example: "51999999999"
+        description: "Telefone do cliente realizando o depósito (11 dígitos = DDD\
+          \ com 0 quando número tem 8 dígitos, sem 0 quando número tem 9 dígitos)."
+        pattern: "^\\d{11}$"
+      cpfDepositante:
+        type: "string"
+        example: "02358422785"
+        description: "Número do CPF do cliente realizando o depósito (11 dígitos)."
+        pattern: "^\\d{11}$"
+      nomeFavorecido:
+        type: "string"
+        example: "Carl Edward Sagan"
+        description: "Nome do cliente que receberá o depósito (até 60 caracteres)."
+        pattern: "^.{0,60}$"
+      telefoneFavorecido:
+        type: "string"
+        example: "05199999999"
+        description: "Telefone do cliente que receberá o depósito (11 dígitos = DDD\
+          \ com 0 quando número tem 8 dígitos, sem 0 quando número tem 9 dígitos)."
+        pattern: "^\\d{11}$"
+      cpfFavorecido:
+        type: "string"
+        example: "02358422785"
+        description: "Número do CPF do cliente que receberá o depósito (11 dígitos)."
+        pattern: "^\\d{11}$"
+      codBanco:
+        type: "string"
+        example: "237"
+        description: "Código do banco utilizado na operação (3 dígitos)."
+        pattern: "^\\d{3}$"
+      numAgencia:
+        type: "string"
+        example: "4029"
+        description: "Número da agência utilizada na operação (4 dígitos)."
+        pattern: "^\\d{4}$"
+      numConta:
+        type: "string"
+        example: "0082348296"
+        description: "Número da conta utilizada na operação (10 dígitos)."
+        pattern: "^\\d{10}$"
+      nomeBanco:
+        type: "string"
+        example: "Belo Banco"
+        description: "Nome do banco utilizado na operação."
+      identificacao:
+        type: "string"
+        example: "Depósito do churrasco"
+        description: "Identificação genérica quando o depósito for identificado."
+    title: "infDepositoReq"
+    description: "Informações da requisição de depósito."
+  infDepositoResp:
+    type: "object"
+    properties:
+      recibo:
+        type: "string"
+        example: "             TEU BILHETE ANTECIPADO             @              \
+          \  036200005433591                @               13/10/2018  20:24    \
+          \           @           VALOR DA RECARGA: R$ 48,00           @         \
+          \        TAXAS: R$ 2,00                 @              TOTAL PAGO: R$ 50,00\
+          \              @   OS CRÉDITOS ADQUIRIDOS ESTARÃO DISPONÍVEIS   @      NOS\
+          \ VALIDADORES DOS ÔNIBUS DA REGIÃO      @     METROPOLITANA QUE ACEITAM\
+          \ O CARTÃO TEU     @ OU NAS CATRACAS DO METRÔ, NOS SEGUINTES PRAZOS @  \
+          \          RECARGAS ATÉ O MEIO DIA:            @ CRÉDITOS DISPONÍVEIS NO\
+          \ DIA SEGUINTE DA COMPRA @           RECARGAS APÓS O MEIO DIA:         \
+          \  @   CRÉDITOS DISPONÍVEIS EM 48H APÓS A COMPRA   "
+        description: "Recibo com informações do saldo. Linhas com 48 posições separadas\
+          \ por '@'."
+        pattern: "^[^@]{0,48}(\\@[^@]{0,48})*$"
+    title: "infDepositoResp"
+    description: "Informações da resposta da requisição de depósito."
+    example:
+      recibo: "             TEU BILHETE ANTECIPADO             @                036200005433591\
+        \                @               13/10/2018  20:24               @       \
+        \    VALOR DA RECARGA: R$ 48,00           @                 TAXAS: R$ 2,00\
+        \                 @              TOTAL PAGO: R$ 50,00              @   OS\
+        \ CRÉDITOS ADQUIRIDOS ESTARÃO DISPONÍVEIS   @      NOS VALIDADORES DOS ÔNIBUS\
+        \ DA REGIÃO      @     METROPOLITANA QUE ACEITAM O CARTÃO TEU     @ OU NAS\
+        \ CATRACAS DO METRÔ, NOS SEGUINTES PRAZOS @            RECARGAS ATÉ O MEIO\
+        \ DIA:            @ CRÉDITOS DISPONÍVEIS NO DIA SEGUINTE DA COMPRA @     \
+        \      RECARGAS APÓS O MEIO DIA:           @   CRÉDITOS DISPONÍVEIS EM 48H\
+        \ APÓS A COMPRA   "
+  infEmprestimoReq:
+    type: "object"
+    properties:
+      qntParcelas:
+        type: "string"
+        example: "6"
+        description: "Quantidade de parcelas."
+        pattern: "^\\d+$"
+    title: "infEmprestimoReq"
+    description: "Informações da requisição de empréstimo."
+  infExtratoReq:
+    type: "object"
+    properties:
+      tipoConta:
+        $ref: "#/definitions/TipoConta"
+      codBanco:
+        type: "string"
+        example: "237"
+        description: "Código do banco utilizado na operação (3 dígitos)."
+        pattern: "^\\d{3}$"
+      numAgencia:
+        type: "string"
+        example: "4029"
+        description: "Número da agência utilizada na operação (4 dígitos)."
+        pattern: "^\\d{4}$"
+      numConta:
+        type: "string"
+        example: "0082348296"
+        description: "Número da conta utilizada na operação (10 dígitos)."
+        pattern: "^\\d{10}$"
+      cpf:
+        type: "string"
+        example: "02358422785"
+        description: "Número do CPF do cliente realizando a operação (11 dígitos)."
+        pattern: "^\\d{11}$"
+      telefone:
+        type: "string"
+        example: "51999999999"
+        description: "Telefone do cliente realizando a operação (11 dígitos = DDD\
+          \ com 0 quando número tem 8 dígitos, sem 0 quando número tem 9 dígitos)."
+        pattern: "^\\d{11}$"
+    title: "infExtratoReq"
+    description: "Informações da requisição de extrato."
+  infExtratoResp:
+    type: "object"
+    properties:
+      recibo:
+        type: "string"
+        example: "             TEU BILHETE ANTECIPADO             @              \
+          \  036200005433591                @               13/10/2018  20:24    \
+          \           @           VALOR DA RECARGA: R$ 48,00           @         \
+          \        TAXAS: R$ 2,00                 @              TOTAL PAGO: R$ 50,00\
+          \              @   OS CRÉDITOS ADQUIRIDOS ESTARÃO DISPONÍVEIS   @      NOS\
+          \ VALIDADORES DOS ÔNIBUS DA REGIÃO      @     METROPOLITANA QUE ACEITAM\
+          \ O CARTÃO TEU     @ OU NAS CATRACAS DO METRÔ, NOS SEGUINTES PRAZOS @  \
+          \          RECARGAS ATÉ O MEIO DIA:            @ CRÉDITOS DISPONÍVEIS NO\
+          \ DIA SEGUINTE DA COMPRA @           RECARGAS APÓS O MEIO DIA:         \
+          \  @   CRÉDITOS DISPONÍVEIS EM 48H APÓS A COMPRA   "
+        description: "Recibo com informações do extrato. Linhas com 48 posições separadas\
+          \ por '@'."
+        pattern: "^[^@]{0,48}(\\@[^@]{0,48})*$"
+    title: "infExtratoResp"
+    description: "Informações sobre a resposta de requisição de extrato."
+    example:
+      recibo: "             TEU BILHETE ANTECIPADO             @                036200005433591\
+        \                @               13/10/2018  20:24               @       \
+        \    VALOR DA RECARGA: R$ 48,00           @                 TAXAS: R$ 2,00\
+        \                 @              TOTAL PAGO: R$ 50,00              @   OS\
+        \ CRÉDITOS ADQUIRIDOS ESTARÃO DISPONÍVEIS   @      NOS VALIDADORES DOS ÔNIBUS\
+        \ DA REGIÃO      @     METROPOLITANA QUE ACEITAM O CARTÃO TEU     @ OU NAS\
+        \ CATRACAS DO METRÔ, NOS SEGUINTES PRAZOS @            RECARGAS ATÉ O MEIO\
+        \ DIA:            @ CRÉDITOS DISPONÍVEIS NO DIA SEGUINTE DA COMPRA @     \
+        \      RECARGAS APÓS O MEIO DIA:           @   CRÉDITOS DISPONÍVEIS EM 48H\
+        \ APÓS A COMPRA   "
+  infIdentificacaoReq:
+    type: "object"
+    properties:
+      numAgencia:
+        type: "string"
+        example: "4029"
+        description: "Número da agência utilizada na operação (4 dígitos)."
+        pattern: "^\\d{4}$"
+      numConta:
+        type: "string"
+        example: "0082348296"
+        description: "Número da conta utilizada na operação (10 dígitos)."
+        pattern: "^\\d{10}$"
+      cpf:
+        type: "string"
+        example: "02358422785"
+        description: "Número do CPF do cliente realizando a operação (11 dígitos)."
+        pattern: "^\\d{11}$"
+      telefone:
+        type: "string"
+        example: "51999999999"
+        description: "Telefone do cliente realizando a operação (11 dígitos = DDD\
+          \ com 0 quando número tem 8 dígitos, sem 0 quando número tem 9 dígitos)."
+        pattern: "^\\d{11}$"
+    title: "infIdentificacaoReq"
+    description: "Informações da requisição de identificação."
+  infIdentificacaoResp:
+    type: "object"
+    properties:
+      transacValidas:
+        type: "string"
+        example: "068101068010"
+        description: "Transações habilitadas para o cartão utilizado. Enviar os cdProcs\
+          \ concatenados (6 dígitos cada)."
+        pattern: "^(?:\\d{6})*$"
+      idPositiva:
+        type: "array"
+        description: "Opções de letra/sílabas a serem mostradas para o cliente, caso\
+          \ ele use identificação positiva."
+        items:
+          $ref: "#/definitions/IdPositiva"
+      pedirToken:
+        $ref: "#/definitions/PedirToken"
+      frase:
+        type: "string"
+        example: "Por favor, se identifique."
+        description: "Frase a ser mostrada para o cliente quando pedir o token ou\
+          \ identificacao positiva (máx. 28 caracteres)."
+        pattern: "^.{0,28}$"
+      saldo:
+        type: "string"
+        description: "Saldo do cliente a ser mostrado na tela (12 dígitos)."
+        pattern: "^d{12}$"
+      perguntas:
+        type: "array"
+        description: "Lista de possíveis perguntas a serem mostradas para o usuário\
+          \ para autenticá-lo."
+        items:
+          $ref: "#/definitions/Pergunta1"
+    title: "infIdentificacaoResp"
+    description: "Informações da resposta da requisição de identificação."
+    example:
+      pedirToken: 0
+      frase: "Por favor, se identifique."
+      perguntas:
+      - pergunta: "Qual a sua senha?"
+        resposta: "mimimi"
+        tamResposta: "6"
+        id: "1"
+      - pergunta: "Qual a sua senha?"
+        resposta: "mimimi"
+        tamResposta: "6"
+        id: "1"
+      idPositiva:
+      - pos8: "A-C-D-3"
+        idTela: "1"
+        pos4: "A-C-D-3"
+        pos5: "A-C-D-3"
+        pos6: "A-C-D-3"
+        pos7: "A-C-D-3"
+        pos1: "A-C-D-3"
+        pos2: "A-C-D-3"
+        pos3: "A-C-D-3"
+      - pos8: "A-C-D-3"
+        idTela: "1"
+        pos4: "A-C-D-3"
+        pos5: "A-C-D-3"
+        pos6: "A-C-D-3"
+        pos7: "A-C-D-3"
+        pos1: "A-C-D-3"
+        pos2: "A-C-D-3"
+        pos3: "A-C-D-3"
+      transacValidas: "068101068010"
+      saldo: "saldo"
+  infPagamentoComprovanteReq:
+    type: "object"
+    properties:
+      cedente:
+        type: "string"
+        example: "Cedente"
+        description: "Nome do cedente do pagamento (até 40 caracteres)."
+        pattern: "^.{0,40}$"
+      dataVencimento:
+        type: "string"
+        example: "20181122"
+        description: "Data de vencimento do pagamento (AAAAMMDD)."
+        pattern: "^\\d{8}$"
+      dataPagamento:
+        type: "string"
+        example: "20181122"
+        description: "Data de agendamento do pagamento (AAAAMMDD)."
+        pattern: "^\\d{8}$"
+      valorTotal:
+        type: "string"
+        example: "000000005000"
+        description: "Valor total do pagamento (12 dígitos, incluindo centavos)."
+        pattern: "^\\d{12}$"
+      recibo:
+        type: "string"
+        example: "             TEU BILHETE ANTECIPADO             @              \
+          \  036200005433591                @               13/10/2018  20:24    \
+          \           @           VALOR DA RECARGA: R$ 48,00           @         \
+          \        TAXAS: R$ 2,00                 @              TOTAL PAGO: R$ 50,00\
+          \              @   OS CRÉDITOS ADQUIRIDOS ESTARÃO DISPONÍVEIS   @      NOS\
+          \ VALIDADORES DOS ÔNIBUS DA REGIÃO      @     METROPOLITANA QUE ACEITAM\
+          \ O CARTÃO TEU     @ OU NAS CATRACAS DO METRÔ, NOS SEGUINTES PRAZOS @  \
+          \          RECARGAS ATÉ O MEIO DIA:            @ CRÉDITOS DISPONÍVEIS NO\
+          \ DIA SEGUINTE DA COMPRA @           RECARGAS APÓS O MEIO DIA:         \
+          \  @   CRÉDITOS DISPONÍVEIS EM 48H APÓS A COMPRA   "
+        description: "Recibo com informações do pagamento. Linhas com 48 posições\
+          \ separadas por '@'."
+        pattern: "^[^@]{0,48}(\\@[^@]{0,48})*$"
+    title: "infPagamentoComprovanteReq"
+    description: "Informações da requisição de comprovante de pagamento."
+  infPagamentoReq:
+    type: "object"
+    properties:
+      codBarras:
+        $ref: "#/definitions/CodBarras1"
+      darf:
+        $ref: "#/definitions/Darf1"
+      gps:
+        $ref: "#/definitions/Gps1"
+      troco:
+        $ref: "#/definitions/Troco"
+      depositoTroco:
+        $ref: "#/definitions/DepositoTroco"
+      numDDA:
+        type: "string"
+        description: "Número ID DDA."
+        pattern: "^\\d+$"
+      numConsultaPagamento:
+        type: "string"
+        description: "Identificação da Consulta Pagamento."
+        pattern: "^\\d+$"
+    title: "infPagamentoReq"
+  infPagamentoResp:
+    type: "object"
+    properties:
+      valor:
+        type: "string"
+        example: "000000005000"
+        description: "Valor atualizado pelo host (12 dígitos, incluindo centavos)."
+        pattern: "^\\d{12}$"
+      cedente:
+        type: "string"
+        example: "Cedente"
+        description: "Cedente (até 40 caracteres)."
+        pattern: "^.{0,40}$"
+      dataPagamento:
+        type: "string"
+        example: "20181122"
+        description: "Data de pagamento atualizada pelo host (AAAAMMDD)."
+        pattern: "^\\d{8}$"
+      mensagem:
+        type: "string"
+        description: "Mensagem informativa quanto à alteração de valores e/ou data\
+          \ de pagamento pelo host."
+      qtdeViasComprovante:
+        type: "string"
+        example: "1"
+        description: "Quantidade de vias para impressão do Comprovante."
+        pattern: "^\\d+$"
+      desconto:
+        type: "string"
+        example: "000000000499"
+        description: "Valor do desconto (12 dígitos, incluindo centavos)."
+        pattern: "^\\d{12}$"
+      sistemaCobranca:
+        $ref: "#/definitions/SistemaCobranca1"
+      cupom:
+        type: "string"
+        example: "             TEU BILHETE ANTECIPADO             @              \
+          \  036200005433591                @               13/10/2018  20:24    \
+          \           @           VALOR DA RECARGA: R$ 48,00           @         \
+          \        TAXAS: R$ 2,00                 @              TOTAL PAGO: R$ 50,00\
+          \              @   OS CRÉDITOS ADQUIRIDOS ESTARÃO DISPONÍVEIS   @      NOS\
+          \ VALIDADORES DOS ÔNIBUS DA REGIÃO      @     METROPOLITANA QUE ACEITAM\
+          \ O CARTÃO TEU     @ OU NAS CATRACAS DO METRÔ, NOS SEGUINTES PRAZOS @  \
+          \          RECARGAS ATÉ O MEIO DIA:            @ CRÉDITOS DISPONÍVEIS NO\
+          \ DIA SEGUINTE DA COMPRA @           RECARGAS APÓS O MEIO DIA:         \
+          \  @   CRÉDITOS DISPONÍVEIS EM 48H APÓS A COMPRA   "
+        description: "Cupom no mesmo formato do comprovante. Linhas com 48 posiçõ\
+          es separadas por '@'."
+        pattern: "^[^@]{0,48}(\\@[^@]{0,48})*$"
+      recibo:
+        type: "string"
+        example: "             TEU BILHETE ANTECIPADO             @              \
+          \  036200005433591                @               13/10/2018  20:24    \
+          \           @           VALOR DA RECARGA: R$ 48,00           @         \
+          \        TAXAS: R$ 2,00                 @              TOTAL PAGO: R$ 50,00\
+          \              @   OS CRÉDITOS ADQUIRIDOS ESTARÃO DISPONÍVEIS   @      NOS\
+          \ VALIDADORES DOS ÔNIBUS DA REGIÃO      @     METROPOLITANA QUE ACEITAM\
+          \ O CARTÃO TEU     @ OU NAS CATRACAS DO METRÔ, NOS SEGUINTES PRAZOS @  \
+          \          RECARGAS ATÉ O MEIO DIA:            @ CRÉDITOS DISPONÍVEIS NO\
+          \ DIA SEGUINTE DA COMPRA @           RECARGAS APÓS O MEIO DIA:         \
+          \  @   CRÉDITOS DISPONÍVEIS EM 48H APÓS A COMPRA   "
+        description: "Recibo de pagamento ou agendamento. Linhas com 48 posições separadas\
+          \ por '@'."
+        pattern: "^[^@]{0,48}(\\@[^@]{0,48})*$"
+    title: "infPagamentoResp"
+    example:
+      recibo: "             TEU BILHETE ANTECIPADO             @                036200005433591\
+        \                @               13/10/2018  20:24               @       \
+        \    VALOR DA RECARGA: R$ 48,00           @                 TAXAS: R$ 2,00\
+        \                 @              TOTAL PAGO: R$ 50,00              @   OS\
+        \ CRÉDITOS ADQUIRIDOS ESTARÃO DISPONÍVEIS   @      NOS VALIDADORES DOS ÔNIBUS\
+        \ DA REGIÃO      @     METROPOLITANA QUE ACEITAM O CARTÃO TEU     @ OU NAS\
+        \ CATRACAS DO METRÔ, NOS SEGUINTES PRAZOS @            RECARGAS ATÉ O MEIO\
+        \ DIA:            @ CRÉDITOS DISPONÍVEIS NO DIA SEGUINTE DA COMPRA @     \
+        \      RECARGAS APÓS O MEIO DIA:           @   CRÉDITOS DISPONÍVEIS EM 48H\
+        \ APÓS A COMPRA   "
+      qtdeViasComprovante: "1"
+      dataPagamento: "20181122"
+      desconto: "000000000499"
+      cupom: "             TEU BILHETE ANTECIPADO             @                036200005433591\
+        \                @               13/10/2018  20:24               @       \
+        \    VALOR DA RECARGA: R$ 48,00           @                 TAXAS: R$ 2,00\
+        \                 @              TOTAL PAGO: R$ 50,00              @   OS\
+        \ CRÉDITOS ADQUIRIDOS ESTARÃO DISPONÍVEIS   @      NOS VALIDADORES DOS ÔNIBUS\
+        \ DA REGIÃO      @     METROPOLITANA QUE ACEITAM O CARTÃO TEU     @ OU NAS\
+        \ CATRACAS DO METRÔ, NOS SEGUINTES PRAZOS @            RECARGAS ATÉ O MEIO\
+        \ DIA:            @ CRÉDITOS DISPONÍVEIS NO DIA SEGUINTE DA COMPRA @     \
+        \      RECARGAS APÓS O MEIO DIA:           @   CRÉDITOS DISPONÍVEIS EM 48H\
+        \ APÓS A COMPRA   "
+      mensagem: "mensagem"
+      valor: "000000005000"
+      sistemaCobranca: 0
+      cedente: "Cedente"
+  infRecargaReq:
+    type: "object"
+    properties:
+      telefone:
+        type: "string"
+        example: "51999999999"
+        description: "Número do telefone utilizado na operação (recarga de celular,\
+          \ 11 dígitos = DDD com 0 quando número tem 8 dígitos, sem 0 quando número\
+          \ tem 9 dígitos)."
+        pattern: "^\\d{11}$"
+      numCartao:
+        type: "string"
+        example: "036200001842241"
+        description: "Número do cartão utilizado na operação (recarga de transporte)."
+        pattern: "^\\d+$"
+      idOperadora:
+        type: "string"
+        example: "847"
+        description: "Operadora utilizada na operação."
+        pattern: "^\\d+$"
+      idProduto:
+        type: "string"
+        example: "87"
+        description: "Produto utilizado na operação."
+        pattern: "^\\d+$"
+    title: "infRecargaReq"
+    description: "Informações sobre a requisição de recarga."
+  infRecargaResp:
+    type: "object"
+    properties:
+      recibo:
+        type: "string"
+        example: "             TEU BILHETE ANTECIPADO             @              \
+          \  036200005433591                @               13/10/2018  20:24    \
+          \           @           VALOR DA RECARGA: R$ 48,00           @         \
+          \        TAXAS: R$ 2,00                 @              TOTAL PAGO: R$ 50,00\
+          \              @   OS CRÉDITOS ADQUIRIDOS ESTARÃO DISPONÍVEIS   @      NOS\
+          \ VALIDADORES DOS ÔNIBUS DA REGIÃO      @     METROPOLITANA QUE ACEITAM\
+          \ O CARTÃO TEU     @ OU NAS CATRACAS DO METRÔ, NOS SEGUINTES PRAZOS @  \
+          \          RECARGAS ATÉ O MEIO DIA:            @ CRÉDITOS DISPONÍVEIS NO\
+          \ DIA SEGUINTE DA COMPRA @           RECARGAS APÓS O MEIO DIA:         \
+          \  @   CRÉDITOS DISPONÍVEIS EM 48H APÓS A COMPRA   "
+        description: "Recibo com informações do saldo. Linhas com 48 posições separadas\
+          \ por '@'."
+        pattern: "^[^@]{0,48}(\\@[^@]{0,48})*$"
+    title: "infRecargaResp"
+    description: "Informações sobre a resposta de requisição de recarga."
+    example:
+      recibo: "             TEU BILHETE ANTECIPADO             @                036200005433591\
+        \                @               13/10/2018  20:24               @       \
+        \    VALOR DA RECARGA: R$ 48,00           @                 TAXAS: R$ 2,00\
+        \                 @              TOTAL PAGO: R$ 50,00              @   OS\
+        \ CRÉDITOS ADQUIRIDOS ESTARÃO DISPONÍVEIS   @      NOS VALIDADORES DOS ÔNIBUS\
+        \ DA REGIÃO      @     METROPOLITANA QUE ACEITAM O CARTÃO TEU     @ OU NAS\
+        \ CATRACAS DO METRÔ, NOS SEGUINTES PRAZOS @            RECARGAS ATÉ O MEIO\
+        \ DIA:            @ CRÉDITOS DISPONÍVEIS NO DIA SEGUINTE DA COMPRA @     \
+        \      RECARGAS APÓS O MEIO DIA:           @   CRÉDITOS DISPONÍVEIS EM 48H\
+        \ APÓS A COMPRA   "
+  infReimpressaoComprovanteResp:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+        example: "047382754927145"
+        description: "Identificação do comprovante de pagamento."
+        pattern: "^\\d+$"
+      cedente:
+        type: "string"
+        example: "Cedente"
+        description: "Cedente (até 40 caracteres)."
+        pattern: "^.{0,40}$"
+      dataVencimento:
+        type: "string"
+        example: "20181122"
+        description: "Data de vencimento do Boleto/Título (AAAAMMDD)."
+        pattern: "^\\d{8}$"
+      dataPagamento:
+        type: "string"
+        example: "20181122"
+        description: "Data em que o Boleto/Título foi pago (AAAAMMDD)."
+        pattern: "^\\d{8}$"
+      valor:
+        type: "string"
+        example: "000000005000"
+        description: "Valor total pago (12 dpigitos, incluindo centavos)."
+        pattern: "^\\d{12}$"
+      recibo:
+        type: "string"
+        example: "             TEU BILHETE ANTECIPADO             @              \
+          \  036200005433591                @               13/10/2018  20:24    \
+          \           @           VALOR DA RECARGA: R$ 48,00           @         \
+          \        TAXAS: R$ 2,00                 @              TOTAL PAGO: R$ 50,00\
+          \              @   OS CRÉDITOS ADQUIRIDOS ESTARÃO DISPONÍVEIS   @      NOS\
+          \ VALIDADORES DOS ÔNIBUS DA REGIÃO      @     METROPOLITANA QUE ACEITAM\
+          \ O CARTÃO TEU     @ OU NAS CATRACAS DO METRÔ, NOS SEGUINTES PRAZOS @  \
+          \          RECARGAS ATÉ O MEIO DIA:            @ CRÉDITOS DISPONÍVEIS NO\
+          \ DIA SEGUINTE DA COMPRA @           RECARGAS APÓS O MEIO DIA:         \
+          \  @   CRÉDITOS DISPONÍVEIS EM 48H APÓS A COMPRA   "
+        description: "Recibo com informações do pagamento. Linhas com 48 posições\
+          \ separadas por '@'."
+        pattern: "^[^@]{0,48}(\\@[^@]{0,48})*$"
+    title: "infReimpressaoComprovanteResp"
+    description: "Informações sobre o comprovante de pagamento e o recibo de pagamento\
+      \ a ser impresso."
+    example:
+      recibo: "             TEU BILHETE ANTECIPADO             @                036200005433591\
+        \                @               13/10/2018  20:24               @       \
+        \    VALOR DA RECARGA: R$ 48,00           @                 TAXAS: R$ 2,00\
+        \                 @              TOTAL PAGO: R$ 50,00              @   OS\
+        \ CRÉDITOS ADQUIRIDOS ESTARÃO DISPONÍVEIS   @      NOS VALIDADORES DOS ÔNIBUS\
+        \ DA REGIÃO      @     METROPOLITANA QUE ACEITAM O CARTÃO TEU     @ OU NAS\
+        \ CATRACAS DO METRÔ, NOS SEGUINTES PRAZOS @            RECARGAS ATÉ O MEIO\
+        \ DIA:            @ CRÉDITOS DISPONÍVEIS NO DIA SEGUINTE DA COMPRA @     \
+        \      RECARGAS APÓS O MEIO DIA:           @   CRÉDITOS DISPONÍVEIS EM 48H\
+        \ APÓS A COMPRA   "
+      dataPagamento: "20181122"
+      dataVencimento: "20181122"
+      valor: "000000005000"
+      id: "047382754927145"
+      cedente: "Cedente"
+  infSaldoReq:
+    type: "object"
+    properties:
+      numAgencia:
+        type: "string"
+        example: "4029"
+        description: "Número da agência utilizada na operação (4 dígitos)."
+        pattern: "^\\d{4}$"
+      numConta:
+        type: "string"
+        example: "0082348296"
+        description: "Número da conta utilizada na operação (10 dígitos)."
+        pattern: "^\\d{10}$"
+      cpf:
+        type: "string"
+        example: "02358422785"
+        description: "Número do CPF do cliente realizando a operação (11 dígitos)."
+        pattern: "^\\d{11}$"
+      telefone:
+        type: "string"
+        example: "51999999999"
+        description: "Telefone do cliente realizando a operação (11 dígitos = DDD\
+          \ com 0 quando número tem 8 dígitos, sem 0 quando número tem 9 dígitos)."
+        pattern: "^\\d{11}$"
+    title: "infSaldoReq"
+    description: "Informações sobre a requisição de saldo."
+  infSaldoResp:
+    type: "object"
+    properties:
+      recibo:
+        type: "string"
+        example: "             TEU BILHETE ANTECIPADO             @              \
+          \  036200005433591                @               13/10/2018  20:24    \
+          \           @           VALOR DA RECARGA: R$ 48,00           @         \
+          \        TAXAS: R$ 2,00                 @              TOTAL PAGO: R$ 50,00\
+          \              @   OS CRÉDITOS ADQUIRIDOS ESTARÃO DISPONÍVEIS   @      NOS\
+          \ VALIDADORES DOS ÔNIBUS DA REGIÃO      @     METROPOLITANA QUE ACEITAM\
+          \ O CARTÃO TEU     @ OU NAS CATRACAS DO METRÔ, NOS SEGUINTES PRAZOS @  \
+          \          RECARGAS ATÉ O MEIO DIA:            @ CRÉDITOS DISPONÍVEIS NO\
+          \ DIA SEGUINTE DA COMPRA @           RECARGAS APÓS O MEIO DIA:         \
+          \  @   CRÉDITOS DISPONÍVEIS EM 48H APÓS A COMPRA   "
+        description: "Recibo com informações do saldo. Linhas com 48 posições separadas\
+          \ por '@'."
+        pattern: "^[^@]{0,48}(\\@[^@]{0,48})*$"
+    title: "infSaldoResp"
+    description: "Informações da resposta de saldo."
+    example:
+      recibo: "             TEU BILHETE ANTECIPADO             @                036200005433591\
+        \                @               13/10/2018  20:24               @       \
+        \    VALOR DA RECARGA: R$ 48,00           @                 TAXAS: R$ 2,00\
+        \                 @              TOTAL PAGO: R$ 50,00              @   OS\
+        \ CRÉDITOS ADQUIRIDOS ESTARÃO DISPONÍVEIS   @      NOS VALIDADORES DOS ÔNIBUS\
+        \ DA REGIÃO      @     METROPOLITANA QUE ACEITAM O CARTÃO TEU     @ OU NAS\
+        \ CATRACAS DO METRÔ, NOS SEGUINTES PRAZOS @            RECARGAS ATÉ O MEIO\
+        \ DIA:            @ CRÉDITOS DISPONÍVEIS NO DIA SEGUINTE DA COMPRA @     \
+        \      RECARGAS APÓS O MEIO DIA:           @   CRÉDITOS DISPONÍVEIS EM 48H\
+        \ APÓS A COMPRA   "
+  infSaqueReq:
+    type: "object"
+    properties:
+      numAgencia:
+        type: "string"
+        example: "4029"
+        description: "Número da agência utilizada na operação (4 dígitos)."
+        pattern: "^\\d{4}$"
+      numConta:
+        type: "string"
+        example: "0082348296"
+        description: "Número da conta utilizada na operação (10 dígitos)."
+        pattern: "^\\d{10}$"
+      cpf:
+        type: "string"
+        example: "02358422785"
+        description: "Número do CPF do cliente realizando a operação (11 dígitos)."
+        pattern: "^\\d{11}$"
+      telefone:
+        type: "string"
+        example: "51999999999"
+        description: "Telefone do cliente realizando a operação (11 dígitos = DDD\
+          \ com 0 quando número tem 8 dígitos, sem 0 quando número tem 9 dígitos)."
+        pattern: "^\\d{11}$"
+    title: "infSaqueReq"
+    description: "Informações sobre a requisição de saque."
+  infSaqueResp:
+    type: "object"
+    properties:
+      recibo:
+        type: "string"
+        example: "             TEU BILHETE ANTECIPADO             @              \
+          \  036200005433591                @               13/10/2018  20:24    \
+          \           @           VALOR DA RECARGA: R$ 48,00           @         \
+          \        TAXAS: R$ 2,00                 @              TOTAL PAGO: R$ 50,00\
+          \              @   OS CRÉDITOS ADQUIRIDOS ESTARÃO DISPONÍVEIS   @      NOS\
+          \ VALIDADORES DOS ÔNIBUS DA REGIÃO      @     METROPOLITANA QUE ACEITAM\
+          \ O CARTÃO TEU     @ OU NAS CATRACAS DO METRÔ, NOS SEGUINTES PRAZOS @  \
+          \          RECARGAS ATÉ O MEIO DIA:            @ CRÉDITOS DISPONÍVEIS NO\
+          \ DIA SEGUINTE DA COMPRA @           RECARGAS APÓS O MEIO DIA:         \
+          \  @   CRÉDITOS DISPONÍVEIS EM 48H APÓS A COMPRA   "
+        description: "Recibo com informações do saque efetuado. Linhas com 48 posiç\
+          ões separadas por '@'. Substituir os valores do recibo pela tag %VALOR%.\
+          \ A Saque e Pague substituirá essa tag no comprovante pelo valor realmente\
+          \ sacado pelo cliente."
+        pattern: "^[^@]{0,48}(\\@[^@]{0,48})*$"
+    title: "infSaqueResp"
+    description: "Informações da resposta de saque."
+    example:
+      recibo: "             TEU BILHETE ANTECIPADO             @                036200005433591\
+        \                @               13/10/2018  20:24               @       \
+        \    VALOR DA RECARGA: R$ 48,00           @                 TAXAS: R$ 2,00\
+        \                 @              TOTAL PAGO: R$ 50,00              @   OS\
+        \ CRÉDITOS ADQUIRIDOS ESTARÃO DISPONÍVEIS   @      NOS VALIDADORES DOS ÔNIBUS\
+        \ DA REGIÃO      @     METROPOLITANA QUE ACEITAM O CARTÃO TEU     @ OU NAS\
+        \ CATRACAS DO METRÔ, NOS SEGUINTES PRAZOS @            RECARGAS ATÉ O MEIO\
+        \ DIA:            @ CRÉDITOS DISPONÍVEIS NO DIA SEGUINTE DA COMPRA @     \
+        \      RECARGAS APÓS O MEIO DIA:           @   CRÉDITOS DISPONÍVEIS EM 48H\
+        \ APÓS A COMPRA   "
+  infTransacaoConf:
+    type: "object"
+    properties:
+      nsuResposta:
+        type: "string"
+        example: "820"
+        description: "Igual à resposta."
+        pattern: "^\\d+$"
+      nsu:
+        type: "string"
+        example: "000080247206"
+        description: "Igual à requisição e à resposta."
+        pattern: "^\\d{12}$"
+      cdProc:
+        type: "string"
+        example: "029100"
+        description: "Igual à requisição e à resposta."
+        pattern: "^\\d{6}$"
+      dataHora:
+        type: "string"
+        example: "1122151032"
+        description: "Data e hora da transação (MMDDhhmmss)."
+        pattern: "^\\d{10}$"
+      horaLocal:
+        type: "string"
+        example: "151032"
+        description: "Igual à requisição e à resposta."
+        pattern: "^\\d{6}$"
+      dataLocal:
+        type: "string"
+        example: "1122"
+        description: "Igual à requisição e à resposta."
+        pattern: "^\\d{4}$"
+      codOperadora:
+        type: "string"
+        example: "00000000914"
+        description: "Igual à requisição e à resposta."
+        pattern: "^\\d{11}$"
+      valor:
+        type: "string"
+        example: "000000005000"
+        description: "Valor efetivado na transação. Em alguns casos, pode ser diferente\
+          \ da requisição e da resposta (12 dígitos, incluindo centavos)."
+        pattern: "^\\d{12}$"
+      codMoeda:
+        type: "string"
+        example: "986"
+        description: "Igual à requisição e à resposta."
+        pattern: "^\\d{3}$"
+    title: "infTransacaoConf"
+    description: "Informações sobre a requisição de confirmação de transação."
+  infTransacaoReq:
+    type: "object"
+    required:
+    - "cdProc"
+    - "codOperadora"
+    - "dataHora"
+    - "dataLocal"
+    - "horaLocal"
+    - "nsu"
+    properties:
+      nsu:
+        type: "string"
+        example: "000080247206"
+        description: "Identificador da transação gerado pela Saque e Pague (12 dí\
+          gitos)."
+        pattern: "^\\d{12}$"
+      cdProc:
+        type: "string"
+        example: "029100"
+        description: "Código de processamento da transação, gerado pela Saque e Pague.\
+          \ Verificar código específico de cada transação com a Saque e Pague (6 dí\
+          gitos)."
+        pattern: "^\\d{6}$"
+      dataHora:
+        type: "string"
+        description: "Data local (MMDDhhmmss)."
+        pattern: "^\\d{4}$"
+      horaLocal:
+        type: "string"
+        example: "151032"
+        description: "Hora local (hhmmss)."
+        pattern: "^\\d{6}$"
+      dataLocal:
+        type: "string"
+        example: "1122"
+        description: "Data local (MMDD)."
+        pattern: "^\\d{4}$"
+      codOperadora:
+        type: "string"
+        example: "00000000914"
+        description: "Código definido pela Saque e Pague que identifica o autorizador\
+          \ (11 dígitos)."
+        pattern: "^\\d{11}$"
+      dataContabil:
+        type: "string"
+        example: "1122"
+        description: "Data contábil da transação (MMDD)."
+        pattern: "^\\d{4}$"
+      valor:
+        type: "string"
+        example: "000000005000"
+        description: "Valor da transação (12 dígitos, incluindo centavos)."
+        pattern: "^\\d{12}$"
+      codMoeda:
+        type: "string"
+        example: "986"
+        description: "Código na tabela de moedas do Banco Central (986 = real, 3 dí\
+          gitos)."
+        pattern: "^\\d{3}$"
+    title: "infTransacaoReq"
+    description: "Informações sobre a requisição de transação."
+  infTransacaoResp:
+    type: "object"
+    required:
+    - "cdProc"
+    - "codOperadora"
+    - "dataHora"
+    - "dataLocal"
+    - "horaLocal"
+    - "nsu"
+    - "nsuResposta"
+    properties:
+      nsuResposta:
+        type: "string"
+        example: "820"
+        description: "Identificador da resposta da transação, gerado pelo autorizador."
+        pattern: "^\\d+$"
+      nsu:
+        type: "string"
+        example: "000080247206"
+        description: "Igual à requisição."
+        pattern: "^\\d{12}$"
+      cdProc:
+        type: "string"
+        example: "029100"
+        description: "Igual à requisição."
+        pattern: "^\\d{6}$"
+      dataHora:
+        type: "string"
+        example: "1122151032"
+        description: "Data hora da transação (MMDDhhmmss)."
+        pattern: "^\\d{10}$"
+      horaLocal:
+        type: "string"
+        example: "151032"
+        description: "Igual à requisição."
+        pattern: "^\\d{6}$"
+      dataLocal:
+        type: "string"
+        example: "1122"
+        description: "Igual à requisição."
+        pattern: "^\\d{4}$"
+      codOperadora:
+        type: "string"
+        example: "00000000914"
+        description: "Igual à requisição."
+        pattern: "^\\d{11}"
+      valor:
+        type: "string"
+        example: "5000"
+        description: "Igual à requisição."
+        pattern: "^\\d+"
+      codMoeda:
+        type: "string"
+        example: "986"
+        description: "Igual à requisição."
+        pattern: "^\\d{3}"
+      mensagemCliente:
+        type: "string"
+        example: "Não foi possível validar o cartão."
+        description: "Mensagem para ser mostrada na tela para o cliente."
+      errorMessage:
+        type: "string"
+        example: "Cartão inválido."
+        description: "Mensagem de erro, caso ocorra."
+    title: "infTransacaoResp"
+    description: "Informações sobre a resposta da resquisição de transação."
+    example:
+      cdProc: "029100"
+      mensagemCliente: "Não foi possível validar o cartão."
+      nsu: "000080247206"
+      codMoeda: "986"
+      codOperadora: "00000000914"
+      dataLocal: "1122"
+      valor: "5000"
+      errorMessage: "Cartão inválido."
+      nsuResposta: "820"
+      horaLocal: "151032"
+      dataHora: "1122151032"
+  pagamentoReq:
+    type: "object"
+    properties:
+      InfTransacao:
+        $ref: "#/definitions/infTransacaoReq"
+      Cartao:
+        $ref: "#/definitions/cartao"
+      Terminal:
+        $ref: "#/definitions/terminal"
+      Cripto:
+        $ref: "#/definitions/cripto"
+      InfPagamento:
+        $ref: "#/definitions/infPagamentoReq"
+    title: "pagamentoReq"
+  pagamentoResp:
+    type: "object"
+    properties:
+      InfTransacao:
+        $ref: "#/definitions/infTransacaoResp"
+      Terminal:
+        $ref: "#/definitions/terminal"
+      Cripto:
+        $ref: "#/definitions/criptoResp"
+      InfPagamentoResp:
+        $ref: "#/definitions/infPagamentoResp"
+    title: "pagamentoResp"
+    example:
+      InfPagamentoResp:
+        recibo: "             TEU BILHETE ANTECIPADO             @               \
+          \ 036200005433591                @               13/10/2018  20:24     \
+          \          @           VALOR DA RECARGA: R$ 48,00           @          \
+          \       TAXAS: R$ 2,00                 @              TOTAL PAGO: R$ 50,00\
+          \              @   OS CRÉDITOS ADQUIRIDOS ESTARÃO DISPONÍVEIS   @      NOS\
+          \ VALIDADORES DOS ÔNIBUS DA REGIÃO      @     METROPOLITANA QUE ACEITAM\
+          \ O CARTÃO TEU     @ OU NAS CATRACAS DO METRÔ, NOS SEGUINTES PRAZOS @  \
+          \          RECARGAS ATÉ O MEIO DIA:            @ CRÉDITOS DISPONÍVEIS NO\
+          \ DIA SEGUINTE DA COMPRA @           RECARGAS APÓS O MEIO DIA:         \
+          \  @   CRÉDITOS DISPONÍVEIS EM 48H APÓS A COMPRA   "
+        qtdeViasComprovante: "1"
+        dataPagamento: "20181122"
+        desconto: "000000000499"
+        cupom: "             TEU BILHETE ANTECIPADO             @                036200005433591\
+          \                @               13/10/2018  20:24               @     \
+          \      VALOR DA RECARGA: R$ 48,00           @                 TAXAS: R$\
+          \ 2,00                 @              TOTAL PAGO: R$ 50,00             \
+          \ @   OS CRÉDITOS ADQUIRIDOS ESTARÃO DISPONÍVEIS   @      NOS VALIDADORES\
+          \ DOS ÔNIBUS DA REGIÃO      @     METROPOLITANA QUE ACEITAM O CARTÃO TEU\
+          \     @ OU NAS CATRACAS DO METRÔ, NOS SEGUINTES PRAZOS @            RECARGAS\
+          \ ATÉ O MEIO DIA:            @ CRÉDITOS DISPONÍVEIS NO DIA SEGUINTE DA COMPRA\
+          \ @           RECARGAS APÓS O MEIO DIA:           @   CRÉDITOS DISPONÍVEIS\
+          \ EM 48H APÓS A COMPRA   "
+        mensagem: "mensagem"
+        valor: "000000005000"
+        sistemaCobranca: 0
+        cedente: "Cedente"
+      InfTransacao:
+        cdProc: "029100"
+        mensagemCliente: "Não foi possível validar o cartão."
+        nsu: "000080247206"
+        codMoeda: "986"
+        codOperadora: "00000000914"
+        dataLocal: "1122"
+        valor: "5000"
+        errorMessage: "Cartão inválido."
+        nsuResposta: "820"
+        horaLocal: "151032"
+        dataHora: "1122151032"
+      Terminal:
+        codEstab: "000000000742673"
+        tipo: "008"
+        id: "05100004"
+      Cripto:
+        hash: "hash"
+  recargaReq:
+    type: "object"
+    properties:
+      InfTransacao:
+        $ref: "#/definitions/infTransacaoReq"
+      Cartao:
+        $ref: "#/definitions/cartao"
+      Terminal:
+        $ref: "#/definitions/terminal"
+      Cripto:
+        $ref: "#/definitions/cripto"
+      InfRecarga:
+        $ref: "#/definitions/infRecargaReq"
+    title: "recargaReq"
+  recargaResp:
+    type: "object"
+    properties:
+      InfTransacao:
+        $ref: "#/definitions/infTransacaoResp"
+      Terminal:
+        $ref: "#/definitions/terminal"
+      Cripto:
+        $ref: "#/definitions/criptoResp"
+      InfRecarga:
+        $ref: "#/definitions/infRecargaResp"
+    title: "recargaResp"
+    example:
+      InfRecarga:
+        recibo: "             TEU BILHETE ANTECIPADO             @               \
+          \ 036200005433591                @               13/10/2018  20:24     \
+          \          @           VALOR DA RECARGA: R$ 48,00           @          \
+          \       TAXAS: R$ 2,00                 @              TOTAL PAGO: R$ 50,00\
+          \              @   OS CRÉDITOS ADQUIRIDOS ESTARÃO DISPONÍVEIS   @      NOS\
+          \ VALIDADORES DOS ÔNIBUS DA REGIÃO      @     METROPOLITANA QUE ACEITAM\
+          \ O CARTÃO TEU     @ OU NAS CATRACAS DO METRÔ, NOS SEGUINTES PRAZOS @  \
+          \          RECARGAS ATÉ O MEIO DIA:            @ CRÉDITOS DISPONÍVEIS NO\
+          \ DIA SEGUINTE DA COMPRA @           RECARGAS APÓS O MEIO DIA:         \
+          \  @   CRÉDITOS DISPONÍVEIS EM 48H APÓS A COMPRA   "
+      InfTransacao:
+        cdProc: "029100"
+        mensagemCliente: "Não foi possível validar o cartão."
+        nsu: "000080247206"
+        codMoeda: "986"
+        codOperadora: "00000000914"
+        dataLocal: "1122"
+        valor: "5000"
+        errorMessage: "Cartão inválido."
+        nsuResposta: "820"
+        horaLocal: "151032"
+        dataHora: "1122151032"
+      Terminal:
+        codEstab: "000000000742673"
+        tipo: "008"
+        id: "05100004"
+      Cripto:
+        hash: "hash"
+  reimpressaoComprovanteReq:
+    type: "object"
+    properties:
+      InfTransacao:
+        $ref: "#/definitions/infTransacaoReq"
+      Cartao:
+        $ref: "#/definitions/cartao"
+      Terminal:
+        $ref: "#/definitions/terminal"
+      InfComprovantePagamento:
+        $ref: "#/definitions/infComprovantePagamento"
+    title: "reimpressaoComprovanteReq"
+  reimpressaoComprovanteResp:
+    type: "object"
+    properties:
+      InfTransacao:
+        $ref: "#/definitions/infTransacaoResp"
+      Terminal:
+        $ref: "#/definitions/terminal"
+      Cripto:
+        $ref: "#/definitions/criptoResp"
+      InfReimpressaoComprovante:
+        $ref: "#/definitions/infReimpressaoComprovanteResp"
+    title: "reimpressaoComprovanteResp"
+    example:
+      InfReimpressaoComprovante:
+        recibo: "             TEU BILHETE ANTECIPADO             @               \
+          \ 036200005433591                @               13/10/2018  20:24     \
+          \          @           VALOR DA RECARGA: R$ 48,00           @          \
+          \       TAXAS: R$ 2,00                 @              TOTAL PAGO: R$ 50,00\
+          \              @   OS CRÉDITOS ADQUIRIDOS ESTARÃO DISPONÍVEIS   @      NOS\
+          \ VALIDADORES DOS ÔNIBUS DA REGIÃO      @     METROPOLITANA QUE ACEITAM\
+          \ O CARTÃO TEU     @ OU NAS CATRACAS DO METRÔ, NOS SEGUINTES PRAZOS @  \
+          \          RECARGAS ATÉ O MEIO DIA:            @ CRÉDITOS DISPONÍVEIS NO\
+          \ DIA SEGUINTE DA COMPRA @           RECARGAS APÓS O MEIO DIA:         \
+          \  @   CRÉDITOS DISPONÍVEIS EM 48H APÓS A COMPRA   "
+        dataPagamento: "20181122"
+        dataVencimento: "20181122"
+        valor: "000000005000"
+        id: "047382754927145"
+        cedente: "Cedente"
+      InfTransacao:
+        cdProc: "029100"
+        mensagemCliente: "Não foi possível validar o cartão."
+        nsu: "000080247206"
+        codMoeda: "986"
+        codOperadora: "00000000914"
+        dataLocal: "1122"
+        valor: "5000"
+        errorMessage: "Cartão inválido."
+        nsuResposta: "820"
+        horaLocal: "151032"
+        dataHora: "1122151032"
+      Terminal:
+        codEstab: "000000000742673"
+        tipo: "008"
+        id: "05100004"
+      Cripto:
+        hash: "hash"
+  saldoReq:
+    type: "object"
+    properties:
+      InfTransacao:
+        $ref: "#/definitions/infTransacaoReq"
+      Cartao:
+        $ref: "#/definitions/cartao"
+      Terminal:
+        $ref: "#/definitions/terminal"
+      Cripto:
+        $ref: "#/definitions/cripto"
+      InfSaldo:
+        $ref: "#/definitions/infSaldoReq"
+    title: "saldoReq"
+  saldoResp:
+    type: "object"
+    properties:
+      InfTransacao:
+        $ref: "#/definitions/infTransacaoResp"
+      Terminal:
+        $ref: "#/definitions/terminal"
+      Cripto:
+        $ref: "#/definitions/criptoResp"
+      InfSaldo:
+        $ref: "#/definitions/infSaldoResp"
+    title: "saldoResp"
+    example:
+      InfSaldo:
+        recibo: "             TEU BILHETE ANTECIPADO             @               \
+          \ 036200005433591                @               13/10/2018  20:24     \
+          \          @           VALOR DA RECARGA: R$ 48,00           @          \
+          \       TAXAS: R$ 2,00                 @              TOTAL PAGO: R$ 50,00\
+          \              @   OS CRÉDITOS ADQUIRIDOS ESTARÃO DISPONÍVEIS   @      NOS\
+          \ VALIDADORES DOS ÔNIBUS DA REGIÃO      @     METROPOLITANA QUE ACEITAM\
+          \ O CARTÃO TEU     @ OU NAS CATRACAS DO METRÔ, NOS SEGUINTES PRAZOS @  \
+          \          RECARGAS ATÉ O MEIO DIA:            @ CRÉDITOS DISPONÍVEIS NO\
+          \ DIA SEGUINTE DA COMPRA @           RECARGAS APÓS O MEIO DIA:         \
+          \  @   CRÉDITOS DISPONÍVEIS EM 48H APÓS A COMPRA   "
+      InfTransacao:
+        cdProc: "029100"
+        mensagemCliente: "Não foi possível validar o cartão."
+        nsu: "000080247206"
+        codMoeda: "986"
+        codOperadora: "00000000914"
+        dataLocal: "1122"
+        valor: "5000"
+        errorMessage: "Cartão inválido."
+        nsuResposta: "820"
+        horaLocal: "151032"
+        dataHora: "1122151032"
+      Terminal:
+        codEstab: "000000000742673"
+        tipo: "008"
+        id: "05100004"
+      Cripto:
+        hash: "hash"
+  saqueReq:
+    type: "object"
+    properties:
+      InfTransacao:
+        $ref: "#/definitions/infTransacaoReq"
+      Cartao:
+        $ref: "#/definitions/cartao"
+      Terminal:
+        $ref: "#/definitions/terminal"
+      Cripto:
+        $ref: "#/definitions/cripto"
+      InfSaque:
+        $ref: "#/definitions/infSaqueReq"
+    title: "saqueReq"
+  saqueResp:
+    type: "object"
+    properties:
+      InfTransacao:
+        $ref: "#/definitions/infTransacaoResp"
+      Terminal:
+        $ref: "#/definitions/terminal"
+      Cripto:
+        $ref: "#/definitions/criptoResp"
+      InfSaque:
+        $ref: "#/definitions/infSaqueResp"
+    title: "saqueResp"
+    example:
+      InfSaque:
+        recibo: "             TEU BILHETE ANTECIPADO             @               \
+          \ 036200005433591                @               13/10/2018  20:24     \
+          \          @           VALOR DA RECARGA: R$ 48,00           @          \
+          \       TAXAS: R$ 2,00                 @              TOTAL PAGO: R$ 50,00\
+          \              @   OS CRÉDITOS ADQUIRIDOS ESTARÃO DISPONÍVEIS   @      NOS\
+          \ VALIDADORES DOS ÔNIBUS DA REGIÃO      @     METROPOLITANA QUE ACEITAM\
+          \ O CARTÃO TEU     @ OU NAS CATRACAS DO METRÔ, NOS SEGUINTES PRAZOS @  \
+          \          RECARGAS ATÉ O MEIO DIA:            @ CRÉDITOS DISPONÍVEIS NO\
+          \ DIA SEGUINTE DA COMPRA @           RECARGAS APÓS O MEIO DIA:         \
+          \  @   CRÉDITOS DISPONÍVEIS EM 48H APÓS A COMPRA   "
+      InfTransacao:
+        cdProc: "029100"
+        mensagemCliente: "Não foi possível validar o cartão."
+        nsu: "000080247206"
+        codMoeda: "986"
+        codOperadora: "00000000914"
+        dataLocal: "1122"
+        valor: "5000"
+        errorMessage: "Cartão inválido."
+        nsuResposta: "820"
+        horaLocal: "151032"
+        dataHora: "1122151032"
+      Terminal:
+        codEstab: "000000000742673"
+        tipo: "008"
+        id: "05100004"
+      Cripto:
+        hash: "hash"
+  terminal:
+    type: "object"
+    required:
+    - "codEstab"
+    - "id"
+    - "tipo"
+    properties:
+      tipo:
+        type: "string"
+        example: "008"
+        description: "Tipo de terminal o qual a operação é gerada (3 dígitos, 008\
+          \ = ATM)."
+        pattern: "^\\d{3}$"
+      id:
+        type: "string"
+        example: "05100004"
+        description: "Identificador do terminal gerado pela Saque e Pague (8 dígitos)."
+        pattern: "^\\d{8}$"
+      codEstab:
+        type: "string"
+        example: "000000000742673"
+        description: "Código do estabelecimento onde está localizado o terminal gerado\
+          \ pela Saque e Pague (15 dígitos)."
+        pattern: "^\\d{15}$"
+    title: "terminal"
+    description: "Informações sobre o terminal vigente."
+    example:
+      codEstab: "000000000742673"
+      tipo: "008"
+      id: "05100004"
+  transacConf:
+    type: "object"
+    required:
+    - "InfTransacao"
+    - "Terminal"
+    properties:
+      InfTransacao:
+        $ref: "#/definitions/infTransacaoConf"
+      Terminal:
+        $ref: "#/definitions/terminal"
+      Cripto:
+        $ref: "#/definitions/criptoResp"
+    title: "transacConf"
+  AceitaPagamentoParcial:
+    type: "integer"
+    title: "AceitaPagamentoParcial"
+    format: "int32"
+    description: "Aceita pagamento parcial (00 = não, 00 = sim)."
+    example: 0
+    enum:
+    - "00"
+    - "01"
+  AceitaPagamentoParcial1:
+    type: "integer"
+    title: "AceitaPagamentoParcial1"
+    format: "int32"
+    description: "Possível pagar parcialmente (00 = não, 01 = sim)."
+    example: 0
+    enum:
+    - "00"
+    - "01"
+  Cip:
+    type: "object"
+    properties:
+      valorJurosCalculado:
+        type: "string"
+        example: "000000000499"
+        description: "Valor dos juros calculados (12 dígitos, incluindo centavos)."
+        pattern: "^\\d{12}$"
+      valorMultaCalculadada:
+        type: "string"
+        example: "000000000499"
+        description: "Valor da multa calculada (12 dígitos, incluindo centavos)."
+        pattern: "^\\d{12}$"
+      valorAbatimento:
+        type: "string"
+        example: "000000000499"
+        description: "Valor do abatimento calculado (12 dígitos, incluindo centavos)."
+        pattern: "^\\d{12}$"
+      tipoValorAceito:
+        type: "string"
+        description: "Tipo de valor aceito."
+      valorMinimoPermitidoPagamento:
+        type: "string"
+        example: "000000000500"
+        description: "Valor mínimo de pagamento (12 dígitos, incluindo centavos)."
+        pattern: "^\\d{12}$"
+      valorMaximoPermitidoPagamento:
+        type: "string"
+        example: "000000050000"
+        description: "Valor máximo de pagamento (12 dígitos, incluindo centavos)."
+        pattern: "^\\d{12}$"
+      NumeroIdentificacaoConsultaPagamento:
+        type: "string"
+        description: "Número de identificação da consulta."
+        pattern: "^\\d+$"
+    title: "Cip"
+    description: "Informações da CIP."
+    example:
+      valorMaximoPermitidoPagamento: "000000050000"
+      NumeroIdentificacaoConsultaPagamento: "NumeroIdentificacaoConsultaPagamento"
+      valorMinimoPermitidoPagamento: "000000000500"
+      valorJurosCalculado: "000000000499"
+      valorAbatimento: "000000000499"
+      tipoValorAceito: "tipoValorAceito"
+      valorMultaCalculadada: "000000000499"
+  CodBarras:
+    type: "object"
+    properties:
+      codigo:
+        type: "string"
+        description: "Código de barras."
+        pattern: "^\\d+$"
+      modoEntrada:
+        $ref: "#/definitions/ModoEntrada2"
+      dataAgendamento:
+        type: "string"
+        example: "20181122"
+        description: "Data em que o pagamento do Boleto/Título será realizado. Utilizado\
+          \ para pagamento agendado (AAAAMMDD)."
+        pattern: "^\\d{8}$"
+    title: "CodBarras"
+  CodBarras1:
+    type: "object"
+    properties:
+      codigo:
+        type: "string"
+        description: "Código de barras do pagamento."
+        pattern: "^\\d+$"
+      modoEntrada:
+        $ref: "#/definitions/ModoEntrada2"
+      dataVencimento:
+        type: "string"
+        example: "20181122"
+        description: "Data de vencimento (AAAAMMDD)."
+        pattern: "^\\d{8}$"
+      dataPagamento:
+        type: "string"
+        example: "20181122"
+        description: "Data em que o pagamento deve ser efetuado (AAAAMMDD)."
+        pattern: "^\\d{8}$"
+      valor:
+        type: "string"
+        example: "000000001150"
+        description: "Valor do pagamento (12 dígitos, incluindo centavos)."
+        pattern: "^\\d{12}$"
+      numTitular:
+        type: "string"
+        description: "Número do Titular."
+        pattern: "^\\d+$"
+    title: "CodBarras1"
+  Darf:
+    type: "object"
+    properties:
+      periodoApuracao:
+        type: "string"
+        example: "20181122"
+        description: "Data de apuração do DARF (AAAAMMDD)."
+        pattern: "^\\d{8}$"
+      codReceita:
+        type: "string"
+        description: "Código da receita do DARF."
+      numReferencia:
+        type: "string"
+        example: "7"
+        description: "Número de referência."
+        pattern: "^\\d+$"
+    title: "Darf"
+  Darf1:
+    type: "object"
+    properties:
+      periodoApuracao:
+        type: "string"
+        example: "20181122"
+        description: "Data de apuração do DARF (AAAAMMDD)."
+        pattern: "^\\d{8}$"
+      codReceita:
+        type: "string"
+        description: "Código da receita do DARF."
+      numReferencia:
+        type: "string"
+        description: "Número de referência."
+        pattern: "^\\d+$"
+      dataVencimento:
+        type: "string"
+        example: "20181122"
+        description: "Data de vencimento do DARF (AAAAMMDD)."
+        pattern: "^\\d{8}$"
+      valorPrincipal:
+        type: "string"
+        example: "000000001150"
+        description: "Valor principal do DARF (12 dígitos, incluindo centavos)."
+        pattern: "^\\d{12}$"
+      valorMulta:
+        type: "string"
+        example: "000000001150"
+        description: "Valor da multa (12 dígitos, incluindo centavos)."
+        pattern: "^\\d{12}$"
+      valorJuros:
+        type: "string"
+        example: "000000001150"
+        description: "Valor relativo aos juros (12 dígitos, incluindo centavos)."
+        pattern: "^\\d{12}$"
+      valorTotal:
+        type: "string"
+        example: "000000001150"
+        description: "Valor total de pagamento do DARF (12 dígitos, incluindo centavos)."
+        pattern: "^\\d{12}$"
+    title: "Darf1"
+  Dda:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+        example: "852"
+        description: "Número ID DDA."
+        pattern: "^\\d+$"
+      tipoConsulta:
+        type: "string"
+        description: "Tipo de consulta de DDA a ser feita."
+      cpfCNPJ:
+        type: "string"
+        example: "02358427000112"
+        description: "Número do CPF ou CNPJ (11 ou 14 dígitos)."
+        pattern: "^\\d{14}|\\d{11}$"
+      dataInicial:
+        type: "string"
+        example: "20181122"
+        description: "Data de início do período da lista de DDA (caso a consulta seja\
+          \ por período, AAAAMMDD)."
+        pattern: "^\\d{8}$"
+      dataFinal:
+        type: "string"
+        example: "20181122"
+        description: "Data final do período da lista de DDA (caso a consulta seja\
+          \ por período, AAAAMMDD)."
+        pattern: "^\\d{8}$"
+    title: "Dda"
+  DepositoIdentificado:
+    type: "integer"
+    title: "DepositoIdentificado"
+    format: "int32"
+    description: "No caso de consulta antes de um depósito, indica a operação de depó\
+      sito deve ser identificada (00 = Não / 01 = Sim)."
+    example: 0
+    enum:
+    - "00"
+    - "01"
+  DepositoTroco:
+    type: "object"
+    properties:
+      codBanco:
+        type: "string"
+        example: "237"
+        description: "Código do banco utilizado na operação (3 dígitos)."
+        pattern: "^\\d{3}$"
+      numAgencia:
+        type: "string"
+        example: "4029"
+        description: "Número da agência utilizada na operação (4 dígitos)."
+        pattern: "^\\d{4}$"
+      numConta:
+        type: "string"
+        example: "0082348296"
+        description: "Número da conta utilizada na operação (10 dígitos)."
+        pattern: "^\\d{10}$"
+      tipoConta:
+        $ref: "#/definitions/TipoConta1"
+      telefone:
+        type: "string"
+        example: "05199999999"
+        description: "Telefone do cliente realizando a operação (11 dígitos = DDD\
+          \ com 0 quando número tem 8 dígitos, sem 0 quando número tem 9 dígitos)."
+        pattern: "^\\d{11}$"
+      cpfCNPJ:
+        type: "string"
+        example: "02358427000112"
+        description: "Número do CPF ou CNPJ (11 ou 14 dígitos)."
+        pattern: "^\\d{14}|\\d{11}$"
+    title: "DepositoTroco"
+    description: "Informações da conta para o crédito do troco."
+  Estilo:
+    type: "object"
+    properties:
+      nome:
+        type: "string"
+        example: "cor-fundo ou cor-botao"
+        description: "Nome do Estilo."
+        pattern: "^.{0,60}$"
+      valor:
+        type: "string"
+        example: "#00288C"
+        description: "Valor do estilo (no formato hexadecimal)."
+        pattern: "^.{0,60}$"
+    title: "Estilo"
+    example:
+      valor: "#00288C"
+      nome: "cor-fundo ou cor-botao"
+  Fee:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+        example: "0201"
+        description: "Identificador da operação da taxa."
+        pattern: "^\\d+$"
+      min_amount:
+        type: "string"
+        example: "000"
+        description: "Valor mínimo da taxa."
+        pattern: "^\\d+$"
+      max_amount:
+        type: "string"
+        example: "10000"
+        description: "Valor máximo da taxa."
+        pattern: "^\\d+$"
+      value:
+        type: "string"
+        example: "000"
+        description: "Valor da taxa."
+        pattern: "^\\d+$"
+    title: "Fee"
+    example:
+      min_amount: "000"
+      max_amount: "10000"
+      id: "0201"
+      value: "000"
+  Gps:
+    type: "object"
+    properties:
+      codPagamento:
+        type: "string"
+        description: "Código da Guia da Previdência Social (GPS)."
+      dataCompetencia:
+        type: "string"
+        example: "20181122"
+        description: "Data de competência (AAAAMMDD)."
+        pattern: "^\\d{8}$"
+      identificador:
+        type: "string"
+        description: "Identificador da guia."
+    title: "Gps"
+  Gps1:
+    type: "object"
+    properties:
+      codPagamento:
+        type: "string"
+        description: "Código da Guia da Previdência Social (GPS)."
+      dataCompetencia:
+        type: "string"
+        example: "20181122"
+        description: "Data de competência (AAAAMMDD)."
+        pattern: "^\\d{8}$"
+      identificador:
+        type: "string"
+        description: "Identificador da guia."
+      valorInss:
+        type: "string"
+        example: "000000001150"
+        description: "Valor do INSS (12 dígitos, incluindo centavos)."
+        pattern: "^\\d{12}$"
+      valorOutros:
+        type: "string"
+        example: "000000001150"
+        description: "Valor de outras entidades (12 dígitos, incluindo centavos)."
+        pattern: "^\\d{12}$"
+      valorMulta:
+        type: "string"
+        example: "000000001150"
+        description: "Valor associado a ATM/Multa e Juros (12 dígitos, incluindo centavos)."
+        pattern: "^\\d{12}$"
+      valorTotal:
+        type: "string"
+        example: "000000001150"
+        description: "Valor total da Guia da Previdência Social (GPS, 12 dígitos,\
+          \ incluindo centavos)."
+        pattern: "^\\d{12}$"
+    title: "Gps1"
+  HabilitaDeposito:
+    type: "integer"
+    title: "HabilitaDeposito"
+    format: "int32"
+    description: "No caso de consulta antes de um depósito, indica é permitido fazer\
+      \ depósito nessa conta (00 = Não / 01 = Sim)."
+    example: 0
+    enum:
+    - "00"
+    - "01"
+  IdPositiva:
+    type: "object"
+    properties:
+      idTela:
+        type: "string"
+        example: "1"
+        description: "Identificador da tela."
+        pattern: "^\\d+$"
+      pos1:
+        type: "string"
+        example: "A-C-D-3"
+        pattern: "^.{0,7}$"
+      pos2:
+        type: "string"
+        example: "A-C-D-3"
+        pattern: "^.{0,7}$"
+      pos3:
+        type: "string"
+        example: "A-C-D-3"
+        pattern: "^.{0,7}$"
+      pos4:
+        type: "string"
+        example: "A-C-D-3"
+        pattern: "^.{0,7}$"
+      pos5:
+        type: "string"
+        example: "A-C-D-3"
+        pattern: "^.{0,7}$"
+      pos6:
+        type: "string"
+        example: "A-C-D-3"
+        pattern: "^.{0,7}$"
+      pos7:
+        type: "string"
+        example: "A-C-D-3"
+        pattern: "^.{0,7}$"
+      pos8:
+        type: "string"
+        example: "A-C-D-3"
+        pattern: "^.{0,7}$"
+    title: "IdPositiva"
+    description: "Lista de conjunto de letras/sílabas a serem mostradas nas teclas\
+      \ em cada tela (até 7 caracteres por tecla)."
+    example:
+      pos8: "A-C-D-3"
+      idTela: "1"
+      pos4: "A-C-D-3"
+      pos5: "A-C-D-3"
+      pos6: "A-C-D-3"
+      pos7: "A-C-D-3"
+      pos1: "A-C-D-3"
+      pos2: "A-C-D-3"
+      pos3: "A-C-D-3"
+  Issuer:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int32"
+        example: 1
+        description: "Identificador do cartão."
+      name:
+        type: "string"
+        example: "TEU"
+        description: "Nome do cartão."
+      card_number_length:
+        type: "integer"
+        format: "int32"
+        example: 15
+        description: "Quantidade de caracteres do cartão."
+      card_number_mask:
+        type: "string"
+        example: "XXXXXXXXXXXXXX-X"
+        description: "Máscara de números do cartão."
+      products:
+        type: "array"
+        items:
+          $ref: "#/definitions/Product1"
+    title: "Issuer"
+    example:
+      card_number_mask: "XXXXXXXXXXXXXX-X"
+      card_number_length: 15
+      name: "TEU"
+      id: 1
+      products:
+      - min_value: "1000"
+        fee: "200"
+        values:
+        - fee: "200"
+          id: "1"
+          value: "2000"
+        - fee: "200"
+          id: "1"
+          value: "2000"
+        name: "Bilhete Antecipado"
+        id: "7"
+        max_value: "9000"
+      - min_value: "1000"
+        fee: "200"
+        values:
+        - fee: "200"
+          id: "1"
+          value: "2000"
+        - fee: "200"
+          id: "1"
+          value: "2000"
+        name: "Bilhete Antecipado"
+        id: "7"
+        max_value: "9000"
+  ModalidadeDeposito:
+    type: "integer"
+    title: "ModalidadeDeposito"
+    format: "int32"
+    description: "No caso de uma consulta feita antes de um depósito, indica a modalidade\
+      \ desejada (2 dígitos, 00 = dinheiro, 01 = cheque)."
+    example: 0
+    enum:
+    - "00"
+    - "01"
+  ModalidadeDeposito1:
+    type: "integer"
+    title: "ModalidadeDeposito1"
+    format: "int32"
+    description: "Igual à requisição."
+    example: 0
+    enum:
+    - "00"
+    - "01"
+  Modificado:
+    type: "integer"
+    title: "Modificado"
+    format: "int32"
+    description: "Flag que indica se houve alteração (00 = não, 01 = sim)."
+    example: 0
+    enum:
+    - "00"
+    - "01"
+  ModoEntrada:
+    type: "integer"
+    title: "ModoEntrada"
+    format: "int32"
+    description: "Modo de entrada de leitura do cartão. (000 = sem cartão, 050 = chip,\
+      \ 800 = chip, se falhar realiza leitura da trilha, 900 = trilha completa)."
+    example: 0
+    enum:
+    - "000"
+    - "050"
+    - "800"
+    - "900"
+  ModoEntrada1:
+    type: "integer"
+    title: "ModoEntrada1"
+    format: "int32"
+    description: "Forma de entrada do código de barras (0 = escaneado, 1 = digitado)"
+    example: 0
+    enum:
+    - "0"
+    - "1"
+  ModoEntrada2:
+    type: "integer"
+    title: "ModoEntrada2"
+    format: "int32"
+    description: "Forma de entrada do código de barras (0 = escaneado, 1 = digitado)."
+    example: 0
+    enum:
+    - "0"
+    - "1"
+  OpcoesParcela:
+    type: "object"
+    properties:
+      qntParcelas:
+        type: "string"
+        example: "5"
+        description: "Quantidade de parcelas do empréstimo."
+        pattern: "^\\d+$"
+      valorParcela:
+        type: "string"
+        example: "000000005000"
+        description: "Valor de cada parcela do empréstimo (12 dígitos)."
+        pattern: "^\\d{12}$"
+    title: "OpcoesParcela"
+    example:
+      valorParcela: "000000005000"
+      qntParcelas: "5"
+  PedirToken:
+    type: "integer"
+    title: "PedirToken"
+    format: "int32"
+    description: "Informa se o cliente deve se autenticar utilizando token (00 = nã\
+      o, 01 = sim)."
+    example: 0
+    enum:
+    - "00"
+    - "01"
+  Pergunta:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+        example: "1"
+        description: "Identificador da pergunta."
+        pattern: "^\\d+$"
+      pergunta:
+        type: "string"
+        example: "Qual o nome do seu primeiro animal de estimação?"
+        description: "Pergunta de identificação."
+      tamResposta:
+        type: "string"
+        example: "27"
+        description: "Tamanho da resposta da pergunta."
+        pattern: "^\\d+$"
+    title: "Pergunta"
+    example:
+      pergunta: "Qual o nome do seu primeiro animal de estimação?"
+      tamResposta: "27"
+      id: "1"
+  Pergunta1:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+        example: "1"
+        description: "Identificador da pergunta."
+        pattern: "^\\d+$"
+      pergunta:
+        type: "string"
+        example: "Qual a sua senha?"
+        description: "Pergunta a ser exibida ao usuário."
+      tamResposta:
+        type: "string"
+        example: "6"
+        description: "Qual o tamanho da resposta."
+        pattern: "^\\d+$"
+      resposta:
+        type: "string"
+        example: "mimimi"
+        description: "Resposta da pergunta."
+    title: "Pergunta1"
+    example:
+      pergunta: "Qual a sua senha?"
+      resposta: "mimimi"
+      tamResposta: "6"
+      id: "1"
+  Product:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+        example: "5"
+        description: "Identificador do produto."
+        pattern: "^\\d+$"
+      name:
+        type: "string"
+        example: "Produto novo"
+        description: "Nome do produto."
+    title: "Product"
+    example:
+      name: "Produto novo"
+      id: "5"
+  Product1:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+        example: "7"
+        description: "Identificador do produto."
+        pattern: "^\\d+$"
+      name:
+        type: "string"
+        example: "Bilhete Antecipado"
+        description: "Nome do produto."
+      min_value:
+        type: "string"
+        example: "1000"
+        description: "Valor mínimo de recarga."
+        pattern: "^\\d+$"
+      max_value:
+        type: "string"
+        example: "9000"
+        description: "Valor máximo de recarga."
+        pattern: "^\\d+$"
+      fee:
+        type: "string"
+        example: "200"
+        description: "Taxa da recarga."
+        pattern: "^\\d+$"
+      values:
+        type: "array"
+        items:
+          $ref: "#/definitions/Value"
+    title: "Product1"
+    example:
+      min_value: "1000"
+      fee: "200"
+      values:
+      - fee: "200"
+        id: "1"
+        value: "2000"
+      - fee: "200"
+        id: "1"
+        value: "2000"
+      name: "Bilhete Antecipado"
+      id: "7"
+      max_value: "9000"
+  Produto:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+        example: "7"
+        description: "Identificador do produto."
+        pattern: "^\\d+$"
+      nome:
+        type: "string"
+        example: "Grêmio Mais"
+        description: "Nome do produto (até 60 caracteres)."
+        pattern: "^.{0,60}$"
+      descricao:
+        type: "string"
+        example: "Edição 115 Anos"
+        description: "Descrição do produto (até 60 caracteres)."
+        pattern: "^.{0,60}$"
+      detalhes:
+        type: "string"
+        example: "Edição ouro de mais um produto do Grêmio Mais"
+        description: "Informações complementares sobre o produto (até 60 caracteres)."
+        pattern: "^.{0,60}$"
+      dataInicioVigencia:
+        type: "string"
+        example: "20181122"
+        description: "Data inicial da vigência do produto (AAAAMMDD)."
+        pattern: "^\\d{8}$"
+      dataFimVigencia:
+        type: "string"
+        example: "20181130"
+        description: "Data final da vigência do produto (AAAAMMDD)."
+        pattern: "^\\d{8}$"
+      valor:
+        type: "string"
+        example: "000000000500"
+        description: "Valor por produto (12 dígitos, incluindo centavos)."
+        pattern: "^\\d{12}$"
+      limiteMaximoCompra:
+        type: "string"
+        example: "4"
+        description: "Limite máximo de compras por usuário."
+        pattern: "^\\d+$"
+      tema:
+        $ref: "#/definitions/Tema"
+    title: "Produto"
+    example:
+      limiteMaximoCompra: "4"
+      tema:
+        estilos:
+        - valor: "#00288C"
+          nome: "cor-fundo ou cor-botao"
+        - valor: "#00288C"
+          nome: "cor-fundo ou cor-botao"
+      valor: "000000000500"
+      nome: "Grêmio Mais"
+      id: "7"
+      dataFimVigencia: "20181130"
+      detalhes: "Edição ouro de mais um produto do Grêmio Mais"
+      dataInicioVigencia: "20181122"
+      descricao: "Edição 115 Anos"
+  RespostaCliente:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+        example: "1"
+        description: "Identificador da pergunta."
+        pattern: "^\\d+$"
+      pergunta:
+        type: "string"
+        example: "Qual o nome do seu animal?"
+        description: "Pergunta feita ao cliente."
+      resposta:
+        type: "string"
+        example: "Frederico"
+        description: "Resposta da pergunta."
+    title: "RespostaCliente"
+    description: "Resposta do cliente à pergunta feita na identificação."
+  SistemaCobranca:
+    type: "integer"
+    title: "SistemaCobranca"
+    format: "int32"
+    description: "Novo sistema de cobrança do pagamento de contas (00 = não, 01 =\
+      \ sim)."
+    example: 0
+    enum:
+    - "00"
+    - "01"
+  SistemaCobranca1:
+    type: "integer"
+    title: "SistemaCobranca1"
+    format: "int32"
+    description: "Informa se foi usado o novo sistema de cobrança de contas (00 =\
+      \ não, 01 = sim)."
+    example: 0
+    enum:
+    - "00"
+    - "01"
+  SolicDoc:
+    type: "integer"
+    title: "SolicDoc"
+    format: "int32"
+    description: "No caso de consulta antes de um depósito, indica se deve ser solicitado\
+      \ o CPF/CNPJ do depositante (00 = Não / 01 = Sim)."
+    example: 0
+    enum:
+    - "00"
+    - "01"
+  Tema:
+    type: "object"
+    properties:
+      estilos:
+        type: "array"
+        items:
+          $ref: "#/definitions/Estilo"
+    title: "Tema"
+    description: "Tema que sará utilizado para montar o layout do usuário."
+    example:
+      estilos:
+      - valor: "#00288C"
+        nome: "cor-fundo ou cor-botao"
+      - valor: "#00288C"
+        nome: "cor-fundo ou cor-botao"
+  TipoConta:
+    type: "string"
+    title: "TipoConta"
+    description: "Tipo de conta do extrato (CC = conta corrente, CP = conta poupanç\
+      a, CS = conta salário)."
+    example: "CC"
+    enum:
+    - "CC"
+    - "CP"
+    - "CS"
+  TipoConta1:
+    type: "string"
+    title: "TipoConta1"
+    description: "Tipo de conta (CC = corrente, CP = poupança, CS = salário)."
+    example: "CC"
+    enum:
+    - "CC"
+    - "CP"
+    - "CS"
+  TransactionsFee:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+        example: "01"
+        description: "Identificador da taxa."
+        pattern: "^\\d+$"
+      name:
+        type: "string"
+        example: "deposit"
+        description: "Nome da taxa."
+      fees:
+        type: "array"
+        items:
+          $ref: "#/definitions/Fee"
+    title: "TransactionsFee"
+    example:
+      fees:
+      - min_amount: "000"
+        max_amount: "10000"
+        id: "0201"
+        value: "000"
+      - min_amount: "000"
+        max_amount: "10000"
+        id: "0201"
+        value: "000"
+      name: "deposit"
+      id: "01"
+  Troco:
+    type: "object"
+    properties:
+      valorCreditoConta:
+        type: "string"
+        example: "000000001150"
+        description: "Valor do troco creditado em conta (pagamento em dinheiro, 12\
+          \ dígitos, incluindo centavos)."
+        pattern: "^\\d{12}$"
+      valorEspecie:
+        type: "string"
+        example: "000000001150"
+        description: "Valor do troco entregue em espécie (pagamento em dinheiro, 12\
+          \ dígitos, incluindo centavos)."
+        pattern: "^\\d{12}$"
+      valorDoacao:
+        type: "string"
+        example: "000000000350"
+        description: "Valor do troco doado à instituição de caridade (pagamento em\
+          \ dinheiro, 12 dígitos, incluindo centavos)."
+        pattern: "^\\d{12}$"
+      cnpjInstituicao:
+        type: "string"
+        example: "02358427000112"
+        description: "CNPJ da instituição favorecida para doação (pagamento em dinheiro,\
+          \ 14 dígitos)."
+        pattern: "^\\d{14}$"
+      valorCupom:
+        type: "string"
+        example: "000000005000"
+        description: "Valor do troco a ser entregue em cupom (pagamento em dinheiro,\
+          \ 12 dígitos, incluindo centavos)."
+        pattern: "^\\d{12}$"
+    title: "Troco"
+  Valores:
+    type: "object"
+    properties:
+      issuers:
+        type: "array"
+        items:
+          $ref: "#/definitions/Issuer"
+    title: "Valores"
+    description: "Lista de valores possíveis de recarga para os produtos de cada operadora."
+    example:
+      issuers:
+      - card_number_mask: "XXXXXXXXXXXXXX-X"
+        card_number_length: 15
+        name: "TEU"
+        id: 1
+        products:
+        - min_value: "1000"
+          fee: "200"
+          values:
+          - fee: "200"
+            id: "1"
+            value: "2000"
+          - fee: "200"
+            id: "1"
+            value: "2000"
+          name: "Bilhete Antecipado"
+          id: "7"
+          max_value: "9000"
+        - min_value: "1000"
+          fee: "200"
+          values:
+          - fee: "200"
+            id: "1"
+            value: "2000"
+          - fee: "200"
+            id: "1"
+            value: "2000"
+          name: "Bilhete Antecipado"
+          id: "7"
+          max_value: "9000"
+      - card_number_mask: "XXXXXXXXXXXXXX-X"
+        card_number_length: 15
+        name: "TEU"
+        id: 1
+        products:
+        - min_value: "1000"
+          fee: "200"
+          values:
+          - fee: "200"
+            id: "1"
+            value: "2000"
+          - fee: "200"
+            id: "1"
+            value: "2000"
+          name: "Bilhete Antecipado"
+          id: "7"
+          max_value: "9000"
+        - min_value: "1000"
+          fee: "200"
+          values:
+          - fee: "200"
+            id: "1"
+            value: "2000"
+          - fee: "200"
+            id: "1"
+            value: "2000"
+          name: "Bilhete Antecipado"
+          id: "7"
+          max_value: "9000"
+  Value:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+        example: "1"
+        description: "Identificador do valor."
+        pattern: "^\\d+$"
+      value:
+        type: "string"
+        example: "2000"
+        description: "Identificador do valor."
+        pattern: "^\\d+$"
+      fee:
+        type: "string"
+        example: "200"
+        description: "Taxa do valor."
+        pattern: "^\\d+$"
+    title: "Value"
+    example:
+      fee: "200"
+      id: "1"
+      value: "2000"
