@@ -9,7 +9,6 @@ info:
   contact:
     name: "SEP Team"
     url: "http://www.saqueepague.com.br"
-    email: "captura_atm@saqueepague.com.br"
 host: "virtserver.swaggerhub.com"
 basePath: "/saqueepague/SEPTransactions/1.17.0"
 tags: []
