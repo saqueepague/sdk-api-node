@@ -24,4 +24,4 @@ To view the Swagger UI interface:
 
 When the server is up and running, it allows the visualization of the API documentation in swagger-ui by pointing to (default port):
 
-> http://localhost:8080/saqueepague/SepTransaction/1.17.0/
+> http://localhost:8080/saqueepague/SepTransaction/v1/

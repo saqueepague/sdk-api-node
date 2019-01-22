@@ -2,8 +2,7 @@
 
 
 /**
- * Autenticacao_POST
- * Operação de autenticacao de cliente.
+ * Operação de autenticacao de cliente sem cartão, chamada para retornar o nome do cliente autenticado através de perguntas sobre ele.
  *
  * authenticationType String Tipo de autenticação requerida.
  * clientId String Identificação do cliente.
@@ -11,7 +10,7 @@
  * body AutenticacaoReq Requisição de autenticação.
  * returns autenticacaoResp
  **/
-exports.autenticacaoPost = function(authenticationType,clientId,token,body) {
+exports.autenticacaoPOST = function(authenticationType,clientId,token,body) {
   return new Promise(function(resolve, reject) {
     var examples = {};
     examples['application/json'] = {
@@ -22,80 +21,22 @@ exports.autenticacaoPost = function(authenticationType,clientId,token,body) {
     "codMoeda" : "986",
     "codOperadora" : "00000000914",
     "dataLocal" : "1122",
-    "valor" : "5000",
     "errorMessage" : "Cartão inválido.",
-    "nsuResposta" : "820",
+    "valor" : "5000",
     "horaLocal" : "151032",
+    "nsuResposta" : "820",
     "dataHora" : "1122151032"
-  },
-  "Terminal" : {
-    "codEstab" : "000000000742673",
-    "tipo" : "008",
-    "id" : "05100004"
   },
   "Cripto" : {
     "hash" : "hash"
   },
   "InfAutenticacao" : {
     "nomeCliente" : "Carl Edward Sagan"
-  }
-};
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
-  });
-}
-
-
-/**
- * CancelaAgendamento_POST
- * Cancela um pagamento que está agendado.
- *
- * authenticationType String Tipo de autenticação requerida.
- * clientId String Identificação do cliente.
- * token String Chave para validação do acesso ao serviço.
- * body AgendamentoIdentificaoReq Dados de identificação do agendamento.
- * returns agendamentoIdentificaoResp
- **/
-exports.cancelaAgendamentoPost = function(authenticationType,clientId,token,body) {
-  return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = {
-  "InfAgendamento" : {
-    "recibo" : "             TEU BILHETE ANTECIPADO             @                036200005433591                @               13/10/2018  20:24               @           VALOR DA RECARGA: R$ 48,00           @                 TAXAS: R$ 2,00                 @              TOTAL PAGO: R$ 50,00              @   OS CRÉDITOS ADQUIRIDOS ESTARÃO DISPONÍVEIS   @      NOS VALIDADORES DOS ÔNIBUS DA REGIÃO      @     METROPOLITANA QUE ACEITAM O CARTÃO TEU     @ OU NAS CATRACAS DO METRÔ, NOS SEGUINTES PRAZOS @            RECARGAS ATÉ O MEIO DIA:            @ CRÉDITOS DISPONÍVEIS NO DIA SEGUINTE DA COMPRA @           RECARGAS APÓS O MEIO DIA:           @   CRÉDITOS DISPONÍVEIS EM 48H APÓS A COMPRA   ",
-    "valorNominal" : "000000005000",
-    "dataPagamento" : "20181122",
-    "valorJurosCalculado" : "000000000499",
-    "valorTotal" : "000000005499",
-    "modoEntrada" : 0,
-    "modificado" : 0,
-    "valorAbatimento" : "000000000499",
-    "codigoBarras" : "84729304827364829301567829304562229483471004",
-    "cedente" : "Cedente",
-    "valorMultaCalculadada" : "000000000499"
-  },
-  "InfTransacao" : {
-    "cdProc" : "029100",
-    "mensagemCliente" : "Não foi possível validar o cartão.",
-    "nsu" : "000080247206",
-    "codMoeda" : "986",
-    "codOperadora" : "00000000914",
-    "dataLocal" : "1122",
-    "valor" : "5000",
-    "errorMessage" : "Cartão inválido.",
-    "nsuResposta" : "820",
-    "horaLocal" : "151032",
-    "dataHora" : "1122151032"
   },
   "Terminal" : {
     "codEstab" : "000000000742673",
     "tipo" : "008",
     "id" : "05100004"
-  },
-  "Cripto" : {
-    "hash" : "hash"
   }
 };
     if (Object.keys(examples).length > 0) {
@@ -108,7 +49,6 @@ exports.cancelaAgendamentoPost = function(authenticationType,clientId,token,body
 
 
 /**
- * CompraTitulosCapitalizacaoConf_POST
  * Confirmação de operação de compra de títulos de capitalização.
  *
  * authenticationType String Tipo de autenticação requerida.
@@ -117,7 +57,7 @@ exports.cancelaAgendamentoPost = function(authenticationType,clientId,token,body
  * body TransacConf Requisição de confirmação de operação de compra de titulos de capitalizacao
  * no response value expected for this operation
  **/
-exports.compraTitulosCapitalizacaoConfPost = function(authenticationType,clientId,token,body) {
+exports.compraTitulosCapitalizacaoConfPOST = function(authenticationType,clientId,token,body) {
   return new Promise(function(resolve, reject) {
     resolve();
   });
@@ -125,7 +65,6 @@ exports.compraTitulosCapitalizacaoConfPost = function(authenticationType,clientI
 
 
 /**
- * CompraTitulosCapitalizacao_POST
  * Operação de compra de títulos de capitalização.
  *
  * authenticationType String Tipo de autenticação requerida.
@@ -134,12 +73,12 @@ exports.compraTitulosCapitalizacaoConfPost = function(authenticationType,clientI
  * body CompraTitulosCapitalizacaoReq Requisição de operação de compra de títulos de capitalização.
  * returns compraTitulosCapitalizacaoResp
  **/
-exports.compraTitulosCapitalizacaoPost = function(authenticationType,clientId,token,body) {
+exports.compraTitulosCapitalizacaoPOST = function(authenticationType,clientId,token,body) {
   return new Promise(function(resolve, reject) {
     var examples = {};
     examples['application/json'] = {
   "InfCompraTitulosCapitalizacao" : {
-    "recibo" : "             TEU BILHETE ANTECIPADO             @                036200005433591                @               13/10/2018  20:24               @           VALOR DA RECARGA: R$ 48,00           @                 TAXAS: R$ 2,00                 @              TOTAL PAGO: R$ 50,00              @   OS CRÉDITOS ADQUIRIDOS ESTARÃO DISPONÍVEIS   @      NOS VALIDADORES DOS ÔNIBUS DA REGIÃO      @     METROPOLITANA QUE ACEITAM O CARTÃO TEU     @ OU NAS CATRACAS DO METRÔ, NOS SEGUINTES PRAZOS @            RECARGAS ATÉ O MEIO DIA:            @ CRÉDITOS DISPONÍVEIS NO DIA SEGUINTE DA COMPRA @           RECARGAS APÓS O MEIO DIA:           @   CRÉDITOS DISPONÍVEIS EM 48H APÓS A COMPRA   "
+    "recibo" : "               TÍTULOS COMPRADOS               @                036200005433591                @               13/10/2018  20:24               @                NOME DO TITULO                 @                 QUANTIDADE: 2                 @                VALOR: R$ 25,00                @              VALOR TOTAL: R$ 50,00            @              TELEFONE: 05199999999            @                CPF: 02358422785               "
   },
   "InfTransacao" : {
     "cdProc" : "029100",
@@ -148,10 +87,10 @@ exports.compraTitulosCapitalizacaoPost = function(authenticationType,clientId,to
     "codMoeda" : "986",
     "codOperadora" : "00000000914",
     "dataLocal" : "1122",
-    "valor" : "5000",
     "errorMessage" : "Cartão inválido.",
-    "nsuResposta" : "820",
+    "valor" : "5000",
     "horaLocal" : "151032",
+    "nsuResposta" : "820",
     "dataHora" : "1122151032"
   },
   "Terminal" : {
@@ -170,155 +109,7 @@ exports.compraTitulosCapitalizacaoPost = function(authenticationType,clientId,to
 
 
 /**
- * ConsultaAgendamentos_POST
- * Operação de consulta de pagamentos agendados.
- *
- * authenticationType String Tipo de autenticação requerida.
- * clientId String Identificação do cliente.
- * token String Chave para validação do acesso ao serviço.
- * returns consultaAgendamentoResp
- **/
-exports.consultaAgendamentosPost = function(authenticationType,clientId,token) {
-  return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = {
-  "InfTransacao" : {
-    "cdProc" : "029100",
-    "mensagemCliente" : "Não foi possível validar o cartão.",
-    "nsu" : "000080247206",
-    "codMoeda" : "986",
-    "codOperadora" : "00000000914",
-    "dataLocal" : "1122",
-    "valor" : "5000",
-    "errorMessage" : "Cartão inválido.",
-    "nsuResposta" : "820",
-    "horaLocal" : "151032",
-    "dataHora" : "1122151032"
-  },
-  "Terminal" : {
-    "codEstab" : "000000000742673",
-    "tipo" : "008",
-    "id" : "05100004"
-  },
-  "Cripto" : {
-    "hash" : "hash"
-  },
-  "InfoAgendamentos" : [ {
-    "dataPagamento" : "20181122",
-    "dataVencimento" : "20181122",
-    "valorTotal" : "000000005000",
-    "id" : "234",
-    "cedente" : "Cedente"
-  }, {
-    "dataPagamento" : "20181122",
-    "dataVencimento" : "20181122",
-    "valorTotal" : "000000005000",
-    "id" : "234",
-    "cedente" : "Cedente"
-  } ]
-};
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
-  });
-}
-
-
-/**
- * ConsultaComprovantePagamento_POST
- * Obtém a segunda via do comprovante de um pagamento já efetuado.
- *
- * authenticationType String Tipo de autenticação requerida.
- * clientId String Identificação do cliente.
- * token String Chave para validação do acesso ao serviço.
- * body InfPagamentoComprovanteReq Dados de identificação do pagamento a qual deseja-se obter uma segunda via do comprovante.
- * returns infPagamentoResp
- **/
-exports.consultaComprovantePagamentoPost = function(authenticationType,clientId,token,body) {
-  return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = {
-  "recibo" : "             TEU BILHETE ANTECIPADO             @                036200005433591                @               13/10/2018  20:24               @           VALOR DA RECARGA: R$ 48,00           @                 TAXAS: R$ 2,00                 @              TOTAL PAGO: R$ 50,00              @   OS CRÉDITOS ADQUIRIDOS ESTARÃO DISPONÍVEIS   @      NOS VALIDADORES DOS ÔNIBUS DA REGIÃO      @     METROPOLITANA QUE ACEITAM O CARTÃO TEU     @ OU NAS CATRACAS DO METRÔ, NOS SEGUINTES PRAZOS @            RECARGAS ATÉ O MEIO DIA:            @ CRÉDITOS DISPONÍVEIS NO DIA SEGUINTE DA COMPRA @           RECARGAS APÓS O MEIO DIA:           @   CRÉDITOS DISPONÍVEIS EM 48H APÓS A COMPRA   ",
-  "qtdeViasComprovante" : "1",
-  "dataPagamento" : "20181122",
-  "desconto" : "000000000499",
-  "cupom" : "             TEU BILHETE ANTECIPADO             @                036200005433591                @               13/10/2018  20:24               @           VALOR DA RECARGA: R$ 48,00           @                 TAXAS: R$ 2,00                 @              TOTAL PAGO: R$ 50,00              @   OS CRÉDITOS ADQUIRIDOS ESTARÃO DISPONÍVEIS   @      NOS VALIDADORES DOS ÔNIBUS DA REGIÃO      @     METROPOLITANA QUE ACEITAM O CARTÃO TEU     @ OU NAS CATRACAS DO METRÔ, NOS SEGUINTES PRAZOS @            RECARGAS ATÉ O MEIO DIA:            @ CRÉDITOS DISPONÍVEIS NO DIA SEGUINTE DA COMPRA @           RECARGAS APÓS O MEIO DIA:           @   CRÉDITOS DISPONÍVEIS EM 48H APÓS A COMPRA   ",
-  "mensagem" : "mensagem",
-  "valor" : "000000005000",
-  "sistemaCobranca" : 0,
-  "cedente" : "Cedente"
-};
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
-  });
-}
-
-
-/**
- * ConsultaComprovantes_POST
- * Operação de consulta de pagamentos já efetuados.
- *
- * authenticationType String Tipo de autenticação requerida.
- * clientId String Identificação do cliente.
- * token String Chave para validação do acesso ao serviço.
- * returns consultaComprovantesResp
- **/
-exports.consultaComprovantesPost = function(authenticationType,clientId,token) {
-  return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = {
-  "InfTransacao" : {
-    "cdProc" : "029100",
-    "mensagemCliente" : "Não foi possível validar o cartão.",
-    "nsu" : "000080247206",
-    "codMoeda" : "986",
-    "codOperadora" : "00000000914",
-    "dataLocal" : "1122",
-    "valor" : "5000",
-    "errorMessage" : "Cartão inválido.",
-    "nsuResposta" : "820",
-    "horaLocal" : "151032",
-    "dataHora" : "1122151032"
-  },
-  "InfComprovantes" : [ {
-    "dataPagamento" : "20181122",
-    "dataVencimento" : "20181122",
-    "valor" : "000000005000",
-    "id" : "036200001842241",
-    "cedente" : "Cedente"
-  }, {
-    "dataPagamento" : "20181122",
-    "dataVencimento" : "20181122",
-    "valor" : "000000005000",
-    "id" : "036200001842241",
-    "cedente" : "Cedente"
-  } ],
-  "Terminal" : {
-    "codEstab" : "000000000742673",
-    "tipo" : "008",
-    "id" : "05100004"
-  },
-  "Cripto" : {
-    "hash" : "hash"
-  }
-};
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
-  });
-}
-
-
-/**
- * ConsultaConta_POST
- * Operação de consulta de conta.
+ * Operação de consulta de conta, usada previamente ao depósito para verificar se a conta é válida e está habilitada para depósito.
  *
  * authenticationType String Tipo de autenticação requerida.
  * clientId String Identificação do cliente.
@@ -326,7 +117,7 @@ exports.consultaComprovantesPost = function(authenticationType,clientId,token) {
  * body ConsultaContaReq Requisição de consulta de conta.
  * returns consultaContaResp
  **/
-exports.consultaContaPost = function(authenticationType,clientId,token,body) {
+exports.consultaContaPOST = function(authenticationType,clientId,token,body) {
   return new Promise(function(resolve, reject) {
     var examples = {};
     examples['application/json'] = {
@@ -337,26 +128,26 @@ exports.consultaContaPost = function(authenticationType,clientId,token,body) {
     "codMoeda" : "986",
     "codOperadora" : "00000000914",
     "dataLocal" : "1122",
-    "valor" : "5000",
     "errorMessage" : "Cartão inválido.",
-    "nsuResposta" : "820",
+    "valor" : "5000",
     "horaLocal" : "151032",
+    "nsuResposta" : "820",
     "dataHora" : "1122151032"
   },
   "InfConsultaConta" : {
-    "solicDoc" : 0,
-    "modalidadeDeposito" : 0,
+    "solicDoc" : "00",
+    "modalidadeDeposito" : "00",
     "nomeCliente" : "Carl Edward Sagan",
-    "habilitaDeposito" : 0,
-    "depositoIdentificado" : 0
+    "depositoIdentificado" : "00",
+    "habilitaDeposito" : "01"
+  },
+  "Cripto" : {
+    "hash" : "hash"
   },
   "Terminal" : {
     "codEstab" : "000000000742673",
     "tipo" : "008",
     "id" : "05100004"
-  },
-  "Cripto" : {
-    "hash" : "hash"
   }
 };
     if (Object.keys(examples).length > 0) {
@@ -369,16 +160,15 @@ exports.consultaContaPost = function(authenticationType,clientId,token,body) {
 
 
 /**
- * ConsultaLimitesEmprestimo_POST
- * Operação de consulta dos limites disponíveis para empréstimo.
+ * Operação de consulta dos limites disponíveis para empréstimo. Hoje em dia esta operação é válida somente com os dados do cartão.
  *
  * authenticationType String Tipo de autenticação requerida.
  * clientId String Identificação do cliente.
  * token String Chave para validação do acesso ao serviço.
- * body ConsultaLimitesEmprestimoReq Requisição de consulta limites de empréstimo.
+ * body ConsultaLimitesEmprestimoReq Requisição de consulta limites de empréstimo, usando dados do cartão.
  * returns consultaLimitesEmprestimoResp
  **/
-exports.consultaLimitesEmprestimoPost = function(authenticationType,clientId,token,body) {
+exports.consultaLimitesEmprestimoPOST = function(authenticationType,clientId,token,body) {
   return new Promise(function(resolve, reject) {
     var examples = {};
     examples['application/json'] = {
@@ -389,10 +179,10 @@ exports.consultaLimitesEmprestimoPost = function(authenticationType,clientId,tok
     "codMoeda" : "986",
     "codOperadora" : "00000000914",
     "dataLocal" : "1122",
-    "valor" : "5000",
     "errorMessage" : "Cartão inválido.",
-    "nsuResposta" : "820",
+    "valor" : "5000",
     "horaLocal" : "151032",
+    "nsuResposta" : "820",
     "dataHora" : "1122151032"
   },
   "InfConsultaLimitesEmprestimo" : {
@@ -401,13 +191,13 @@ exports.consultaLimitesEmprestimoPost = function(authenticationType,clientId,tok
     "nomeAgenciaBancaria" : "Agência bancária",
     "nomeTitularConta" : "Carl Edward Sagan"
   },
+  "Cripto" : {
+    "hash" : "hash"
+  },
   "Terminal" : {
     "codEstab" : "000000000742673",
     "tipo" : "008",
     "id" : "05100004"
-  },
-  "Cripto" : {
-    "hash" : "hash"
   }
 };
     if (Object.keys(examples).length > 0) {
@@ -420,8 +210,7 @@ exports.consultaLimitesEmprestimoPost = function(authenticationType,clientId,tok
 
 
 /**
- * ConsultaPagamento_POST
- * Operação de consulta de pagamentos.
+ * Operação de consulta de pagamentos para verificar se as informações são válidas pela CIP.
  *
  * authenticationType String Tipo de autenticação requerida.
  * clientId String Identificação do cliente.
@@ -429,7 +218,7 @@ exports.consultaLimitesEmprestimoPost = function(authenticationType,clientId,tok
  * body ConsultaPagamentoReq Requisição de consulta de pagamentos.
  * returns consultaPagamentoResp
  **/
-exports.consultaPagamentoPost = function(authenticationType,clientId,token,body) {
+exports.consultaPagamentoPOST = function(authenticationType,clientId,token,body) {
   return new Promise(function(resolve, reject) {
     var examples = {};
     examples['application/json'] = {
@@ -440,50 +229,49 @@ exports.consultaPagamentoPost = function(authenticationType,clientId,token,body)
     "codMoeda" : "986",
     "codOperadora" : "00000000914",
     "dataLocal" : "1122",
-    "valor" : "5000",
     "errorMessage" : "Cartão inválido.",
-    "nsuResposta" : "820",
+    "valor" : "5000",
     "horaLocal" : "151032",
+    "nsuResposta" : "820",
     "dataHora" : "1122151032"
+  },
+  "Cripto" : {
+    "hash" : "hash"
   },
   "Terminal" : {
     "codEstab" : "000000000742673",
     "tipo" : "008",
     "id" : "05100004"
   },
-  "Cripto" : {
-    "hash" : "hash"
-  },
   "InfConsultaPagamento" : {
-    "aceitaPagamentoParcial" : 0,
+    "aceitaPagamentoParcial" : "01",
     "dda" : [ {
-      "aceitaPagamentoParcial" : 0,
+      "aceitaPagamentoParcial" : "00",
       "tipo" : "tipo",
       "numDDA" : "7123",
       "sacado" : "sacado",
       "dataVencimento" : "20181122",
-      "valor" : "000000005000",
       "alegacao" : "alegacao",
-      "modificado" : 0,
+      "valor" : "000000005000",
+      "modificado" : "00",
       "cedente" : "Cedente"
     }, {
-      "aceitaPagamentoParcial" : 0,
+      "aceitaPagamentoParcial" : "00",
       "tipo" : "tipo",
       "numDDA" : "7123",
       "sacado" : "sacado",
       "dataVencimento" : "20181122",
-      "valor" : "000000005000",
       "alegacao" : "alegacao",
-      "modificado" : 0,
+      "valor" : "000000005000",
+      "modificado" : "00",
       "cedente" : "Cedente"
     } ],
     "dataPagamento" : "20181122",
-    "nomeFavorecidoDoacao" : "Carl Edward Sagan",
     "desconto" : "000000000499",
-    "valor" : "valor",
+    "nomeFavorecidoDoacao" : "Carl Edward Sagan",
     "cnpjFavorecidoDoacao" : "cnpjFavorecidoDoacao",
-    "modificado" : 0,
-    "sistemaCobranca" : 0,
+    "valor" : "000000005000",
+    "modificado" : "01",
     "cip" : {
       "valorMaximoPermitidoPagamento" : "000000050000",
       "NumeroIdentificacaoConsultaPagamento" : "NumeroIdentificacaoConsultaPagamento",
@@ -507,7 +295,6 @@ exports.consultaPagamentoPost = function(authenticationType,clientId,token,body)
 
 
 /**
- * ConsultaParcelasEmprestimo_POST
  * Operação de consulta das parcelas do empréstimo.
  *
  * authenticationType String Tipo de autenticação requerida.
@@ -516,7 +303,7 @@ exports.consultaPagamentoPost = function(authenticationType,clientId,token,body)
  * body ConsultaParcelasEmprestimoReq Requisição de consulta parcelas de empréstimo.
  * returns consultaParcelasEmprestimoResp
  **/
-exports.consultaParcelasEmprestimoPost = function(authenticationType,clientId,token,body) {
+exports.consultaParcelasEmprestimoPOST = function(authenticationType,clientId,token,body) {
   return new Promise(function(resolve, reject) {
     var examples = {};
     examples['application/json'] = {
@@ -537,19 +324,19 @@ exports.consultaParcelasEmprestimoPost = function(authenticationType,clientId,to
     "codMoeda" : "986",
     "codOperadora" : "00000000914",
     "dataLocal" : "1122",
-    "valor" : "5000",
     "errorMessage" : "Cartão inválido.",
-    "nsuResposta" : "820",
+    "valor" : "5000",
     "horaLocal" : "151032",
+    "nsuResposta" : "820",
     "dataHora" : "1122151032"
+  },
+  "Cripto" : {
+    "hash" : "hash"
   },
   "Terminal" : {
     "codEstab" : "000000000742673",
     "tipo" : "008",
     "id" : "05100004"
-  },
-  "Cripto" : {
-    "hash" : "hash"
   }
 };
     if (Object.keys(examples).length > 0) {
@@ -562,16 +349,15 @@ exports.consultaParcelasEmprestimoPost = function(authenticationType,clientId,to
 
 
 /**
- * ConsultaProdutosRecarga_POST
- * Operação de consulta dos possíveis produtos de recarga de uma operadora.
+ * Operação de consulta dos possíveis produtos de recarga de um cartão de transporte ou pré-pago. Pega o número e operadora do cartão para ser verificado na requisição, não usa a autenticação ou identificação.
  *
  * authenticationType String Tipo de autenticação requerida.
  * clientId String Identificação do cliente.
  * token String Chave para validação do acesso ao serviço.
- * body ConsultaProdutosRecargaReq Requisição de consulta produtos de recarga.
+ * body ConsultaProdutosRecargaReq Requisição de consulta produtos de recarga disponíveis para um cartão.
  * returns consultaProdutosRecargaResp
  **/
-exports.consultaProdutosRecargaPost = function(authenticationType,clientId,token,body) {
+exports.consultaProdutosRecargaPOST = function(authenticationType,clientId,token,body) {
   return new Promise(function(resolve, reject) {
     var examples = {};
     examples['application/json'] = {
@@ -582,28 +368,25 @@ exports.consultaProdutosRecargaPost = function(authenticationType,clientId,token
     "codMoeda" : "986",
     "codOperadora" : "00000000914",
     "dataLocal" : "1122",
-    "valor" : "5000",
     "errorMessage" : "Cartão inválido.",
-    "nsuResposta" : "820",
+    "valor" : "5000",
     "horaLocal" : "151032",
+    "nsuResposta" : "820",
     "dataHora" : "1122151032"
   },
   "InfConsultaProdutosRecarga" : {
     "products" : [ {
-      "name" : "Produto novo",
-      "id" : "5"
+      "name" : "Produto de Recarga",
+      "id" : "1"
     }, {
-      "name" : "Produto novo",
-      "id" : "5"
+      "name" : "Produto de Recarga",
+      "id" : "1"
     } ]
   },
   "Terminal" : {
     "codEstab" : "000000000742673",
     "tipo" : "008",
     "id" : "05100004"
-  },
-  "Cripto" : {
-    "hash" : "hash"
   }
 };
     if (Object.keys(examples).length > 0) {
@@ -616,8 +399,7 @@ exports.consultaProdutosRecargaPost = function(authenticationType,clientId,token
 
 
 /**
- * ConsultaSaque_POST
- * Operação de consulta de saque.
+ * Operação de consulta de saque, para verificar se o saque poderá ser efetuado.
  *
  * authenticationType String Tipo de autenticação requerida.
  * clientId String Identificação do cliente.
@@ -625,7 +407,7 @@ exports.consultaProdutosRecargaPost = function(authenticationType,clientId,token
  * body ConsultaSaqueReq Requisição de consulta de saque.
  * returns consultaSaqueResp
  **/
-exports.consultaSaquePost = function(authenticationType,clientId,token,body) {
+exports.consultaSaquePOST = function(authenticationType,clientId,token,body) {
   return new Promise(function(resolve, reject) {
     var examples = {};
     examples['application/json'] = {
@@ -636,31 +418,28 @@ exports.consultaSaquePost = function(authenticationType,clientId,token,body) {
     "codMoeda" : "986",
     "codOperadora" : "00000000914",
     "dataLocal" : "1122",
-    "valor" : "5000",
     "errorMessage" : "Cartão inválido.",
-    "nsuResposta" : "820",
+    "valor" : "5000",
     "horaLocal" : "151032",
+    "nsuResposta" : "820",
     "dataHora" : "1122151032"
+  },
+  "InfConsultaSaque" : {
+    "perguntas" : [ {
+      "pergunta" : "INFORME OS 3 PRIMEIROS DIGITOS DO SEU CPF",
+      "tamResposta" : "3",
+      "id" : "1"
+    }, {
+      "pergunta" : "INFORME OS 3 PRIMEIROS DIGITOS DO SEU CPF",
+      "tamResposta" : "3",
+      "id" : "1"
+    } ],
+    "nomeCliente" : "Carl Edward Sagan"
   },
   "Terminal" : {
     "codEstab" : "000000000742673",
     "tipo" : "008",
     "id" : "05100004"
-  },
-  "Cripto" : {
-    "hash" : "hash"
-  },
-  "InfConsultaSaque" : {
-    "perguntas" : [ {
-      "pergunta" : "Qual o nome do seu primeiro animal de estimação?",
-      "tamResposta" : "27",
-      "id" : "1"
-    }, {
-      "pergunta" : "Qual o nome do seu primeiro animal de estimação?",
-      "tamResposta" : "27",
-      "id" : "1"
-    } ],
-    "nomeCliente" : "Carl Edward Sagan"
   }
 };
     if (Object.keys(examples).length > 0) {
@@ -673,8 +452,7 @@ exports.consultaSaquePost = function(authenticationType,clientId,token,body) {
 
 
 /**
- * ConsultaTaxas_POST
- * Operação de consulta de taxas.
+ * Operação de consulta de taxas dinâmicas, requisitado antes de depósito ou saque.
  *
  * authenticationType String Tipo de autenticação requerida.
  * clientId String Identificação do cliente.
@@ -682,23 +460,10 @@ exports.consultaSaquePost = function(authenticationType,clientId,token,body) {
  * body ConsultaTaxasReq Requisição de consulta de taxas.
  * returns consultaTaxasResp
  **/
-exports.consultaTaxasPost = function(authenticationType,clientId,token,body) {
+exports.consultaTaxasPOST = function(authenticationType,clientId,token,body) {
   return new Promise(function(resolve, reject) {
     var examples = {};
     examples['application/json'] = {
-  "InfTransacao" : {
-    "cdProc" : "029100",
-    "mensagemCliente" : "Não foi possível validar o cartão.",
-    "nsu" : "000080247206",
-    "codMoeda" : "986",
-    "codOperadora" : "00000000914",
-    "dataLocal" : "1122",
-    "valor" : "5000",
-    "errorMessage" : "Cartão inválido.",
-    "nsuResposta" : "820",
-    "horaLocal" : "151032",
-    "dataHora" : "1122151032"
-  },
   "InfConsultaTaxas" : {
     "transactions_fees" : [ {
       "fees" : [ {
@@ -730,13 +495,26 @@ exports.consultaTaxasPost = function(authenticationType,clientId,token,body) {
       "id" : "01"
     } ]
   },
+  "InfTransacao" : {
+    "cdProc" : "029100",
+    "mensagemCliente" : "Não foi possível validar o cartão.",
+    "nsu" : "000080247206",
+    "codMoeda" : "986",
+    "codOperadora" : "00000000914",
+    "dataLocal" : "1122",
+    "errorMessage" : "Cartão inválido.",
+    "valor" : "5000",
+    "horaLocal" : "151032",
+    "nsuResposta" : "820",
+    "dataHora" : "1122151032"
+  },
+  "Cripto" : {
+    "hash" : "hash"
+  },
   "Terminal" : {
     "codEstab" : "000000000742673",
     "tipo" : "008",
     "id" : "05100004"
-  },
-  "Cripto" : {
-    "hash" : "hash"
   }
 };
     if (Object.keys(examples).length > 0) {
@@ -749,7 +527,6 @@ exports.consultaTaxasPost = function(authenticationType,clientId,token,body) {
 
 
 /**
- * ConsultaTitulosCapitalizacao_POST
  * Operação de consulta dos possíveis produtos de títulos de capitalização de uma operadora.
  *
  * authenticationType String Tipo de autenticação requerida.
@@ -758,7 +535,7 @@ exports.consultaTaxasPost = function(authenticationType,clientId,token,body) {
  * body ConsultaTitulosCapitalizacaoReq Requisição de consulta produtos de títulos de capitalização.
  * returns consultaTitulosCapitalizacaoResp
  **/
-exports.consultaTitulosCapitalizacaoPost = function(authenticationType,clientId,token,body) {
+exports.consultaTitulosCapitalizacaoPOST = function(authenticationType,clientId,token,body) {
   return new Promise(function(resolve, reject) {
     var examples = {};
     examples['application/json'] = {
@@ -769,10 +546,10 @@ exports.consultaTitulosCapitalizacaoPost = function(authenticationType,clientId,
     "codMoeda" : "986",
     "codOperadora" : "00000000914",
     "dataLocal" : "1122",
-    "valor" : "5000",
     "errorMessage" : "Cartão inválido.",
-    "nsuResposta" : "820",
+    "valor" : "5000",
     "horaLocal" : "151032",
+    "nsuResposta" : "820",
     "dataHora" : "1122151032"
   },
   "InfConsultaTitulosCapitalizacao" : {
@@ -791,8 +568,8 @@ exports.consultaTitulosCapitalizacaoPost = function(authenticationType,clientId,
       "nome" : "Grêmio Mais",
       "id" : "7",
       "dataFimVigencia" : "20181130",
-      "detalhes" : "Edição ouro de mais um produto do Grêmio Mais",
       "dataInicioVigencia" : "20181122",
+      "detalhes" : "Edição ouro de mais um produto do Grêmio Mais",
       "descricao" : "Edição 115 Anos"
     }, {
       "limiteMaximoCompra" : "4",
@@ -809,8 +586,8 @@ exports.consultaTitulosCapitalizacaoPost = function(authenticationType,clientId,
       "nome" : "Grêmio Mais",
       "id" : "7",
       "dataFimVigencia" : "20181130",
-      "detalhes" : "Edição ouro de mais um produto do Grêmio Mais",
       "dataInicioVigencia" : "20181122",
+      "detalhes" : "Edição ouro de mais um produto do Grêmio Mais",
       "descricao" : "Edição 115 Anos"
     } ]
   },
@@ -830,16 +607,15 @@ exports.consultaTitulosCapitalizacaoPost = function(authenticationType,clientId,
 
 
 /**
- * ConsultaValoresRecarga_POST
- * Operação de consulta dos possíveis valores de recarga.
+ * Operação de consulta de todos os possíveis produtos e valores de recarga de cartão de transporte ou pré-pagos existentes na rede. Traz uma lista de todos os produtos e seus valores para depois serem filtrados pelo cartão do usuário.
  *
  * authenticationType String Tipo de autenticação requerida.
  * clientId String Identificação do cliente.
  * token String Chave para validação do acesso ao serviço.
- * body ConsultaValoresRecargaReq Requisição de consulta valores de recarga.
+ * body ConsultaValoresRecargaReq Requisição de consulta valores de recarga de cartão.
  * returns consultaValoresRecargaResp
  **/
-exports.consultaValoresRecargaPost = function(authenticationType,clientId,token,body) {
+exports.consultaValoresRecargaPOST = function(authenticationType,clientId,token,body) {
   return new Promise(function(resolve, reject) {
     var examples = {};
     examples['application/json'] = {
@@ -850,10 +626,10 @@ exports.consultaValoresRecargaPost = function(authenticationType,clientId,token,
     "codMoeda" : "986",
     "codOperadora" : "00000000914",
     "dataLocal" : "1122",
-    "valor" : "5000",
     "errorMessage" : "Cartão inválido.",
-    "nsuResposta" : "820",
+    "valor" : "5000",
     "horaLocal" : "151032",
+    "nsuResposta" : "820",
     "dataHora" : "1122151032"
   },
   "InfConsultaValoresRecarga" : {
@@ -876,7 +652,7 @@ exports.consultaValoresRecargaPost = function(authenticationType,clientId,token,
             "value" : "2000"
           } ],
           "name" : "Bilhete Antecipado",
-          "id" : "7",
+          "id" : "1",
           "max_value" : "9000"
         }, {
           "min_value" : "1000",
@@ -891,7 +667,7 @@ exports.consultaValoresRecargaPost = function(authenticationType,clientId,token,
             "value" : "2000"
           } ],
           "name" : "Bilhete Antecipado",
-          "id" : "7",
+          "id" : "1",
           "max_value" : "9000"
         } ]
       }, {
@@ -912,7 +688,7 @@ exports.consultaValoresRecargaPost = function(authenticationType,clientId,token,
             "value" : "2000"
           } ],
           "name" : "Bilhete Antecipado",
-          "id" : "7",
+          "id" : "1",
           "max_value" : "9000"
         }, {
           "min_value" : "1000",
@@ -927,19 +703,19 @@ exports.consultaValoresRecargaPost = function(authenticationType,clientId,token,
             "value" : "2000"
           } ],
           "name" : "Bilhete Antecipado",
-          "id" : "7",
+          "id" : "1",
           "max_value" : "9000"
         } ]
       } ]
     }
   },
+  "Cripto" : {
+    "hash" : "hash"
+  },
   "Terminal" : {
     "codEstab" : "000000000742673",
     "tipo" : "008",
     "id" : "05100004"
-  },
-  "Cripto" : {
-    "hash" : "hash"
   }
 };
     if (Object.keys(examples).length > 0) {
@@ -952,7 +728,6 @@ exports.consultaValoresRecargaPost = function(authenticationType,clientId,token,
 
 
 /**
- * DepositoConf_POST
  * Confirmação de operação de depósito.
  *
  * authenticationType String Tipo de autenticação requerida.
@@ -961,7 +736,7 @@ exports.consultaValoresRecargaPost = function(authenticationType,clientId,token,
  * body TransacConf Requisição de confirmação de operação de depósito.
  * no response value expected for this operation
  **/
-exports.depositoConfPost = function(authenticationType,clientId,token,body) {
+exports.depositoConfPOST = function(authenticationType,clientId,token,body) {
   return new Promise(function(resolve, reject) {
     resolve();
   });
@@ -969,16 +744,15 @@ exports.depositoConfPost = function(authenticationType,clientId,token,body) {
 
 
 /**
- * Deposito_POST
- * Operação de depósito.
+ * Operação de depósito, cartão é opcional nesta operação.
  *
  * authenticationType String Tipo de autenticação requerida.
  * clientId String Identificação do cliente.
  * token String Chave para validação do acesso ao serviço.
- * body DepositoReq Requisição de depósito.
+ * body DepositoReq Objeto da requisição de depósito, cartão é opcional.
  * returns depositoResp
  **/
-exports.depositoPost = function(authenticationType,clientId,token,body) {
+exports.depositoPOST = function(authenticationType,clientId,token,body) {
   return new Promise(function(resolve, reject) {
     var examples = {};
     examples['application/json'] = {
@@ -989,22 +763,22 @@ exports.depositoPost = function(authenticationType,clientId,token,body) {
     "codMoeda" : "986",
     "codOperadora" : "00000000914",
     "dataLocal" : "1122",
-    "valor" : "5000",
     "errorMessage" : "Cartão inválido.",
-    "nsuResposta" : "820",
+    "valor" : "5000",
     "horaLocal" : "151032",
+    "nsuResposta" : "820",
     "dataHora" : "1122151032"
-  },
-  "Terminal" : {
-    "codEstab" : "000000000742673",
-    "tipo" : "008",
-    "id" : "05100004"
   },
   "Cripto" : {
     "hash" : "hash"
   },
   "InfDeposito" : {
-    "recibo" : "             TEU BILHETE ANTECIPADO             @                036200005433591                @               13/10/2018  20:24               @           VALOR DA RECARGA: R$ 48,00           @                 TAXAS: R$ 2,00                 @              TOTAL PAGO: R$ 50,00              @   OS CRÉDITOS ADQUIRIDOS ESTARÃO DISPONÍVEIS   @      NOS VALIDADORES DOS ÔNIBUS DA REGIÃO      @     METROPOLITANA QUE ACEITAM O CARTÃO TEU     @ OU NAS CATRACAS DO METRÔ, NOS SEGUINTES PRAZOS @            RECARGAS ATÉ O MEIO DIA:            @ CRÉDITOS DISPONÍVEIS NO DIA SEGUINTE DA COMPRA @           RECARGAS APÓS O MEIO DIA:           @   CRÉDITOS DISPONÍVEIS EM 48H APÓS A COMPRA   "
+    "recibo" : "              DEPÓSITO EFETIVADO               @                036200005433591                @               13/10/2018  20:24               @            BANCO: BANCO FAVORECIDO            @                AGENCIA: 4029                  @              CONTA: 0082348296                @           VALOR DO DEPÓSITO: R$ 48,00         "
+  },
+  "Terminal" : {
+    "codEstab" : "000000000742673",
+    "tipo" : "008",
+    "id" : "05100004"
   }
 };
     if (Object.keys(examples).length > 0) {
@@ -1017,7 +791,6 @@ exports.depositoPost = function(authenticationType,clientId,token,body) {
 
 
 /**
- * EmprestimoConf_POST
  * Confirmação de operação de empréstimo.
  *
  * authenticationType String Tipo de autenticação requerida.
@@ -1026,7 +799,7 @@ exports.depositoPost = function(authenticationType,clientId,token,body) {
  * body TransacConf Requisição de confirmação de operação de empréstimo.
  * no response value expected for this operation
  **/
-exports.emprestimoConfPost = function(authenticationType,clientId,token,body) {
+exports.emprestimoConfPOST = function(authenticationType,clientId,token,body) {
   return new Promise(function(resolve, reject) {
     resolve();
   });
@@ -1034,7 +807,6 @@ exports.emprestimoConfPost = function(authenticationType,clientId,token,body) {
 
 
 /**
- * Emprestimo_POST
  * Operação de empréstimo.
  *
  * authenticationType String Tipo de autenticação requerida.
@@ -1043,7 +815,7 @@ exports.emprestimoConfPost = function(authenticationType,clientId,token,body) {
  * body EmprestimoReq Requisição de empréstimo.
  * returns emprestimoResp
  **/
-exports.emprestimoPost = function(authenticationType,clientId,token,body) {
+exports.emprestimoPOST = function(authenticationType,clientId,token,body) {
   return new Promise(function(resolve, reject) {
     var examples = {};
     examples['application/json'] = {
@@ -1054,19 +826,19 @@ exports.emprestimoPost = function(authenticationType,clientId,token,body) {
     "codMoeda" : "986",
     "codOperadora" : "00000000914",
     "dataLocal" : "1122",
-    "valor" : "5000",
     "errorMessage" : "Cartão inválido.",
-    "nsuResposta" : "820",
+    "valor" : "5000",
     "horaLocal" : "151032",
+    "nsuResposta" : "820",
     "dataHora" : "1122151032"
+  },
+  "Cripto" : {
+    "hash" : "hash"
   },
   "Terminal" : {
     "codEstab" : "000000000742673",
     "tipo" : "008",
     "id" : "05100004"
-  },
-  "Cripto" : {
-    "hash" : "hash"
   }
 };
     if (Object.keys(examples).length > 0) {
@@ -1079,7 +851,6 @@ exports.emprestimoPost = function(authenticationType,clientId,token,body) {
 
 
 /**
- * ExtratoConf_POST
  * Confirmação de operação de extrato.
  *
  * authenticationType String Tipo de autenticação requerida.
@@ -1088,7 +859,7 @@ exports.emprestimoPost = function(authenticationType,clientId,token,body) {
  * body TransacConf Requisição de confirmação de operação de extrato.
  * no response value expected for this operation
  **/
-exports.extratoConfPost = function(authenticationType,clientId,token,body) {
+exports.extratoConfPOST = function(authenticationType,clientId,token,body) {
   return new Promise(function(resolve, reject) {
     resolve();
   });
@@ -1096,7 +867,6 @@ exports.extratoConfPost = function(authenticationType,clientId,token,body) {
 
 
 /**
- * Extrato_POST
  * Operação de extrato.
  *
  * authenticationType String Tipo de autenticação requerida.
@@ -1105,12 +875,12 @@ exports.extratoConfPost = function(authenticationType,clientId,token,body) {
  * body ExtratoReq Requisição de operação de extrato.
  * returns extratoResp
  **/
-exports.extratoPost = function(authenticationType,clientId,token,body) {
+exports.extratoPOST = function(authenticationType,clientId,token,body) {
   return new Promise(function(resolve, reject) {
     var examples = {};
     examples['application/json'] = {
   "InfExtrato" : {
-    "recibo" : "             TEU BILHETE ANTECIPADO             @                036200005433591                @               13/10/2018  20:24               @           VALOR DA RECARGA: R$ 48,00           @                 TAXAS: R$ 2,00                 @              TOTAL PAGO: R$ 50,00              @   OS CRÉDITOS ADQUIRIDOS ESTARÃO DISPONÍVEIS   @      NOS VALIDADORES DOS ÔNIBUS DA REGIÃO      @     METROPOLITANA QUE ACEITAM O CARTÃO TEU     @ OU NAS CATRACAS DO METRÔ, NOS SEGUINTES PRAZOS @            RECARGAS ATÉ O MEIO DIA:            @ CRÉDITOS DISPONÍVEIS NO DIA SEGUINTE DA COMPRA @           RECARGAS APÓS O MEIO DIA:           @   CRÉDITOS DISPONÍVEIS EM 48H APÓS A COMPRA   "
+    "recibo" : "                EXTRATO DE CONTA               @                036200005433591                @               13/10/2018  20:24               @                 BANCO: BANCO                  @                AGENCIA: 4029                  @              CONTA: 0082348296                @           DATA INICIAL: 12/10/2018            @           VALOR INICIAL: R$ 100,00            @            MOVIMENTACAO: R$ -50,00            @              VALOR FINAL: R$ 50,00            @             DATA FINAL: 13/10/2018            "
   },
   "InfTransacao" : {
     "cdProc" : "029100",
@@ -1119,19 +889,19 @@ exports.extratoPost = function(authenticationType,clientId,token,body) {
     "codMoeda" : "986",
     "codOperadora" : "00000000914",
     "dataLocal" : "1122",
-    "valor" : "5000",
     "errorMessage" : "Cartão inválido.",
-    "nsuResposta" : "820",
+    "valor" : "5000",
     "horaLocal" : "151032",
+    "nsuResposta" : "820",
     "dataHora" : "1122151032"
+  },
+  "Cripto" : {
+    "hash" : "hash"
   },
   "Terminal" : {
     "codEstab" : "000000000742673",
     "tipo" : "008",
     "id" : "05100004"
-  },
-  "Cripto" : {
-    "hash" : "hash"
   }
 };
     if (Object.keys(examples).length > 0) {
@@ -1144,7 +914,6 @@ exports.extratoPost = function(authenticationType,clientId,token,body) {
 
 
 /**
- * Identificacao_POST
  * Operação de identificação de cliente através do cartão.
  *
  * authenticationType String Tipo de autenticação requerida.
@@ -1153,26 +922,13 @@ exports.extratoPost = function(authenticationType,clientId,token,body) {
  * body IdentificacaoReq Requisição de identificação.
  * returns identificacaoResp
  **/
-exports.identificacaoPost = function(authenticationType,clientId,token,body) {
+exports.identificacaoPOST = function(authenticationType,clientId,token,body) {
   return new Promise(function(resolve, reject) {
     var examples = {};
     examples['application/json'] = {
-  "InfTransacao" : {
-    "cdProc" : "029100",
-    "mensagemCliente" : "Não foi possível validar o cartão.",
-    "nsu" : "000080247206",
-    "codMoeda" : "986",
-    "codOperadora" : "00000000914",
-    "dataLocal" : "1122",
-    "valor" : "5000",
-    "errorMessage" : "Cartão inválido.",
-    "nsuResposta" : "820",
-    "horaLocal" : "151032",
-    "dataHora" : "1122151032"
-  },
   "InfIdentificacao" : {
-    "pedirToken" : 0,
-    "frase" : "Por favor, se identifique.",
+    "pedirToken" : "01",
+    "frase" : "Gere um token pelo Unicred Mobile e digite-o:",
     "perguntas" : [ {
       "pergunta" : "Qual a sua senha?",
       "resposta" : "mimimi",
@@ -1206,15 +962,28 @@ exports.identificacaoPost = function(authenticationType,clientId,token,body) {
       "pos3" : "A-C-D-3"
     } ],
     "transacValidas" : "068101068010",
-    "saldo" : "saldo"
+    "saldo" : "000000005000"
+  },
+  "InfTransacao" : {
+    "cdProc" : "029100",
+    "mensagemCliente" : "Não foi possível validar o cartão.",
+    "nsu" : "000080247206",
+    "codMoeda" : "986",
+    "codOperadora" : "00000000914",
+    "dataLocal" : "1122",
+    "errorMessage" : "Cartão inválido.",
+    "valor" : "5000",
+    "horaLocal" : "151032",
+    "nsuResposta" : "820",
+    "dataHora" : "1122151032"
+  },
+  "Cripto" : {
+    "hash" : "hash"
   },
   "Terminal" : {
     "codEstab" : "000000000742673",
     "tipo" : "008",
     "id" : "05100004"
-  },
-  "Cripto" : {
-    "hash" : "hash"
   }
 };
     if (Object.keys(examples).length > 0) {
@@ -1227,7 +996,6 @@ exports.identificacaoPost = function(authenticationType,clientId,token,body) {
 
 
 /**
- * PagamentoConf_POST
  * Confirmação de operação de pagamento ou agendamento de pagamento.
  *
  * authenticationType String Tipo de autenticação requerida.
@@ -1236,7 +1004,7 @@ exports.identificacaoPost = function(authenticationType,clientId,token,body) {
  * body TransacConf Requisição de confirmação de operação de pagamento ou agendamento de pagamento.
  * no response value expected for this operation
  **/
-exports.pagamentoConfPost = function(authenticationType,clientId,token,body) {
+exports.pagamentoConfPOST = function(authenticationType,clientId,token,body) {
   return new Promise(function(resolve, reject) {
     resolve();
   });
@@ -1244,7 +1012,6 @@ exports.pagamentoConfPost = function(authenticationType,clientId,token,body) {
 
 
 /**
- * Pagamento_POST
  * Operação de pagamento ou agendamento de pagamento.
  *
  * authenticationType String Tipo de autenticação requerida.
@@ -1253,19 +1020,18 @@ exports.pagamentoConfPost = function(authenticationType,clientId,token,body) {
  * body PagamentoReq Requisição de operação de pagamento ou agendamento de pagamento.
  * returns pagamentoResp
  **/
-exports.pagamentoPost = function(authenticationType,clientId,token,body) {
+exports.pagamentoPOST = function(authenticationType,clientId,token,body) {
   return new Promise(function(resolve, reject) {
     var examples = {};
     examples['application/json'] = {
   "InfPagamentoResp" : {
-    "recibo" : "             TEU BILHETE ANTECIPADO             @                036200005433591                @               13/10/2018  20:24               @           VALOR DA RECARGA: R$ 48,00           @                 TAXAS: R$ 2,00                 @              TOTAL PAGO: R$ 50,00              @   OS CRÉDITOS ADQUIRIDOS ESTARÃO DISPONÍVEIS   @      NOS VALIDADORES DOS ÔNIBUS DA REGIÃO      @     METROPOLITANA QUE ACEITAM O CARTÃO TEU     @ OU NAS CATRACAS DO METRÔ, NOS SEGUINTES PRAZOS @            RECARGAS ATÉ O MEIO DIA:            @ CRÉDITOS DISPONÍVEIS NO DIA SEGUINTE DA COMPRA @           RECARGAS APÓS O MEIO DIA:           @   CRÉDITOS DISPONÍVEIS EM 48H APÓS A COMPRA   ",
+    "recibo" : "",
     "qtdeViasComprovante" : "1",
     "dataPagamento" : "20181122",
     "desconto" : "000000000499",
-    "cupom" : "             TEU BILHETE ANTECIPADO             @                036200005433591                @               13/10/2018  20:24               @           VALOR DA RECARGA: R$ 48,00           @                 TAXAS: R$ 2,00                 @              TOTAL PAGO: R$ 50,00              @   OS CRÉDITOS ADQUIRIDOS ESTARÃO DISPONÍVEIS   @      NOS VALIDADORES DOS ÔNIBUS DA REGIÃO      @     METROPOLITANA QUE ACEITAM O CARTÃO TEU     @ OU NAS CATRACAS DO METRÔ, NOS SEGUINTES PRAZOS @            RECARGAS ATÉ O MEIO DIA:            @ CRÉDITOS DISPONÍVEIS NO DIA SEGUINTE DA COMPRA @           RECARGAS APÓS O MEIO DIA:           @   CRÉDITOS DISPONÍVEIS EM 48H APÓS A COMPRA   ",
     "mensagem" : "mensagem",
     "valor" : "000000005000",
-    "sistemaCobranca" : 0,
+    "sistemaCobranca" : "01",
     "cedente" : "Cedente"
   },
   "InfTransacao" : {
@@ -1275,19 +1041,19 @@ exports.pagamentoPost = function(authenticationType,clientId,token,body) {
     "codMoeda" : "986",
     "codOperadora" : "00000000914",
     "dataLocal" : "1122",
-    "valor" : "5000",
     "errorMessage" : "Cartão inválido.",
-    "nsuResposta" : "820",
+    "valor" : "5000",
     "horaLocal" : "151032",
+    "nsuResposta" : "820",
     "dataHora" : "1122151032"
+  },
+  "Cripto" : {
+    "hash" : "hash"
   },
   "Terminal" : {
     "codEstab" : "000000000742673",
     "tipo" : "008",
     "id" : "05100004"
-  },
-  "Cripto" : {
-    "hash" : "hash"
   }
 };
     if (Object.keys(examples).length > 0) {
@@ -1300,8 +1066,7 @@ exports.pagamentoPost = function(authenticationType,clientId,token,body) {
 
 
 /**
- * RecargaConf_POST
- * Operação de confirmação de recarga.
+ * Operação de confirmação de recarga de cartão de transporte ou pré-pago.
  *
  * authenticationType String Tipo de autenticação requerida.
  * clientId String Identificação do cliente.
@@ -1309,7 +1074,7 @@ exports.pagamentoPost = function(authenticationType,clientId,token,body) {
  * body TransacConf Requisição de confirmação de operação de recarga.
  * no response value expected for this operation
  **/
-exports.recargaConfPost = function(authenticationType,clientId,token,body) {
+exports.recargaConfPOST = function(authenticationType,clientId,token,body) {
   return new Promise(function(resolve, reject) {
     resolve();
   });
@@ -1317,16 +1082,15 @@ exports.recargaConfPost = function(authenticationType,clientId,token,body) {
 
 
 /**
- * Recarga_POST
- * Operação de recarga.
+ * Operação de recarga de cartão de transporte ou pré-pago.
  *
  * authenticationType String Tipo de autenticação requerida.
  * clientId String Identificação do cliente.
  * token String Chave para validação do acesso ao serviço.
- * body RecargaReq Requisição de operação de recarga.
+ * body RecargaReq Requisição de operação de recarga de um cartão.
  * returns recargaResp
  **/
-exports.recargaPost = function(authenticationType,clientId,token,body) {
+exports.recargaPOST = function(authenticationType,clientId,token,body) {
   return new Promise(function(resolve, reject) {
     var examples = {};
     examples['application/json'] = {
@@ -1340,19 +1104,19 @@ exports.recargaPost = function(authenticationType,clientId,token,body) {
     "codMoeda" : "986",
     "codOperadora" : "00000000914",
     "dataLocal" : "1122",
-    "valor" : "5000",
     "errorMessage" : "Cartão inválido.",
-    "nsuResposta" : "820",
+    "valor" : "5000",
     "horaLocal" : "151032",
+    "nsuResposta" : "820",
     "dataHora" : "1122151032"
+  },
+  "Cripto" : {
+    "hash" : "hash"
   },
   "Terminal" : {
     "codEstab" : "000000000742673",
     "tipo" : "008",
     "id" : "05100004"
-  },
-  "Cripto" : {
-    "hash" : "hash"
   }
 };
     if (Object.keys(examples).length > 0) {
@@ -1365,60 +1129,6 @@ exports.recargaPost = function(authenticationType,clientId,token,body) {
 
 
 /**
- * ReimpressaoComprovante_POST
- * Imprime segunda via de um comprovante de pagamento.
- *
- * authenticationType String Tipo de autenticação requerida.
- * clientId String Identificação do cliente.
- * token String Chave para validação do acesso ao serviço.
- * body ReimpressaoComprovanteReq Dados de identificação do comprovante de pgamento.
- * returns reimpressaoComprovanteResp
- **/
-exports.reimpressaoComprovantePost = function(authenticationType,clientId,token,body) {
-  return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = {
-  "InfReimpressaoComprovante" : {
-    "recibo" : "             TEU BILHETE ANTECIPADO             @                036200005433591                @               13/10/2018  20:24               @           VALOR DA RECARGA: R$ 48,00           @                 TAXAS: R$ 2,00                 @              TOTAL PAGO: R$ 50,00              @   OS CRÉDITOS ADQUIRIDOS ESTARÃO DISPONÍVEIS   @      NOS VALIDADORES DOS ÔNIBUS DA REGIÃO      @     METROPOLITANA QUE ACEITAM O CARTÃO TEU     @ OU NAS CATRACAS DO METRÔ, NOS SEGUINTES PRAZOS @            RECARGAS ATÉ O MEIO DIA:            @ CRÉDITOS DISPONÍVEIS NO DIA SEGUINTE DA COMPRA @           RECARGAS APÓS O MEIO DIA:           @   CRÉDITOS DISPONÍVEIS EM 48H APÓS A COMPRA   ",
-    "dataPagamento" : "20181122",
-    "dataVencimento" : "20181122",
-    "valor" : "000000005000",
-    "id" : "047382754927145",
-    "cedente" : "Cedente"
-  },
-  "InfTransacao" : {
-    "cdProc" : "029100",
-    "mensagemCliente" : "Não foi possível validar o cartão.",
-    "nsu" : "000080247206",
-    "codMoeda" : "986",
-    "codOperadora" : "00000000914",
-    "dataLocal" : "1122",
-    "valor" : "5000",
-    "errorMessage" : "Cartão inválido.",
-    "nsuResposta" : "820",
-    "horaLocal" : "151032",
-    "dataHora" : "1122151032"
-  },
-  "Terminal" : {
-    "codEstab" : "000000000742673",
-    "tipo" : "008",
-    "id" : "05100004"
-  },
-  "Cripto" : {
-    "hash" : "hash"
-  }
-};
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
-  });
-}
-
-
-/**
- * SaldoConf_POST
  * Confirmação de operação de consulta de saldo.
  *
  * authenticationType String Tipo de autenticação requerida.
@@ -1427,7 +1137,7 @@ exports.reimpressaoComprovantePost = function(authenticationType,clientId,token,
  * body TransacConf Requisição de confirmação de operação de consulta de saldo.
  * no response value expected for this operation
  **/
-exports.saldoConfPost = function(authenticationType,clientId,token,body) {
+exports.saldoConfPOST = function(authenticationType,clientId,token,body) {
   return new Promise(function(resolve, reject) {
     resolve();
   });
@@ -1435,7 +1145,6 @@ exports.saldoConfPost = function(authenticationType,clientId,token,body) {
 
 
 /**
- * Saldo_POST
  * Operação de consulta de saldo.
  *
  * authenticationType String Tipo de autenticação requerida.
@@ -1444,12 +1153,12 @@ exports.saldoConfPost = function(authenticationType,clientId,token,body) {
  * body SaldoReq Requisição de operação de consulta de saldo.
  * returns saldoResp
  **/
-exports.saldoPost = function(authenticationType,clientId,token,body) {
+exports.saldoPOST = function(authenticationType,clientId,token,body) {
   return new Promise(function(resolve, reject) {
     var examples = {};
     examples['application/json'] = {
   "InfSaldo" : {
-    "recibo" : "             TEU BILHETE ANTECIPADO             @                036200005433591                @               13/10/2018  20:24               @           VALOR DA RECARGA: R$ 48,00           @                 TAXAS: R$ 2,00                 @              TOTAL PAGO: R$ 50,00              @   OS CRÉDITOS ADQUIRIDOS ESTARÃO DISPONÍVEIS   @      NOS VALIDADORES DOS ÔNIBUS DA REGIÃO      @     METROPOLITANA QUE ACEITAM O CARTÃO TEU     @ OU NAS CATRACAS DO METRÔ, NOS SEGUINTES PRAZOS @            RECARGAS ATÉ O MEIO DIA:            @ CRÉDITOS DISPONÍVEIS NO DIA SEGUINTE DA COMPRA @           RECARGAS APÓS O MEIO DIA:           @   CRÉDITOS DISPONÍVEIS EM 48H APÓS A COMPRA   "
+    "recibo" : "                 SALDO DE CONTA                @                036200005433591                @               13/10/2018  20:24               @                 BANCO: BANCO                  @                AGENCIA: 4029                  @              CONTA: 0082348296                @           VALOR NA DATA: R$ 50,00             "
   },
   "InfTransacao" : {
     "cdProc" : "029100",
@@ -1458,19 +1167,19 @@ exports.saldoPost = function(authenticationType,clientId,token,body) {
     "codMoeda" : "986",
     "codOperadora" : "00000000914",
     "dataLocal" : "1122",
-    "valor" : "5000",
     "errorMessage" : "Cartão inválido.",
-    "nsuResposta" : "820",
+    "valor" : "5000",
     "horaLocal" : "151032",
+    "nsuResposta" : "820",
     "dataHora" : "1122151032"
+  },
+  "Cripto" : {
+    "hash" : "hash"
   },
   "Terminal" : {
     "codEstab" : "000000000742673",
     "tipo" : "008",
     "id" : "05100004"
-  },
-  "Cripto" : {
-    "hash" : "hash"
   }
 };
     if (Object.keys(examples).length > 0) {
@@ -1483,7 +1192,6 @@ exports.saldoPost = function(authenticationType,clientId,token,body) {
 
 
 /**
- * SaqueConf_POST
  * Confirmação de operação de saque.
  *
  * authenticationType String Tipo de autenticação requerida.
@@ -1492,7 +1200,7 @@ exports.saldoPost = function(authenticationType,clientId,token,body) {
  * body TransacConf Requisição de confirmação de operação de saque.
  * no response value expected for this operation
  **/
-exports.saqueConfPost = function(authenticationType,clientId,token,body) {
+exports.saqueConfPOST = function(authenticationType,clientId,token,body) {
   return new Promise(function(resolve, reject) {
     resolve();
   });
@@ -1500,7 +1208,6 @@ exports.saqueConfPost = function(authenticationType,clientId,token,body) {
 
 
 /**
- * Saque_POST
  * Operação de saque.
  *
  * authenticationType String Tipo de autenticação requerida.
@@ -1509,12 +1216,12 @@ exports.saqueConfPost = function(authenticationType,clientId,token,body) {
  * body SaqueReq Requisição de operação de saque.
  * returns saqueResp
  **/
-exports.saquePost = function(authenticationType,clientId,token,body) {
+exports.saquePOST = function(authenticationType,clientId,token,body) {
   return new Promise(function(resolve, reject) {
     var examples = {};
     examples['application/json'] = {
   "InfSaque" : {
-    "recibo" : "             TEU BILHETE ANTECIPADO             @                036200005433591                @               13/10/2018  20:24               @           VALOR DA RECARGA: R$ 48,00           @                 TAXAS: R$ 2,00                 @              TOTAL PAGO: R$ 50,00              @   OS CRÉDITOS ADQUIRIDOS ESTARÃO DISPONÍVEIS   @      NOS VALIDADORES DOS ÔNIBUS DA REGIÃO      @     METROPOLITANA QUE ACEITAM O CARTÃO TEU     @ OU NAS CATRACAS DO METRÔ, NOS SEGUINTES PRAZOS @            RECARGAS ATÉ O MEIO DIA:            @ CRÉDITOS DISPONÍVEIS NO DIA SEGUINTE DA COMPRA @           RECARGAS APÓS O MEIO DIA:           @   CRÉDITOS DISPONÍVEIS EM 48H APÓS A COMPRA   "
+    "recibo" : "                 SAQUE DE CONTA                 @                036200005433591                @               13/10/2018  20:24               @                 BANCO: BANCO                  @                AGENCIA: 4029                  @              CONTA: 0082348296                @               VALOR: R$ 50,00                 "
   },
   "InfTransacao" : {
     "cdProc" : "029100",
@@ -1523,19 +1230,19 @@ exports.saquePost = function(authenticationType,clientId,token,body) {
     "codMoeda" : "986",
     "codOperadora" : "00000000914",
     "dataLocal" : "1122",
-    "valor" : "5000",
     "errorMessage" : "Cartão inválido.",
-    "nsuResposta" : "820",
+    "valor" : "5000",
     "horaLocal" : "151032",
+    "nsuResposta" : "820",
     "dataHora" : "1122151032"
+  },
+  "Cripto" : {
+    "hash" : "hash"
   },
   "Terminal" : {
     "codEstab" : "000000000742673",
     "tipo" : "008",
     "id" : "05100004"
-  },
-  "Cripto" : {
-    "hash" : "hash"
   }
 };
     if (Object.keys(examples).length > 0) {

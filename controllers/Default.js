@@ -3,12 +3,12 @@
 var utils = require('../utils/writer.js');
 var Default = require('../service/DefaultService');
 
-module.exports.autenticacaoPost = function autenticacaoPost (req, res, next) {
+module.exports.autenticacaoPOST = function autenticacaoPOST (req, res, next) {
   var authenticationType = req.swagger.params['authenticationType'].value;
   var clientId = req.swagger.params['clientId'].value;
   var token = req.swagger.params['token'].value;
   var body = req.swagger.params['body'].value;
-  Default.autenticacaoPost(authenticationType,clientId,token,body)
+  Default.autenticacaoPOST(authenticationType,clientId,token,body)
     .then(function (response) {
       utils.writeJson(res, response);
     })
@@ -17,12 +17,12 @@ module.exports.autenticacaoPost = function autenticacaoPost (req, res, next) {
     });
 };
 
-module.exports.cancelaAgendamentoPost = function cancelaAgendamentoPost (req, res, next) {
+module.exports.compraTitulosCapitalizacaoConfPOST = function compraTitulosCapitalizacaoConfPOST (req, res, next) {
   var authenticationType = req.swagger.params['authenticationType'].value;
   var clientId = req.swagger.params['clientId'].value;
   var token = req.swagger.params['token'].value;
   var body = req.swagger.params['body'].value;
-  Default.cancelaAgendamentoPost(authenticationType,clientId,token,body)
+  Default.compraTitulosCapitalizacaoConfPOST(authenticationType,clientId,token,body)
     .then(function (response) {
       utils.writeJson(res, response);
     })
@@ -31,12 +31,12 @@ module.exports.cancelaAgendamentoPost = function cancelaAgendamentoPost (req, re
     });
 };
 
-module.exports.compraTitulosCapitalizacaoConfPost = function compraTitulosCapitalizacaoConfPost (req, res, next) {
+module.exports.compraTitulosCapitalizacaoPOST = function compraTitulosCapitalizacaoPOST (req, res, next) {
   var authenticationType = req.swagger.params['authenticationType'].value;
   var clientId = req.swagger.params['clientId'].value;
   var token = req.swagger.params['token'].value;
   var body = req.swagger.params['body'].value;
-  Default.compraTitulosCapitalizacaoConfPost(authenticationType,clientId,token,body)
+  Default.compraTitulosCapitalizacaoPOST(authenticationType,clientId,token,body)
     .then(function (response) {
       utils.writeJson(res, response);
     })
@@ -45,12 +45,12 @@ module.exports.compraTitulosCapitalizacaoConfPost = function compraTitulosCapita
     });
 };
 
-module.exports.compraTitulosCapitalizacaoPost = function compraTitulosCapitalizacaoPost (req, res, next) {
+module.exports.consultaContaPOST = function consultaContaPOST (req, res, next) {
   var authenticationType = req.swagger.params['authenticationType'].value;
   var clientId = req.swagger.params['clientId'].value;
   var token = req.swagger.params['token'].value;
   var body = req.swagger.params['body'].value;
-  Default.compraTitulosCapitalizacaoPost(authenticationType,clientId,token,body)
+  Default.consultaContaPOST(authenticationType,clientId,token,body)
     .then(function (response) {
       utils.writeJson(res, response);
     })
@@ -59,25 +59,12 @@ module.exports.compraTitulosCapitalizacaoPost = function compraTitulosCapitaliza
     });
 };
 
-module.exports.consultaAgendamentosPost = function consultaAgendamentosPost (req, res, next) {
-  var authenticationType = req.swagger.params['authenticationType'].value;
-  var clientId = req.swagger.params['clientId'].value;
-  var token = req.swagger.params['token'].value;
-  Default.consultaAgendamentosPost(authenticationType,clientId,token)
-    .then(function (response) {
-      utils.writeJson(res, response);
-    })
-    .catch(function (response) {
-      utils.writeJson(res, response);
-    });
-};
-
-module.exports.consultaComprovantePagamentoPost = function consultaComprovantePagamentoPost (req, res, next) {
+module.exports.consultaLimitesEmprestimoPOST = function consultaLimitesEmprestimoPOST (req, res, next) {
   var authenticationType = req.swagger.params['authenticationType'].value;
   var clientId = req.swagger.params['clientId'].value;
   var token = req.swagger.params['token'].value;
   var body = req.swagger.params['body'].value;
-  Default.consultaComprovantePagamentoPost(authenticationType,clientId,token,body)
+  Default.consultaLimitesEmprestimoPOST(authenticationType,clientId,token,body)
     .then(function (response) {
       utils.writeJson(res, response);
     })
@@ -86,25 +73,12 @@ module.exports.consultaComprovantePagamentoPost = function consultaComprovantePa
     });
 };
 
-module.exports.consultaComprovantesPost = function consultaComprovantesPost (req, res, next) {
-  var authenticationType = req.swagger.params['authenticationType'].value;
-  var clientId = req.swagger.params['clientId'].value;
-  var token = req.swagger.params['token'].value;
-  Default.consultaComprovantesPost(authenticationType,clientId,token)
-    .then(function (response) {
-      utils.writeJson(res, response);
-    })
-    .catch(function (response) {
-      utils.writeJson(res, response);
-    });
-};
-
-module.exports.consultaContaPost = function consultaContaPost (req, res, next) {
+module.exports.consultaPagamentoPOST = function consultaPagamentoPOST (req, res, next) {
   var authenticationType = req.swagger.params['authenticationType'].value;
   var clientId = req.swagger.params['clientId'].value;
   var token = req.swagger.params['token'].value;
   var body = req.swagger.params['body'].value;
-  Default.consultaContaPost(authenticationType,clientId,token,body)
+  Default.consultaPagamentoPOST(authenticationType,clientId,token,body)
     .then(function (response) {
       utils.writeJson(res, response);
     })
@@ -113,12 +87,12 @@ module.exports.consultaContaPost = function consultaContaPost (req, res, next) {
     });
 };
 
-module.exports.consultaLimitesEmprestimoPost = function consultaLimitesEmprestimoPost (req, res, next) {
+module.exports.consultaParcelasEmprestimoPOST = function consultaParcelasEmprestimoPOST (req, res, next) {
   var authenticationType = req.swagger.params['authenticationType'].value;
   var clientId = req.swagger.params['clientId'].value;
   var token = req.swagger.params['token'].value;
   var body = req.swagger.params['body'].value;
-  Default.consultaLimitesEmprestimoPost(authenticationType,clientId,token,body)
+  Default.consultaParcelasEmprestimoPOST(authenticationType,clientId,token,body)
     .then(function (response) {
       utils.writeJson(res, response);
     })
@@ -127,12 +101,12 @@ module.exports.consultaLimitesEmprestimoPost = function consultaLimitesEmprestim
     });
 };
 
-module.exports.consultaPagamentoPost = function consultaPagamentoPost (req, res, next) {
+module.exports.consultaProdutosRecargaPOST = function consultaProdutosRecargaPOST (req, res, next) {
   var authenticationType = req.swagger.params['authenticationType'].value;
   var clientId = req.swagger.params['clientId'].value;
   var token = req.swagger.params['token'].value;
   var body = req.swagger.params['body'].value;
-  Default.consultaPagamentoPost(authenticationType,clientId,token,body)
+  Default.consultaProdutosRecargaPOST(authenticationType,clientId,token,body)
     .then(function (response) {
       utils.writeJson(res, response);
     })
@@ -141,12 +115,12 @@ module.exports.consultaPagamentoPost = function consultaPagamentoPost (req, res,
     });
 };
 
-module.exports.consultaParcelasEmprestimoPost = function consultaParcelasEmprestimoPost (req, res, next) {
+module.exports.consultaSaquePOST = function consultaSaquePOST (req, res, next) {
   var authenticationType = req.swagger.params['authenticationType'].value;
   var clientId = req.swagger.params['clientId'].value;
   var token = req.swagger.params['token'].value;
   var body = req.swagger.params['body'].value;
-  Default.consultaParcelasEmprestimoPost(authenticationType,clientId,token,body)
+  Default.consultaSaquePOST(authenticationType,clientId,token,body)
     .then(function (response) {
       utils.writeJson(res, response);
     })
@@ -155,12 +129,12 @@ module.exports.consultaParcelasEmprestimoPost = function consultaParcelasEmprest
     });
 };
 
-module.exports.consultaProdutosRecargaPost = function consultaProdutosRecargaPost (req, res, next) {
+module.exports.consultaTaxasPOST = function consultaTaxasPOST (req, res, next) {
   var authenticationType = req.swagger.params['authenticationType'].value;
   var clientId = req.swagger.params['clientId'].value;
   var token = req.swagger.params['token'].value;
   var body = req.swagger.params['body'].value;
-  Default.consultaProdutosRecargaPost(authenticationType,clientId,token,body)
+  Default.consultaTaxasPOST(authenticationType,clientId,token,body)
     .then(function (response) {
       utils.writeJson(res, response);
     })
@@ -169,12 +143,12 @@ module.exports.consultaProdutosRecargaPost = function consultaProdutosRecargaPos
     });
 };
 
-module.exports.consultaSaquePost = function consultaSaquePost (req, res, next) {
+module.exports.consultaTitulosCapitalizacaoPOST = function consultaTitulosCapitalizacaoPOST (req, res, next) {
   var authenticationType = req.swagger.params['authenticationType'].value;
   var clientId = req.swagger.params['clientId'].value;
   var token = req.swagger.params['token'].value;
   var body = req.swagger.params['body'].value;
-  Default.consultaSaquePost(authenticationType,clientId,token,body)
+  Default.consultaTitulosCapitalizacaoPOST(authenticationType,clientId,token,body)
     .then(function (response) {
       utils.writeJson(res, response);
     })
@@ -183,12 +157,12 @@ module.exports.consultaSaquePost = function consultaSaquePost (req, res, next) {
     });
 };
 
-module.exports.consultaTaxasPost = function consultaTaxasPost (req, res, next) {
+module.exports.consultaValoresRecargaPOST = function consultaValoresRecargaPOST (req, res, next) {
   var authenticationType = req.swagger.params['authenticationType'].value;
   var clientId = req.swagger.params['clientId'].value;
   var token = req.swagger.params['token'].value;
   var body = req.swagger.params['body'].value;
-  Default.consultaTaxasPost(authenticationType,clientId,token,body)
+  Default.consultaValoresRecargaPOST(authenticationType,clientId,token,body)
     .then(function (response) {
       utils.writeJson(res, response);
     })
@@ -197,12 +171,12 @@ module.exports.consultaTaxasPost = function consultaTaxasPost (req, res, next) {
     });
 };
 
-module.exports.consultaTitulosCapitalizacaoPost = function consultaTitulosCapitalizacaoPost (req, res, next) {
+module.exports.depositoConfPOST = function depositoConfPOST (req, res, next) {
   var authenticationType = req.swagger.params['authenticationType'].value;
   var clientId = req.swagger.params['clientId'].value;
   var token = req.swagger.params['token'].value;
   var body = req.swagger.params['body'].value;
-  Default.consultaTitulosCapitalizacaoPost(authenticationType,clientId,token,body)
+  Default.depositoConfPOST(authenticationType,clientId,token,body)
     .then(function (response) {
       utils.writeJson(res, response);
     })
@@ -211,12 +185,12 @@ module.exports.consultaTitulosCapitalizacaoPost = function consultaTitulosCapita
     });
 };
 
-module.exports.consultaValoresRecargaPost = function consultaValoresRecargaPost (req, res, next) {
+module.exports.depositoPOST = function depositoPOST (req, res, next) {
   var authenticationType = req.swagger.params['authenticationType'].value;
   var clientId = req.swagger.params['clientId'].value;
   var token = req.swagger.params['token'].value;
   var body = req.swagger.params['body'].value;
-  Default.consultaValoresRecargaPost(authenticationType,clientId,token,body)
+  Default.depositoPOST(authenticationType,clientId,token,body)
     .then(function (response) {
       utils.writeJson(res, response);
     })
@@ -225,12 +199,12 @@ module.exports.consultaValoresRecargaPost = function consultaValoresRecargaPost 
     });
 };
 
-module.exports.depositoConfPost = function depositoConfPost (req, res, next) {
+module.exports.emprestimoConfPOST = function emprestimoConfPOST (req, res, next) {
   var authenticationType = req.swagger.params['authenticationType'].value;
   var clientId = req.swagger.params['clientId'].value;
   var token = req.swagger.params['token'].value;
   var body = req.swagger.params['body'].value;
-  Default.depositoConfPost(authenticationType,clientId,token,body)
+  Default.emprestimoConfPOST(authenticationType,clientId,token,body)
     .then(function (response) {
       utils.writeJson(res, response);
     })
@@ -239,12 +213,12 @@ module.exports.depositoConfPost = function depositoConfPost (req, res, next) {
     });
 };
 
-module.exports.depositoPost = function depositoPost (req, res, next) {
+module.exports.emprestimoPOST = function emprestimoPOST (req, res, next) {
   var authenticationType = req.swagger.params['authenticationType'].value;
   var clientId = req.swagger.params['clientId'].value;
   var token = req.swagger.params['token'].value;
   var body = req.swagger.params['body'].value;
-  Default.depositoPost(authenticationType,clientId,token,body)
+  Default.emprestimoPOST(authenticationType,clientId,token,body)
     .then(function (response) {
       utils.writeJson(res, response);
     })
@@ -253,12 +227,12 @@ module.exports.depositoPost = function depositoPost (req, res, next) {
     });
 };
 
-module.exports.emprestimoConfPost = function emprestimoConfPost (req, res, next) {
+module.exports.extratoConfPOST = function extratoConfPOST (req, res, next) {
   var authenticationType = req.swagger.params['authenticationType'].value;
   var clientId = req.swagger.params['clientId'].value;
   var token = req.swagger.params['token'].value;
   var body = req.swagger.params['body'].value;
-  Default.emprestimoConfPost(authenticationType,clientId,token,body)
+  Default.extratoConfPOST(authenticationType,clientId,token,body)
     .then(function (response) {
       utils.writeJson(res, response);
     })
@@ -267,12 +241,12 @@ module.exports.emprestimoConfPost = function emprestimoConfPost (req, res, next)
     });
 };
 
-module.exports.emprestimoPost = function emprestimoPost (req, res, next) {
+module.exports.extratoPOST = function extratoPOST (req, res, next) {
   var authenticationType = req.swagger.params['authenticationType'].value;
   var clientId = req.swagger.params['clientId'].value;
   var token = req.swagger.params['token'].value;
   var body = req.swagger.params['body'].value;
-  Default.emprestimoPost(authenticationType,clientId,token,body)
+  Default.extratoPOST(authenticationType,clientId,token,body)
     .then(function (response) {
       utils.writeJson(res, response);
     })
@@ -281,12 +255,12 @@ module.exports.emprestimoPost = function emprestimoPost (req, res, next) {
     });
 };
 
-module.exports.extratoConfPost = function extratoConfPost (req, res, next) {
+module.exports.identificacaoPOST = function identificacaoPOST (req, res, next) {
   var authenticationType = req.swagger.params['authenticationType'].value;
   var clientId = req.swagger.params['clientId'].value;
   var token = req.swagger.params['token'].value;
   var body = req.swagger.params['body'].value;
-  Default.extratoConfPost(authenticationType,clientId,token,body)
+  Default.identificacaoPOST(authenticationType,clientId,token,body)
     .then(function (response) {
       utils.writeJson(res, response);
     })
@@ -295,12 +269,12 @@ module.exports.extratoConfPost = function extratoConfPost (req, res, next) {
     });
 };
 
-module.exports.extratoPost = function extratoPost (req, res, next) {
+module.exports.pagamentoConfPOST = function pagamentoConfPOST (req, res, next) {
   var authenticationType = req.swagger.params['authenticationType'].value;
   var clientId = req.swagger.params['clientId'].value;
   var token = req.swagger.params['token'].value;
   var body = req.swagger.params['body'].value;
-  Default.extratoPost(authenticationType,clientId,token,body)
+  Default.pagamentoConfPOST(authenticationType,clientId,token,body)
     .then(function (response) {
       utils.writeJson(res, response);
     })
@@ -309,12 +283,12 @@ module.exports.extratoPost = function extratoPost (req, res, next) {
     });
 };
 
-module.exports.identificacaoPost = function identificacaoPost (req, res, next) {
+module.exports.pagamentoPOST = function pagamentoPOST (req, res, next) {
   var authenticationType = req.swagger.params['authenticationType'].value;
   var clientId = req.swagger.params['clientId'].value;
   var token = req.swagger.params['token'].value;
   var body = req.swagger.params['body'].value;
-  Default.identificacaoPost(authenticationType,clientId,token,body)
+  Default.pagamentoPOST(authenticationType,clientId,token,body)
     .then(function (response) {
       utils.writeJson(res, response);
     })
@@ -323,12 +297,12 @@ module.exports.identificacaoPost = function identificacaoPost (req, res, next) {
     });
 };
 
-module.exports.pagamentoConfPost = function pagamentoConfPost (req, res, next) {
+module.exports.recargaConfPOST = function recargaConfPOST (req, res, next) {
   var authenticationType = req.swagger.params['authenticationType'].value;
   var clientId = req.swagger.params['clientId'].value;
   var token = req.swagger.params['token'].value;
   var body = req.swagger.params['body'].value;
-  Default.pagamentoConfPost(authenticationType,clientId,token,body)
+  Default.recargaConfPOST(authenticationType,clientId,token,body)
     .then(function (response) {
       utils.writeJson(res, response);
     })
@@ -337,12 +311,12 @@ module.exports.pagamentoConfPost = function pagamentoConfPost (req, res, next) {
     });
 };
 
-module.exports.pagamentoPost = function pagamentoPost (req, res, next) {
+module.exports.recargaPOST = function recargaPOST (req, res, next) {
   var authenticationType = req.swagger.params['authenticationType'].value;
   var clientId = req.swagger.params['clientId'].value;
   var token = req.swagger.params['token'].value;
   var body = req.swagger.params['body'].value;
-  Default.pagamentoPost(authenticationType,clientId,token,body)
+  Default.recargaPOST(authenticationType,clientId,token,body)
     .then(function (response) {
       utils.writeJson(res, response);
     })
@@ -351,12 +325,12 @@ module.exports.pagamentoPost = function pagamentoPost (req, res, next) {
     });
 };
 
-module.exports.recargaConfPost = function recargaConfPost (req, res, next) {
+module.exports.saldoConfPOST = function saldoConfPOST (req, res, next) {
   var authenticationType = req.swagger.params['authenticationType'].value;
   var clientId = req.swagger.params['clientId'].value;
   var token = req.swagger.params['token'].value;
   var body = req.swagger.params['body'].value;
-  Default.recargaConfPost(authenticationType,clientId,token,body)
+  Default.saldoConfPOST(authenticationType,clientId,token,body)
     .then(function (response) {
       utils.writeJson(res, response);
     })
@@ -365,12 +339,12 @@ module.exports.recargaConfPost = function recargaConfPost (req, res, next) {
     });
 };
 
-module.exports.recargaPost = function recargaPost (req, res, next) {
+module.exports.saldoPOST = function saldoPOST (req, res, next) {
   var authenticationType = req.swagger.params['authenticationType'].value;
   var clientId = req.swagger.params['clientId'].value;
   var token = req.swagger.params['token'].value;
   var body = req.swagger.params['body'].value;
-  Default.recargaPost(authenticationType,clientId,token,body)
+  Default.saldoPOST(authenticationType,clientId,token,body)
     .then(function (response) {
       utils.writeJson(res, response);
     })
@@ -379,12 +353,12 @@ module.exports.recargaPost = function recargaPost (req, res, next) {
     });
 };
 
-module.exports.reimpressaoComprovantePost = function reimpressaoComprovantePost (req, res, next) {
+module.exports.saqueConfPOST = function saqueConfPOST (req, res, next) {
   var authenticationType = req.swagger.params['authenticationType'].value;
   var clientId = req.swagger.params['clientId'].value;
   var token = req.swagger.params['token'].value;
   var body = req.swagger.params['body'].value;
-  Default.reimpressaoComprovantePost(authenticationType,clientId,token,body)
+  Default.saqueConfPOST(authenticationType,clientId,token,body)
     .then(function (response) {
       utils.writeJson(res, response);
     })
@@ -393,54 +367,12 @@ module.exports.reimpressaoComprovantePost = function reimpressaoComprovantePost 
     });
 };
 
-module.exports.saldoConfPost = function saldoConfPost (req, res, next) {
+module.exports.saquePOST = function saquePOST (req, res, next) {
   var authenticationType = req.swagger.params['authenticationType'].value;
   var clientId = req.swagger.params['clientId'].value;
   var token = req.swagger.params['token'].value;
   var body = req.swagger.params['body'].value;
-  Default.saldoConfPost(authenticationType,clientId,token,body)
-    .then(function (response) {
-      utils.writeJson(res, response);
-    })
-    .catch(function (response) {
-      utils.writeJson(res, response);
-    });
-};
-
-module.exports.saldoPost = function saldoPost (req, res, next) {
-  var authenticationType = req.swagger.params['authenticationType'].value;
-  var clientId = req.swagger.params['clientId'].value;
-  var token = req.swagger.params['token'].value;
-  var body = req.swagger.params['body'].value;
-  Default.saldoPost(authenticationType,clientId,token,body)
-    .then(function (response) {
-      utils.writeJson(res, response);
-    })
-    .catch(function (response) {
-      utils.writeJson(res, response);
-    });
-};
-
-module.exports.saqueConfPost = function saqueConfPost (req, res, next) {
-  var authenticationType = req.swagger.params['authenticationType'].value;
-  var clientId = req.swagger.params['clientId'].value;
-  var token = req.swagger.params['token'].value;
-  var body = req.swagger.params['body'].value;
-  Default.saqueConfPost(authenticationType,clientId,token,body)
-    .then(function (response) {
-      utils.writeJson(res, response);
-    })
-    .catch(function (response) {
-      utils.writeJson(res, response);
-    });
-};
-
-module.exports.saquePost = function saquePost (req, res, next) {
-  var authenticationType = req.swagger.params['authenticationType'].value;
-  var clientId = req.swagger.params['clientId'].value;
-  var token = req.swagger.params['token'].value;
-  var body = req.swagger.params['body'].value;
-  Default.saquePost(authenticationType,clientId,token,body)
+  Default.saquePOST(authenticationType,clientId,token,body)
     .then(function (response) {
       utils.writeJson(res, response);
     })
