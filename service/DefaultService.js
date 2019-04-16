@@ -2,7 +2,7 @@
 
 
 /**
- * Operação de autenticacao de cliente sem cartão, chamada para retornar o nome do cliente autenticado através de perguntas sobre ele.
+ * Operação de autenticacao de cliente sem cartão, chamada para retornar o nome do cliente autenticado.
  *
  * authenticationType String Tipo de autenticação requerida.
  * clientId String Identificação do cliente.
@@ -16,12 +16,12 @@ exports.autenticacaoPOST = function(authenticationType,clientId,token,body) {
     examples['application/json'] = {
   "InfTransacao" : {
     "cdProc" : "029100",
-    "mensagemCliente" : "Não foi possível validar o cartão.",
+    "mensagemCliente" : "",
     "nsu" : "000080247206",
     "codMoeda" : "986",
     "codOperadora" : "00000000914",
     "dataLocal" : "1122",
-    "errorMessage" : "Cartão inválido.",
+    "errorMessage" : "",
     "valor" : "5000",
     "horaLocal" : "151032",
     "nsuResposta" : "820",
@@ -78,16 +78,16 @@ exports.compraTitulosCapitalizacaoPOST = function(authenticationType,clientId,to
     var examples = {};
     examples['application/json'] = {
   "InfCompraTitulosCapitalizacao" : {
-    "recibo" : "               TÍTULOS COMPRADOS               @                036200005433591                @               13/10/2018  20:24               @                NOME DO TITULO                 @                 QUANTIDADE: 2                 @                VALOR: R$ 25,00                @              VALOR TOTAL: R$ 50,00            @              TELEFONE: 05199999999            @                CPF: 02358422785               "
+    "recibo" : "@               TITULOS COMPRADOS                @                                                @ NOME DO TITULO:  XXXXXXXXXXXXX                 @ QUANTIDADE: 2                                  @ VALOR: R$ 25,00                                @ VALOR TOTAL: R$ 50,00                          @ TELEFONE: 05199999999                          @ CPF: 02358422785                               "
   },
   "InfTransacao" : {
     "cdProc" : "029100",
-    "mensagemCliente" : "Não foi possível validar o cartão.",
+    "mensagemCliente" : "",
     "nsu" : "000080247206",
     "codMoeda" : "986",
     "codOperadora" : "00000000914",
     "dataLocal" : "1122",
-    "errorMessage" : "Cartão inválido.",
+    "errorMessage" : "",
     "valor" : "5000",
     "horaLocal" : "151032",
     "nsuResposta" : "820",
@@ -109,7 +109,7 @@ exports.compraTitulosCapitalizacaoPOST = function(authenticationType,clientId,to
 
 
 /**
- * Operação de consulta de conta, usada previamente ao depósito para verificar se a conta é válida e está habilitada para depósito.
+ * Operação de consulta de conta de favorecido, usada previamente ao depósito para verificar se a conta é válida e está habilitada para depósito.
  *
  * authenticationType String Tipo de autenticação requerida.
  * clientId String Identificação do cliente.
@@ -123,12 +123,12 @@ exports.consultaContaPOST = function(authenticationType,clientId,token,body) {
     examples['application/json'] = {
   "InfTransacao" : {
     "cdProc" : "029100",
-    "mensagemCliente" : "Não foi possível validar o cartão.",
+    "mensagemCliente" : "",
     "nsu" : "000080247206",
     "codMoeda" : "986",
     "codOperadora" : "00000000914",
     "dataLocal" : "1122",
-    "errorMessage" : "Cartão inválido.",
+    "errorMessage" : "",
     "valor" : "5000",
     "horaLocal" : "151032",
     "nsuResposta" : "820",
@@ -160,7 +160,7 @@ exports.consultaContaPOST = function(authenticationType,clientId,token,body) {
 
 
 /**
- * Operação de consulta dos limites disponíveis para empréstimo. Hoje em dia esta operação é válida somente com os dados do cartão.
+ * Operação de consulta dos limites disponíveis para empréstimo. Esta operação é válida somente com os dados do cartão.
  *
  * authenticationType String Tipo de autenticação requerida.
  * clientId String Identificação do cliente.
@@ -174,12 +174,12 @@ exports.consultaLimitesEmprestimoPOST = function(authenticationType,clientId,tok
     examples['application/json'] = {
   "InfTransacao" : {
     "cdProc" : "029100",
-    "mensagemCliente" : "Não foi possível validar o cartão.",
+    "mensagemCliente" : "",
     "nsu" : "000080247206",
     "codMoeda" : "986",
     "codOperadora" : "00000000914",
     "dataLocal" : "1122",
-    "errorMessage" : "Cartão inválido.",
+    "errorMessage" : "",
     "valor" : "5000",
     "horaLocal" : "151032",
     "nsuResposta" : "820",
@@ -210,92 +210,7 @@ exports.consultaLimitesEmprestimoPOST = function(authenticationType,clientId,tok
 
 
 /**
- * Operação de consulta de pagamentos para verificar se as informações são válidas pela CIP.
- *
- * authenticationType String Tipo de autenticação requerida.
- * clientId String Identificação do cliente.
- * token String Chave para validação do acesso ao serviço.
- * body ConsultaPagamentoReq Requisição de consulta de pagamentos.
- * returns consultaPagamentoResp
- **/
-exports.consultaPagamentoPOST = function(authenticationType,clientId,token,body) {
-  return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = {
-  "InfTransacao" : {
-    "cdProc" : "029100",
-    "mensagemCliente" : "Não foi possível validar o cartão.",
-    "nsu" : "000080247206",
-    "codMoeda" : "986",
-    "codOperadora" : "00000000914",
-    "dataLocal" : "1122",
-    "errorMessage" : "Cartão inválido.",
-    "valor" : "5000",
-    "horaLocal" : "151032",
-    "nsuResposta" : "820",
-    "dataHora" : "1122151032"
-  },
-  "Cripto" : {
-    "hash" : "hash"
-  },
-  "Terminal" : {
-    "codEstab" : "000000000742673",
-    "tipo" : "008",
-    "id" : "05100004"
-  },
-  "InfConsultaPagamento" : {
-    "aceitaPagamentoParcial" : "01",
-    "dda" : [ {
-      "aceitaPagamentoParcial" : "00",
-      "tipo" : "tipo",
-      "numDDA" : "7123",
-      "sacado" : "sacado",
-      "dataVencimento" : "20181122",
-      "alegacao" : "alegacao",
-      "valor" : "000000005000",
-      "modificado" : "00",
-      "cedente" : "Cedente"
-    }, {
-      "aceitaPagamentoParcial" : "00",
-      "tipo" : "tipo",
-      "numDDA" : "7123",
-      "sacado" : "sacado",
-      "dataVencimento" : "20181122",
-      "alegacao" : "alegacao",
-      "valor" : "000000005000",
-      "modificado" : "00",
-      "cedente" : "Cedente"
-    } ],
-    "dataPagamento" : "20181122",
-    "desconto" : "000000000499",
-    "nomeFavorecidoDoacao" : "Carl Edward Sagan",
-    "cnpjFavorecidoDoacao" : "cnpjFavorecidoDoacao",
-    "valor" : "000000005000",
-    "modificado" : "01",
-    "cip" : {
-      "valorMaximoPermitidoPagamento" : "000000050000",
-      "NumeroIdentificacaoConsultaPagamento" : "NumeroIdentificacaoConsultaPagamento",
-      "valorMinimoPermitidoPagamento" : "000000000500",
-      "valorJurosCalculado" : "000000000499",
-      "valorAbatimento" : "000000000499",
-      "tipoValorAceito" : "tipoValorAceito",
-      "valorMultaCalculadada" : "000000000499"
-    },
-    "valorMinimo" : "000000000500",
-    "cedente" : "Cedente"
-  }
-};
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
-  });
-}
-
-
-/**
- * Operação de consulta das parcelas do empréstimo.
+ * Operação de consulta de condições disponíveis de parcelamento do empréstimo.
  *
  * authenticationType String Tipo de autenticação requerida.
  * clientId String Identificação do cliente.
@@ -319,12 +234,12 @@ exports.consultaParcelasEmprestimoPOST = function(authenticationType,clientId,to
   },
   "InfTransacao" : {
     "cdProc" : "029100",
-    "mensagemCliente" : "Não foi possível validar o cartão.",
+    "mensagemCliente" : "",
     "nsu" : "000080247206",
     "codMoeda" : "986",
     "codOperadora" : "00000000914",
     "dataLocal" : "1122",
-    "errorMessage" : "Cartão inválido.",
+    "errorMessage" : "",
     "valor" : "5000",
     "horaLocal" : "151032",
     "nsuResposta" : "820",
@@ -349,7 +264,7 @@ exports.consultaParcelasEmprestimoPOST = function(authenticationType,clientId,to
 
 
 /**
- * Operação de consulta dos possíveis produtos de recarga de um cartão de transporte ou pré-pago. Pega o número e operadora do cartão para ser verificado na requisição, não usa a autenticação ou identificação.
+ * Operação de consulta dos possíveis produtos de recarga de transporte para o cartão informado pelo cliente. Operação relacionada a transação consultaProdutosRecarga.
  *
  * authenticationType String Tipo de autenticação requerida.
  * clientId String Identificação do cliente.
@@ -363,12 +278,12 @@ exports.consultaProdutosRecargaPOST = function(authenticationType,clientId,token
     examples['application/json'] = {
   "InfTransacao" : {
     "cdProc" : "029100",
-    "mensagemCliente" : "Não foi possível validar o cartão.",
+    "mensagemCliente" : "",
     "nsu" : "000080247206",
     "codMoeda" : "986",
     "codOperadora" : "00000000914",
     "dataLocal" : "1122",
-    "errorMessage" : "Cartão inválido.",
+    "errorMessage" : "",
     "valor" : "5000",
     "horaLocal" : "151032",
     "nsuResposta" : "820",
@@ -399,7 +314,7 @@ exports.consultaProdutosRecargaPOST = function(authenticationType,clientId,token
 
 
 /**
- * Operação de consulta de saque, para verificar se o saque poderá ser efetuado.
+ * Operação de consulta para saque de moeda estrangeira (câmbio). Efetuada para autenticar cliente, retornando valorde saque, moeda e dados adicionais.
  *
  * authenticationType String Tipo de autenticação requerida.
  * clientId String Identificação do cliente.
@@ -413,12 +328,12 @@ exports.consultaSaquePOST = function(authenticationType,clientId,token,body) {
     examples['application/json'] = {
   "InfTransacao" : {
     "cdProc" : "029100",
-    "mensagemCliente" : "Não foi possível validar o cartão.",
+    "mensagemCliente" : "",
     "nsu" : "000080247206",
     "codMoeda" : "986",
     "codOperadora" : "00000000914",
     "dataLocal" : "1122",
-    "errorMessage" : "Cartão inválido.",
+    "errorMessage" : "",
     "valor" : "5000",
     "horaLocal" : "151032",
     "nsuResposta" : "820",
@@ -426,11 +341,11 @@ exports.consultaSaquePOST = function(authenticationType,clientId,token,body) {
   },
   "InfConsultaSaque" : {
     "perguntas" : [ {
-      "pergunta" : "INFORME OS 3 PRIMEIROS DIGITOS DO SEU CPF",
+      "pergunta" : "Informe os 3 primeiros dígitos do seu CPF",
       "tamResposta" : "3",
       "id" : "1"
     }, {
-      "pergunta" : "INFORME OS 3 PRIMEIROS DIGITOS DO SEU CPF",
+      "pergunta" : "Informe os 3 primeiros dígitos do seu CPF",
       "tamResposta" : "3",
       "id" : "1"
     } ],
@@ -452,7 +367,7 @@ exports.consultaSaquePOST = function(authenticationType,clientId,token,body) {
 
 
 /**
- * Operação de consulta de taxas dinâmicas, requisitado antes de depósito ou saque.
+ * Operação de consulta de taxas dinâmicas, requisitado antes de depósito ou saque de carteira de digital.
  *
  * authenticationType String Tipo de autenticação requerida.
  * clientId String Identificação do cliente.
@@ -497,12 +412,12 @@ exports.consultaTaxasPOST = function(authenticationType,clientId,token,body) {
   },
   "InfTransacao" : {
     "cdProc" : "029100",
-    "mensagemCliente" : "Não foi possível validar o cartão.",
+    "mensagemCliente" : "",
     "nsu" : "000080247206",
     "codMoeda" : "986",
     "codOperadora" : "00000000914",
     "dataLocal" : "1122",
-    "errorMessage" : "Cartão inválido.",
+    "errorMessage" : "",
     "valor" : "5000",
     "horaLocal" : "151032",
     "nsuResposta" : "820",
@@ -541,12 +456,12 @@ exports.consultaTitulosCapitalizacaoPOST = function(authenticationType,clientId,
     examples['application/json'] = {
   "InfTransacao" : {
     "cdProc" : "029100",
-    "mensagemCliente" : "Não foi possível validar o cartão.",
+    "mensagemCliente" : "",
     "nsu" : "000080247206",
     "codMoeda" : "986",
     "codOperadora" : "00000000914",
     "dataLocal" : "1122",
-    "errorMessage" : "Cartão inválido.",
+    "errorMessage" : "",
     "valor" : "5000",
     "horaLocal" : "151032",
     "nsuResposta" : "820",
@@ -607,7 +522,7 @@ exports.consultaTitulosCapitalizacaoPOST = function(authenticationType,clientId,
 
 
 /**
- * Operação de consulta de todos os possíveis produtos e valores de recarga de cartão de transporte ou pré-pagos existentes na rede. Traz uma lista de todos os produtos e seus valores para depois serem filtrados pelo cartão do usuário.
+ * Operação de consulta dos produtos de recarga de cartão pré-pago de transporte. Traz uma lista de todas as operadoras e seus respectivos produtos/valores.
  *
  * authenticationType String Tipo de autenticação requerida.
  * clientId String Identificação do cliente.
@@ -621,12 +536,12 @@ exports.consultaValoresRecargaPOST = function(authenticationType,clientId,token,
     examples['application/json'] = {
   "InfTransacao" : {
     "cdProc" : "029100",
-    "mensagemCliente" : "Não foi possível validar o cartão.",
+    "mensagemCliente" : "",
     "nsu" : "000080247206",
     "codMoeda" : "986",
     "codOperadora" : "00000000914",
     "dataLocal" : "1122",
-    "errorMessage" : "Cartão inválido.",
+    "errorMessage" : "",
     "valor" : "5000",
     "horaLocal" : "151032",
     "nsuResposta" : "820",
@@ -744,7 +659,7 @@ exports.depositoConfPOST = function(authenticationType,clientId,token,body) {
 
 
 /**
- * Operação de depósito, cartão é opcional nesta operação.
+ * Operação de depósito em dinheiro, cartão é opcional nesta operação.
  *
  * authenticationType String Tipo de autenticação requerida.
  * clientId String Identificação do cliente.
@@ -758,12 +673,12 @@ exports.depositoPOST = function(authenticationType,clientId,token,body) {
     examples['application/json'] = {
   "InfTransacao" : {
     "cdProc" : "029100",
-    "mensagemCliente" : "Não foi possível validar o cartão.",
+    "mensagemCliente" : "",
     "nsu" : "000080247206",
     "codMoeda" : "986",
     "codOperadora" : "00000000914",
     "dataLocal" : "1122",
-    "errorMessage" : "Cartão inválido.",
+    "errorMessage" : "",
     "valor" : "5000",
     "horaLocal" : "151032",
     "nsuResposta" : "820",
@@ -773,7 +688,7 @@ exports.depositoPOST = function(authenticationType,clientId,token,body) {
     "hash" : "hash"
   },
   "InfDeposito" : {
-    "recibo" : "              DEPÓSITO EFETIVADO               @                036200005433591                @               13/10/2018  20:24               @            BANCO: BANCO FAVORECIDO            @                AGENCIA: 4029                  @              CONTA: 0082348296                @           VALOR DO DEPÓSITO: R$ 48,00         "
+    "recibo" : "@            COMPROVANTE DE DEPOSITO             @------------------------------------------------@ Agencia....: 0101                              @ Conta......: 74414-0                           @ Nome.......: EUGENIO SCHMITT COELHO            @@------------------------------------------------@ Favorecido: EUGENIO SCHMITT COELHO             @ Agencia Destino:                           0101@ Conta Destino:         Conta Corrente - 74414-0@@Tipo            NSU                        Valor@Dinheiro        697841472523             R$20,00@------------------------------------------------@               SAC - 0800 123 4569@      SAC - DEF. AUDITIVO - 0800 123 4568@            OUVIDORIA - 0800 123 4567@@             www.siteparceiro.com.br@"
   },
   "Terminal" : {
     "codEstab" : "000000000742673",
@@ -821,12 +736,12 @@ exports.emprestimoPOST = function(authenticationType,clientId,token,body) {
     examples['application/json'] = {
   "InfTransacao" : {
     "cdProc" : "029100",
-    "mensagemCliente" : "Não foi possível validar o cartão.",
+    "mensagemCliente" : "",
     "nsu" : "000080247206",
     "codMoeda" : "986",
     "codOperadora" : "00000000914",
     "dataLocal" : "1122",
-    "errorMessage" : "Cartão inválido.",
+    "errorMessage" : "",
     "valor" : "5000",
     "horaLocal" : "151032",
     "nsuResposta" : "820",
@@ -880,16 +795,16 @@ exports.extratoPOST = function(authenticationType,clientId,token,body) {
     var examples = {};
     examples['application/json'] = {
   "InfExtrato" : {
-    "recibo" : "                EXTRATO DE CONTA               @                036200005433591                @               13/10/2018  20:24               @                 BANCO: BANCO                  @                AGENCIA: 4029                  @              CONTA: 0082348296                @           DATA INICIAL: 12/10/2018            @           VALOR INICIAL: R$ 100,00            @            MOVIMENTACAO: R$ -50,00            @              VALOR FINAL: R$ 50,00            @             DATA FINAL: 13/10/2018            "
+    "recibo" : "@                EXTRATO DE CONTA                @                                                @ CLIENTE: EUGENIO SCHMITT COELHO                @ AGENCIA: 0150 CONTA: 03.013689.0-1             @ SALDO DA CONTA                                 @ SALDO DEVEDOR...............R$          450,35-@ TOTAL DEVEDOR...............R$          450,35-@ LIMITE DA CONTA.............R$          100,00 @ LIMITE DA CONTA DISPONIVEL..R$          350,35-@--------- MOVIMENTOS DA CONTA CORRENTE ---------@@    SALDO ANT EM 18/01/2019               93,56-@    MOVIMENTOS JAN/2019                         @    COMPRAS           201218              85,68-@    COMPRAS           201218             139,14-@    COMPRAS           211218              20,70-@    COMPRAS           211218              39,00-@    SALDO NA DATA                        378,08-@"
   },
   "InfTransacao" : {
     "cdProc" : "029100",
-    "mensagemCliente" : "Não foi possível validar o cartão.",
+    "mensagemCliente" : "",
     "nsu" : "000080247206",
     "codMoeda" : "986",
     "codOperadora" : "00000000914",
     "dataLocal" : "1122",
-    "errorMessage" : "Cartão inválido.",
+    "errorMessage" : "",
     "valor" : "5000",
     "horaLocal" : "151032",
     "nsuResposta" : "820",
@@ -914,7 +829,7 @@ exports.extratoPOST = function(authenticationType,clientId,token,body) {
 
 
 /**
- * Operação de identificação de cliente através do cartão.
+ * Operação de identificação do cliente e informações adicionais de sua conta.
  *
  * authenticationType String Tipo de autenticação requerida.
  * clientId String Identificação do cliente.
@@ -928,50 +843,50 @@ exports.identificacaoPOST = function(authenticationType,clientId,token,body) {
     examples['application/json'] = {
   "InfIdentificacao" : {
     "pedirToken" : "01",
-    "frase" : "Gere um token pelo Unicred Mobile e digite-o:",
+    "frase" : "Informe o token gerado em seu app:",
     "perguntas" : [ {
-      "pergunta" : "Qual a sua senha?",
-      "resposta" : "mimimi",
-      "tamResposta" : "6",
+      "pergunta" : "Qual é o dia de seu aniversário?",
+      "resposta" : "",
+      "tamResposta" : "2",
       "id" : "1"
     }, {
-      "pergunta" : "Qual a sua senha?",
-      "resposta" : "mimimi",
-      "tamResposta" : "6",
+      "pergunta" : "Qual é o dia de seu aniversário?",
+      "resposta" : "",
+      "tamResposta" : "2",
       "id" : "1"
     } ],
     "idPositiva" : [ {
-      "pos8" : "A-C-D-3",
+      "pos8" : "Qab-Wb-Ie-Ewi",
       "idTela" : "1",
-      "pos4" : "A-C-D-3",
-      "pos5" : "A-C-D-3",
-      "pos6" : "A-C-D-3",
-      "pos7" : "A-C-D-3",
-      "pos1" : "A-C-D-3",
-      "pos2" : "A-C-D-3",
-      "pos3" : "A-C-D-3"
+      "pos4" : "Qab-Wb-Ie-Ewi",
+      "pos5" : "Qab-Wb-Ie-Ewi",
+      "pos6" : "Qab-Wb-Ie-Ewi",
+      "pos7" : "Qab-Wb-Ie-Ewi",
+      "pos1" : "Qab-Wb-Ie-Ewi",
+      "pos2" : "Qab-Wb-Ie-Ewi",
+      "pos3" : "Qab-Wb-Ie-Ewi"
     }, {
-      "pos8" : "A-C-D-3",
+      "pos8" : "Qab-Wb-Ie-Ewi",
       "idTela" : "1",
-      "pos4" : "A-C-D-3",
-      "pos5" : "A-C-D-3",
-      "pos6" : "A-C-D-3",
-      "pos7" : "A-C-D-3",
-      "pos1" : "A-C-D-3",
-      "pos2" : "A-C-D-3",
-      "pos3" : "A-C-D-3"
+      "pos4" : "Qab-Wb-Ie-Ewi",
+      "pos5" : "Qab-Wb-Ie-Ewi",
+      "pos6" : "Qab-Wb-Ie-Ewi",
+      "pos7" : "Qab-Wb-Ie-Ewi",
+      "pos1" : "Qab-Wb-Ie-Ewi",
+      "pos2" : "Qab-Wb-Ie-Ewi",
+      "pos3" : "Qab-Wb-Ie-Ewi"
     } ],
     "transacValidas" : "068101068010",
     "saldo" : "000000005000"
   },
   "InfTransacao" : {
     "cdProc" : "029100",
-    "mensagemCliente" : "Não foi possível validar o cartão.",
+    "mensagemCliente" : "",
     "nsu" : "000080247206",
     "codMoeda" : "986",
     "codOperadora" : "00000000914",
     "dataLocal" : "1122",
-    "errorMessage" : "Cartão inválido.",
+    "errorMessage" : "",
     "valor" : "5000",
     "horaLocal" : "151032",
     "nsuResposta" : "820",
@@ -996,77 +911,7 @@ exports.identificacaoPOST = function(authenticationType,clientId,token,body) {
 
 
 /**
- * Confirmação de operação de pagamento ou agendamento de pagamento.
- *
- * authenticationType String Tipo de autenticação requerida.
- * clientId String Identificação do cliente.
- * token String Chave para validação do acesso ao serviço.
- * body TransacConf Requisição de confirmação de operação de pagamento ou agendamento de pagamento.
- * no response value expected for this operation
- **/
-exports.pagamentoConfPOST = function(authenticationType,clientId,token,body) {
-  return new Promise(function(resolve, reject) {
-    resolve();
-  });
-}
-
-
-/**
- * Operação de pagamento ou agendamento de pagamento.
- *
- * authenticationType String Tipo de autenticação requerida.
- * clientId String Identificação do cliente.
- * token String Chave para validação do acesso ao serviço.
- * body PagamentoReq Requisição de operação de pagamento ou agendamento de pagamento.
- * returns pagamentoResp
- **/
-exports.pagamentoPOST = function(authenticationType,clientId,token,body) {
-  return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = {
-  "InfPagamentoResp" : {
-    "recibo" : "",
-    "qtdeViasComprovante" : "1",
-    "dataPagamento" : "20181122",
-    "desconto" : "000000000499",
-    "mensagem" : "mensagem",
-    "valor" : "000000005000",
-    "sistemaCobranca" : "01",
-    "cedente" : "Cedente"
-  },
-  "InfTransacao" : {
-    "cdProc" : "029100",
-    "mensagemCliente" : "Não foi possível validar o cartão.",
-    "nsu" : "000080247206",
-    "codMoeda" : "986",
-    "codOperadora" : "00000000914",
-    "dataLocal" : "1122",
-    "errorMessage" : "Cartão inválido.",
-    "valor" : "5000",
-    "horaLocal" : "151032",
-    "nsuResposta" : "820",
-    "dataHora" : "1122151032"
-  },
-  "Cripto" : {
-    "hash" : "hash"
-  },
-  "Terminal" : {
-    "codEstab" : "000000000742673",
-    "tipo" : "008",
-    "id" : "05100004"
-  }
-};
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
-  });
-}
-
-
-/**
- * Operação de confirmação de recarga de cartão de transporte ou pré-pago.
+ * Operação de confirmação de recarga de cartão pré-pago de transporte (bilhetagem).
  *
  * authenticationType String Tipo de autenticação requerida.
  * clientId String Identificação do cliente.
@@ -1082,7 +927,7 @@ exports.recargaConfPOST = function(authenticationType,clientId,token,body) {
 
 
 /**
- * Operação de recarga de cartão de transporte ou pré-pago.
+ * Operação de recarga de cartão pré-pago de transporte (bilhetagem) em dinheiro.
  *
  * authenticationType String Tipo de autenticação requerida.
  * clientId String Identificação do cliente.
@@ -1095,16 +940,16 @@ exports.recargaPOST = function(authenticationType,clientId,token,body) {
     var examples = {};
     examples['application/json'] = {
   "InfRecarga" : {
-    "recibo" : "             TEU BILHETE ANTECIPADO             @                036200005433591                @               13/10/2018  20:24               @           VALOR DA RECARGA: R$ 48,00           @                 TAXAS: R$ 2,00                 @              TOTAL PAGO: R$ 50,00              @   OS CRÉDITOS ADQUIRIDOS ESTARÃO DISPONÍVEIS   @      NOS VALIDADORES DOS ÔNIBUS DA REGIÃO      @     METROPOLITANA QUE ACEITAM O CARTÃO TEU     @ OU NAS CATRACAS DO METRÔ, NOS SEGUINTES PRAZOS @            RECARGAS ATÉ O MEIO DIA:            @ CRÉDITOS DISPONÍVEIS NO DIA SEGUINTE DA COMPRA @           RECARGAS APÓS O MEIO DIA:           @   CRÉDITOS DISPONÍVEIS EM 48H APÓS A COMPRA   "
+    "recibo" : "@             TEU BILHETE ANTECIPADO             @                                                @ CARTAO: 036200005433591                        @ VALOR DA RECARGA: R$ 48,00                     @ TAXAS: R$ 2,00                                 @ TOTAL PAGO: R$ 50,00                           "
   },
   "InfTransacao" : {
     "cdProc" : "029100",
-    "mensagemCliente" : "Não foi possível validar o cartão.",
+    "mensagemCliente" : "",
     "nsu" : "000080247206",
     "codMoeda" : "986",
     "codOperadora" : "00000000914",
     "dataLocal" : "1122",
-    "errorMessage" : "Cartão inválido.",
+    "errorMessage" : "",
     "valor" : "5000",
     "horaLocal" : "151032",
     "nsuResposta" : "820",
@@ -1145,7 +990,7 @@ exports.saldoConfPOST = function(authenticationType,clientId,token,body) {
 
 
 /**
- * Operação de consulta de saldo.
+ * Operação de consulta do valor de saldo disponível em conta.
  *
  * authenticationType String Tipo de autenticação requerida.
  * clientId String Identificação do cliente.
@@ -1158,16 +1003,16 @@ exports.saldoPOST = function(authenticationType,clientId,token,body) {
     var examples = {};
     examples['application/json'] = {
   "InfSaldo" : {
-    "recibo" : "                 SALDO DE CONTA                @                036200005433591                @               13/10/2018  20:24               @                 BANCO: BANCO                  @                AGENCIA: 4029                  @              CONTA: 0082348296                @           VALOR NA DATA: R$ 50,00             "
+    "recibo" : "                 SALDO EM CONTA                @                036200005433591                @               13/10/2018  20:24                @          BANCO: BANCO SAQUE E PAGUE           @          AGENCIA: 4029                        @          CONTA: 0082348296                    @          VALOR NA DATA: R$ 50,00              "
   },
   "InfTransacao" : {
     "cdProc" : "029100",
-    "mensagemCliente" : "Não foi possível validar o cartão.",
+    "mensagemCliente" : "",
     "nsu" : "000080247206",
     "codMoeda" : "986",
     "codOperadora" : "00000000914",
     "dataLocal" : "1122",
-    "errorMessage" : "Cartão inválido.",
+    "errorMessage" : "",
     "valor" : "5000",
     "horaLocal" : "151032",
     "nsuResposta" : "820",
@@ -1208,7 +1053,7 @@ exports.saqueConfPOST = function(authenticationType,clientId,token,body) {
 
 
 /**
- * Operação de saque.
+ * Operação de saque de dinheiro em moeda local ou estrangeira.
  *
  * authenticationType String Tipo de autenticação requerida.
  * clientId String Identificação do cliente.
@@ -1221,16 +1066,16 @@ exports.saquePOST = function(authenticationType,clientId,token,body) {
     var examples = {};
     examples['application/json'] = {
   "InfSaque" : {
-    "recibo" : "                 SAQUE DE CONTA                 @                036200005433591                @               13/10/2018  20:24               @                 BANCO: BANCO                  @                AGENCIA: 4029                  @              CONTA: 0082348296                @               VALOR: R$ 50,00                 "
+    "recibo" : "                 SAQUE DE CONTA                 @                036200005433591                @               13/10/2018  20:24               @                 BANCO: BANCO                  @                AGENCIA: 4029                  @              CONTA: 0082348296                @               %VALOR%: R$ 50,00                 "
   },
   "InfTransacao" : {
     "cdProc" : "029100",
-    "mensagemCliente" : "Não foi possível validar o cartão.",
+    "mensagemCliente" : "",
     "nsu" : "000080247206",
     "codMoeda" : "986",
     "codOperadora" : "00000000914",
     "dataLocal" : "1122",
-    "errorMessage" : "Cartão inválido.",
+    "errorMessage" : "",
     "valor" : "5000",
     "horaLocal" : "151032",
     "nsuResposta" : "820",
