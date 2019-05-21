@@ -1601,9 +1601,12 @@ definitions:
         description: "Hash de todos os campos que compõem a transação."
       idPositiva:
         type: "string"
-        description: "Identificação positiva informada pelo usuário, caso utilizada.\
-          \ Corresponde às posições (botões) selecionadas pelo usuário em cada tela\
-          \ apresentada. Pode ser criptografada ou não."
+        example: "42500000"
+        description: "Identificação positiva informada pelo usuário, caso utilizada,\
+          \ com 8 dígitos corresponde às posições (botões) em cada tela apresentada.\
+          \ Caso a senha tenha menos de oito sílabas, são adicionados zeros para as\
+          \ telas não existentes. Pode ser criptografada ou não."
+        pattern: "^\\d{8}$"
       respostaCliente:
         $ref: "#/definitions/cripto_respostaCliente"
       senha:
@@ -1847,32 +1850,30 @@ definitions:
         frase: "Informe o token gerado em seu app:"
         perguntas:
         - pergunta: "Qual é o dia de seu aniversário?"
-          resposta: ""
           tamResposta: "2"
           id: "1"
         - pergunta: "Qual é o dia de seu aniversário?"
-          resposta: ""
           tamResposta: "2"
           id: "1"
         idPositiva:
-        - pos8: "Qab-Wb-Ie-Ewi"
+        - pos8: "4E-8G-1P"
           idTela: "1"
-          pos4: "Qab-Wb-Ie-Ewi"
-          pos5: "Qab-Wb-Ie-Ewi"
-          pos6: "Qab-Wb-Ie-Ewi"
-          pos7: "Qab-Wb-Ie-Ewi"
-          pos1: "Qab-Wb-Ie-Ewi"
-          pos2: "Qab-Wb-Ie-Ewi"
-          pos3: "Qab-Wb-Ie-Ewi"
-        - pos8: "Qab-Wb-Ie-Ewi"
+          pos4: "P1-G8-E4"
+          pos5: "REG SOS"
+          pos6: "EN/UQ/AM"
+          pos7: "69 05 41"
+          pos1: "SOS GER"
+          pos2: "MA/QU/NE"
+          pos3: "14 50 96"
+        - pos8: "4E-8G-1P"
           idTela: "1"
-          pos4: "Qab-Wb-Ie-Ewi"
-          pos5: "Qab-Wb-Ie-Ewi"
-          pos6: "Qab-Wb-Ie-Ewi"
-          pos7: "Qab-Wb-Ie-Ewi"
-          pos1: "Qab-Wb-Ie-Ewi"
-          pos2: "Qab-Wb-Ie-Ewi"
-          pos3: "Qab-Wb-Ie-Ewi"
+          pos4: "P1-G8-E4"
+          pos5: "REG SOS"
+          pos6: "EN/UQ/AM"
+          pos7: "69 05 41"
+          pos1: "SOS GER"
+          pos2: "MA/QU/NE"
+          pos3: "14 50 96"
         transacValidas: "068101068010"
         saldo: "000000005000"
       InfTransacao:
@@ -2238,7 +2239,8 @@ definitions:
       perguntas:
         type: "array"
         description: "Lista de possíveis perguntas a serem mostradas para o usuário\
-          \ para autorizar o saque."
+          \ para autorizar o saque. A cada saque, uma pergunta é selecionada aleatoriamente\
+          \ para ser apresentada."
         items:
           $ref: "#/definitions/withdrawConsultQuestionObj"
     description: "Informações da resposta de requisição de consulta de saque."
@@ -2251,31 +2253,6 @@ definitions:
         tamResposta: "3"
         id: "1"
       nomeCliente: "Carl Edward Sagan"
-  withdrawConsultQuestionObj:
-    type: "object"
-    required:
-    - "id"
-    - "pergunta"
-    - "tamResposta"
-    properties:
-      id:
-        type: "string"
-        example: "1"
-        description: "Identificador da pergunta."
-        pattern: "^\\d+$"
-      pergunta:
-        type: "string"
-        example: "Informe os 3 primeiros dígitos do seu CPF"
-        description: "Pergunta de identificação."
-      tamResposta:
-        type: "string"
-        example: "3"
-        description: "Tamanho da resposta da pergunta."
-        pattern: "^\\d+$"
-    example:
-      pergunta: "Informe os 3 primeiros dígitos do seu CPF"
-      tamResposta: "3"
-      id: "1"
   infConsultaTaxasResp:
     type: "object"
     required:
@@ -2940,130 +2917,40 @@ definitions:
         description: "Códigos de processamento das transações habilitadas para o cliente\
           \ concatenados (6 dígitos cada código)."
         pattern: "^(?:\\d{6})*$"
-    description: "Informações da resposta da requisição de identificação."
+    description: "Informações da resposta da requisição de identificação. Contém informaç\
+      ões de como o usuário deve se identificar durante alguma futura transação. Usuá\
+      rio pode usar uma pergunta, token ou senha de sílabas."
     example:
       pedirToken: "01"
       frase: "Informe o token gerado em seu app:"
       perguntas:
       - pergunta: "Qual é o dia de seu aniversário?"
-        resposta: ""
         tamResposta: "2"
         id: "1"
       - pergunta: "Qual é o dia de seu aniversário?"
-        resposta: ""
         tamResposta: "2"
         id: "1"
       idPositiva:
-      - pos8: "Qab-Wb-Ie-Ewi"
+      - pos8: "4E-8G-1P"
         idTela: "1"
-        pos4: "Qab-Wb-Ie-Ewi"
-        pos5: "Qab-Wb-Ie-Ewi"
-        pos6: "Qab-Wb-Ie-Ewi"
-        pos7: "Qab-Wb-Ie-Ewi"
-        pos1: "Qab-Wb-Ie-Ewi"
-        pos2: "Qab-Wb-Ie-Ewi"
-        pos3: "Qab-Wb-Ie-Ewi"
-      - pos8: "Qab-Wb-Ie-Ewi"
+        pos4: "P1-G8-E4"
+        pos5: "REG SOS"
+        pos6: "EN/UQ/AM"
+        pos7: "69 05 41"
+        pos1: "SOS GER"
+        pos2: "MA/QU/NE"
+        pos3: "14 50 96"
+      - pos8: "4E-8G-1P"
         idTela: "1"
-        pos4: "Qab-Wb-Ie-Ewi"
-        pos5: "Qab-Wb-Ie-Ewi"
-        pos6: "Qab-Wb-Ie-Ewi"
-        pos7: "Qab-Wb-Ie-Ewi"
-        pos1: "Qab-Wb-Ie-Ewi"
-        pos2: "Qab-Wb-Ie-Ewi"
-        pos3: "Qab-Wb-Ie-Ewi"
+        pos4: "P1-G8-E4"
+        pos5: "REG SOS"
+        pos6: "EN/UQ/AM"
+        pos7: "69 05 41"
+        pos1: "SOS GER"
+        pos2: "MA/QU/NE"
+        pos3: "14 50 96"
       transacValidas: "068101068010"
       saldo: "000000005000"
-  positiveIdScreenObj:
-    type: "object"
-    required:
-    - "idTela"
-    - "pos1"
-    - "pos2"
-    - "pos3"
-    - "pos4"
-    properties:
-      idTela:
-        type: "string"
-        example: "1"
-        description: "Identificador da tela."
-        pattern: "^\\d+$"
-      pos1:
-        type: "string"
-        example: "Qab-Wb-Ie-Ewi"
-        pattern: "^.{0,19}$"
-      pos2:
-        type: "string"
-        example: "Qab-Wb-Ie-Ewi"
-        pattern: "^.{0,19}$"
-      pos3:
-        type: "string"
-        example: "Qab-Wb-Ie-Ewi"
-        pattern: "^.{0,19}$"
-      pos4:
-        type: "string"
-        example: "Qab-Wb-Ie-Ewi"
-        pattern: "^.{0,19}$"
-      pos5:
-        type: "string"
-        example: "Qab-Wb-Ie-Ewi"
-        pattern: "^.{0,19}$"
-      pos6:
-        type: "string"
-        example: "Qab-Wb-Ie-Ewi"
-        pattern: "^.{0,19}$"
-      pos7:
-        type: "string"
-        example: "Qab-Wb-Ie-Ewi"
-        pattern: "^.{0,19}$"
-      pos8:
-        type: "string"
-        example: "Qab-Wb-Ie-Ewi"
-        pattern: "^.{0,19}$"
-    description: "Lista de conjuntos de letras/sílabas a serem mostradas nas teclas\
-      \ em cada tela (até 19 caracteres por tecla). A quantidade de telas da lista\
-      \ será igual ao número de dígitos esperados da identificicação positiva."
-    example:
-      pos8: "Qab-Wb-Ie-Ewi"
-      idTela: "1"
-      pos4: "Qab-Wb-Ie-Ewi"
-      pos5: "Qab-Wb-Ie-Ewi"
-      pos6: "Qab-Wb-Ie-Ewi"
-      pos7: "Qab-Wb-Ie-Ewi"
-      pos1: "Qab-Wb-Ie-Ewi"
-      pos2: "Qab-Wb-Ie-Ewi"
-      pos3: "Qab-Wb-Ie-Ewi"
-  positiveIdQuestionsObj:
-    type: "object"
-    required:
-    - "id"
-    - "pergunta"
-    - "tamResposta"
-    properties:
-      id:
-        type: "string"
-        example: "1"
-        description: "Identificador da pergunta."
-        pattern: "^\\d+$"
-      pergunta:
-        type: "string"
-        example: "Qual é o dia de seu aniversário?"
-        description: "Pergunta a ser exibida ao usuário."
-      resposta:
-        type: "string"
-        example: ""
-        description: "Resposta da pergunta (campo preenchido na requisição da transaç\
-          ão financeira associada)."
-      tamResposta:
-        type: "string"
-        example: "2"
-        description: "Número de dígitos esperado para a resposta."
-        pattern: "^\\d+$"
-    example:
-      pergunta: "Qual é o dia de seu aniversário?"
-      resposta: ""
-      tamResposta: "2"
-      id: "1"
   infRecargaReq:
     type: "object"
     required:
@@ -3354,12 +3241,12 @@ definitions:
         type: "string"
         example: "986"
         description: "Igual à requisição com exceção da transação de consultaSaque."
-        pattern: "^\\d{3}"
+        pattern: "^\\d{3}$"
       codOperadora:
         type: "string"
         example: "00000000914"
         description: "Igual à requisição."
-        pattern: "^\\d{11}"
+        pattern: "^\\d{11}$"
       dataHora:
         type: "string"
         example: "1122151032"
@@ -3400,7 +3287,7 @@ definitions:
         description: "Igual à requisição com exceção da transação de consultaSaldo\
           \ e consultaSaque."
         pattern: "^\\d+$"
-    description: "Informações sobre a resposta da resquisição de transação."
+    description: "Informações sobre a resposta da requisição de transação."
     example:
       cdProc: "029100"
       mensagemCliente: ""
@@ -3413,6 +3300,94 @@ definitions:
       horaLocal: "151032"
       nsuResposta: "820"
       dataHora: "1122151032"
+  positiveIdQuestionsObj:
+    type: "object"
+    required:
+    - "id"
+    - "pergunta"
+    - "tamResposta"
+    properties:
+      id:
+        type: "string"
+        example: "1"
+        description: "Identificador da pergunta."
+        pattern: "^\\d+$"
+      pergunta:
+        type: "string"
+        example: "Qual é o dia de seu aniversário?"
+        description: "Pergunta a ser exibida ao usuário."
+      tamResposta:
+        type: "string"
+        example: "2"
+        description: "Número de dígitos esperado para a resposta."
+        pattern: "^\\d+$"
+    description: "Pergunta mostrada ao usuário para se identificar antes de uma transaç\
+      ão. Esta pergunta é selecionada aleatoriamente através da lista mandada na requisiç\
+      ão de identificação."
+    example:
+      pergunta: "Qual é o dia de seu aniversário?"
+      tamResposta: "2"
+      id: "1"
+  positiveIdScreenObj:
+    type: "object"
+    required:
+    - "idTela"
+    - "pos1"
+    - "pos2"
+    - "pos3"
+    - "pos4"
+    properties:
+      idTela:
+        type: "string"
+        example: "1"
+        description: "Identificador da tela."
+        pattern: "^\\d+$"
+      pos1:
+        type: "string"
+        example: "SOS GER"
+        pattern: "^.{3,19}$"
+      pos2:
+        type: "string"
+        example: "MA/QU/NE"
+        pattern: "^.{3,19}$"
+      pos3:
+        type: "string"
+        example: "14 50 96"
+        pattern: "^.{3,19}$"
+      pos4:
+        type: "string"
+        example: "P1-G8-E4"
+        pattern: "^.{3,19}$"
+      pos5:
+        type: "string"
+        example: "REG SOS"
+        pattern: "^.{3,19}$"
+      pos6:
+        type: "string"
+        example: "EN/UQ/AM"
+        pattern: "^.{3,19}$"
+      pos7:
+        type: "string"
+        example: "69 05 41"
+        pattern: "^.{3,19}$"
+      pos8:
+        type: "string"
+        example: "4E-8G-1P"
+        pattern: "^.{3,19}$"
+    description: "Lista de conjuntos de letras/sílabas para o usuário selecionar,\
+      \ antes de uma transação. Cada posição é análoga a um botão mostrado, em posiç\
+      ão aleatória, nesta tela. Contudo a resposta mandada na transação manterá a\
+      \ posição original retornada por este objeto."
+    example:
+      pos8: "4E-8G-1P"
+      idTela: "1"
+      pos4: "P1-G8-E4"
+      pos5: "REG SOS"
+      pos6: "EN/UQ/AM"
+      pos7: "69 05 41"
+      pos1: "SOS GER"
+      pos2: "MA/QU/NE"
+      pos3: "14 50 96"
   recargaReq:
     type: "object"
     required:
@@ -3624,7 +3599,12 @@ definitions:
         $ref: "#/definitions/infTransacaoConf"
       Terminal:
         $ref: "#/definitions/terminal"
-  cripto_respostaCliente:
+  withdrawConsultQuestionObj:
+    type: "object"
+    required:
+    - "id"
+    - "pergunta"
+    - "tamResposta"
     properties:
       id:
         type: "string"
@@ -3633,13 +3613,41 @@ definitions:
         pattern: "^\\d+$"
       pergunta:
         type: "string"
-        example: ""
-        description: "Pergunta feita ao cliente (somente o id é prenchido)."
+        example: "Informe os 3 primeiros dígitos do seu CPF"
+        description: "Pergunta de identificação."
+      tamResposta:
+        type: "string"
+        example: "3"
+        description: "Tamanho da resposta da pergunta."
+        pattern: "^\\d+$"
+    description: "Pergunta mostrada ao usuário para se identificar antes do saque.\
+      \ Esta pergunta é selecionada aleatoriamente através da lista mandada na requisiç\
+      ão de identificação."
+    example:
+      pergunta: "Informe os 3 primeiros dígitos do seu CPF"
+      tamResposta: "3"
+      id: "1"
+  cripto_respostaCliente:
+    required:
+    - "id"
+    - "pergunta"
+    - "resposta"
+    properties:
+      id:
+        type: "string"
+        example: "1"
+        description: "Identificador da pergunta."
+        pattern: "^\\d+$"
+      pergunta:
+        type: "string"
+        example: "Qual o dia do seu aniversário?"
+        description: "Pergunta feita ao cliente (somente o id é preenchido)."
       resposta:
         type: "string"
-        example: "14"
+        example: "24"
         description: "Resposta da pergunta (dado criptografado)."
-    description: "Resposta do cliente à pergunta feita na identificação."
+    description: "Resposta do cliente à pergunta feita na identificação (somente respostas\
+      \ numéricas)."
   capitalizationBondObj_tema:
     properties:
       estilos:

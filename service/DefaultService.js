@@ -846,35 +846,33 @@ exports.identificacaoPOST = function(authenticationType,clientId,token,body) {
     "frase" : "Informe o token gerado em seu app:",
     "perguntas" : [ {
       "pergunta" : "Qual é o dia de seu aniversário?",
-      "resposta" : "",
       "tamResposta" : "2",
       "id" : "1"
     }, {
       "pergunta" : "Qual é o dia de seu aniversário?",
-      "resposta" : "",
       "tamResposta" : "2",
       "id" : "1"
     } ],
     "idPositiva" : [ {
-      "pos8" : "Qab-Wb-Ie-Ewi",
+      "pos8" : "4E-8G-1P",
       "idTela" : "1",
-      "pos4" : "Qab-Wb-Ie-Ewi",
-      "pos5" : "Qab-Wb-Ie-Ewi",
-      "pos6" : "Qab-Wb-Ie-Ewi",
-      "pos7" : "Qab-Wb-Ie-Ewi",
-      "pos1" : "Qab-Wb-Ie-Ewi",
-      "pos2" : "Qab-Wb-Ie-Ewi",
-      "pos3" : "Qab-Wb-Ie-Ewi"
+      "pos4" : "P1-G8-E4",
+      "pos5" : "REG SOS",
+      "pos6" : "EN/UQ/AM",
+      "pos7" : "69 05 41",
+      "pos1" : "SOS GER",
+      "pos2" : "MA/QU/NE",
+      "pos3" : "14 50 96"
     }, {
-      "pos8" : "Qab-Wb-Ie-Ewi",
+      "pos8" : "4E-8G-1P",
       "idTela" : "1",
-      "pos4" : "Qab-Wb-Ie-Ewi",
-      "pos5" : "Qab-Wb-Ie-Ewi",
-      "pos6" : "Qab-Wb-Ie-Ewi",
-      "pos7" : "Qab-Wb-Ie-Ewi",
-      "pos1" : "Qab-Wb-Ie-Ewi",
-      "pos2" : "Qab-Wb-Ie-Ewi",
-      "pos3" : "Qab-Wb-Ie-Ewi"
+      "pos4" : "P1-G8-E4",
+      "pos5" : "REG SOS",
+      "pos6" : "EN/UQ/AM",
+      "pos7" : "69 05 41",
+      "pos1" : "SOS GER",
+      "pos2" : "MA/QU/NE",
+      "pos3" : "14 50 96"
     } ],
     "transacValidas" : "068101068010",
     "saldo" : "000000005000"
