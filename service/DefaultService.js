@@ -844,6 +844,7 @@ exports.identificacaoPOST = function(authenticationType,clientId,token,body) {
   "InfIdentificacao" : {
     "pedirToken" : "01",
     "frase" : "Informe o token gerado em seu app:",
+    "numAgencia" : "4029",
     "perguntas" : [ {
       "pergunta" : "Qual é o dia de seu aniversário?",
       "tamResposta" : "2",
@@ -874,6 +875,7 @@ exports.identificacaoPOST = function(authenticationType,clientId,token,body) {
       "pos2" : "MA/QU/NE",
       "pos3" : "14 50 96"
     } ],
+    "numConta" : "0082348296",
     "transacValidas" : "068101068010",
     "saldo" : "000000005000"
   },
