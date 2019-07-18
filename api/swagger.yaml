@@ -9,13 +9,15 @@ info:
   contact:
     name: "Time Saque e Pague"
     url: "http://www.saqueepague.com.br"
+host: "virtserver.swaggerhub.com"
 basePath: "/saqueepague/SepTransaction/1.17.2"
 schemes:
 - "http"
+- "https"
 paths:
   /autenticacao:
     post:
-      description: "Operação de autenticacao de cliente sem cartão, chamada para retornar\
+      description: "Operação de autenticação de cliente sem cartão, chamada para retornar\
         \ o nome do cliente autenticado."
       operationId: "autenticacaoPOST"
       consumes:
@@ -52,6 +54,8 @@ paths:
           description: "Retorno com sucesso."
           schema:
             $ref: "#/definitions/autenticacaoResp"
+        401:
+          description: "Acesso não autorizado."
       x-swagger-router-controller: "Default"
   /compraTitulosCapitalizacao:
     post:
@@ -92,6 +96,8 @@ paths:
           description: "Retorno com sucesso."
           schema:
             $ref: "#/definitions/compraTitulosCapitalizacaoResp"
+        401:
+          description: "Acesso não autorizado."
       x-swagger-router-controller: "Default"
   /compraTitulosCapitalizacaoConf:
     post:
@@ -130,6 +136,8 @@ paths:
       responses:
         200:
           description: "Retorno com sucesso."
+        401:
+          description: "Acesso não autorizado."
       x-swagger-router-controller: "Default"
   /consultaConta:
     post:
@@ -171,6 +179,8 @@ paths:
           description: "Retorno com sucesso."
           schema:
             $ref: "#/definitions/consultaContaResp"
+        401:
+          description: "Acesso não autorizado."
       x-swagger-router-controller: "Default"
   /consultaLimitesEmprestimo:
     post:
@@ -212,6 +222,8 @@ paths:
           description: "Retorno com sucesso."
           schema:
             $ref: "#/definitions/consultaLimitesEmprestimoResp"
+        401:
+          description: "Acesso não autorizado."
       x-swagger-router-controller: "Default"
   /consultaParcelasEmprestimo:
     post:
@@ -252,6 +264,50 @@ paths:
           description: "Retorno com sucesso."
           schema:
             $ref: "#/definitions/consultaParcelasEmprestimoResp"
+        401:
+          description: "Acesso não autorizado."
+      x-swagger-router-controller: "Default"
+  /consultaPrePago:
+    post:
+      description: "Operação de consulta dos possíveis produtos de recarga de cartã\
+        o pré-pago. Operação relacionada a transação consultaPrePago."
+      operationId: "consultaPrePagoPOST"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "authenticationType"
+        in: "header"
+        description: "Tipo de autenticação requerida."
+        required: true
+        type: "string"
+        x-example: "auth2"
+      - name: "clientId"
+        in: "header"
+        description: "Identificação do cliente."
+        required: true
+        type: "string"
+        x-example: "prd-client"
+      - name: "token"
+        in: "header"
+        description: "Chave para validação do acesso ao serviço."
+        required: true
+        type: "string"
+        x-example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjYsInByb2ZpbGUiOltdLCJpYXQiOjE0OTkwOsY4NDV9.uR5WH3c2ZztGmZVCfcJPu-1ix1w-j7shJw_X_ZlFfAo"
+      - in: "body"
+        name: "body"
+        description: "Requisição de consulta produtos de recarga de cartão pré-pago."
+        required: true
+        schema:
+          $ref: "#/definitions/consultaPrePagoReq"
+      responses:
+        200:
+          description: "Retorno com sucesso."
+          schema:
+            $ref: "#/definitions/consultaPrePagoResp"
+        401:
+          description: "Acesso não autorizado."
       x-swagger-router-controller: "Default"
   /consultaProdutosRecarga:
     post:
@@ -293,6 +349,8 @@ paths:
           description: "Retorno com sucesso."
           schema:
             $ref: "#/definitions/consultaProdutosRecargaResp"
+        401:
+          description: "Acesso não autorizado."
       x-swagger-router-controller: "Default"
   /consultaSaque:
     post:
@@ -334,6 +392,8 @@ paths:
           description: "Retorno com sucesso."
           schema:
             $ref: "#/definitions/consultaSaqueResp"
+        401:
+          description: "Acesso não autorizado."
       x-swagger-router-controller: "Default"
   /consultaTaxas:
     post:
@@ -374,6 +434,8 @@ paths:
           description: "Retorno com sucesso."
           schema:
             $ref: "#/definitions/consultaTaxasResp"
+        401:
+          description: "Acesso não autorizado."
       x-swagger-router-controller: "Default"
   /consultaTitulosCapitalizacao:
     post:
@@ -414,6 +476,8 @@ paths:
           description: "Retorno com sucesso."
           schema:
             $ref: "#/definitions/consultaTitulosCapitalizacaoResp"
+        401:
+          description: "Acesso não autorizado."
       x-swagger-router-controller: "Default"
   /consultaValoresRecarga:
     post:
@@ -455,6 +519,8 @@ paths:
           description: "Retorno com sucesso."
           schema:
             $ref: "#/definitions/consultaValoresRecargaResp"
+        401:
+          description: "Acesso não autorizado."
       x-swagger-router-controller: "Default"
   /deposito:
     post:
@@ -495,6 +561,8 @@ paths:
           description: "Retorno com sucesso."
           schema:
             $ref: "#/definitions/depositoResp"
+        401:
+          description: "Acesso não autorizado."
       x-swagger-router-controller: "Default"
   /depositoConf:
     post:
@@ -532,6 +600,8 @@ paths:
       responses:
         200:
           description: "Retorno com sucesso."
+        401:
+          description: "Acesso não autorizado."
       x-swagger-router-controller: "Default"
   /emprestimo:
     post:
@@ -571,6 +641,8 @@ paths:
           description: "Retorno com sucesso."
           schema:
             $ref: "#/definitions/emprestimoResp"
+        401:
+          description: "Acesso não autorizado."
       x-swagger-router-controller: "Default"
   /emprestimoConf:
     post:
@@ -608,6 +680,8 @@ paths:
       responses:
         200:
           description: "Retorno com sucesso."
+        401:
+          description: "Acesso não autorizado."
       x-swagger-router-controller: "Default"
   /extrato:
     post:
@@ -647,6 +721,8 @@ paths:
           description: "Retorno com sucesso."
           schema:
             $ref: "#/definitions/extratoResp"
+        401:
+          description: "Acesso não autorizado."
       x-swagger-router-controller: "Default"
   /extratoConf:
     post:
@@ -684,6 +760,8 @@ paths:
       responses:
         200:
           description: "Retorno com sucesso."
+        401:
+          description: "Acesso não autorizado."
       x-swagger-router-controller: "Default"
   /identificacao:
     post:
@@ -724,6 +802,8 @@ paths:
           description: "Retorno com sucesso."
           schema:
             $ref: "#/definitions/identificacaoResp"
+        401:
+          description: "Acesso não autorizado."
       x-swagger-router-controller: "Default"
   /recarga:
     post:
@@ -764,6 +844,8 @@ paths:
           description: "Retorno com sucesso."
           schema:
             $ref: "#/definitions/recargaResp"
+        401:
+          description: "Acesso não autorizado."
       x-swagger-router-controller: "Default"
   /recargaConf:
     post:
@@ -802,6 +884,93 @@ paths:
       responses:
         200:
           description: "Retorno com sucesso."
+        401:
+          description: "Acesso não autorizado."
+      x-swagger-router-controller: "Default"
+  /recargaPrePago:
+    post:
+      description: "Operação de recarga de celular pré-pago."
+      operationId: "recargaPrePagoPOST"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "authenticationType"
+        in: "header"
+        description: "Tipo de autenticação requerida."
+        required: true
+        type: "string"
+        x-example: "auth2"
+      - name: "clientId"
+        in: "header"
+        description: "Identificação do cliente."
+        required: true
+        type: "string"
+        x-example: "prd-client"
+      - name: "token"
+        in: "header"
+        description: "Chave para validação do acesso ao serviço."
+        required: true
+        type: "string"
+        x-example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjYsInByb2ZpbGUiOltdLCJpYXQiOjE0OTkwOsY4NDV9.uR5WH3c2ZztGmZVCfcJPu-1ix1w-j7shJw_X_ZlFfAo"
+      - in: "body"
+        name: "body"
+        description: "Requisição para recarga de celular pré-pago."
+        required: true
+        schema:
+          $ref: "#/definitions/recargaPrePagoReq"
+      responses:
+        200:
+          description: "Retorno com sucesso."
+          schema:
+            $ref: "#/definitions/recargaPrePagoResp"
+        400:
+          description: "Operação de recarga não pode ser efetuada."
+          schema:
+            $ref: "#/definitions/recargaPrePagoResp"
+        401:
+          description: "Acesso não autorizado."
+      x-swagger-router-controller: "Default"
+  /recargaPrePagoConf:
+    post:
+      description: "Confirmação de operação de recarga."
+      operationId: "recargaPrePagoConfPOST"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "authenticationType"
+        in: "header"
+        description: "Tipo de autenticação requerida."
+        required: true
+        type: "string"
+        x-example: "auth2"
+      - name: "clientId"
+        in: "header"
+        description: "Identificação do cliente."
+        required: true
+        type: "string"
+        x-example: "prd-client"
+      - name: "token"
+        in: "header"
+        description: "Chave para validação do acesso ao serviço."
+        required: true
+        type: "string"
+        x-example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjYsInByb2ZpbGUiOltdLCJpYXQiOjE0OTkwOsY4NDV9.uR5WH3c2ZztGmZVCfcJPu-1ix1w-j7shJw_X_ZlFfAo"
+      - in: "body"
+        name: "body"
+        description: "Requisição de confirmação de operação de recarga de celular\
+          \ pré-pago."
+        required: true
+        schema:
+          $ref: "#/definitions/transacConf"
+      responses:
+        200:
+          description: "Retorno com sucesso."
+        401:
+          description: "Acesso não autorizado."
       x-swagger-router-controller: "Default"
   /saldo:
     post:
@@ -841,6 +1010,8 @@ paths:
           description: "Retorno com sucesso."
           schema:
             $ref: "#/definitions/saldoResp"
+        401:
+          description: "Acesso não autorizado."
       x-swagger-router-controller: "Default"
   /saldoConf:
     post:
@@ -878,6 +1049,8 @@ paths:
       responses:
         200:
           description: "Retorno com sucesso."
+        401:
+          description: "Acesso não autorizado."
       x-swagger-router-controller: "Default"
   /saque:
     post:
@@ -917,6 +1090,8 @@ paths:
           description: "Retorno com sucesso."
           schema:
             $ref: "#/definitions/saqueResp"
+        401:
+          description: "Acesso não autorizado."
       x-swagger-router-controller: "Default"
   /saqueConf:
     post:
@@ -954,6 +1129,8 @@ paths:
       responses:
         200:
           description: "Retorno com sucesso."
+        401:
+          description: "Acesso não autorizado."
       x-swagger-router-controller: "Default"
 definitions:
   autenticacaoReq:
@@ -1240,6 +1417,105 @@ definitions:
         dataHora: "1122151032"
       Cripto:
         hash: "hash"
+      Terminal:
+        codEstab: "000000000742673"
+        tipo: "008"
+        id: "05100004"
+  recargaPrePagoReq:
+    type: "object"
+    required:
+    - "InfRecargaPrePago"
+    - "InfTransacao"
+    - "Terminal"
+    properties:
+      InfRecargaPrePago:
+        $ref: "#/definitions/infRecargaPrePagoReq"
+      InfTransacao:
+        $ref: "#/definitions/infTransacaoReq"
+      Terminal:
+        $ref: "#/definitions/terminal"
+  recargaPrePagoResp:
+    type: "object"
+    required:
+    - "InfRecargaPrePago"
+    - "InfTransacao"
+    - "Terminal"
+    properties:
+      InfRecargaPrePago:
+        $ref: "#/definitions/infRecargaPrePagoResp"
+      InfTransacao:
+        $ref: "#/definitions/infTransacaoResp"
+      Terminal:
+        $ref: "#/definitions/terminal"
+    example:
+      InfTransacao:
+        cdProc: "029100"
+        mensagemCliente: ""
+        nsu: "000080247206"
+        codMoeda: "986"
+        codOperadora: "00000000914"
+        dataLocal: "1122"
+        errorMessage: ""
+        valor: "5000"
+        horaLocal: "151032"
+        nsuResposta: "820"
+        dataHora: "1122151032"
+      InfRecargaPrePago:
+        idRecarga: "b1a5c4bd-a914-4506-8d1d-744a6b3a285c"
+        bonus: "000000000400"
+      Terminal:
+        codEstab: "000000000742673"
+        tipo: "008"
+        id: "05100004"
+  consultaPrePagoReq:
+    type: "object"
+    required:
+    - "InfConsultaPrePago"
+    - "InfTransacao"
+    - "Terminal"
+    properties:
+      InfConsultaPrePago:
+        $ref: "#/definitions/infConsultaPrePagoReq"
+      InfTransacao:
+        $ref: "#/definitions/infTransacaoReq"
+      Terminal:
+        $ref: "#/definitions/terminal"
+  consultaPrePagoResp:
+    type: "object"
+    required:
+    - "InfConsultaPrePago"
+    - "InfTransacao"
+    - "Terminal"
+    properties:
+      InfConsultaPrePago:
+        $ref: "#/definitions/infConsultaPrePagoResp"
+      InfTransacao:
+        $ref: "#/definitions/infTransacaoResp"
+      Terminal:
+        $ref: "#/definitions/terminal"
+    example:
+      InfTransacao:
+        cdProc: "029100"
+        mensagemCliente: ""
+        nsu: "000080247206"
+        codMoeda: "986"
+        codOperadora: "00000000914"
+        dataLocal: "1122"
+        errorMessage: ""
+        valor: "5000"
+        horaLocal: "151032"
+        nsuResposta: "820"
+        dataHora: "1122151032"
+      InfConsultaPrePago:
+        produtos:
+        - valorMaximo: "1500"
+          idProduto: "CLARO"
+          nomeOperadora: "CLARO"
+          valorMinimo: "1000"
+        - valorMaximo: "1500"
+          idProduto: "CLARO"
+          nomeOperadora: "CLARO"
+          valorMinimo: "1000"
       Terminal:
         codEstab: "000000000742673"
         tipo: "008"
@@ -2152,6 +2428,122 @@ definitions:
     example:
       valorParcela: "000000005000"
       qntParcelas: "5"
+  infRecargaPrePagoReq:
+    type: "object"
+    required:
+    - "ddd"
+    - "nomeOperadora"
+    - "telefone"
+    - "valorRecarga"
+    properties:
+      nomeOperadora:
+        type: "string"
+        example: "CLARO"
+        description: "Nome da operadora de telefonia para recarga."
+        pattern: "^.*$"
+      valorRecarga:
+        type: "string"
+        example: "000000005000"
+        description: "Valor de recarga a ser solicitado para operadora de telefonia."
+        pattern: "^\\d{12}$"
+      ddd:
+        type: "string"
+        example: "51"
+        description: "Código da área do telefone favorecido."
+        pattern: "^\\d{2}$"
+      telefone:
+        type: "string"
+        example: "982041311"
+        description: "Número do telefone, sem DDD, favorecido da operação de recarga."
+        pattern: "^\\d+$"
+    description: "Informações da requisição de recarga de celular pré-pago."
+  infRecargaPrePagoResp:
+    type: "object"
+    required:
+    - "idRecarga"
+    properties:
+      idRecarga:
+        type: "string"
+        example: "b1a5c4bd-a914-4506-8d1d-744a6b3a285c"
+        description: "Código de identificação da recarga efetuada pela operadora,\
+          \ em caso de sucesso."
+        pattern: "^\\.*$"
+      bonus:
+        type: "string"
+        example: "000000000400"
+        description: "Bônus adicional recebido na recarga pré-pago."
+        pattern: "^\\d{12}$"
+    description: "Informações de retorno da recarga de celular pré-pago."
+    example:
+      idRecarga: "b1a5c4bd-a914-4506-8d1d-744a6b3a285c"
+      bonus: "000000000400"
+  infConsultaPrePagoReq:
+    type: "object"
+    required:
+    - "ddd"
+    - "telefone"
+    properties:
+      ddd:
+        type: "string"
+        example: "51"
+        description: "Código da área do número de celular."
+        pattern: "^\\d{2}$"
+      telefone:
+        type: "string"
+        example: "982041311"
+        description: "Número do telefone sem DDD."
+        pattern: "^\\d+$"
+    description: "Informações da requisição de consulta de produtos de recarga de\
+      \ celular pré-pago."
+  infConsultaPrePagoResp:
+    type: "object"
+    properties:
+      produtos:
+        type: "array"
+        description: "Lista de produtos de recarga pré-pago disponíveis para a área/DDD."
+        items:
+          $ref: "#/definitions/prePagoProdutoObj"
+    description: "Informações de retorno da consulta de produtos para recarga de pré\
+      -pago."
+    example:
+      produtos:
+      - valorMaximo: "1500"
+        idProduto: "CLARO"
+        nomeOperadora: "CLARO"
+        valorMinimo: "1000"
+      - valorMaximo: "1500"
+        idProduto: "CLARO"
+        nomeOperadora: "CLARO"
+        valorMinimo: "1000"
+  prePagoProdutoObj:
+    type: "object"
+    properties:
+      nomeOperadora:
+        type: "string"
+        example: "CLARO"
+        description: "Nome da operadora de telefonia."
+        pattern: "^.+$"
+      valorMinimo:
+        type: "string"
+        example: "1000"
+        description: "Valor mínimo de recarga para este produto, expresso em centavos."
+        pattern: "^\\d{3}\\d*$"
+      valorMaximo:
+        type: "string"
+        example: "1500"
+        description: "Valor máximo de recarga para este produto, expresso em centavos."
+        pattern: "^\\d{3}\\d*$"
+      idProduto:
+        type: "string"
+        example: "CLARO"
+        description: "Código que identifica o produto de recarga da operadora de telefonia."
+        pattern: "^.+$"
+    description: ""
+    example:
+      valorMaximo: "1500"
+      idProduto: "CLARO"
+      nomeOperadora: "CLARO"
+      valorMinimo: "1000"
   infConsultaProdutosRecargaReq:
     type: "object"
     required:

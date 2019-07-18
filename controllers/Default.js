@@ -87,6 +87,20 @@ module.exports.consultaParcelasEmprestimoPOST = function consultaParcelasEmprest
     });
 };
 
+module.exports.consultaPrePagoPOST = function consultaPrePagoPOST (req, res, next) {
+  var authenticationType = req.swagger.params['authenticationType'].value;
+  var clientId = req.swagger.params['clientId'].value;
+  var token = req.swagger.params['token'].value;
+  var body = req.swagger.params['body'].value;
+  Default.consultaPrePagoPOST(authenticationType,clientId,token,body)
+    .then(function (response) {
+      utils.writeJson(res, response);
+    })
+    .catch(function (response) {
+      utils.writeJson(res, response);
+    });
+};
+
 module.exports.consultaProdutosRecargaPOST = function consultaProdutosRecargaPOST (req, res, next) {
   var authenticationType = req.swagger.params['authenticationType'].value;
   var clientId = req.swagger.params['clientId'].value;
@@ -275,6 +289,34 @@ module.exports.recargaPOST = function recargaPOST (req, res, next) {
   var token = req.swagger.params['token'].value;
   var body = req.swagger.params['body'].value;
   Default.recargaPOST(authenticationType,clientId,token,body)
+    .then(function (response) {
+      utils.writeJson(res, response);
+    })
+    .catch(function (response) {
+      utils.writeJson(res, response);
+    });
+};
+
+module.exports.recargaPrePagoConfPOST = function recargaPrePagoConfPOST (req, res, next) {
+  var authenticationType = req.swagger.params['authenticationType'].value;
+  var clientId = req.swagger.params['clientId'].value;
+  var token = req.swagger.params['token'].value;
+  var body = req.swagger.params['body'].value;
+  Default.recargaPrePagoConfPOST(authenticationType,clientId,token,body)
+    .then(function (response) {
+      utils.writeJson(res, response);
+    })
+    .catch(function (response) {
+      utils.writeJson(res, response);
+    });
+};
+
+module.exports.recargaPrePagoPOST = function recargaPrePagoPOST (req, res, next) {
+  var authenticationType = req.swagger.params['authenticationType'].value;
+  var clientId = req.swagger.params['clientId'].value;
+  var token = req.swagger.params['token'].value;
+  var body = req.swagger.params['body'].value;
+  Default.recargaPrePagoPOST(authenticationType,clientId,token,body)
     .then(function (response) {
       utils.writeJson(res, response);
     })
