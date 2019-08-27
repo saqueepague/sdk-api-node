@@ -9,10 +9,9 @@ info:
   contact:
     name: "Time Saque e Pague"
     url: "http://www.saqueepague.com.br"
-host: "virtserver.swaggerhub.com"
+host: "api-saqueepague.sensedia.com"
 basePath: "/saqueepague/SepTransaction/1.17.2"
 schemes:
-- "http"
 - "https"
 paths:
   /autenticacao:
@@ -1206,7 +1205,7 @@ definitions:
         type: "string"
         example: "mMIrkIrf2pSHccWuaROxoIS+NGcTOWcTWXUtjniTa1BRzPziiE8pWnknAxW9HIgoKdc/Fli2KZwNA=="
         description: "Trilha 2 do cartão utilizado (dado criptografado)."
-        pattern: "^{10,}$"
+        pattern: "^.{10,}$"
   compraTitulosCapitalizacaoReq:
     type: "object"
     required:
