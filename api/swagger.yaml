@@ -1199,15 +1199,14 @@ definitions:
         - "900"
       pan:
         type: "string"
-        example: "0000955707050150"
-        description: "PAN/Número do cartão utilizado (16 a 19 caracteres normais ou\
-          \ 48 criptografados)."
-        pattern: "^.{48}|.{16,19}$"
+        example: "zhXTyHl5nf2ckysYXXjAgZS5fzS7ybC5xePnWeLEP//bw=="
+        description: "PAN/Número do cartão utilizado (dado criptografado)."
+        pattern: "^.{10,}$"
       trilha2:
         type: "string"
-        example: "5076415910012119\\u003d27086060000017290360"
-        description: "Trilha 2 do cartão utilizado (37 caracteres normais ou 80 criptografados)."
-        pattern: "^.{80}|.{37}$"
+        example: "mMIrkIrf2pSHccWuaROxoIS+NGcTOWcTWXUtjniTa1BRzPziiE8pWnknAxW9HIgoKdc/Fli2KZwNA=="
+        description: "Trilha 2 do cartão utilizado (dado criptografado)."
+        pattern: "^{10,}$"
   compraTitulosCapitalizacaoReq:
     type: "object"
     required:
@@ -1877,16 +1876,17 @@ definitions:
         description: "Hash de todos os campos que compõem a transação."
       idPositiva:
         type: "string"
-        example: "42500000"
+        example: "q0WKgCM+wbXjzlY="
         description: "Identificação positiva informada pelo usuário, caso utilizada,\
-          \ com 8 dígitos corresponde às posições (botões) em cada tela apresentada.\
-          \ Caso a senha tenha menos de oito sílabas, são adicionados zeros para as\
-          \ telas não existentes. Pode ser criptografada ou não."
-        pattern: "^\\d{8}$"
+          \ com no mínimo 8 dígitos corresponde às posições (botões) em cada tela\
+          \ apresentada. Caso a senha tenha menos de oito sílabas, são adicionados\
+          \ zeros para as telas não existentes (dado criptografado)."
+        pattern: "^.{8,}$"
       respostaCliente:
         $ref: "#/definitions/cripto_respostaCliente"
       senha:
         type: "string"
+        example: "q0WKgCM+wbXjzlY="
         description: "Senha numérica criptografada."
       tamanhoSenha:
         type: "string"
@@ -4052,7 +4052,7 @@ definitions:
         description: "Pergunta feita ao cliente (somente o id é preenchido)."
       resposta:
         type: "string"
-        example: "24"
+        example: "q0WKgCM+wbXjzlY="
         description: "Resposta da pergunta (dado criptografado)."
     description: "Resposta do cliente à pergunta feita na identificação (somente respostas\
       \ numéricas)."
