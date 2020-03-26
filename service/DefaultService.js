@@ -210,6 +210,67 @@ exports.consultaLimitesEmprestimoPOST = function(authenticationType,clientId,tok
 
 
 /**
+ * Operação de consulta de informações do boleto a ser pago em dinheiro ou débito em conta.
+ *
+ * authenticationType String Tipo de autenticação requerida.
+ * clientId String Identificação do cliente.
+ * token String Chave para validação do acesso ao serviço.
+ * body ConsultaPagamentoReq Requisição para consulta de pagamento de boleto com cartão.
+ * returns consultaPagamentoResp
+ **/
+exports.consultaPagamentoPOST = function(authenticationType,clientId,token,body) {
+  return new Promise(function(resolve, reject) {
+    var examples = {};
+    examples['application/json'] = {
+  "InfTransacao" : {
+    "cdProc" : "029100",
+    "mensagemCliente" : "",
+    "nsu" : "000080247206",
+    "codMoeda" : "986",
+    "codOperadora" : "00000000914",
+    "dataLocal" : "1122",
+    "errorMessage" : "",
+    "valor" : "5000",
+    "horaLocal" : "151032",
+    "nsuResposta" : "820",
+    "dataHora" : "1122151032"
+  },
+  "Terminal" : {
+    "codEstab" : "000000000742673",
+    "tipo" : "008",
+    "id" : "05100004"
+  },
+  "Cripto" : {
+    "hash" : "hash"
+  },
+  "InfConsultaPagamento" : {
+    "aceitaPagamentoParcial" : "01",
+    "dataPagamento" : "20181122",
+    "desconto" : "000000000499",
+    "mensagem" : "mensagem",
+    "valor" : "000000005000",
+    "cip" : {
+      "valorMaximoPermitidoPagamento" : "000000050000",
+      "valorMinimoPermitidoPagamento" : "000000000500",
+      "valorJurosCalculado" : "000000000499",
+      "valorAbatimento" : "000000000499",
+      "tipoValorAceito" : "3",
+      "valorMultaCalculadada" : "000000000499"
+    },
+    "valorMinimo" : "000000000500",
+    "cedente" : "Saque e Pague"
+  }
+};
+    if (Object.keys(examples).length > 0) {
+      resolve(examples[Object.keys(examples)[0]]);
+    } else {
+      resolve();
+    }
+  });
+}
+
+
+/**
  * Operação de consulta de condições disponíveis de parcelamento do empréstimo.
  *
  * authenticationType String Tipo de autenticação requerida.
@@ -849,7 +910,8 @@ exports.extratoPOST = function(authenticationType,clientId,token,body) {
     var examples = {};
     examples['application/json'] = {
   "InfExtrato" : {
-    "recibo" : "@                EXTRATO DE CONTA                @                                                @ CLIENTE: EUGENIO SCHMITT COELHO                @ AGENCIA: 0150 CONTA: 03.013689.0-1             @ SALDO DA CONTA                                 @ SALDO DEVEDOR...............R$          450,35-@ TOTAL DEVEDOR...............R$          450,35-@ LIMITE DA CONTA.............R$          100,00 @ LIMITE DA CONTA DISPONIVEL..R$          350,35-@--------- MOVIMENTOS DA CONTA CORRENTE ---------@@    SALDO ANT EM 18/01/2019               93,56-@    MOVIMENTOS JAN/2019                         @    COMPRAS           201218              85,68-@    COMPRAS           201218             139,14-@    COMPRAS           211218              20,70-@    COMPRAS           211218              39,00-@    SALDO NA DATA                        378,08-@"
+    "recibo" : "@                EXTRATO DE CONTA                @                                                @ CLIENTE: EUGENIO SCHMITT COELHO                @ AGENCIA: 0150 CONTA: 03.013689.0-1             @ SALDO DA CONTA                                 @ SALDO DEVEDOR...............R$          450,35-@ TOTAL DEVEDOR...............R$          450,35-@ LIMITE DA CONTA.............R$          100,00 @ LIMITE DA CONTA DISPONIVEL..R$          350,35-@--------- MOVIMENTOS DA CONTA CORRENTE ---------@@    SALDO ANT EM 18/01/2019               93,56-@    MOVIMENTOS JAN/2019                         @    COMPRAS           201218              85,68-@    COMPRAS           201218             139,14-@    COMPRAS           211218              20,70-@    COMPRAS           211218              39,00-@    SALDO NA DATA                        378,08-@",
+    "qtdPaginas" : "000010"
   },
   "InfTransacao" : {
     "cdProc" : "029100",
@@ -953,6 +1015,75 @@ exports.identificacaoPOST = function(authenticationType,clientId,token,body) {
     "codEstab" : "000000000742673",
     "tipo" : "008",
     "id" : "05100004"
+  }
+};
+    if (Object.keys(examples).length > 0) {
+      resolve(examples[Object.keys(examples)[0]]);
+    } else {
+      resolve();
+    }
+  });
+}
+
+
+/**
+ * Confirmação de operação de pagamento de boleto de cobrança.
+ *
+ * authenticationType String Tipo de autenticação requerida.
+ * clientId String Identificação do cliente.
+ * token String Chave para validação do acesso ao serviço.
+ * body TransacConf Requisição de confirmação de operação de pagamento.
+ * no response value expected for this operation
+ **/
+exports.pagamentoConfPOST = function(authenticationType,clientId,token,body) {
+  return new Promise(function(resolve, reject) {
+    resolve();
+  });
+}
+
+
+/**
+ * Operação de pagamento de boleto de cobrança com cartão.
+ *
+ * authenticationType String Tipo de autenticação requerida.
+ * clientId String Identificação do cliente.
+ * token String Chave para validação do acesso ao serviço.
+ * body PagamentoReq Requisição para pagamento de boleto com cartão.
+ * returns pagamentoResp
+ **/
+exports.pagamentoPOST = function(authenticationType,clientId,token,body) {
+  return new Promise(function(resolve, reject) {
+    var examples = {};
+    examples['application/json'] = {
+  "InfPagamentoResp" : {
+    "recibo" : "@            COMPROVANTE DE PAGAMENTO            @                                                @ CEDENTE: 008 BANCO SAQUE E PAGUE               @ VALOR..: 263,85                                @ DATA DO PAGAMENTO.: 29/01/2019                 @ CODIGO DE BARRAS                               @@   84600000000-3 25850072001-1                 @   10357244475-5 01192190121-8                  @",
+    "qtdeViasComprovante" : "1",
+    "dataPagamento" : "20181122",
+    "desconto" : "000000000499",
+    "mensagem" : "mensagem",
+    "valor" : "000000005000",
+    "cedente" : "Saque e Pague"
+  },
+  "InfTransacao" : {
+    "cdProc" : "029100",
+    "mensagemCliente" : "",
+    "nsu" : "000080247206",
+    "codMoeda" : "986",
+    "codOperadora" : "00000000914",
+    "dataLocal" : "1122",
+    "errorMessage" : "",
+    "valor" : "5000",
+    "horaLocal" : "151032",
+    "nsuResposta" : "820",
+    "dataHora" : "1122151032"
+  },
+  "Terminal" : {
+    "codEstab" : "000000000742673",
+    "tipo" : "008",
+    "id" : "05100004"
+  },
+  "Cripto" : {
+    "hash" : "hash"
   }
 };
     if (Object.keys(examples).length > 0) {
@@ -1182,6 +1313,75 @@ exports.saquePOST = function(authenticationType,clientId,token,body) {
     examples['application/json'] = {
   "InfSaque" : {
     "recibo" : "                 SAQUE DE CONTA                 @                036200005433591                @               13/10/2018  20:24               @                 BANCO: BANCO                  @                AGENCIA: 4029                  @              CONTA: 0082348296                @               %VALOR%: R$ 50,00                 "
+  },
+  "InfTransacao" : {
+    "cdProc" : "029100",
+    "mensagemCliente" : "",
+    "nsu" : "000080247206",
+    "codMoeda" : "986",
+    "codOperadora" : "00000000914",
+    "dataLocal" : "1122",
+    "errorMessage" : "",
+    "valor" : "5000",
+    "horaLocal" : "151032",
+    "nsuResposta" : "820",
+    "dataHora" : "1122151032"
+  },
+  "Cripto" : {
+    "hash" : "hash"
+  },
+  "Terminal" : {
+    "codEstab" : "000000000742673",
+    "tipo" : "008",
+    "id" : "05100004"
+  }
+};
+    if (Object.keys(examples).length > 0) {
+      resolve(examples[Object.keys(examples)[0]]);
+    } else {
+      resolve();
+    }
+  });
+}
+
+
+/**
+ * Confirmação de operação de transferência.
+ *
+ * authenticationType String Tipo de autenticação requerida.
+ * clientId String Identificação do cliente.
+ * token String Chave para validação do acesso ao serviço.
+ * body TransacConf Requisição de confirmação de operação de transferência.
+ * no response value expected for this operation
+ **/
+exports.transferenciaConfPOST = function(authenticationType,clientId,token,body) {
+  return new Promise(function(resolve, reject) {
+    resolve();
+  });
+}
+
+
+/**
+ * Operação de transferência entre contas.
+ *
+ * authenticationType String Tipo de autenticação requerida.
+ * clientId String Identificação do cliente.
+ * token String Chave para validação do acesso ao serviço.
+ * body TransferenciaReq Requisição de operação de transferência.
+ * returns transferenciaResp
+ **/
+exports.transferenciaPOST = function(authenticationType,clientId,token,body) {
+  return new Promise(function(resolve, reject) {
+    var examples = {};
+    examples['application/json'] = {
+  "Inftransferencia" : {
+    "recibo" : "          COMPROVANTE DE TRANSFERENCIA          @           TRANSFERENCIA ENTRE CONTAS           @ORIGEM: CONTA CORRENTE - 123/1234567890         @DESTINO: CONTA CORRENTE - 456/9876543210        @VALOR TRANSFERENCIA: 123,456                    ",
+    "origem" : {
+      "nome" : "Jean-Luc Picard"
+    },
+    "destino" : {
+      "nome" : "William Thomas Riker"
+    }
   },
   "InfTransacao" : {
     "cdProc" : "029100",
