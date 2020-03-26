@@ -10,7 +10,7 @@ info:
     name: "Time Saque e Pague"
     url: "http://www.saqueepague.com.br"
 host: "api-saqueepague.sensedia.com"
-basePath: "/saqueepague/SepTransaction/1.18.0"
+basePath: "/saqueepague/SepTransaction/1.18.1"
 schemes:
 - "https"
 paths:
