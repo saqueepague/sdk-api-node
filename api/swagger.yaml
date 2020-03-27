@@ -3744,8 +3744,6 @@ definitions:
       cedente: "Saque e Pague"
   infConsultaPagamentoReq:
     type: "object"
-    required:
-    - "codBarras"
     properties:
       cpf:
         type: "string"
