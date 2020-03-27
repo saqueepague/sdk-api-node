@@ -258,6 +258,9 @@ exports.consultaPagamentoPOST = function(authenticationType,clientId,token,body)
       "valorMultaCalculadada" : "000000000499"
     },
     "valorMinimo" : "000000000500",
+    "codBarras" : {
+      "codigo" : "codigo"
+    },
     "cedente" : "Saque e Pague"
   }
 };

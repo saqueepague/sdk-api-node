@@ -4,13 +4,13 @@ info:
   description: "Modelo de API para transações da Saque e Pague. O parceiro interessado\
     \ deve implementar as operações desejadas para que a SeP consiga se comunicar\
     \ com o mesmo."
-  version: "1.18.1"
+  version: "1.18.2"
   title: "Saque e Pague Transacional"
   contact:
     name: "Time Saque e Pague"
     url: "http://www.saqueepague.com.br"
 host: "api-saqueepague.sensedia.com"
-basePath: "/saqueepague/SepTransaction/1.18.1"
+basePath: "/saqueepague/SepTransaction/1.18.2"
 schemes:
 - "https"
 paths:
@@ -3785,6 +3785,8 @@ definitions:
         example: "000000000499"
         description: "Valor de desconto (12 dígitos, incluindo centavos)."
         pattern: "^\\d{12}$"
+      codBarras:
+        $ref: "#/definitions/infConsultaPagamentoResp_codBarras"
       cip:
         $ref: "#/definitions/infConsultaPagamentoResp_cip"
       aceitaPagamentoParcial:
@@ -3814,6 +3816,8 @@ definitions:
         tipoValorAceito: "3"
         valorMultaCalculadada: "000000000499"
       valorMinimo: "000000000500"
+      codBarras:
+        codigo: "codigo"
       cedente: "Saque e Pague"
   infSaldoReq:
     type: "object"
@@ -4422,6 +4426,8 @@ definitions:
           tipoValorAceito: "3"
           valorMultaCalculadada: "000000000499"
         valorMinimo: "000000000500"
+        codBarras:
+          codigo: "codigo"
         cedente: "Saque e Pague"
   saldoReq:
     type: "object"
@@ -4807,9 +4813,6 @@ definitions:
         description: "Número do Titular."
         pattern: "^\\d+$"
   infConsultaPagamentoReq_codBarras:
-    required:
-    - "codigo"
-    - "modoEntrada"
     properties:
       codigo:
         type: "string"
@@ -4822,6 +4825,15 @@ definitions:
         enum:
         - "0"
         - "1"
+  infConsultaPagamentoResp_codBarras:
+    properties:
+      codigo:
+        type: "string"
+        description: "Código de barras do documento.Necessário caso no ConsultaPagamento\
+          \ o objeto infConsultaPagamento tenha sido apenas com CPF."
+        pattern: "^\\d+$"
+    example:
+      codigo: "codigo"
   infConsultaPagamentoResp_cip:
     required:
     - "valorAbatimento"
