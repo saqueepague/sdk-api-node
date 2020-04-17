@@ -259,7 +259,8 @@ exports.consultaPagamentoPOST = function(authenticationType,clientId,token,body)
     },
     "valorMinimo" : "000000000500",
     "codBarras" : {
-      "codigo" : "codigo"
+      "codigo" : "12345678912346579812345678912345678913456789123456789",
+      "dataVencimento" : "20181122"
     },
     "cedente" : "Saque e Pague"
   }
