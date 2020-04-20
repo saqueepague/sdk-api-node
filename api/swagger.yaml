@@ -4,18 +4,55 @@ info:
   description: "Modelo de API para transações da Saque e Pague. O parceiro interessado\
     \ deve implementar as operações desejadas para que a SeP consiga se comunicar\
     \ com o mesmo."
-  version: "1.18.3"
+  version: "1.19.0"
   title: "Saque e Pague Transacional"
   contact:
     name: "Time Saque e Pague"
     url: "http://www.saqueepague.com.br"
 host: "api-saqueepague.sensedia.com"
-basePath: "/saqueepague/SepTransaction/1.18.3"
+basePath: "/saqueepague/SepTransaction/1.19.0"
+tags:
+- name: "Depósito com Cartão"
+  description: "Transações necessárias para efetuar um Depósito com Cartão."
+- name: "Depósito sem Cartão"
+  description: "Transações necessárias para efetuar um Depósito sem Cartão."
+- name: "Depósito via Carteira Digital"
+  description: "Transações necessárias para efetuar transação de Depósito via Carteira\
+    \ Digital."
+- name: "Empréstimo com Cartão"
+  description: "Transações necessárias para efetuar um Depósito sem Cartão."
+- name: "Extrato com Cartão"
+  description: "Transações necessárias para efetuar um Extrato com Cartão."
+- name: "Pagamento com Cartão"
+  description: "Transações necessárias para efetuar um Pagamento com Cartão."
+- name: "Pagamento sem Cartão"
+  description: "Transações necessárias para efetuar um Pagamento sem Cartão."
+- name: "Recarga"
+  description: "Transações necessárias para efetuar uma Recarga de cartão Pré-Pago."
+- name: "Recarga Celular"
+  description: "Transações necessárias para efetuar uma Recarga de celular Pré-Pago."
+- name: "Saldo com Cartão"
+  description: "Transações necessárias para efetuar um Saldo com Cartão."
+- name: "Saque com Cartão"
+  description: "Transações necessárias para efetuar um Saque com Cartão."
+- name: "Saque sem Cartão"
+  description: "Transações necessárias para efetuar um Saque sem Cartão."
+- name: "Saque via Carteira Digital"
+  description: "Transações necessárias para efetuar transação de Saque via Carteira\
+    \ Digital."
+- name: "Transferência com Cartão"
+  description: "Transações necessárias para efetuar uma Transferência com Cartão."
+- name: "Transferência sem Cartão"
+  description: "Transações necessárias para efetuar uma Transferência com Cartão."
+- name: "Títulos de Capitalização"
+  description: "Transações de compra de Títulos de Capitalização."
 schemes:
 - "https"
 paths:
   /autenticacao:
     post:
+      tags:
+      - "Saque via Carteira Digital"
       description: "Operação de autenticação de cliente sem cartão, chamada para retornar\
         \ o nome do cliente autenticado."
       operationId: "autenticacaoPOST"
@@ -57,9 +94,11 @@ paths:
           description: "Bad Request ou Erro interno ao qual inviabilizou uma resposta."
         401:
           description: "Acesso não autorizado."
-      x-swagger-router-controller: "Default"
+      x-swagger-router-controller: "SaqueViaCarteiraDigital"
   /compraTitulosCapitalizacao:
     post:
+      tags:
+      - "Títulos de Capitalização"
       description: "Operação de compra de títulos de capitalização."
       operationId: "compraTitulosCapitalizacaoPOST"
       consumes:
@@ -101,9 +140,11 @@ paths:
           description: "Bad Request ou Erro interno ao qual inviabilizou uma resposta."
         401:
           description: "Acesso não autorizado."
-      x-swagger-router-controller: "Default"
+      x-swagger-router-controller: "TtulosDeCapitalizao"
   /compraTitulosCapitalizacaoConf:
     post:
+      tags:
+      - "Títulos de Capitalização"
       description: "Confirmação de operação de compra de títulos de capitalização."
       operationId: "compraTitulosCapitalizacaoConfPOST"
       consumes:
@@ -143,9 +184,14 @@ paths:
           description: "Bad Request ou Erro interno ao qual inviabilizou uma resposta."
         401:
           description: "Acesso não autorizado."
-      x-swagger-router-controller: "Default"
+      x-swagger-router-controller: "TtulosDeCapitalizao"
   /consultaConta:
     post:
+      tags:
+      - "Depósito sem Cartão"
+      - "Depósito via Carteira Digital"
+      - "Transferência com Cartão"
+      - "Transferência sem Cartão"
       description: "Operação de consulta de conta de favorecido, usada previamente\
         \ ao depósito para verificar se a conta é válida e está habilitada para depó\
         sito."
@@ -188,9 +234,11 @@ paths:
           description: "Bad Request ou Erro interno ao qual inviabilizou uma resposta."
         401:
           description: "Acesso não autorizado."
-      x-swagger-router-controller: "Default"
+      x-swagger-router-controller: "DepsitoSemCarto"
   /consultaLimitesEmprestimo:
     post:
+      tags:
+      - "Empréstimo com Cartão"
       description: "Operação de consulta dos limites disponíveis para empréstimo.\
         \ Esta operação é válida somente com os dados do cartão."
       operationId: "consultaLimitesEmprestimoPOST"
@@ -233,9 +281,58 @@ paths:
           description: "Bad Request ou Erro interno ao qual inviabilizou uma resposta."
         401:
           description: "Acesso não autorizado."
-      x-swagger-router-controller: "Default"
+      x-swagger-router-controller: "EmprstimoComCarto"
+  /consultaPagamento:
+    post:
+      tags:
+      - "Pagamento com Cartão"
+      - "Pagamento sem Cartão"
+      description: "Operação de consulta de informações do boleto a ser pago em dinheiro\
+        \ ou débito em conta."
+      operationId: "consultaPagamentoPOST"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "authenticationType"
+        in: "header"
+        description: "Tipo de autenticação requerida."
+        required: true
+        type: "string"
+        x-example: "auth2"
+      - name: "clientId"
+        in: "header"
+        description: "Identificação do cliente."
+        required: true
+        type: "string"
+        x-example: "prd-client"
+      - name: "token"
+        in: "header"
+        description: "Chave para validação do acesso ao serviço."
+        required: true
+        type: "string"
+        x-example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjYsInByb2ZpbGUiOltdLCJpYXQiOjE0OTkwOsY4NDV9.uR5WH3c2ZztGmZVCfcJPu-1ix1w-j7shJw_X_ZlFfAo"
+      - in: "body"
+        name: "body"
+        description: "Requisição para consulta de pagamento de boleto com cartão."
+        required: true
+        schema:
+          $ref: "#/definitions/consultaPagamentoReq"
+      responses:
+        200:
+          description: "Retorno com sucesso ou com Erro de negócio."
+          schema:
+            $ref: "#/definitions/consultaPagamentoResp"
+        400:
+          description: "Bad Request ou Erro interno ao qual inviabilizou uma resposta."
+        401:
+          description: "Acesso não autorizado."
+      x-swagger-router-controller: "PagamentoComCarto"
   /consultaParcelasEmprestimo:
     post:
+      tags:
+      - "Empréstimo com Cartão"
       description: "Operação de consulta de condições disponíveis de parcelamento\
         \ do empréstimo."
       operationId: "consultaParcelasEmprestimoPOST"
@@ -277,9 +374,11 @@ paths:
           description: "Bad Request ou Erro interno ao qual inviabilizou uma resposta."
         401:
           description: "Acesso não autorizado."
-      x-swagger-router-controller: "Default"
+      x-swagger-router-controller: "EmprstimoComCarto"
   /consultaPrePago:
     post:
+      tags:
+      - "Recarga Celular"
       description: "Operação de consulta dos possíveis produtos de recarga de cartã\
         o pré-pago. Operação relacionada a transação consultaPrePago."
       operationId: "consultaPrePagoPOST"
@@ -321,9 +420,11 @@ paths:
           description: "Bad Request ou Erro interno ao qual inviabilizou uma resposta."
         401:
           description: "Acesso não autorizado."
-      x-swagger-router-controller: "Default"
+      x-swagger-router-controller: "RecargaCelular"
   /consultaProdutosRecarga:
     post:
+      tags:
+      - "Recarga"
       description: "Operação de consulta dos possíveis produtos de recarga de transporte\
         \ para o cartão informado pelo cliente. Operação relacionada a transação consultaProdutosRecarga."
       operationId: "consultaProdutosRecargaPOST"
@@ -366,9 +467,11 @@ paths:
           description: "Bad Request ou Erro interno ao qual inviabilizou uma resposta."
         401:
           description: "Acesso não autorizado."
-      x-swagger-router-controller: "Default"
+      x-swagger-router-controller: "Recarga"
   /consultaSaque:
     post:
+      tags:
+      - "Saque sem Cartão"
       description: "Operação de consulta para saque de moeda estrangeira (câmbio).\
         \ Efetuada para autenticar cliente, retornando valorde saque, moeda e dados\
         \ adicionais."
@@ -411,9 +514,12 @@ paths:
           description: "Bad Request ou Erro interno ao qual inviabilizou uma resposta."
         401:
           description: "Acesso não autorizado."
-      x-swagger-router-controller: "Default"
+      x-swagger-router-controller: "SaqueSemCarto"
   /consultaTaxas:
     post:
+      tags:
+      - "Saque via Carteira Digital"
+      - "Depósito via Carteira Digital"
       description: "Operação de consulta de taxas dinâmicas, requisitado antes de\
         \ depósito ou saque de carteira de digital."
       operationId: "consultaTaxasPOST"
@@ -455,9 +561,11 @@ paths:
           description: "Bad Request ou Erro interno ao qual inviabilizou uma resposta."
         401:
           description: "Acesso não autorizado."
-      x-swagger-router-controller: "Default"
+      x-swagger-router-controller: "SaqueViaCarteiraDigital"
   /consultaTitulosCapitalizacao:
     post:
+      tags:
+      - "Títulos de Capitalização"
       description: "Operação de consulta dos possíveis produtos de títulos de capitalizaç\
         ão de uma operadora."
       operationId: "consultaTitulosCapitalizacaoPOST"
@@ -499,9 +607,11 @@ paths:
           description: "Bad Request ou Erro interno ao qual inviabilizou uma resposta."
         401:
           description: "Acesso não autorizado."
-      x-swagger-router-controller: "Default"
+      x-swagger-router-controller: "TtulosDeCapitalizao"
   /consultaValoresRecarga:
     post:
+      tags:
+      - "Recarga"
       description: "Operação de consulta dos produtos de recarga de cartão pré-pago\
         \ de transporte. Traz uma lista de todas as operadoras e seus respectivos\
         \ produtos/valores."
@@ -544,9 +654,13 @@ paths:
           description: "Bad Request ou Erro interno ao qual inviabilizou uma resposta."
         401:
           description: "Acesso não autorizado."
-      x-swagger-router-controller: "Default"
+      x-swagger-router-controller: "Recarga"
   /deposito:
     post:
+      tags:
+      - "Depósito sem Cartão"
+      - "Depósito com Cartão"
+      - "Depósito via Carteira Digital"
       description: "Operação de depósito em dinheiro, cartão é opcional nesta operaç\
         ão."
       operationId: "depositoPOST"
@@ -588,9 +702,13 @@ paths:
           description: "Bad Request ou Erro interno ao qual inviabilizou uma resposta."
         401:
           description: "Acesso não autorizado."
-      x-swagger-router-controller: "Default"
+      x-swagger-router-controller: "DepsitoSemCarto"
   /depositoConf:
     post:
+      tags:
+      - "Depósito sem Cartão"
+      - "Depósito com Cartão"
+      - "Depósito via Carteira Digital"
       description: "Confirmação de operação de depósito."
       operationId: "depositoConfPOST"
       consumes:
@@ -629,9 +747,11 @@ paths:
           description: "Bad Request ou Erro interno ao qual inviabilizou uma resposta."
         401:
           description: "Acesso não autorizado."
-      x-swagger-router-controller: "Default"
+      x-swagger-router-controller: "DepsitoSemCarto"
   /emprestimo:
     post:
+      tags:
+      - "Empréstimo com Cartão"
       description: "Operação de empréstimo."
       operationId: "emprestimoPOST"
       consumes:
@@ -672,9 +792,11 @@ paths:
           description: "Bad Request ou Erro interno ao qual inviabilizou uma resposta."
         401:
           description: "Acesso não autorizado."
-      x-swagger-router-controller: "Default"
+      x-swagger-router-controller: "EmprstimoComCarto"
   /emprestimoConf:
     post:
+      tags:
+      - "Empréstimo com Cartão"
       description: "Confirmação de operação de empréstimo."
       operationId: "emprestimoConfPOST"
       consumes:
@@ -713,9 +835,11 @@ paths:
           description: "Bad Request ou Erro interno ao qual inviabilizou uma resposta."
         401:
           description: "Acesso não autorizado."
-      x-swagger-router-controller: "Default"
+      x-swagger-router-controller: "EmprstimoComCarto"
   /extrato:
     post:
+      tags:
+      - "Extrato com Cartão"
       description: "Operação de extrato."
       operationId: "extratoPOST"
       consumes:
@@ -756,9 +880,11 @@ paths:
           description: "Bad Request ou Erro interno ao qual inviabilizou uma resposta."
         401:
           description: "Acesso não autorizado."
-      x-swagger-router-controller: "Default"
+      x-swagger-router-controller: "ExtratoComCarto"
   /extratoConf:
     post:
+      tags:
+      - "Extrato com Cartão"
       description: "Confirmação de operação de extrato."
       operationId: "extratoConfPOST"
       consumes:
@@ -797,9 +923,17 @@ paths:
           description: "Bad Request ou Erro interno ao qual inviabilizou uma resposta."
         401:
           description: "Acesso não autorizado."
-      x-swagger-router-controller: "Default"
+      x-swagger-router-controller: "ExtratoComCarto"
   /identificacao:
     post:
+      tags:
+      - "Saque com Cartão"
+      - "Saldo com Cartão"
+      - "Extrato com Cartão"
+      - "Depósito com Cartão"
+      - "Empréstimo com Cartão"
+      - "Pagamento com Cartão"
+      - "Transferência com Cartão"
       description: "Operação de identificação do cliente e informações adicionais\
         \ de sua conta."
       operationId: "identificacaoPOST"
@@ -841,9 +975,101 @@ paths:
           description: "Bad Request ou Erro interno ao qual inviabilizou uma resposta."
         401:
           description: "Acesso não autorizado."
-      x-swagger-router-controller: "Default"
+      x-swagger-router-controller: "SaqueComCarto"
+  /pagamento:
+    post:
+      tags:
+      - "Pagamento com Cartão"
+      - "Pagamento sem Cartão"
+      description: "Operação de pagamento de boleto de cobrança com cartão."
+      operationId: "pagamentoPOST"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "authenticationType"
+        in: "header"
+        description: "Tipo de autenticação requerida."
+        required: true
+        type: "string"
+        x-example: "auth2"
+      - name: "clientId"
+        in: "header"
+        description: "Identificação do cliente."
+        required: true
+        type: "string"
+        x-example: "prd-client"
+      - name: "token"
+        in: "header"
+        description: "Chave para validação do acesso ao serviço."
+        required: true
+        type: "string"
+        x-example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjYsInByb2ZpbGUiOltdLCJpYXQiOjE0OTkwOsY4NDV9.uR5WH3c2ZztGmZVCfcJPu-1ix1w-j7shJw_X_ZlFfAo"
+      - in: "body"
+        name: "body"
+        description: "Requisição para pagamento de boleto com cartão."
+        required: true
+        schema:
+          $ref: "#/definitions/pagamentoReq"
+      responses:
+        200:
+          description: "Retorno com sucesso ou com Erro de negócio."
+          schema:
+            $ref: "#/definitions/pagamentoResp"
+        400:
+          description: "Bad Request ou Erro interno ao qual inviabilizou uma resposta."
+        401:
+          description: "Acesso não autorizado."
+      x-swagger-router-controller: "PagamentoComCarto"
+  /pagamentoConf:
+    post:
+      tags:
+      - "Pagamento com Cartão"
+      - "Pagamento sem Cartão"
+      description: "Confirmação de operação de pagamento de boleto de cobrança."
+      operationId: "pagamentoConfPOST"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "authenticationType"
+        in: "header"
+        description: "Tipo de autenticação requerida."
+        required: true
+        type: "string"
+        x-example: "auth2"
+      - name: "clientId"
+        in: "header"
+        description: "Identificação do cliente."
+        required: true
+        type: "string"
+        x-example: "prd-client"
+      - name: "token"
+        in: "header"
+        description: "Chave para validação do acesso ao serviço."
+        required: true
+        type: "string"
+        x-example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjYsInByb2ZpbGUiOltdLCJpYXQiOjE0OTkwOsY4NDV9.uR5WH3c2ZztGmZVCfcJPu-1ix1w-j7shJw_X_ZlFfAo"
+      - in: "body"
+        name: "body"
+        description: "Requisição de confirmação de operação de pagamento."
+        required: true
+        schema:
+          $ref: "#/definitions/transacConf"
+      responses:
+        200:
+          description: "Retorno com sucesso ou com Erro de negócio."
+        400:
+          description: "Bad Request ou Erro interno ao qual inviabilizou uma resposta."
+        401:
+          description: "Acesso não autorizado."
+      x-swagger-router-controller: "PagamentoComCarto"
   /recarga:
     post:
+      tags:
+      - "Recarga"
       description: "Operação de recarga de cartão pré-pago de transporte (bilhetagem)\
         \ em dinheiro."
       operationId: "recargaPOST"
@@ -885,9 +1111,11 @@ paths:
           description: "Bad Request ou Erro interno ao qual inviabilizou uma resposta."
         401:
           description: "Acesso não autorizado."
-      x-swagger-router-controller: "Default"
+      x-swagger-router-controller: "Recarga"
   /recargaConf:
     post:
+      tags:
+      - "Recarga"
       description: "Operação de confirmação de recarga de cartão pré-pago de transporte\
         \ (bilhetagem)."
       operationId: "recargaConfPOST"
@@ -927,96 +1155,11 @@ paths:
           description: "Bad Request ou Erro interno ao qual inviabilizou uma resposta."
         401:
           description: "Acesso não autorizado."
-      x-swagger-router-controller: "Default"
-  /pagamento:
-    post:
-      description: "Operação de pagamento de boleto de cobrança com cartão."
-      operationId: "pagamentoPOST"
-      consumes:
-      - "application/json"
-      produces:
-      - "application/json"
-      parameters:
-      - name: "authenticationType"
-        in: "header"
-        description: "Tipo de autenticação requerida."
-        required: true
-        type: "string"
-        x-example: "auth2"
-      - name: "clientId"
-        in: "header"
-        description: "Identificação do cliente."
-        required: true
-        type: "string"
-        x-example: "prd-client"
-      - name: "token"
-        in: "header"
-        description: "Chave para validação do acesso ao serviço."
-        required: true
-        type: "string"
-        x-example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjYsInByb2ZpbGUiOltdLCJpYXQiOjE0OTkwOsY4NDV9.uR5WH3c2ZztGmZVCfcJPu-1ix1w-j7shJw_X_ZlFfAo"
-      - in: "body"
-        name: "body"
-        description: "Requisição para pagamento de boleto com cartão."
-        required: true
-        schema:
-          $ref: "#/definitions/pagamentoReq"
-      responses:
-        200:
-          description: "Retorno com sucesso ou com Erro de negócio."
-          schema:
-            $ref: "#/definitions/pagamentoResp"
-        400:
-          description: "Bad Request ou Erro interno ao qual inviabilizou uma resposta."
-        401:
-          description: "Acesso não autorizado."
-      x-swagger-router-controller: "Default"
-  /consultaPagamento:
-    post:
-      description: "Operação de consulta de informações do boleto a ser pago em dinheiro\
-        \ ou débito em conta."
-      operationId: "consultaPagamentoPOST"
-      consumes:
-      - "application/json"
-      produces:
-      - "application/json"
-      parameters:
-      - name: "authenticationType"
-        in: "header"
-        description: "Tipo de autenticação requerida."
-        required: true
-        type: "string"
-        x-example: "auth2"
-      - name: "clientId"
-        in: "header"
-        description: "Identificação do cliente."
-        required: true
-        type: "string"
-        x-example: "prd-client"
-      - name: "token"
-        in: "header"
-        description: "Chave para validação do acesso ao serviço."
-        required: true
-        type: "string"
-        x-example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjYsInByb2ZpbGUiOltdLCJpYXQiOjE0OTkwOsY4NDV9.uR5WH3c2ZztGmZVCfcJPu-1ix1w-j7shJw_X_ZlFfAo"
-      - in: "body"
-        name: "body"
-        description: "Requisição para consulta de pagamento de boleto com cartão."
-        required: true
-        schema:
-          $ref: "#/definitions/consultaPagamentoReq"
-      responses:
-        200:
-          description: "Retorno com sucesso ou com Erro de negócio."
-          schema:
-            $ref: "#/definitions/consultaPagamentoResp"
-        400:
-          description: "Bad Request ou Erro interno ao qual inviabilizou uma resposta."
-        401:
-          description: "Acesso não autorizado."
-      x-swagger-router-controller: "Default"
+      x-swagger-router-controller: "Recarga"
   /recargaPrePago:
     post:
+      tags:
+      - "Recarga Celular"
       description: "Operação de recarga de celular pré-pago."
       operationId: "recargaPrePagoPOST"
       consumes:
@@ -1057,9 +1200,11 @@ paths:
           description: "Bad Request ou Erro interno ao qual inviabilizou uma resposta."
         401:
           description: "Acesso não autorizado."
-      x-swagger-router-controller: "Default"
+      x-swagger-router-controller: "RecargaCelular"
   /recargaPrePagoConf:
     post:
+      tags:
+      - "Recarga Celular"
       description: "Confirmação de operação de recarga."
       operationId: "recargaPrePagoConfPOST"
       consumes:
@@ -1099,9 +1244,11 @@ paths:
           description: "Bad Request ou Erro interno ao qual inviabilizou uma resposta."
         401:
           description: "Acesso não autorizado."
-      x-swagger-router-controller: "Default"
+      x-swagger-router-controller: "RecargaCelular"
   /saldo:
     post:
+      tags:
+      - "Saldo com Cartão"
       description: "Operação de consulta do valor de saldo disponível em conta."
       operationId: "saldoPOST"
       consumes:
@@ -1142,9 +1289,11 @@ paths:
           description: "Bad Request ou Erro interno ao qual inviabilizou uma resposta."
         401:
           description: "Acesso não autorizado."
-      x-swagger-router-controller: "Default"
+      x-swagger-router-controller: "SaldoComCarto"
   /saldoConf:
     post:
+      tags:
+      - "Saldo com Cartão"
       description: "Confirmação de operação de consulta de saldo."
       operationId: "saldoConfPOST"
       consumes:
@@ -1183,9 +1332,13 @@ paths:
           description: "Bad Request ou Erro interno ao qual inviabilizou uma resposta."
         401:
           description: "Acesso não autorizado."
-      x-swagger-router-controller: "Default"
+      x-swagger-router-controller: "SaldoComCarto"
   /saque:
     post:
+      tags:
+      - "Saque com Cartão"
+      - "Saque sem Cartão"
+      - "Saque via Carteira Digital"
       description: "Operação de saque de dinheiro em moeda local ou estrangeira."
       operationId: "saquePOST"
       consumes:
@@ -1226,9 +1379,13 @@ paths:
           description: "Bad Request ou Erro interno ao qual inviabilizou uma resposta."
         401:
           description: "Acesso não autorizado."
-      x-swagger-router-controller: "Default"
+      x-swagger-router-controller: "SaqueComCarto"
   /saqueConf:
     post:
+      tags:
+      - "Saque com Cartão"
+      - "Saque sem Cartão"
+      - "Saque via Carteira Digital"
       description: "Confirmação de operação de saque."
       operationId: "saqueConfPOST"
       consumes:
@@ -1267,50 +1424,12 @@ paths:
           description: "Bad Request ou Erro interno ao qual inviabilizou uma resposta."
         401:
           description: "Acesso não autorizado."
-      x-swagger-router-controller: "Default"
-  /pagamentoConf:
-    post:
-      description: "Confirmação de operação de pagamento de boleto de cobrança."
-      operationId: "pagamentoConfPOST"
-      consumes:
-      - "application/json"
-      produces:
-      - "application/json"
-      parameters:
-      - name: "authenticationType"
-        in: "header"
-        description: "Tipo de autenticação requerida."
-        required: true
-        type: "string"
-        x-example: "auth2"
-      - name: "clientId"
-        in: "header"
-        description: "Identificação do cliente."
-        required: true
-        type: "string"
-        x-example: "prd-client"
-      - name: "token"
-        in: "header"
-        description: "Chave para validação do acesso ao serviço."
-        required: true
-        type: "string"
-        x-example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjYsInByb2ZpbGUiOltdLCJpYXQiOjE0OTkwOsY4NDV9.uR5WH3c2ZztGmZVCfcJPu-1ix1w-j7shJw_X_ZlFfAo"
-      - in: "body"
-        name: "body"
-        description: "Requisição de confirmação de operação de pagamento."
-        required: true
-        schema:
-          $ref: "#/definitions/transacConf"
-      responses:
-        200:
-          description: "Retorno com sucesso ou com Erro de negócio."
-        400:
-          description: "Bad Request ou Erro interno ao qual inviabilizou uma resposta."
-        401:
-          description: "Acesso não autorizado."
-      x-swagger-router-controller: "Default"
+      x-swagger-router-controller: "SaqueComCarto"
   /transferencia:
     post:
+      tags:
+      - "Transferência com Cartão"
+      - "Transferência sem Cartão"
       description: "Operação de transferência entre contas."
       operationId: "transferenciaPOST"
       consumes:
@@ -1351,9 +1470,12 @@ paths:
           description: "Bad Request ou Erro interno ao qual inviabilizou uma resposta."
         401:
           description: "Acesso não autorizado."
-      x-swagger-router-controller: "Default"
+      x-swagger-router-controller: "TransfernciaComCarto"
   /transferenciaConf:
     post:
+      tags:
+      - "Transferência com Cartão"
+      - "Transferência sem Cartão"
       description: "Confirmação de operação de transferência."
       operationId: "transferenciaConfPOST"
       consumes:
@@ -1392,7 +1514,7 @@ paths:
           description: "Bad Request ou Erro interno ao qual inviabilizou uma resposta."
         401:
           description: "Acesso não autorizado."
-      x-swagger-router-controller: "Default"
+      x-swagger-router-controller: "TransfernciaComCarto"
 definitions:
   autenticacaoReq:
     type: "object"
@@ -1425,7 +1547,8 @@ definitions:
     example:
       InfTransacao:
         cdProc: "029100"
-        mensagemCliente: ""
+        mensagemCliente: "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em\
+          \ tela."
         nsu: "000080247206"
         codMoeda: "986"
         codOperadora: "00000000914"
@@ -1502,7 +1625,8 @@ definitions:
           \ CPF: 02358422785                               "
       InfTransacao:
         cdProc: "029100"
-        mensagemCliente: ""
+        mensagemCliente: "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em\
+          \ tela."
         nsu: "000080247206"
         codMoeda: "986"
         codOperadora: "00000000914"
@@ -1551,7 +1675,8 @@ definitions:
     example:
       InfTransacao:
         cdProc: "029100"
-        mensagemCliente: ""
+        mensagemCliente: "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em\
+          \ tela."
         nsu: "000080247206"
         codMoeda: "986"
         codOperadora: "00000000914"
@@ -1604,7 +1729,8 @@ definitions:
     example:
       InfTransacao:
         cdProc: "029100"
-        mensagemCliente: ""
+        mensagemCliente: "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em\
+          \ tela."
         nsu: "000080247206"
         codMoeda: "986"
         codOperadora: "00000000914"
@@ -1663,7 +1789,8 @@ definitions:
         dataPrimeiraParcela: "20181122"
       InfTransacao:
         cdProc: "029100"
-        mensagemCliente: ""
+        mensagemCliente: "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em\
+          \ tela."
         nsu: "000080247206"
         codMoeda: "986"
         codOperadora: "00000000914"
@@ -1708,7 +1835,8 @@ definitions:
     example:
       InfTransacao:
         cdProc: "029100"
-        mensagemCliente: ""
+        mensagemCliente: "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em\
+          \ tela."
         nsu: "000080247206"
         codMoeda: "986"
         codOperadora: "00000000914"
@@ -1754,7 +1882,8 @@ definitions:
     example:
       InfTransacao:
         cdProc: "029100"
-        mensagemCliente: ""
+        mensagemCliente: "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em\
+          \ tela."
         nsu: "000080247206"
         codMoeda: "986"
         codOperadora: "00000000914"
@@ -1807,7 +1936,8 @@ definitions:
     example:
       InfTransacao:
         cdProc: "029100"
-        mensagemCliente: ""
+        mensagemCliente: "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em\
+          \ tela."
         nsu: "000080247206"
         codMoeda: "986"
         codOperadora: "00000000914"
@@ -1858,7 +1988,8 @@ definitions:
     example:
       InfTransacao:
         cdProc: "029100"
-        mensagemCliente: ""
+        mensagemCliente: "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em\
+          \ tela."
         nsu: "000080247206"
         codMoeda: "986"
         codOperadora: "00000000914"
@@ -1933,7 +2064,8 @@ definitions:
           id: "01"
       InfTransacao:
         cdProc: "029100"
-        mensagemCliente: ""
+        mensagemCliente: "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em\
+          \ tela."
         nsu: "000080247206"
         codMoeda: "986"
         codOperadora: "00000000914"
@@ -1975,7 +2107,8 @@ definitions:
     example:
       InfTransacao:
         cdProc: "029100"
-        mensagemCliente: ""
+        mensagemCliente: "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em\
+          \ tela."
         nsu: "000080247206"
         codMoeda: "986"
         codOperadora: "00000000914"
@@ -2047,7 +2180,8 @@ definitions:
     example:
       InfTransacao:
         cdProc: "029100"
-        mensagemCliente: ""
+        mensagemCliente: "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em\
+          \ tela."
         nsu: "000080247206"
         codMoeda: "986"
         codOperadora: "00000000914"
@@ -2205,7 +2339,8 @@ definitions:
     example:
       InfTransacao:
         cdProc: "029100"
-        mensagemCliente: ""
+        mensagemCliente: "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em\
+          \ tela."
         nsu: "000080247206"
         codMoeda: "986"
         codOperadora: "00000000914"
@@ -2265,7 +2400,8 @@ definitions:
     example:
       InfTransacao:
         cdProc: "029100"
-        mensagemCliente: ""
+        mensagemCliente: "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em\
+          \ tela."
         nsu: "000080247206"
         codMoeda: "986"
         codOperadora: "00000000914"
@@ -2330,7 +2466,8 @@ definitions:
         qtdPaginas: "000010"
       InfTransacao:
         cdProc: "029100"
-        mensagemCliente: ""
+        mensagemCliente: "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em\
+          \ tela."
         nsu: "000080247206"
         codMoeda: "986"
         codOperadora: "00000000914"
@@ -2416,7 +2553,8 @@ definitions:
         saldo: "000000005000"
       InfTransacao:
         cdProc: "029100"
-        mensagemCliente: ""
+        mensagemCliente: "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em\
+          \ tela."
         nsu: "000080247206"
         codMoeda: "986"
         codOperadora: "00000000914"
@@ -3758,6 +3896,7 @@ definitions:
         pattern: "^\\d{8}$"
       mensagem:
         type: "string"
+        example: "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em tela."
         description: "Mensagem informativa quanto à alteração de valores e/ou data\
           \ de pagamento pelo paceiro."
       qtdeViasComprovante:
@@ -3791,7 +3930,7 @@ definitions:
       qtdeViasComprovante: "1"
       dataPagamento: "20181122"
       desconto: "000000000499"
-      mensagem: "mensagem"
+      mensagem: "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em tela."
       valor: "000000005000"
       cedente: "Saque e Pague"
   infConsultaPagamentoReq:
@@ -3828,6 +3967,7 @@ definitions:
         pattern: "^\\d{8}$"
       mensagem:
         type: "string"
+        example: "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em tela."
         description: "Mensagem informativa quanto à alteração de valores e/ou data\
           \ de pagamento pelo paceiro."
       desconto:
@@ -3856,7 +3996,7 @@ definitions:
       aceitaPagamentoParcial: "01"
       dataPagamento: "20181122"
       desconto: "000000000499"
-      mensagem: "mensagem"
+      mensagem: "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em tela."
       valor: "000000005000"
       cip:
         valorMaximoPermitidoPagamento: "000000050000"
@@ -4133,10 +4273,10 @@ definitions:
         pattern: "^\\d{6}$"
       mensagemCliente:
         type: "string"
-        example: ""
+        example: "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em tela."
         description: "Mensagem para ser mostrada na tela para o cliente, em caso de\
           \ erro (objeto errorMessage deve estar preenchido para identificação de\
-          \ um erro)"
+          \ um erro)."
       nsu:
         type: "string"
         example: "000080247206"
@@ -4156,7 +4296,8 @@ definitions:
     description: "Informações sobre a resposta da requisição de transação."
     example:
       cdProc: "029100"
-      mensagemCliente: ""
+      mensagemCliente: "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em\
+        \ tela."
       nsu: "000080247206"
       codMoeda: "986"
       codOperadora: "00000000914"
@@ -4334,7 +4475,8 @@ definitions:
           \                    "
       InfTransacao:
         cdProc: "029100"
-        mensagemCliente: ""
+        mensagemCliente: "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em\
+          \ tela."
         nsu: "000080247206"
         codMoeda: "986"
         codOperadora: "00000000914"
@@ -4394,12 +4536,13 @@ definitions:
         qtdeViasComprovante: "1"
         dataPagamento: "20181122"
         desconto: "000000000499"
-        mensagem: "mensagem"
+        mensagem: "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em tela."
         valor: "000000005000"
         cedente: "Saque e Pague"
       InfTransacao:
         cdProc: "029100"
-        mensagemCliente: ""
+        mensagemCliente: "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em\
+          \ tela."
         nsu: "000080247206"
         codMoeda: "986"
         codOperadora: "00000000914"
@@ -4449,7 +4592,8 @@ definitions:
     example:
       InfTransacao:
         cdProc: "029100"
-        mensagemCliente: ""
+        mensagemCliente: "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em\
+          \ tela."
         nsu: "000080247206"
         codMoeda: "986"
         codOperadora: "00000000914"
@@ -4469,7 +4613,7 @@ definitions:
         aceitaPagamentoParcial: "01"
         dataPagamento: "20181122"
         desconto: "000000000499"
-        mensagem: "mensagem"
+        mensagem: "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em tela."
         valor: "000000005000"
         cip:
           valorMaximoPermitidoPagamento: "000000050000"
@@ -4524,7 +4668,8 @@ definitions:
           \          VALOR NA DATA: R$ 50,00              "
       InfTransacao:
         cdProc: "029100"
-        mensagemCliente: ""
+        mensagemCliente: "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em\
+          \ tela."
         nsu: "000080247206"
         codMoeda: "986"
         codOperadora: "00000000914"
@@ -4580,7 +4725,8 @@ definitions:
           \              @               %VALOR%: R$ 50,00                 "
       InfTransacao:
         cdProc: "029100"
-        mensagemCliente: ""
+        mensagemCliente: "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em\
+          \ tela."
         nsu: "000080247206"
         codMoeda: "986"
         codOperadora: "00000000914"
@@ -4639,7 +4785,8 @@ definitions:
           nome: "William Thomas Riker"
       InfTransacao:
         cdProc: "029100"
-        mensagemCliente: ""
+        mensagemCliente: "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em\
+          \ tela."
         nsu: "000080247206"
         codMoeda: "986"
         codOperadora: "00000000914"
