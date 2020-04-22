@@ -1,14 +1,14 @@
 'use strict';
 
 var utils = require('../utils/writer.js');
-var PagamentoComCarto = require('../service/PagamentoComCartoService');
+var DepositoViaCarteiraDigital = require('../service/DepositoViaCarteiraDigitalService');
 
-module.exports.consultaPagamentoPOST = function consultaPagamentoPOST (req, res, next) {
+module.exports.consultaContaPOST = function consultaContaPOST (req, res, next) {
   var authenticationType = req.swagger.params['authenticationType'].value;
   var clientId = req.swagger.params['clientId'].value;
   var token = req.swagger.params['token'].value;
   var body = req.swagger.params['body'].value;
-  PagamentoComCarto.consultaPagamentoPOST(authenticationType,clientId,token,body)
+  DepositoViaCarteiraDigital.consultaContaPOST(authenticationType,clientId,token,body)
     .then(function (response) {
       utils.writeJson(res, response);
     })
@@ -17,12 +17,12 @@ module.exports.consultaPagamentoPOST = function consultaPagamentoPOST (req, res,
     });
 };
 
-module.exports.identificacaoPOST = function identificacaoPOST (req, res, next) {
+module.exports.consultaTaxasPOST = function consultaTaxasPOST (req, res, next) {
   var authenticationType = req.swagger.params['authenticationType'].value;
   var clientId = req.swagger.params['clientId'].value;
   var token = req.swagger.params['token'].value;
   var body = req.swagger.params['body'].value;
-  PagamentoComCarto.identificacaoPOST(authenticationType,clientId,token,body)
+  DepositoViaCarteiraDigital.consultaTaxasPOST(authenticationType,clientId,token,body)
     .then(function (response) {
       utils.writeJson(res, response);
     })
@@ -31,12 +31,12 @@ module.exports.identificacaoPOST = function identificacaoPOST (req, res, next) {
     });
 };
 
-module.exports.pagamentoConfPOST = function pagamentoConfPOST (req, res, next) {
+module.exports.depositoConfPOST = function depositoConfPOST (req, res, next) {
   var authenticationType = req.swagger.params['authenticationType'].value;
   var clientId = req.swagger.params['clientId'].value;
   var token = req.swagger.params['token'].value;
   var body = req.swagger.params['body'].value;
-  PagamentoComCarto.pagamentoConfPOST(authenticationType,clientId,token,body)
+  DepositoViaCarteiraDigital.depositoConfPOST(authenticationType,clientId,token,body)
     .then(function (response) {
       utils.writeJson(res, response);
     })
@@ -45,12 +45,25 @@ module.exports.pagamentoConfPOST = function pagamentoConfPOST (req, res, next) {
     });
 };
 
-module.exports.pagamentoPOST = function pagamentoPOST (req, res, next) {
+module.exports.depositoPOST = function depositoPOST (req, res, next) {
   var authenticationType = req.swagger.params['authenticationType'].value;
   var clientId = req.swagger.params['clientId'].value;
   var token = req.swagger.params['token'].value;
   var body = req.swagger.params['body'].value;
-  PagamentoComCarto.pagamentoPOST(authenticationType,clientId,token,body)
+  DepositoViaCarteiraDigital.depositoPOST(authenticationType,clientId,token,body)
+    .then(function (response) {
+      utils.writeJson(res, response);
+    })
+    .catch(function (response) {
+      utils.writeJson(res, response);
+    });
+};
+
+module.exports.tokenPOST = function tokenPOST (req, res, next) {
+  var authenticationType = req.swagger.params['authenticationType'].value;
+  var clientId = req.swagger.params['clientId'].value;
+  var clientSecret = req.swagger.params['clientSecret'].value;
+  DepositoViaCarteiraDigital.tokenPOST(authenticationType,clientId,clientSecret)
     .then(function (response) {
       utils.writeJson(res, response);
     })

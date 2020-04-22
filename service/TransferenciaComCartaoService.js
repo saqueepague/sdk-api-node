@@ -53,48 +53,55 @@ exports.consultaContaPOST = function(authenticationType,clientId,token,body) {
 
 
 /**
- * Operação de consulta de taxas dinâmicas, requisitado antes de depósito ou saque de carteira de digital.
+ * Operação de identificação do cliente e informações adicionais de sua conta.
  *
  * authenticationType String Tipo de autenticação requerida.
  * clientId String Identificação do cliente.
  * token String Chave para validação do acesso ao serviço.
- * body ConsultaTaxasReq Requisição de consulta de taxas.
- * returns consultaTaxasResp
+ * body IdentificacaoReq Requisição de identificação.
+ * returns identificacaoResp
  **/
-exports.consultaTaxasPOST = function(authenticationType,clientId,token,body) {
+exports.identificacaoPOST = function(authenticationType,clientId,token,body) {
   return new Promise(function(resolve, reject) {
     var examples = {};
     examples['application/json'] = {
-  "InfConsultaTaxas" : {
-    "transactions_fees" : [ {
-      "fees" : [ {
-        "min_amount" : "000",
-        "max_amount" : "10000",
-        "id" : "0201",
-        "value" : "000"
-      }, {
-        "min_amount" : "000",
-        "max_amount" : "10000",
-        "id" : "0201",
-        "value" : "000"
-      } ],
-      "name" : "deposit",
-      "id" : "01"
+  "InfIdentificacao" : {
+    "pedirToken" : "01",
+    "frase" : "Informe o token gerado em seu app:",
+    "numAgencia" : "4029",
+    "perguntas" : [ {
+      "pergunta" : "Qual é o dia de seu aniversário?",
+      "tamResposta" : "2",
+      "id" : "1"
     }, {
-      "fees" : [ {
-        "min_amount" : "000",
-        "max_amount" : "10000",
-        "id" : "0201",
-        "value" : "000"
-      }, {
-        "min_amount" : "000",
-        "max_amount" : "10000",
-        "id" : "0201",
-        "value" : "000"
-      } ],
-      "name" : "deposit",
-      "id" : "01"
-    } ]
+      "pergunta" : "Qual é o dia de seu aniversário?",
+      "tamResposta" : "2",
+      "id" : "1"
+    } ],
+    "idPositiva" : [ {
+      "pos8" : "4E-8G-1P",
+      "idTela" : "1",
+      "pos4" : "P1-G8-E4",
+      "pos5" : "REG SOS",
+      "pos6" : "EN/UQ/AM",
+      "pos7" : "69 05 41",
+      "pos1" : "SOS GER",
+      "pos2" : "MA/QU/NE",
+      "pos3" : "14 50 96"
+    }, {
+      "pos8" : "4E-8G-1P",
+      "idTela" : "1",
+      "pos4" : "P1-G8-E4",
+      "pos5" : "REG SOS",
+      "pos6" : "EN/UQ/AM",
+      "pos7" : "69 05 41",
+      "pos1" : "SOS GER",
+      "pos2" : "MA/QU/NE",
+      "pos3" : "14 50 96"
+    } ],
+    "numConta" : "0082348296",
+    "transacValidas" : "068101068010",
+    "saldo" : "000000005000"
   },
   "InfTransacao" : {
     "cdProc" : "029100",
@@ -128,15 +135,38 @@ exports.consultaTaxasPOST = function(authenticationType,clientId,token,body) {
 
 
 /**
- * Confirmação de operação de depósito.
+ *
+ * authenticationType String Tipo de autenticação requerida.
+ * clientId String Identificação do cliente.
+ * clientSecret String Cliente Secret.
+ * returns infTokenResp
+ **/
+exports.tokenPOST = function(authenticationType,clientId,clientSecret) {
+  return new Promise(function(resolve, reject) {
+    var examples = {};
+    examples['application/json'] = {
+  "access_token" : "847c2530-9819-434b-82fb-a9058a1ec957",
+  "token_type" : "bearer"
+};
+    if (Object.keys(examples).length > 0) {
+      resolve(examples[Object.keys(examples)[0]]);
+    } else {
+      resolve();
+    }
+  });
+}
+
+
+/**
+ * Confirmação de operação de transferência.
  *
  * authenticationType String Tipo de autenticação requerida.
  * clientId String Identificação do cliente.
  * token String Chave para validação do acesso ao serviço.
- * body TransacConf Requisição de confirmação de operação de depósito.
+ * body TransacConf Requisição de confirmação de operação de transferência.
  * no response value expected for this operation
  **/
-exports.depositoConfPOST = function(authenticationType,clientId,token,body) {
+exports.transferenciaConfPOST = function(authenticationType,clientId,token,body) {
   return new Promise(function(resolve, reject) {
     resolve();
   });
@@ -144,18 +174,27 @@ exports.depositoConfPOST = function(authenticationType,clientId,token,body) {
 
 
 /**
- * Operação de depósito em dinheiro, cartão é opcional nesta operação.
+ * Operação de transferência entre contas.
  *
  * authenticationType String Tipo de autenticação requerida.
  * clientId String Identificação do cliente.
  * token String Chave para validação do acesso ao serviço.
- * body DepositoReq Objeto da requisição de depósito, cartão é opcional.
- * returns depositoResp
+ * body TransferenciaReq Requisição de operação de transferência.
+ * returns transferenciaResp
  **/
-exports.depositoPOST = function(authenticationType,clientId,token,body) {
+exports.transferenciaPOST = function(authenticationType,clientId,token,body) {
   return new Promise(function(resolve, reject) {
     var examples = {};
     examples['application/json'] = {
+  "Inftransferencia" : {
+    "recibo" : "          COMPROVANTE DE TRANSFERENCIA          @           TRANSFERENCIA ENTRE CONTAS           @ORIGEM: CONTA CORRENTE - 123/1234567890         @DESTINO: CONTA CORRENTE - 456/9876543210        @VALOR TRANSFERENCIA: 123,456                    ",
+    "origem" : {
+      "nome" : "Jean-Luc Picard"
+    },
+    "destino" : {
+      "nome" : "William Thomas Riker"
+    }
+  },
   "InfTransacao" : {
     "cdProc" : "029100",
     "mensagemCliente" : "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em tela.",
@@ -171,9 +210,6 @@ exports.depositoPOST = function(authenticationType,clientId,token,body) {
   },
   "Cripto" : {
     "hash" : "hash"
-  },
-  "InfDeposito" : {
-    "recibo" : "@            COMPROVANTE DE DEPOSITO             @------------------------------------------------@ Agencia....: 0101                              @ Conta......: 74414-0                           @ Nome.......: EUGENIO SCHMITT COELHO            @@------------------------------------------------@ Favorecido: EUGENIO SCHMITT COELHO             @ Agencia Destino:                           0101@ Conta Destino:         Conta Corrente - 74414-0@@Tipo            NSU                        Valor@Dinheiro        697841472523             R$20,00@------------------------------------------------@               SAC - 0800 123 4569@      SAC - DEF. AUDITIVO - 0800 123 4568@            OUVIDORIA - 0800 123 4567@@             www.siteparceiro.com.br@"
   },
   "Terminal" : {
     "codEstab" : "000000000742673",

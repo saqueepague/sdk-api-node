@@ -1,14 +1,14 @@
 'use strict';
 
 var utils = require('../utils/writer.js');
-var DepsitoComCarto = require('../service/DepsitoComCartoService');
+var PagamentoSemCartao = require('../service/PagamentoSemCartaoService');
 
-module.exports.depositoConfPOST = function depositoConfPOST (req, res, next) {
+module.exports.consultaPagamentoPOST = function consultaPagamentoPOST (req, res, next) {
   var authenticationType = req.swagger.params['authenticationType'].value;
   var clientId = req.swagger.params['clientId'].value;
   var token = req.swagger.params['token'].value;
   var body = req.swagger.params['body'].value;
-  DepsitoComCarto.depositoConfPOST(authenticationType,clientId,token,body)
+  PagamentoSemCartao.consultaPagamentoPOST(authenticationType,clientId,token,body)
     .then(function (response) {
       utils.writeJson(res, response);
     })
@@ -17,12 +17,12 @@ module.exports.depositoConfPOST = function depositoConfPOST (req, res, next) {
     });
 };
 
-module.exports.depositoPOST = function depositoPOST (req, res, next) {
+module.exports.pagamentoConfPOST = function pagamentoConfPOST (req, res, next) {
   var authenticationType = req.swagger.params['authenticationType'].value;
   var clientId = req.swagger.params['clientId'].value;
   var token = req.swagger.params['token'].value;
   var body = req.swagger.params['body'].value;
-  DepsitoComCarto.depositoPOST(authenticationType,clientId,token,body)
+  PagamentoSemCartao.pagamentoConfPOST(authenticationType,clientId,token,body)
     .then(function (response) {
       utils.writeJson(res, response);
     })
@@ -31,12 +31,25 @@ module.exports.depositoPOST = function depositoPOST (req, res, next) {
     });
 };
 
-module.exports.identificacaoPOST = function identificacaoPOST (req, res, next) {
+module.exports.pagamentoPOST = function pagamentoPOST (req, res, next) {
   var authenticationType = req.swagger.params['authenticationType'].value;
   var clientId = req.swagger.params['clientId'].value;
   var token = req.swagger.params['token'].value;
   var body = req.swagger.params['body'].value;
-  DepsitoComCarto.identificacaoPOST(authenticationType,clientId,token,body)
+  PagamentoSemCartao.pagamentoPOST(authenticationType,clientId,token,body)
+    .then(function (response) {
+      utils.writeJson(res, response);
+    })
+    .catch(function (response) {
+      utils.writeJson(res, response);
+    });
+};
+
+module.exports.tokenPOST = function tokenPOST (req, res, next) {
+  var authenticationType = req.swagger.params['authenticationType'].value;
+  var clientId = req.swagger.params['clientId'].value;
+  var clientSecret = req.swagger.params['clientSecret'].value;
+  PagamentoSemCartao.tokenPOST(authenticationType,clientId,clientSecret)
     .then(function (response) {
       utils.writeJson(res, response);
     })

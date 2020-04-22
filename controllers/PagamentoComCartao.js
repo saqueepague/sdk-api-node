@@ -1,14 +1,14 @@
 'use strict';
 
 var utils = require('../utils/writer.js');
-var TransfernciaComCarto = require('../service/TransfernciaComCartoService');
+var PagamentoComCartao = require('../service/PagamentoComCartaoService');
 
-module.exports.consultaContaPOST = function consultaContaPOST (req, res, next) {
+module.exports.consultaPagamentoPOST = function consultaPagamentoPOST (req, res, next) {
   var authenticationType = req.swagger.params['authenticationType'].value;
   var clientId = req.swagger.params['clientId'].value;
   var token = req.swagger.params['token'].value;
   var body = req.swagger.params['body'].value;
-  TransfernciaComCarto.consultaContaPOST(authenticationType,clientId,token,body)
+  PagamentoComCartao.consultaPagamentoPOST(authenticationType,clientId,token,body)
     .then(function (response) {
       utils.writeJson(res, response);
     })
@@ -22,7 +22,7 @@ module.exports.identificacaoPOST = function identificacaoPOST (req, res, next) {
   var clientId = req.swagger.params['clientId'].value;
   var token = req.swagger.params['token'].value;
   var body = req.swagger.params['body'].value;
-  TransfernciaComCarto.identificacaoPOST(authenticationType,clientId,token,body)
+  PagamentoComCartao.identificacaoPOST(authenticationType,clientId,token,body)
     .then(function (response) {
       utils.writeJson(res, response);
     })
@@ -31,12 +31,12 @@ module.exports.identificacaoPOST = function identificacaoPOST (req, res, next) {
     });
 };
 
-module.exports.transferenciaConfPOST = function transferenciaConfPOST (req, res, next) {
+module.exports.pagamentoConfPOST = function pagamentoConfPOST (req, res, next) {
   var authenticationType = req.swagger.params['authenticationType'].value;
   var clientId = req.swagger.params['clientId'].value;
   var token = req.swagger.params['token'].value;
   var body = req.swagger.params['body'].value;
-  TransfernciaComCarto.transferenciaConfPOST(authenticationType,clientId,token,body)
+  PagamentoComCartao.pagamentoConfPOST(authenticationType,clientId,token,body)
     .then(function (response) {
       utils.writeJson(res, response);
     })
@@ -45,12 +45,25 @@ module.exports.transferenciaConfPOST = function transferenciaConfPOST (req, res,
     });
 };
 
-module.exports.transferenciaPOST = function transferenciaPOST (req, res, next) {
+module.exports.pagamentoPOST = function pagamentoPOST (req, res, next) {
   var authenticationType = req.swagger.params['authenticationType'].value;
   var clientId = req.swagger.params['clientId'].value;
   var token = req.swagger.params['token'].value;
   var body = req.swagger.params['body'].value;
-  TransfernciaComCarto.transferenciaPOST(authenticationType,clientId,token,body)
+  PagamentoComCartao.pagamentoPOST(authenticationType,clientId,token,body)
+    .then(function (response) {
+      utils.writeJson(res, response);
+    })
+    .catch(function (response) {
+      utils.writeJson(res, response);
+    });
+};
+
+module.exports.tokenPOST = function tokenPOST (req, res, next) {
+  var authenticationType = req.swagger.params['authenticationType'].value;
+  var clientId = req.swagger.params['clientId'].value;
+  var clientSecret = req.swagger.params['clientSecret'].value;
+  PagamentoComCartao.tokenPOST(authenticationType,clientId,clientSecret)
     .then(function (response) {
       utils.writeJson(res, response);
     })

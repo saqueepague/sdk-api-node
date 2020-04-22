@@ -4,48 +4,50 @@ info:
   description: "Modelo de API para transações da Saque e Pague. O parceiro interessado\
     \ deve implementar as operações desejadas para que a SeP consiga se comunicar\
     \ com o mesmo."
-  version: "1.19.0"
+  version: "1.19.1"
   title: "Saque e Pague Transacional"
   contact:
     name: "Time Saque e Pague"
     url: "http://www.saqueepague.com.br"
 host: "api-saqueepague.sensedia.com"
-basePath: "/saqueepague/SepTransaction/1.19.0"
+basePath: "/saqueepague/SepTransaction/1.19.1"
 tags:
-- name: "Depósito com Cartão"
+- name: "Deposito com Cartao"
   description: "Transações necessárias para efetuar um Depósito com Cartão."
-- name: "Depósito sem Cartão"
-  description: "Transações necessárias para efetuar um Depósito sem Cartão."
-- name: "Depósito via Carteira Digital"
-  description: "Transações necessárias para efetuar transação de Depósito via Carteira\
-    \ Digital."
-- name: "Empréstimo com Cartão"
-  description: "Transações necessárias para efetuar um Depósito sem Cartão."
-- name: "Extrato com Cartão"
-  description: "Transações necessárias para efetuar um Extrato com Cartão."
-- name: "Pagamento com Cartão"
+- name: "Deposito sem Cartao"
+  description: "Transações necessárias para efetuar um Deposito via Carteira Digital."
+- name: "Deposito via Carteira Digital"
+  description: "Transações necessárias para efetuar transação de Extrato com Cartaoia\
+    \ Carteira Digital."
+- name: "Emprestimo com Cartao"
+  description: "Transações necessárias para efetuar um Empréstimo com Cartão."
+- name: "Extrato com Cartao"
+  description: "Transações necessárias para efetuar um Pagamento com Cartao."
+- name: "Pagamento com Cartao"
   description: "Transações necessárias para efetuar um Pagamento com Cartão."
-- name: "Pagamento sem Cartão"
+- name: "Pagamento sem Cartao"
   description: "Transações necessárias para efetuar um Pagamento sem Cartão."
 - name: "Recarga"
   description: "Transações necessárias para efetuar uma Recarga de cartão Pré-Pago."
 - name: "Recarga Celular"
   description: "Transações necessárias para efetuar uma Recarga de celular Pré-Pago."
-- name: "Saldo com Cartão"
+- name: "Saldo com Cartao"
   description: "Transações necessárias para efetuar um Saldo com Cartão."
-- name: "Saque com Cartão"
+- name: "Saque com Cartao"
   description: "Transações necessárias para efetuar um Saque com Cartão."
-- name: "Saque sem Cartão"
+- name: "Saque sem Cartao"
   description: "Transações necessárias para efetuar um Saque sem Cartão."
 - name: "Saque via Carteira Digital"
   description: "Transações necessárias para efetuar transação de Saque via Carteira\
     \ Digital."
-- name: "Transferência com Cartão"
+- name: "Transferencia com Cartao"
   description: "Transações necessárias para efetuar uma Transferência com Cartão."
-- name: "Transferência sem Cartão"
-  description: "Transações necessárias para efetuar uma Transferência com Cartão."
-- name: "Títulos de Capitalização"
+- name: "Transferencia sem Cartao"
+  description: "Transações necessárias para efetuar uma Transferência sem Cartão."
+- name: "Titulos de Capitalizacao"
   description: "Transações de compra de Títulos de Capitalização."
+- name: "Default"
+  description: "Todas transações da Saque e Pague."
 schemes:
 - "https"
 paths:
@@ -53,6 +55,7 @@ paths:
     post:
       tags:
       - "Saque via Carteira Digital"
+      - "Default"
       description: "Operação de autenticação de cliente sem cartão, chamada para retornar\
         \ o nome do cliente autenticado."
       operationId: "autenticacaoPOST"
@@ -98,7 +101,8 @@ paths:
   /compraTitulosCapitalizacao:
     post:
       tags:
-      - "Títulos de Capitalização"
+      - "Titulos de Capitalizacao"
+      - "Default"
       description: "Operação de compra de títulos de capitalização."
       operationId: "compraTitulosCapitalizacaoPOST"
       consumes:
@@ -140,11 +144,12 @@ paths:
           description: "Bad Request ou Erro interno ao qual inviabilizou uma resposta."
         401:
           description: "Acesso não autorizado."
-      x-swagger-router-controller: "TtulosDeCapitalizao"
+      x-swagger-router-controller: "TitulosDeCapitalizacao"
   /compraTitulosCapitalizacaoConf:
     post:
       tags:
-      - "Títulos de Capitalização"
+      - "Titulos de Capitalizacao"
+      - "Default"
       description: "Confirmação de operação de compra de títulos de capitalização."
       operationId: "compraTitulosCapitalizacaoConfPOST"
       consumes:
@@ -184,14 +189,15 @@ paths:
           description: "Bad Request ou Erro interno ao qual inviabilizou uma resposta."
         401:
           description: "Acesso não autorizado."
-      x-swagger-router-controller: "TtulosDeCapitalizao"
+      x-swagger-router-controller: "TitulosDeCapitalizacao"
   /consultaConta:
     post:
       tags:
-      - "Depósito sem Cartão"
-      - "Depósito via Carteira Digital"
-      - "Transferência com Cartão"
-      - "Transferência sem Cartão"
+      - "Deposito sem Cartao"
+      - "Deposito via Carteira Digital"
+      - "Transferencia com Cartao"
+      - "Transferencia sem Cartao"
+      - "Default"
       description: "Operação de consulta de conta de favorecido, usada previamente\
         \ ao depósito para verificar se a conta é válida e está habilitada para depó\
         sito."
@@ -234,11 +240,12 @@ paths:
           description: "Bad Request ou Erro interno ao qual inviabilizou uma resposta."
         401:
           description: "Acesso não autorizado."
-      x-swagger-router-controller: "DepsitoSemCarto"
+      x-swagger-router-controller: "DepositoSemCartao"
   /consultaLimitesEmprestimo:
     post:
       tags:
-      - "Empréstimo com Cartão"
+      - "Emprestimo com Cartao"
+      - "Default"
       description: "Operação de consulta dos limites disponíveis para empréstimo.\
         \ Esta operação é válida somente com os dados do cartão."
       operationId: "consultaLimitesEmprestimoPOST"
@@ -281,12 +288,13 @@ paths:
           description: "Bad Request ou Erro interno ao qual inviabilizou uma resposta."
         401:
           description: "Acesso não autorizado."
-      x-swagger-router-controller: "EmprstimoComCarto"
+      x-swagger-router-controller: "EmprestimoComCartao"
   /consultaPagamento:
     post:
       tags:
-      - "Pagamento com Cartão"
-      - "Pagamento sem Cartão"
+      - "Pagamento com Cartao"
+      - "Pagamento sem Cartao"
+      - "Default"
       description: "Operação de consulta de informações do boleto a ser pago em dinheiro\
         \ ou débito em conta."
       operationId: "consultaPagamentoPOST"
@@ -328,11 +336,12 @@ paths:
           description: "Bad Request ou Erro interno ao qual inviabilizou uma resposta."
         401:
           description: "Acesso não autorizado."
-      x-swagger-router-controller: "PagamentoComCarto"
+      x-swagger-router-controller: "PagamentoComCartao"
   /consultaParcelasEmprestimo:
     post:
       tags:
-      - "Empréstimo com Cartão"
+      - "Emprestimo com Cartao"
+      - "Default"
       description: "Operação de consulta de condições disponíveis de parcelamento\
         \ do empréstimo."
       operationId: "consultaParcelasEmprestimoPOST"
@@ -374,11 +383,12 @@ paths:
           description: "Bad Request ou Erro interno ao qual inviabilizou uma resposta."
         401:
           description: "Acesso não autorizado."
-      x-swagger-router-controller: "EmprstimoComCarto"
+      x-swagger-router-controller: "EmprestimoComCartao"
   /consultaPrePago:
     post:
       tags:
       - "Recarga Celular"
+      - "Default"
       description: "Operação de consulta dos possíveis produtos de recarga de cartã\
         o pré-pago. Operação relacionada a transação consultaPrePago."
       operationId: "consultaPrePagoPOST"
@@ -425,6 +435,7 @@ paths:
     post:
       tags:
       - "Recarga"
+      - "Default"
       description: "Operação de consulta dos possíveis produtos de recarga de transporte\
         \ para o cartão informado pelo cliente. Operação relacionada a transação consultaProdutosRecarga."
       operationId: "consultaProdutosRecargaPOST"
@@ -471,7 +482,8 @@ paths:
   /consultaSaque:
     post:
       tags:
-      - "Saque sem Cartão"
+      - "Saque sem Cartao"
+      - "Default"
       description: "Operação de consulta para saque de moeda estrangeira (câmbio).\
         \ Efetuada para autenticar cliente, retornando valorde saque, moeda e dados\
         \ adicionais."
@@ -514,12 +526,13 @@ paths:
           description: "Bad Request ou Erro interno ao qual inviabilizou uma resposta."
         401:
           description: "Acesso não autorizado."
-      x-swagger-router-controller: "SaqueSemCarto"
+      x-swagger-router-controller: "SaqueSemCartao"
   /consultaTaxas:
     post:
       tags:
       - "Saque via Carteira Digital"
-      - "Depósito via Carteira Digital"
+      - "Deposito via Carteira Digital"
+      - "Default"
       description: "Operação de consulta de taxas dinâmicas, requisitado antes de\
         \ depósito ou saque de carteira de digital."
       operationId: "consultaTaxasPOST"
@@ -565,7 +578,8 @@ paths:
   /consultaTitulosCapitalizacao:
     post:
       tags:
-      - "Títulos de Capitalização"
+      - "Titulos de Capitalizacao"
+      - "Default"
       description: "Operação de consulta dos possíveis produtos de títulos de capitalizaç\
         ão de uma operadora."
       operationId: "consultaTitulosCapitalizacaoPOST"
@@ -607,11 +621,12 @@ paths:
           description: "Bad Request ou Erro interno ao qual inviabilizou uma resposta."
         401:
           description: "Acesso não autorizado."
-      x-swagger-router-controller: "TtulosDeCapitalizao"
+      x-swagger-router-controller: "TitulosDeCapitalizacao"
   /consultaValoresRecarga:
     post:
       tags:
       - "Recarga"
+      - "Default"
       description: "Operação de consulta dos produtos de recarga de cartão pré-pago\
         \ de transporte. Traz uma lista de todas as operadoras e seus respectivos\
         \ produtos/valores."
@@ -658,9 +673,10 @@ paths:
   /deposito:
     post:
       tags:
-      - "Depósito sem Cartão"
-      - "Depósito com Cartão"
-      - "Depósito via Carteira Digital"
+      - "Deposito sem Cartao"
+      - "Deposito com Cartao"
+      - "Deposito via Carteira Digital"
+      - "Default"
       description: "Operação de depósito em dinheiro, cartão é opcional nesta operaç\
         ão."
       operationId: "depositoPOST"
@@ -702,13 +718,14 @@ paths:
           description: "Bad Request ou Erro interno ao qual inviabilizou uma resposta."
         401:
           description: "Acesso não autorizado."
-      x-swagger-router-controller: "DepsitoSemCarto"
+      x-swagger-router-controller: "DepositoSemCartao"
   /depositoConf:
     post:
       tags:
-      - "Depósito sem Cartão"
-      - "Depósito com Cartão"
-      - "Depósito via Carteira Digital"
+      - "Deposito sem Cartao"
+      - "Deposito com Cartao"
+      - "Deposito via Carteira Digital"
+      - "Default"
       description: "Confirmação de operação de depósito."
       operationId: "depositoConfPOST"
       consumes:
@@ -747,11 +764,12 @@ paths:
           description: "Bad Request ou Erro interno ao qual inviabilizou uma resposta."
         401:
           description: "Acesso não autorizado."
-      x-swagger-router-controller: "DepsitoSemCarto"
+      x-swagger-router-controller: "DepositoSemCartao"
   /emprestimo:
     post:
       tags:
-      - "Empréstimo com Cartão"
+      - "Emprestimo com Cartao"
+      - "Default"
       description: "Operação de empréstimo."
       operationId: "emprestimoPOST"
       consumes:
@@ -792,11 +810,12 @@ paths:
           description: "Bad Request ou Erro interno ao qual inviabilizou uma resposta."
         401:
           description: "Acesso não autorizado."
-      x-swagger-router-controller: "EmprstimoComCarto"
+      x-swagger-router-controller: "EmprestimoComCartao"
   /emprestimoConf:
     post:
       tags:
-      - "Empréstimo com Cartão"
+      - "Emprestimo com Cartao"
+      - "Default"
       description: "Confirmação de operação de empréstimo."
       operationId: "emprestimoConfPOST"
       consumes:
@@ -835,11 +854,12 @@ paths:
           description: "Bad Request ou Erro interno ao qual inviabilizou uma resposta."
         401:
           description: "Acesso não autorizado."
-      x-swagger-router-controller: "EmprstimoComCarto"
+      x-swagger-router-controller: "EmprestimoComCartao"
   /extrato:
     post:
       tags:
-      - "Extrato com Cartão"
+      - "Extrato com Cartao"
+      - "Default"
       description: "Operação de extrato."
       operationId: "extratoPOST"
       consumes:
@@ -880,11 +900,12 @@ paths:
           description: "Bad Request ou Erro interno ao qual inviabilizou uma resposta."
         401:
           description: "Acesso não autorizado."
-      x-swagger-router-controller: "ExtratoComCarto"
+      x-swagger-router-controller: "ExtratoComCartao"
   /extratoConf:
     post:
       tags:
-      - "Extrato com Cartão"
+      - "Extrato com Cartao"
+      - "Default"
       description: "Confirmação de operação de extrato."
       operationId: "extratoConfPOST"
       consumes:
@@ -923,17 +944,18 @@ paths:
           description: "Bad Request ou Erro interno ao qual inviabilizou uma resposta."
         401:
           description: "Acesso não autorizado."
-      x-swagger-router-controller: "ExtratoComCarto"
+      x-swagger-router-controller: "ExtratoComCartao"
   /identificacao:
     post:
       tags:
-      - "Saque com Cartão"
-      - "Saldo com Cartão"
-      - "Extrato com Cartão"
-      - "Depósito com Cartão"
-      - "Empréstimo com Cartão"
-      - "Pagamento com Cartão"
-      - "Transferência com Cartão"
+      - "Saque com Cartao"
+      - "Saldo com Cartao"
+      - "Extrato com Cartao"
+      - "Deposito com Cartao"
+      - "Emprestimo com Cartao"
+      - "Pagamento com Cartao"
+      - "Transferencia com Cartao"
+      - "Default"
       description: "Operação de identificação do cliente e informações adicionais\
         \ de sua conta."
       operationId: "identificacaoPOST"
@@ -975,12 +997,13 @@ paths:
           description: "Bad Request ou Erro interno ao qual inviabilizou uma resposta."
         401:
           description: "Acesso não autorizado."
-      x-swagger-router-controller: "SaqueComCarto"
+      x-swagger-router-controller: "SaqueComCartao"
   /pagamento:
     post:
       tags:
-      - "Pagamento com Cartão"
-      - "Pagamento sem Cartão"
+      - "Pagamento com Cartao"
+      - "Pagamento sem Cartao"
+      - "Default"
       description: "Operação de pagamento de boleto de cobrança com cartão."
       operationId: "pagamentoPOST"
       consumes:
@@ -1021,12 +1044,13 @@ paths:
           description: "Bad Request ou Erro interno ao qual inviabilizou uma resposta."
         401:
           description: "Acesso não autorizado."
-      x-swagger-router-controller: "PagamentoComCarto"
+      x-swagger-router-controller: "PagamentoComCartao"
   /pagamentoConf:
     post:
       tags:
-      - "Pagamento com Cartão"
-      - "Pagamento sem Cartão"
+      - "Pagamento com Cartao"
+      - "Pagamento sem Cartao"
+      - "Default"
       description: "Confirmação de operação de pagamento de boleto de cobrança."
       operationId: "pagamentoConfPOST"
       consumes:
@@ -1065,11 +1089,12 @@ paths:
           description: "Bad Request ou Erro interno ao qual inviabilizou uma resposta."
         401:
           description: "Acesso não autorizado."
-      x-swagger-router-controller: "PagamentoComCarto"
+      x-swagger-router-controller: "PagamentoComCartao"
   /recarga:
     post:
       tags:
       - "Recarga"
+      - "Default"
       description: "Operação de recarga de cartão pré-pago de transporte (bilhetagem)\
         \ em dinheiro."
       operationId: "recargaPOST"
@@ -1116,6 +1141,7 @@ paths:
     post:
       tags:
       - "Recarga"
+      - "Default"
       description: "Operação de confirmação de recarga de cartão pré-pago de transporte\
         \ (bilhetagem)."
       operationId: "recargaConfPOST"
@@ -1160,6 +1186,7 @@ paths:
     post:
       tags:
       - "Recarga Celular"
+      - "Default"
       description: "Operação de recarga de celular pré-pago."
       operationId: "recargaPrePagoPOST"
       consumes:
@@ -1205,6 +1232,7 @@ paths:
     post:
       tags:
       - "Recarga Celular"
+      - "Default"
       description: "Confirmação de operação de recarga."
       operationId: "recargaPrePagoConfPOST"
       consumes:
@@ -1248,7 +1276,8 @@ paths:
   /saldo:
     post:
       tags:
-      - "Saldo com Cartão"
+      - "Saldo com Cartao"
+      - "Default"
       description: "Operação de consulta do valor de saldo disponível em conta."
       operationId: "saldoPOST"
       consumes:
@@ -1289,11 +1318,12 @@ paths:
           description: "Bad Request ou Erro interno ao qual inviabilizou uma resposta."
         401:
           description: "Acesso não autorizado."
-      x-swagger-router-controller: "SaldoComCarto"
+      x-swagger-router-controller: "SaldoComCartao"
   /saldoConf:
     post:
       tags:
-      - "Saldo com Cartão"
+      - "Saldo com Cartao"
+      - "Default"
       description: "Confirmação de operação de consulta de saldo."
       operationId: "saldoConfPOST"
       consumes:
@@ -1332,13 +1362,14 @@ paths:
           description: "Bad Request ou Erro interno ao qual inviabilizou uma resposta."
         401:
           description: "Acesso não autorizado."
-      x-swagger-router-controller: "SaldoComCarto"
+      x-swagger-router-controller: "SaldoComCartao"
   /saque:
     post:
       tags:
-      - "Saque com Cartão"
-      - "Saque sem Cartão"
+      - "Saque com Cartao"
+      - "Saque sem Cartao"
       - "Saque via Carteira Digital"
+      - "Default"
       description: "Operação de saque de dinheiro em moeda local ou estrangeira."
       operationId: "saquePOST"
       consumes:
@@ -1379,13 +1410,14 @@ paths:
           description: "Bad Request ou Erro interno ao qual inviabilizou uma resposta."
         401:
           description: "Acesso não autorizado."
-      x-swagger-router-controller: "SaqueComCarto"
+      x-swagger-router-controller: "SaqueComCartao"
   /saqueConf:
     post:
       tags:
-      - "Saque com Cartão"
-      - "Saque sem Cartão"
+      - "Saque com Cartao"
+      - "Saque sem Cartao"
       - "Saque via Carteira Digital"
+      - "Default"
       description: "Confirmação de operação de saque."
       operationId: "saqueConfPOST"
       consumes:
@@ -1424,12 +1456,63 @@ paths:
           description: "Bad Request ou Erro interno ao qual inviabilizou uma resposta."
         401:
           description: "Acesso não autorizado."
-      x-swagger-router-controller: "SaqueComCarto"
+      x-swagger-router-controller: "SaqueComCartao"
+  /token:
+    post:
+      tags:
+      - "Default"
+      - "Deposito com Cartao"
+      - "Deposito sem Cartao"
+      - "Deposito via Carteira Digital"
+      - "Emprestimo com Cartao"
+      - "Extrato com Cartao"
+      - "Pagamento com Cartao"
+      - "Pagamento sem Cartao"
+      - "Recarga"
+      - "Recarga Celular"
+      - "Saldo com Cartao"
+      - "Saque com Cartao"
+      - "Saque sem Cartao"
+      - "Saque via Carteira Digital"
+      - "Transferencia com Cartao"
+      - "Transferencia sem Cartao"
+      - "Titulos de Capitalizacao"
+      operationId: "tokenPOST"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "authenticationType"
+        in: "header"
+        description: "Tipo de autenticação requerida."
+        required: true
+        type: "string"
+        x-example: "auth2"
+      - name: "clientId"
+        in: "header"
+        description: "Identificação do cliente."
+        required: true
+        type: "string"
+        x-example: "prd-client"
+      - name: "clientSecret"
+        in: "header"
+        description: "Cliente Secret."
+        required: true
+        type: "string"
+        x-example: "prd-client"
+      responses:
+        200:
+          description: "Retorno com sucesso ou com Erro de negócio."
+          schema:
+            $ref: "#/definitions/infTokenResp"
+      x-swagger-router-controller: "Default"
   /transferencia:
     post:
       tags:
-      - "Transferência com Cartão"
-      - "Transferência sem Cartão"
+      - "Default"
+      - "Transferencia com Cartao"
+      - "Transferencia sem Cartao"
       description: "Operação de transferência entre contas."
       operationId: "transferenciaPOST"
       consumes:
@@ -1470,12 +1553,13 @@ paths:
           description: "Bad Request ou Erro interno ao qual inviabilizou uma resposta."
         401:
           description: "Acesso não autorizado."
-      x-swagger-router-controller: "TransfernciaComCarto"
+      x-swagger-router-controller: "Default"
   /transferenciaConf:
     post:
       tags:
-      - "Transferência com Cartão"
-      - "Transferência sem Cartão"
+      - "Default"
+      - "Transferencia com Cartao"
+      - "Transferencia sem Cartao"
       description: "Confirmação de operação de transferência."
       operationId: "transferenciaConfPOST"
       consumes:
@@ -1514,7 +1598,7 @@ paths:
           description: "Bad Request ou Erro interno ao qual inviabilizou uma resposta."
         401:
           description: "Acesso não autorizado."
-      x-swagger-router-controller: "TransfernciaComCarto"
+      x-swagger-router-controller: "Default"
 definitions:
   autenticacaoReq:
     type: "object"
@@ -3145,6 +3229,21 @@ definitions:
       max_amount: "10000"
       id: "0201"
       value: "000"
+  infTokenResp:
+    type: "object"
+    properties:
+      access_token:
+        type: "string"
+        example: "847c2530-9819-434b-82fb-a9058a1ec957"
+        description: "Token retornado."
+      token_type:
+        type: "string"
+        example: "bearer"
+        description: "Tipo do token."
+    description: "Informações da requisição de consulta de Token."
+    example:
+      access_token: "847c2530-9819-434b-82fb-a9058a1ec957"
+      token_type: "bearer"
   infConsultaTitulosCapitalizacaoResp:
     type: "object"
     properties:

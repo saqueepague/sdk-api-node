@@ -1,14 +1,14 @@
 'use strict';
 
 var utils = require('../utils/writer.js');
-var TtulosDeCapitalizao = require('../service/TtulosDeCapitalizaoService');
+var SaqueComCartao = require('../service/SaqueComCartaoService');
 
-module.exports.compraTitulosCapitalizacaoConfPOST = function compraTitulosCapitalizacaoConfPOST (req, res, next) {
+module.exports.identificacaoPOST = function identificacaoPOST (req, res, next) {
   var authenticationType = req.swagger.params['authenticationType'].value;
   var clientId = req.swagger.params['clientId'].value;
   var token = req.swagger.params['token'].value;
   var body = req.swagger.params['body'].value;
-  TtulosDeCapitalizao.compraTitulosCapitalizacaoConfPOST(authenticationType,clientId,token,body)
+  SaqueComCartao.identificacaoPOST(authenticationType,clientId,token,body)
     .then(function (response) {
       utils.writeJson(res, response);
     })
@@ -17,12 +17,12 @@ module.exports.compraTitulosCapitalizacaoConfPOST = function compraTitulosCapita
     });
 };
 
-module.exports.compraTitulosCapitalizacaoPOST = function compraTitulosCapitalizacaoPOST (req, res, next) {
+module.exports.saqueConfPOST = function saqueConfPOST (req, res, next) {
   var authenticationType = req.swagger.params['authenticationType'].value;
   var clientId = req.swagger.params['clientId'].value;
   var token = req.swagger.params['token'].value;
   var body = req.swagger.params['body'].value;
-  TtulosDeCapitalizao.compraTitulosCapitalizacaoPOST(authenticationType,clientId,token,body)
+  SaqueComCartao.saqueConfPOST(authenticationType,clientId,token,body)
     .then(function (response) {
       utils.writeJson(res, response);
     })
@@ -31,12 +31,25 @@ module.exports.compraTitulosCapitalizacaoPOST = function compraTitulosCapitaliza
     });
 };
 
-module.exports.consultaTitulosCapitalizacaoPOST = function consultaTitulosCapitalizacaoPOST (req, res, next) {
+module.exports.saquePOST = function saquePOST (req, res, next) {
   var authenticationType = req.swagger.params['authenticationType'].value;
   var clientId = req.swagger.params['clientId'].value;
   var token = req.swagger.params['token'].value;
   var body = req.swagger.params['body'].value;
-  TtulosDeCapitalizao.consultaTitulosCapitalizacaoPOST(authenticationType,clientId,token,body)
+  SaqueComCartao.saquePOST(authenticationType,clientId,token,body)
+    .then(function (response) {
+      utils.writeJson(res, response);
+    })
+    .catch(function (response) {
+      utils.writeJson(res, response);
+    });
+};
+
+module.exports.tokenPOST = function tokenPOST (req, res, next) {
+  var authenticationType = req.swagger.params['authenticationType'].value;
+  var clientId = req.swagger.params['clientId'].value;
+  var clientSecret = req.swagger.params['clientSecret'].value;
+  SaqueComCartao.tokenPOST(authenticationType,clientId,clientSecret)
     .then(function (response) {
       utils.writeJson(res, response);
     })

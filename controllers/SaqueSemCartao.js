@@ -1,14 +1,14 @@
 'use strict';
 
 var utils = require('../utils/writer.js');
-var DepsitoViaCarteiraDigital = require('../service/DepsitoViaCarteiraDigitalService');
+var SaqueSemCartao = require('../service/SaqueSemCartaoService');
 
-module.exports.consultaContaPOST = function consultaContaPOST (req, res, next) {
+module.exports.consultaSaquePOST = function consultaSaquePOST (req, res, next) {
   var authenticationType = req.swagger.params['authenticationType'].value;
   var clientId = req.swagger.params['clientId'].value;
   var token = req.swagger.params['token'].value;
   var body = req.swagger.params['body'].value;
-  DepsitoViaCarteiraDigital.consultaContaPOST(authenticationType,clientId,token,body)
+  SaqueSemCartao.consultaSaquePOST(authenticationType,clientId,token,body)
     .then(function (response) {
       utils.writeJson(res, response);
     })
@@ -17,12 +17,12 @@ module.exports.consultaContaPOST = function consultaContaPOST (req, res, next) {
     });
 };
 
-module.exports.consultaTaxasPOST = function consultaTaxasPOST (req, res, next) {
+module.exports.saqueConfPOST = function saqueConfPOST (req, res, next) {
   var authenticationType = req.swagger.params['authenticationType'].value;
   var clientId = req.swagger.params['clientId'].value;
   var token = req.swagger.params['token'].value;
   var body = req.swagger.params['body'].value;
-  DepsitoViaCarteiraDigital.consultaTaxasPOST(authenticationType,clientId,token,body)
+  SaqueSemCartao.saqueConfPOST(authenticationType,clientId,token,body)
     .then(function (response) {
       utils.writeJson(res, response);
     })
@@ -31,12 +31,12 @@ module.exports.consultaTaxasPOST = function consultaTaxasPOST (req, res, next) {
     });
 };
 
-module.exports.depositoConfPOST = function depositoConfPOST (req, res, next) {
+module.exports.saquePOST = function saquePOST (req, res, next) {
   var authenticationType = req.swagger.params['authenticationType'].value;
   var clientId = req.swagger.params['clientId'].value;
   var token = req.swagger.params['token'].value;
   var body = req.swagger.params['body'].value;
-  DepsitoViaCarteiraDigital.depositoConfPOST(authenticationType,clientId,token,body)
+  SaqueSemCartao.saquePOST(authenticationType,clientId,token,body)
     .then(function (response) {
       utils.writeJson(res, response);
     })
@@ -45,12 +45,11 @@ module.exports.depositoConfPOST = function depositoConfPOST (req, res, next) {
     });
 };
 
-module.exports.depositoPOST = function depositoPOST (req, res, next) {
+module.exports.tokenPOST = function tokenPOST (req, res, next) {
   var authenticationType = req.swagger.params['authenticationType'].value;
   var clientId = req.swagger.params['clientId'].value;
-  var token = req.swagger.params['token'].value;
-  var body = req.swagger.params['body'].value;
-  DepsitoViaCarteiraDigital.depositoPOST(authenticationType,clientId,token,body)
+  var clientSecret = req.swagger.params['clientSecret'].value;
+  SaqueSemCartao.tokenPOST(authenticationType,clientId,clientSecret)
     .then(function (response) {
       utils.writeJson(res, response);
     })

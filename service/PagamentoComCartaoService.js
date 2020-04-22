@@ -2,15 +2,15 @@
 
 
 /**
- * Operação de consulta de conta de favorecido, usada previamente ao depósito para verificar se a conta é válida e está habilitada para depósito.
+ * Operação de consulta de informações do boleto a ser pago em dinheiro ou débito em conta.
  *
  * authenticationType String Tipo de autenticação requerida.
  * clientId String Identificação do cliente.
  * token String Chave para validação do acesso ao serviço.
- * body ConsultaContaReq Requisição de consulta de conta.
- * returns consultaContaResp
+ * body ConsultaPagamentoReq Requisição para consulta de pagamento de boleto com cartão.
+ * returns consultaPagamentoResp
  **/
-exports.consultaContaPOST = function(authenticationType,clientId,token,body) {
+exports.consultaPagamentoPOST = function(authenticationType,clientId,token,body) {
   return new Promise(function(resolve, reject) {
     var examples = {};
     examples['application/json'] = {
@@ -27,20 +27,34 @@ exports.consultaContaPOST = function(authenticationType,clientId,token,body) {
     "nsuResposta" : "820",
     "dataHora" : "1122151032"
   },
-  "InfConsultaConta" : {
-    "solicDoc" : "00",
-    "modalidadeDeposito" : "00",
-    "nomeCliente" : "Carl Edward Sagan",
-    "depositoIdentificado" : "00",
-    "habilitaDeposito" : "01"
-  },
-  "Cripto" : {
-    "hash" : "hash"
-  },
   "Terminal" : {
     "codEstab" : "000000000742673",
     "tipo" : "008",
     "id" : "05100004"
+  },
+  "Cripto" : {
+    "hash" : "hash"
+  },
+  "InfConsultaPagamento" : {
+    "aceitaPagamentoParcial" : "01",
+    "dataPagamento" : "20181122",
+    "desconto" : "000000000499",
+    "mensagem" : "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em tela.",
+    "valor" : "000000005000",
+    "cip" : {
+      "valorMaximoPermitidoPagamento" : "000000050000",
+      "valorMinimoPermitidoPagamento" : "000000000500",
+      "valorJurosCalculado" : "000000000499",
+      "valorAbatimento" : "000000000499",
+      "tipoValorAceito" : "3",
+      "valorMultaCalculadada" : "000000000499"
+    },
+    "valorMinimo" : "000000000500",
+    "codBarras" : {
+      "codigo" : "12345678912346579812345678912345678913456789123456789",
+      "dataVencimento" : "20181122"
+    },
+    "cedente" : "Saque e Pague"
   }
 };
     if (Object.keys(examples).length > 0) {
@@ -135,15 +149,15 @@ exports.identificacaoPOST = function(authenticationType,clientId,token,body) {
 
 
 /**
- * Confirmação de operação de transferência.
+ * Confirmação de operação de pagamento de boleto de cobrança.
  *
  * authenticationType String Tipo de autenticação requerida.
  * clientId String Identificação do cliente.
  * token String Chave para validação do acesso ao serviço.
- * body TransacConf Requisição de confirmação de operação de transferência.
+ * body TransacConf Requisição de confirmação de operação de pagamento.
  * no response value expected for this operation
  **/
-exports.transferenciaConfPOST = function(authenticationType,clientId,token,body) {
+exports.pagamentoConfPOST = function(authenticationType,clientId,token,body) {
   return new Promise(function(resolve, reject) {
     resolve();
   });
@@ -151,26 +165,26 @@ exports.transferenciaConfPOST = function(authenticationType,clientId,token,body)
 
 
 /**
- * Operação de transferência entre contas.
+ * Operação de pagamento de boleto de cobrança com cartão.
  *
  * authenticationType String Tipo de autenticação requerida.
  * clientId String Identificação do cliente.
  * token String Chave para validação do acesso ao serviço.
- * body TransferenciaReq Requisição de operação de transferência.
- * returns transferenciaResp
+ * body PagamentoReq Requisição para pagamento de boleto com cartão.
+ * returns pagamentoResp
  **/
-exports.transferenciaPOST = function(authenticationType,clientId,token,body) {
+exports.pagamentoPOST = function(authenticationType,clientId,token,body) {
   return new Promise(function(resolve, reject) {
     var examples = {};
     examples['application/json'] = {
-  "Inftransferencia" : {
-    "recibo" : "          COMPROVANTE DE TRANSFERENCIA          @           TRANSFERENCIA ENTRE CONTAS           @ORIGEM: CONTA CORRENTE - 123/1234567890         @DESTINO: CONTA CORRENTE - 456/9876543210        @VALOR TRANSFERENCIA: 123,456                    ",
-    "origem" : {
-      "nome" : "Jean-Luc Picard"
-    },
-    "destino" : {
-      "nome" : "William Thomas Riker"
-    }
+  "InfPagamentoResp" : {
+    "recibo" : "@            COMPROVANTE DE PAGAMENTO            @                                                @ CEDENTE: 008 BANCO SAQUE E PAGUE               @ VALOR..: 263,85                                @ DATA DO PAGAMENTO.: 29/01/2019                 @ CODIGO DE BARRAS                               @@   84600000000-3 25850072001-1                 @   10357244475-5 01192190121-8                  @",
+    "qtdeViasComprovante" : "1",
+    "dataPagamento" : "20181122",
+    "desconto" : "000000000499",
+    "mensagem" : "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em tela.",
+    "valor" : "000000005000",
+    "cedente" : "Saque e Pague"
   },
   "InfTransacao" : {
     "cdProc" : "029100",
@@ -185,14 +199,37 @@ exports.transferenciaPOST = function(authenticationType,clientId,token,body) {
     "nsuResposta" : "820",
     "dataHora" : "1122151032"
   },
-  "Cripto" : {
-    "hash" : "hash"
-  },
   "Terminal" : {
     "codEstab" : "000000000742673",
     "tipo" : "008",
     "id" : "05100004"
+  },
+  "Cripto" : {
+    "hash" : "hash"
   }
+};
+    if (Object.keys(examples).length > 0) {
+      resolve(examples[Object.keys(examples)[0]]);
+    } else {
+      resolve();
+    }
+  });
+}
+
+
+/**
+ *
+ * authenticationType String Tipo de autenticação requerida.
+ * clientId String Identificação do cliente.
+ * clientSecret String Cliente Secret.
+ * returns infTokenResp
+ **/
+exports.tokenPOST = function(authenticationType,clientId,clientSecret) {
+  return new Promise(function(resolve, reject) {
+    var examples = {};
+    examples['application/json'] = {
+  "access_token" : "847c2530-9819-434b-82fb-a9058a1ec957",
+  "token_type" : "bearer"
 };
     if (Object.keys(examples).length > 0) {
       resolve(examples[Object.keys(examples)[0]]);

@@ -145,3 +145,26 @@ exports.saquePOST = function(authenticationType,clientId,token,body) {
   });
 }
 
+
+/**
+ *
+ * authenticationType String Tipo de autenticação requerida.
+ * clientId String Identificação do cliente.
+ * clientSecret String Cliente Secret.
+ * returns infTokenResp
+ **/
+exports.tokenPOST = function(authenticationType,clientId,clientSecret) {
+  return new Promise(function(resolve, reject) {
+    var examples = {};
+    examples['application/json'] = {
+  "access_token" : "847c2530-9819-434b-82fb-a9058a1ec957",
+  "token_type" : "bearer"
+};
+    if (Object.keys(examples).length > 0) {
+      resolve(examples[Object.keys(examples)[0]]);
+    } else {
+      resolve();
+    }
+  });
+}
+

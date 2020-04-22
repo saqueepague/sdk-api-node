@@ -1,14 +1,14 @@
 'use strict';
 
 var utils = require('../utils/writer.js');
-var PagamentoSemCarto = require('../service/PagamentoSemCartoService');
+var TransferenciaSemCartao = require('../service/TransferenciaSemCartaoService');
 
-module.exports.consultaPagamentoPOST = function consultaPagamentoPOST (req, res, next) {
+module.exports.consultaContaPOST = function consultaContaPOST (req, res, next) {
   var authenticationType = req.swagger.params['authenticationType'].value;
   var clientId = req.swagger.params['clientId'].value;
   var token = req.swagger.params['token'].value;
   var body = req.swagger.params['body'].value;
-  PagamentoSemCarto.consultaPagamentoPOST(authenticationType,clientId,token,body)
+  TransferenciaSemCartao.consultaContaPOST(authenticationType,clientId,token,body)
     .then(function (response) {
       utils.writeJson(res, response);
     })
@@ -17,12 +17,11 @@ module.exports.consultaPagamentoPOST = function consultaPagamentoPOST (req, res,
     });
 };
 
-module.exports.pagamentoConfPOST = function pagamentoConfPOST (req, res, next) {
+module.exports.tokenPOST = function tokenPOST (req, res, next) {
   var authenticationType = req.swagger.params['authenticationType'].value;
   var clientId = req.swagger.params['clientId'].value;
-  var token = req.swagger.params['token'].value;
-  var body = req.swagger.params['body'].value;
-  PagamentoSemCarto.pagamentoConfPOST(authenticationType,clientId,token,body)
+  var clientSecret = req.swagger.params['clientSecret'].value;
+  TransferenciaSemCartao.tokenPOST(authenticationType,clientId,clientSecret)
     .then(function (response) {
       utils.writeJson(res, response);
     })
@@ -31,12 +30,26 @@ module.exports.pagamentoConfPOST = function pagamentoConfPOST (req, res, next) {
     });
 };
 
-module.exports.pagamentoPOST = function pagamentoPOST (req, res, next) {
+module.exports.transferenciaConfPOST = function transferenciaConfPOST (req, res, next) {
   var authenticationType = req.swagger.params['authenticationType'].value;
   var clientId = req.swagger.params['clientId'].value;
   var token = req.swagger.params['token'].value;
   var body = req.swagger.params['body'].value;
-  PagamentoSemCarto.pagamentoPOST(authenticationType,clientId,token,body)
+  TransferenciaSemCartao.transferenciaConfPOST(authenticationType,clientId,token,body)
+    .then(function (response) {
+      utils.writeJson(res, response);
+    })
+    .catch(function (response) {
+      utils.writeJson(res, response);
+    });
+};
+
+module.exports.transferenciaPOST = function transferenciaPOST (req, res, next) {
+  var authenticationType = req.swagger.params['authenticationType'].value;
+  var clientId = req.swagger.params['clientId'].value;
+  var token = req.swagger.params['token'].value;
+  var body = req.swagger.params['body'].value;
+  TransferenciaSemCartao.transferenciaPOST(authenticationType,clientId,token,body)
     .then(function (response) {
       utils.writeJson(res, response);
     })
