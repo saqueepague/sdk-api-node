@@ -4,13 +4,13 @@ info:
   description: "Modelo de API para transações da Saque e Pague. O parceiro interessado\
     \ deve implementar as operações desejadas para que a SeP consiga se comunicar\
     \ com o mesmo."
-  version: "1.19.2"
+  version: "1.19.3"
   title: "Saque e Pague Transacional"
   contact:
     name: "Time Saque e Pague"
     url: "http://www.saqueepague.com.br"
 host: "api-saqueepague.sensedia.com"
-basePath: "/saqueepague/SepTransaction/1.19.2"
+basePath: "/saqueepague/SepTransaction/1.19.3"
 tags:
 - name: "Deposito com Cartao"
   description: "Transações necessárias para efetuar um Depósito com Cartão."
@@ -4038,8 +4038,13 @@ definitions:
       cpf:
         type: "string"
         example: "01234567890"
-        description: "Número do CPF ou CNPJ (11 dígitos ou 14 dígitos respectivamente)."
-        pattern: "^\\d{14}|\\d{11}$"
+        description: "Número do CPF (11 dígitos)."
+        pattern: "^\\d{11}$"
+      cnpj:
+        type: "string"
+        example: "01234567890123"
+        description: "Número do CNPJ (14 dígitos)."
+        pattern: "^\\d{14}$"
       codBarras:
         $ref: "#/definitions/infConsultaPagamentoReq_codBarras"
   infConsultaPagamentoResp:
