@@ -137,6 +137,7 @@ exports.consultaContaPOST = function(authenticationType,clientId,token,body) {
   "InfConsultaConta" : {
     "solicDoc" : "00",
     "modalidadeDeposito" : "00",
+    "depositoVarejista" : "01",
     "nomeCliente" : "Carl Edward Sagan",
     "depositoIdentificado" : "00",
     "habilitaDeposito" : "01"

@@ -1773,6 +1773,7 @@ definitions:
       InfConsultaConta:
         solicDoc: "00"
         modalidadeDeposito: "00"
+        depositoVarejista: "01"
         nomeCliente: "Carl Edward Sagan"
         depositoIdentificado: "00"
         habilitaDeposito: "01"
@@ -2825,10 +2826,19 @@ definitions:
         enum:
         - "00"
         - "01"
+      depositoVarejista:
+        type: "string"
+        example: "01"
+        description: "Indica se a conta em questão permite Depósito Varejista  (00\
+          \ = Não / 01 = Sim)."
+        enum:
+        - "00"
+        - "01"
     description: "Informações da resposta da requisição de consulta de conta do favorecido."
     example:
       solicDoc: "00"
       modalidadeDeposito: "00"
+      depositoVarejista: "01"
       nomeCliente: "Carl Edward Sagan"
       depositoIdentificado: "00"
       habilitaDeposito: "01"
