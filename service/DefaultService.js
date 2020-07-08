@@ -874,6 +874,9 @@ exports.emprestimoPOST = function(authenticationType,clientId,token,body) {
     "codEstab" : "000000000742673",
     "tipo" : "008",
     "id" : "05100004"
+  },
+  "InfEmprestimo" : {
+    "recibo" : "@           COMPROVANTE DE EMPRESTIMO            @------------------------------------------------@ Agencia....: 0101                              @ Conta......: 74414-0                           @ Nome.......: EUGENIO SCHMITT COELHO            @@------------------------------------------------@ Favorecido: EUGENIO SCHMITT COELHO             @ Agencia Destino:                           0101@ Conta Destino:         Conta Corrente - 74414-0@@Tipo            NSU                        Valor@Dinheiro        697841472523             R$20,00@------------------------------------------------@               SAC - 0800 123 4569@      SAC - DEF. AUDITIVO - 0800 123 4568@            OUVIDORIA - 0800 123 4567@@             www.siteparceiro.com.br@"
   }
 };
     if (Object.keys(examples).length > 0) {
@@ -1339,6 +1342,53 @@ exports.saquePOST = function(authenticationType,clientId,token,body) {
     "codEstab" : "000000000742673",
     "tipo" : "008",
     "id" : "05100004"
+  }
+};
+    if (Object.keys(examples).length > 0) {
+      resolve(examples[Object.keys(examples)[0]]);
+    } else {
+      resolve();
+    }
+  });
+}
+
+
+/**
+ * Operação de simulação das condições de um empréstimo.
+ *
+ * authenticationType String Tipo de autenticação requerida.
+ * clientId String Identificação do cliente.
+ * token String Chave para validação do acesso ao serviço.
+ * body SimulacaoEmprestimoReq Requisição de consulta parcelas de empréstimo.
+ * returns simulacaoEmprestimoResp
+ **/
+exports.simulacaoEmprestimoPOST = function(authenticationType,clientId,token,body) {
+  return new Promise(function(resolve, reject) {
+    var examples = {};
+    examples['application/json'] = {
+  "InfSimulacaoEmprestimo" : {
+    "mensagem" : "O pagamento sera em 4 prestacoes de  306,90     </Juros  6,29% CET (ao mes)   110,11% CET (ao ano)</"
+  },
+  "InfTransacao" : {
+    "cdProc" : "029100",
+    "mensagemCliente" : "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em tela.",
+    "nsu" : "000080247206",
+    "codMoeda" : "986",
+    "codOperadora" : "00000000914",
+    "dataLocal" : "1122",
+    "errorMessage" : "",
+    "valor" : "5000",
+    "horaLocal" : "151032",
+    "nsuResposta" : "820",
+    "dataHora" : "1122151032"
+  },
+  "Terminal" : {
+    "codEstab" : "000000000742673",
+    "tipo" : "008",
+    "id" : "05100004"
+  },
+  "Cripto" : {
+    "hash" : "hash"
   }
 };
     if (Object.keys(examples).length > 0) {
