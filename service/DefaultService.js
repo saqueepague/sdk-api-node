@@ -161,56 +161,6 @@ exports.consultaContaPOST = function(authenticationType,clientId,token,body) {
 
 
 /**
- * Operação de consulta dos limites disponíveis para empréstimo. Esta operação é válida somente com os dados do cartão.
- *
- * authenticationType String Tipo de autenticação requerida.
- * clientId String Identificação do cliente.
- * token String Chave para validação do acesso ao serviço.
- * body ConsultaLimitesEmprestimoReq Requisição de consulta limites de empréstimo, usando dados do cartão.
- * returns consultaLimitesEmprestimoResp
- **/
-exports.consultaLimitesEmprestimoPOST = function(authenticationType,clientId,token,body) {
-  return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = {
-  "InfTransacao" : {
-    "cdProc" : "029100",
-    "mensagemCliente" : "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em tela.",
-    "nsu" : "000080247206",
-    "codMoeda" : "986",
-    "codOperadora" : "00000000914",
-    "dataLocal" : "1122",
-    "errorMessage" : "",
-    "valor" : "5000",
-    "horaLocal" : "151032",
-    "nsuResposta" : "820",
-    "dataHora" : "1122151032"
-  },
-  "InfConsultaLimitesEmprestimo" : {
-    "limiteMinimoEmprestimo" : "000000500000",
-    "limiteMaximoEmprestimo" : "000005000000",
-    "nomeAgenciaBancaria" : "Agência bancária",
-    "nomeTitularConta" : "Carl Edward Sagan"
-  },
-  "Cripto" : {
-    "hash" : "hash"
-  },
-  "Terminal" : {
-    "codEstab" : "000000000742673",
-    "tipo" : "008",
-    "id" : "05100004"
-  }
-};
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
-  });
-}
-
-
-/**
  * Operação de consulta de informações do boleto a ser pago em dinheiro ou débito em conta.
  *
  * authenticationType String Tipo de autenticação requerida.
@@ -291,12 +241,41 @@ exports.consultaParcelasEmprestimoPOST = function(authenticationType,clientId,to
   "InfConsultaParcelasEmprestimo" : {
     "opcoesParcelas" : [ {
       "valorParcela" : "000000005000",
-      "qntParcelas" : "5"
+      "qntParcelas" : "5",
+      "tributos" : {
+        "taxaJurosMensal" : "0809445",
+        "iof" : "0809445",
+        "cetAnual" : "0809445",
+        "cetMensal" : "0809445",
+        "valorSolicitado" : "000000000499",
+        "dataContratacao" : "20200928",
+        "valorJuros" : "0002422",
+        "taxaJurosAnual" : "0809445",
+        "ultimoVencimento" : "20200928",
+        "iofAdicional" : "0809445",
+        "primeiroVencimento" : "20200928"
+      }
     }, {
       "valorParcela" : "000000005000",
-      "qntParcelas" : "5"
+      "qntParcelas" : "5",
+      "tributos" : {
+        "taxaJurosMensal" : "0809445",
+        "iof" : "0809445",
+        "cetAnual" : "0809445",
+        "cetMensal" : "0809445",
+        "valorSolicitado" : "000000000499",
+        "dataContratacao" : "20200928",
+        "valorJuros" : "0002422",
+        "taxaJurosAnual" : "0809445",
+        "ultimoVencimento" : "20200928",
+        "iofAdicional" : "0809445",
+        "primeiroVencimento" : "20200928"
+      }
     } ],
-    "dataPrimeiraParcela" : "20181122"
+    "limiteMinimoEmprestimo" : "000000500000",
+    "limiteMaximoEmprestimo" : "000005000000",
+    "nomeAgenciaBancaria" : "Agência bancária",
+    "nomeTitularConta" : "Carl Edward Sagan"
   },
   "InfTransacao" : {
     "cdProc" : "029100",
@@ -1342,53 +1321,6 @@ exports.saquePOST = function(authenticationType,clientId,token,body) {
     "codEstab" : "000000000742673",
     "tipo" : "008",
     "id" : "05100004"
-  }
-};
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
-  });
-}
-
-
-/**
- * Operação de simulação das condições de um empréstimo.
- *
- * authenticationType String Tipo de autenticação requerida.
- * clientId String Identificação do cliente.
- * token String Chave para validação do acesso ao serviço.
- * body SimulacaoEmprestimoReq Requisição de consulta parcelas de empréstimo.
- * returns simulacaoEmprestimoResp
- **/
-exports.simulacaoEmprestimoPOST = function(authenticationType,clientId,token,body) {
-  return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = {
-  "InfSimulacaoEmprestimo" : {
-    "mensagem" : "O pagamento sera em 4 prestacoes de  306,90     </Juros  6,29% CET (ao mes)   110,11% CET (ao ano)</"
-  },
-  "InfTransacao" : {
-    "cdProc" : "029100",
-    "mensagemCliente" : "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em tela.",
-    "nsu" : "000080247206",
-    "codMoeda" : "986",
-    "codOperadora" : "00000000914",
-    "dataLocal" : "1122",
-    "errorMessage" : "",
-    "valor" : "5000",
-    "horaLocal" : "151032",
-    "nsuResposta" : "820",
-    "dataHora" : "1122151032"
-  },
-  "Terminal" : {
-    "codEstab" : "000000000742673",
-    "tipo" : "008",
-    "id" : "05100004"
-  },
-  "Cripto" : {
-    "hash" : "hash"
   }
 };
     if (Object.keys(examples).length > 0) {

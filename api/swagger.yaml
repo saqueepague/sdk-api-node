@@ -4,13 +4,13 @@ info:
   description: "Modelo de API para transações da Saque e Pague. O parceiro interessado\
     \ deve implementar as operações desejadas para que a SeP consiga se comunicar\
     \ com o mesmo."
-  version: "1.19.6"
+  version: "1.19.7"
   title: "Saque e Pague Transacional"
   contact:
     name: "Time Saque e Pague"
     url: "http://www.saqueepague.com.br"
 host: "api-saqueepague.sensedia.com"
-basePath: "/saqueepague/SepTransaction/1.19.6"
+basePath: "/saqueepague/SepTransaction/1.19.7"
 tags:
 - name: "Deposito com Cartao"
   description: "Transações necessárias para efetuar um Depósito com Cartão."
@@ -241,54 +241,6 @@ paths:
         401:
           description: "Acesso não autorizado."
       x-swagger-router-controller: "DepositoSemCartao"
-  /consultaLimitesEmprestimo:
-    post:
-      tags:
-      - "Emprestimo com Cartao"
-      - "Default"
-      description: "Operação de consulta dos limites disponíveis para empréstimo.\
-        \ Esta operação é válida somente com os dados do cartão."
-      operationId: "consultaLimitesEmprestimoPOST"
-      consumes:
-      - "application/json"
-      produces:
-      - "application/json"
-      parameters:
-      - name: "authenticationType"
-        in: "header"
-        description: "Tipo de autenticação requerida."
-        required: true
-        type: "string"
-        x-example: "auth2"
-      - name: "clientId"
-        in: "header"
-        description: "Identificação do cliente."
-        required: true
-        type: "string"
-        x-example: "prd-client"
-      - name: "token"
-        in: "header"
-        description: "Chave para validação do acesso ao serviço."
-        required: true
-        type: "string"
-        x-example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjYsInByb2ZpbGUiOltdLCJpYXQiOjE0OTkwOsY4NDV9.uR5WH3c2ZztGmZVCfcJPu-1ix1w-j7shJw_X_ZlFfAo"
-      - in: "body"
-        name: "body"
-        description: "Requisição de consulta limites de empréstimo, usando dados do\
-          \ cartão."
-        required: true
-        schema:
-          $ref: "#/definitions/consultaLimitesEmprestimoReq"
-      responses:
-        200:
-          description: "Retorno com sucesso ou com Erro de negócio."
-          schema:
-            $ref: "#/definitions/consultaLimitesEmprestimoResp"
-        400:
-          description: "Bad Request ou Erro interno ao qual inviabilizou uma resposta."
-        401:
-          description: "Acesso não autorizado."
-      x-swagger-router-controller: "EmprestimoComCartao"
   /consultaPagamento:
     post:
       tags:
@@ -379,52 +331,6 @@ paths:
           description: "Retorno com sucesso ou com Erro de negócio."
           schema:
             $ref: "#/definitions/consultaParcelasEmprestimoResp"
-        400:
-          description: "Bad Request ou Erro interno ao qual inviabilizou uma resposta."
-        401:
-          description: "Acesso não autorizado."
-      x-swagger-router-controller: "EmprestimoComCartao"
-  /simulacaoEmprestimo:
-    post:
-      tags:
-      - "Emprestimo com Cartao"
-      - "Default"
-      description: "Operação de simulação das condições de um empréstimo."
-      operationId: "simulacaoEmprestimoPOST"
-      consumes:
-      - "application/json"
-      produces:
-      - "application/json"
-      parameters:
-      - name: "authenticationType"
-        in: "header"
-        description: "Tipo de autenticação requerida."
-        required: true
-        type: "string"
-        x-example: "auth2"
-      - name: "clientId"
-        in: "header"
-        description: "Identificação do cliente."
-        required: true
-        type: "string"
-        x-example: "prd-client"
-      - name: "token"
-        in: "header"
-        description: "Chave para validação do acesso ao serviço."
-        required: true
-        type: "string"
-        x-example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjYsInByb2ZpbGUiOltdLCJpYXQiOjE0OTkwOsY4NDV9.uR5WH3c2ZztGmZVCfcJPu-1ix1w-j7shJw_X_ZlFfAo"
-      - in: "body"
-        name: "body"
-        description: "Requisição de consulta parcelas de empréstimo."
-        required: true
-        schema:
-          $ref: "#/definitions/simulacaoEmprestimoReq"
-      responses:
-        200:
-          description: "Retorno com sucesso ou com Erro de negócio."
-          schema:
-            $ref: "#/definitions/simulacaoEmprestimoResp"
         400:
           description: "Bad Request ou Erro interno ao qual inviabilizou uma resposta."
         401:
@@ -1829,59 +1735,6 @@ definitions:
         codEstab: "000000000742673"
         tipo: "008"
         id: "05100004"
-  consultaLimitesEmprestimoReq:
-    type: "object"
-    required:
-    - "Cartao"
-    - "InfTransacao"
-    - "Terminal"
-    properties:
-      Cartao:
-        $ref: "#/definitions/cartao"
-      InfTransacao:
-        $ref: "#/definitions/infTransacaoReq"
-      Terminal:
-        $ref: "#/definitions/terminal"
-  consultaLimitesEmprestimoResp:
-    type: "object"
-    required:
-    - "InfConsultaLimitesEmprestimo"
-    - "InfTransacao"
-    - "Terminal"
-    properties:
-      Cripto:
-        $ref: "#/definitions/criptoResp"
-      InfConsultaLimitesEmprestimo:
-        $ref: "#/definitions/infConsultaLimitesEmprestimoResp"
-      InfTransacao:
-        $ref: "#/definitions/infTransacaoResp"
-      Terminal:
-        $ref: "#/definitions/terminal"
-    example:
-      InfTransacao:
-        cdProc: "029100"
-        mensagemCliente: "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em\
-          \ tela."
-        nsu: "000080247206"
-        codMoeda: "986"
-        codOperadora: "00000000914"
-        dataLocal: "1122"
-        errorMessage: ""
-        valor: "5000"
-        horaLocal: "151032"
-        nsuResposta: "820"
-        dataHora: "1122151032"
-      InfConsultaLimitesEmprestimo:
-        limiteMinimoEmprestimo: "000000500000"
-        limiteMaximoEmprestimo: "000005000000"
-        nomeAgenciaBancaria: "Agência bancária"
-        nomeTitularConta: "Carl Edward Sagan"
-      Cripto:
-        hash: "hash"
-      Terminal:
-        codEstab: "000000000742673"
-        tipo: "008"
-        id: "05100004"
   consultaParcelasEmprestimoReq:
     type: "object"
     required:
@@ -1895,6 +1748,8 @@ definitions:
         $ref: "#/definitions/infTransacaoReq"
       Terminal:
         $ref: "#/definitions/terminal"
+      InfConsultaParcelasEmprestimo:
+        $ref: "#/definitions/infConsultaParcelasEmprestimoReq"
   consultaParcelasEmprestimoResp:
     type: "object"
     required:
@@ -1915,9 +1770,36 @@ definitions:
         opcoesParcelas:
         - valorParcela: "000000005000"
           qntParcelas: "5"
+          tributos:
+            taxaJurosMensal: "0809445"
+            iof: "0809445"
+            cetAnual: "0809445"
+            cetMensal: "0809445"
+            valorSolicitado: "000000000499"
+            dataContratacao: "20200928"
+            valorJuros: "0002422"
+            taxaJurosAnual: "0809445"
+            ultimoVencimento: "20200928"
+            iofAdicional: "0809445"
+            primeiroVencimento: "20200928"
         - valorParcela: "000000005000"
           qntParcelas: "5"
-        dataPrimeiraParcela: "20181122"
+          tributos:
+            taxaJurosMensal: "0809445"
+            iof: "0809445"
+            cetAnual: "0809445"
+            cetMensal: "0809445"
+            valorSolicitado: "000000000499"
+            dataContratacao: "20200928"
+            valorJuros: "0002422"
+            taxaJurosAnual: "0809445"
+            ultimoVencimento: "20200928"
+            iofAdicional: "0809445"
+            primeiroVencimento: "20200928"
+        limiteMinimoEmprestimo: "000000500000"
+        limiteMaximoEmprestimo: "000005000000"
+        nomeAgenciaBancaria: "Agência bancária"
+        nomeTitularConta: "Carl Edward Sagan"
       InfTransacao:
         cdProc: "029100"
         mensagemCliente: "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em\
@@ -1937,53 +1819,6 @@ definitions:
         codEstab: "000000000742673"
         tipo: "008"
         id: "05100004"
-  simulacaoEmprestimoReq:
-    type: "object"
-    required:
-    - "Cartao"
-    - "InfTransacao"
-    - "Terminal"
-    properties:
-      InfTransacao:
-        $ref: "#/definitions/infTransacaoReq"
-      Cartao:
-        $ref: "#/definitions/cartao"
-      Terminal:
-        $ref: "#/definitions/terminal"
-  simulacaoEmprestimoResp:
-    type: "object"
-    properties:
-      InfTransacao:
-        $ref: "#/definitions/infTransacaoResp"
-      Terminal:
-        $ref: "#/definitions/terminal"
-      Cripto:
-        $ref: "#/definitions/criptoResp"
-      InfSimulacaoEmprestimo:
-        $ref: "#/definitions/infSimulacaoEmprestimoResp"
-    example:
-      InfSimulacaoEmprestimo:
-        mensagem: "O pagamento sera em 4 prestacoes de  306,90     </Juros  6,29%\
-          \ CET (ao mes)   110,11% CET (ao ano)</"
-      InfTransacao:
-        cdProc: "029100"
-        mensagemCliente: "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em\
-          \ tela."
-        nsu: "000080247206"
-        codMoeda: "986"
-        codOperadora: "00000000914"
-        dataLocal: "1122"
-        errorMessage: ""
-        valor: "5000"
-        horaLocal: "151032"
-        nsuResposta: "820"
-        dataHora: "1122151032"
-      Terminal:
-        codEstab: "000000000742673"
-        tipo: "008"
-        id: "05100004"
-      Cripto:
-        hash: "hash"
   recargaPrePagoReq:
     type: "object"
     required:
@@ -2949,52 +2784,45 @@ definitions:
       nomeCliente: "Carl Edward Sagan"
       depositoIdentificado: "00"
       habilitaDeposito: "01"
-  infConsultaLimitesEmprestimoResp:
+  infConsultaParcelasEmprestimoReq:
+    type: "object"
+    properties:
+      qtdParcelas:
+        type: "string"
+        example: "320"
+        description: "Quantidade de parcelas informadas pelo cliente."
+        pattern: "^\\d{03}$"
+    description: "Informações da requisição de consulta de condições de parcelamento\
+      \ de empréstimo."
+  infConsultaParcelasEmprestimoResp:
     type: "object"
     required:
     - "limiteMaximoEmprestimo"
     - "limiteMinimoEmprestimo"
     - "nomeAgenciaBancaria"
     - "nomeTitularConta"
+    - "opcoesParcelas"
     properties:
-      limiteMaximoEmprestimo:
+      nomeTitularConta:
         type: "string"
-        example: "000005000000"
-        description: "Valor máximo permitido de empréstimo (12 caracteres, incluindo\
-          \ centavos)."
-        pattern: "^\\d{12}$"
+        example: "Carl Edward Sagan"
+        description: "Nome do titular da conta."
+      nomeAgenciaBancaria:
+        type: "string"
+        example: "Agência bancária"
+        description: "Nome da agencia bancária."
       limiteMinimoEmprestimo:
         type: "string"
         example: "000000500000"
         description: "Valor mínimo permitido de empréstimo (12 caracteres, incluindo\
           \ centavos)."
         pattern: "^\\d{12}$"
-      nomeAgenciaBancaria:
+      limiteMaximoEmprestimo:
         type: "string"
-        example: "Agência bancária"
-        description: "Nome da agencia bancária."
-      nomeTitularConta:
-        type: "string"
-        example: "Carl Edward Sagan"
-        description: "Nome do titular da conta."
-    description: "Informações da resposta da requisição de consulta de limite de empré\
-      stimos."
-    example:
-      limiteMinimoEmprestimo: "000000500000"
-      limiteMaximoEmprestimo: "000005000000"
-      nomeAgenciaBancaria: "Agência bancária"
-      nomeTitularConta: "Carl Edward Sagan"
-  infConsultaParcelasEmprestimoResp:
-    type: "object"
-    required:
-    - "dataPrimeiraParcela"
-    - "opcoesParcelas"
-    properties:
-      dataPrimeiraParcela:
-        type: "string"
-        example: "20181122"
-        description: "Data da primeira parcela do empréstimo (AAAAMMDD)."
-        pattern: "^\\d{8}$"
+        example: "000005000000"
+        description: "Valor máximo permitido de empréstimo (12 caracteres, incluindo\
+          \ centavos)."
+        pattern: "^\\d{12}$"
       opcoesParcelas:
         type: "array"
         items:
@@ -3005,26 +2833,41 @@ definitions:
       opcoesParcelas:
       - valorParcela: "000000005000"
         qntParcelas: "5"
+        tributos:
+          taxaJurosMensal: "0809445"
+          iof: "0809445"
+          cetAnual: "0809445"
+          cetMensal: "0809445"
+          valorSolicitado: "000000000499"
+          dataContratacao: "20200928"
+          valorJuros: "0002422"
+          taxaJurosAnual: "0809445"
+          ultimoVencimento: "20200928"
+          iofAdicional: "0809445"
+          primeiroVencimento: "20200928"
       - valorParcela: "000000005000"
         qntParcelas: "5"
-      dataPrimeiraParcela: "20181122"
-  infSimulacaoEmprestimoResp:
-    type: "object"
-    properties:
-      mensagem:
-        type: "string"
-        example: "O pagamento sera em 4 prestacoes de  306,90     </Juros  6,29% CET\
-          \ (ao mes)   110,11% CET (ao ano)</"
-        description: "Mensagem informativa para ser mostrada ao cliente após a simulaç\
-          ão. Os caracteres \"</\" indicam uma quebra de linha."
-    description: "Informações da resposta da requisição de simulação de empréstimo."
-    example:
-      mensagem: "O pagamento sera em 4 prestacoes de  306,90     </Juros  6,29% CET\
-        \ (ao mes)   110,11% CET (ao ano)</"
+        tributos:
+          taxaJurosMensal: "0809445"
+          iof: "0809445"
+          cetAnual: "0809445"
+          cetMensal: "0809445"
+          valorSolicitado: "000000000499"
+          dataContratacao: "20200928"
+          valorJuros: "0002422"
+          taxaJurosAnual: "0809445"
+          ultimoVencimento: "20200928"
+          iofAdicional: "0809445"
+          primeiroVencimento: "20200928"
+      limiteMinimoEmprestimo: "000000500000"
+      limiteMaximoEmprestimo: "000005000000"
+      nomeAgenciaBancaria: "Agência bancária"
+      nomeTitularConta: "Carl Edward Sagan"
   installmentsOptionObj:
     type: "object"
     required:
     - "qntParcelas"
+    - "tributos"
     - "valorParcela"
     properties:
       qntParcelas:
@@ -3037,9 +2880,23 @@ definitions:
         example: "000000005000"
         description: "Valor de cada parcela do empréstimo (12 dígitos)."
         pattern: "^\\d{12}$"
+      tributos:
+        $ref: "#/definitions/installmentsOptionObj_tributos"
     example:
       valorParcela: "000000005000"
       qntParcelas: "5"
+      tributos:
+        taxaJurosMensal: "0809445"
+        iof: "0809445"
+        cetAnual: "0809445"
+        cetMensal: "0809445"
+        valorSolicitado: "000000000499"
+        dataContratacao: "20200928"
+        valorJuros: "0002422"
+        taxaJurosAnual: "0809445"
+        ultimoVencimento: "20200928"
+        iofAdicional: "0809445"
+        primeiroVencimento: "20200928"
   infRecargaPrePagoReq:
     type: "object"
     required:
@@ -5156,6 +5013,82 @@ definitions:
         description: "Resposta da pergunta (dado criptografado)."
     description: "Resposta do cliente à pergunta feita na identificação (somente respostas\
       \ numéricas)."
+  installmentsOptionObj_tributos:
+    properties:
+      valorSolicitado:
+        type: "string"
+        example: "000000000499"
+        description: "Valor dos juros calculados (12 dígitos, incluindo centavos)."
+        pattern: "^\\d{12}$"
+      iof:
+        type: "string"
+        example: "0809445"
+        description: "Informações do imposto sobre operações financeiras (07 dígitos,\
+          \ valor total = 80,9445%)."
+        pattern: "^\\d{07}$"
+      iofAdicional:
+        type: "string"
+        example: "0809445"
+        description: "Informações do imposto sobre operações financeiras adicional\
+          \ (07 dígitos, valor total = 80,9445%)."
+        pattern: "^\\d{07}$"
+      valorJuros:
+        type: "string"
+        example: "0002422"
+        description: "Valor dos juros calculado (07 dígitos, valor total = 80,9445%)."
+        pattern: "^\\d{07}$"
+      taxaJurosAnual:
+        type: "string"
+        example: "0809445"
+        description: "Informações sobre taxas de juros anual (07 dígitos, valor total\
+          \ = 80,9445%)."
+        pattern: "^\\d{07}$"
+      taxaJurosMensal:
+        type: "string"
+        example: "0809445"
+        description: "Informações sobre taxas de juros mensal (07 dígitos, valor total\
+          \ = 80,9445%)."
+        pattern: "^\\d{07}$"
+      dataContratacao:
+        type: "string"
+        example: "20200928"
+        description: "Data de contratação do empréstimo (08 dígitos e AAAAMMDD)."
+        pattern: "^\\d{08}$"
+      primeiroVencimento:
+        type: "string"
+        example: "20200928"
+        description: "Data da primeira parcela de vencimeto (08 dígitos e AAAAMMDD)."
+        pattern: "^\\d{08}$"
+      ultimoVencimento:
+        type: "string"
+        example: "20200928"
+        description: "Data da última parcela de vencimeto (08 dígitos e AAAAMMDD)."
+        pattern: "^\\d{08}$"
+      cetAnual:
+        type: "string"
+        example: "0809445"
+        description: "Informações sobre a soma de taxas de juros anual (07 dígitos,\
+          \ valor total = 80,9445%)."
+        pattern: "^\\d{07}$"
+      cetMensal:
+        type: "string"
+        example: "0809445"
+        description: "Informações sobre a soma de taxas de juros mensal(07 dígitos,\
+          \ valor total = 80,9445%)."
+        pattern: "^\\d{07}$"
+    description: "Informações sobre cada parcela."
+    example:
+      taxaJurosMensal: "0809445"
+      iof: "0809445"
+      cetAnual: "0809445"
+      cetMensal: "0809445"
+      valorSolicitado: "000000000499"
+      dataContratacao: "20200928"
+      valorJuros: "0002422"
+      taxaJurosAnual: "0809445"
+      ultimoVencimento: "20200928"
+      iofAdicional: "0809445"
+      primeiroVencimento: "20200928"
   capitalizationBondObj_tema:
     properties:
       estilos:

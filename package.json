@@ -1,11 +1,11 @@
 {
   "name": "saque-e-pague-transacional",
-  "version": "1.17.1-sw2",
+  "version": "1.19.7",
   "description": "Modelo de API para transações da Saque e Pague. O parceiro interessado deve implementar as operações desejadas para que a SeP consiga se comunicar com o mesmo.",
   "main": "index.js",
   "scripts": {
-    "prestart": "npm install",
-    "start": "node index.js"
+	"prestart": "npm install",
+	"start": "node index.js"
   },
   "keywords": [
     "swagger"
