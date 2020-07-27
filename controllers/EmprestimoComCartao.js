@@ -3,6 +3,20 @@
 var utils = require('../utils/writer.js');
 var EmprestimoComCartao = require('../service/EmprestimoComCartaoService');
 
+module.exports.consultaLimitesEmprestimoPOST = function consultaLimitesEmprestimoPOST (req, res, next) {
+  var authenticationType = req.swagger.params['authenticationType'].value;
+  var clientId = req.swagger.params['clientId'].value;
+  var token = req.swagger.params['token'].value;
+  var body = req.swagger.params['body'].value;
+  EmprestimoComCartao.consultaLimitesEmprestimoPOST(authenticationType,clientId,token,body)
+    .then(function (response) {
+      utils.writeJson(res, response);
+    })
+    .catch(function (response) {
+      utils.writeJson(res, response);
+    });
+};
+
 module.exports.consultaParcelasEmprestimoPOST = function consultaParcelasEmprestimoPOST (req, res, next) {
   var authenticationType = req.swagger.params['authenticationType'].value;
   var clientId = req.swagger.params['clientId'].value;

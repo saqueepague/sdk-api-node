@@ -4,13 +4,13 @@ info:
   description: "Modelo de API para transações da Saque e Pague. O parceiro interessado\
     \ deve implementar as operações desejadas para que a SeP consiga se comunicar\
     \ com o mesmo."
-  version: "1.19.8"
+  version: "1.19.9"
   title: "Saque e Pague Transacional"
   contact:
     name: "Time Saque e Pague"
     url: "http://www.saqueepague.com.br"
 host: "api-saqueepague.sensedia.com"
-basePath: "/saqueepague/SepTransaction/1.19.8"
+basePath: "/saqueepague/SepTransaction/1.19.9"
 tags:
 - name: "Deposito com Cartao"
   description: "Transações necessárias para efetuar um Depósito com Cartão."
@@ -241,6 +241,55 @@ paths:
         401:
           description: "Acesso não autorizado."
       x-swagger-router-controller: "DepositoSemCartao"
+  /consultaLimitesEmprestimo:
+    post:
+      tags:
+      - "Emprestimo com Cartao"
+      - "Default"
+      description: "Operação de consulta dos limites disponíveis para empréstimo.\
+        \ Esta operação é válida somente com os dados do cartão."
+      operationId: "consultaLimitesEmprestimoPOST"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "authenticationType"
+        in: "header"
+        description: "Tipo de autenticação requerida."
+        required: true
+        type: "string"
+        x-example: "auth2"
+      - name: "clientId"
+        in: "header"
+        description: "Identificação do cliente."
+        required: true
+        type: "string"
+        x-example: "prd-client"
+      - name: "token"
+        in: "header"
+        description: "Chave para validação do acesso ao serviço."
+        required: true
+        type: "string"
+        x-example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjYsInByb2ZpbGUiOltdLCJpYXQiOjE0OTkwOsY4NDV9.uR5WH3c2ZztGmZVCfcJPu-1ix1w-j7shJw_X_ZlFfAo"
+      - in: "body"
+        name: "body"
+        description: "Requisição de consulta limites de empréstimo, usando dados do\
+          \ cartão."
+        required: true
+        schema:
+          $ref: "#/definitions/consultaLimitesEmprestimoReq"
+      responses:
+        200:
+          description: "Retorno com sucesso ou com Erro de negócio."
+          schema:
+            $ref: "#/definitions/consultaLimitesEmprestimoResp"
+        400:
+          description: "Bad Request ou Erro interno ao qual inviabilizou uma resposta."
+        401:
+          description: "Acesso não autorizado."
+      deprecated: true
+      x-swagger-router-controller: "EmprestimoComCartao"
   /consultaPagamento:
     post:
       tags:
@@ -1735,6 +1784,59 @@ definitions:
         codEstab: "000000000742673"
         tipo: "008"
         id: "05100004"
+  consultaLimitesEmprestimoReq:
+    type: "object"
+    required:
+    - "Cartao"
+    - "InfTransacao"
+    - "Terminal"
+    properties:
+      Cartao:
+        $ref: "#/definitions/cartao"
+      InfTransacao:
+        $ref: "#/definitions/infTransacaoReq"
+      Terminal:
+        $ref: "#/definitions/terminal"
+  consultaLimitesEmprestimoResp:
+    type: "object"
+    required:
+    - "InfConsultaLimitesEmprestimo"
+    - "InfTransacao"
+    - "Terminal"
+    properties:
+      Cripto:
+        $ref: "#/definitions/criptoResp"
+      InfConsultaLimitesEmprestimo:
+        $ref: "#/definitions/infConsultaLimitesEmprestimoResp"
+      InfTransacao:
+        $ref: "#/definitions/infTransacaoResp"
+      Terminal:
+        $ref: "#/definitions/terminal"
+    example:
+      InfTransacao:
+        cdProc: "029100"
+        mensagemCliente: "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em\
+          \ tela."
+        nsu: "000080247206"
+        codMoeda: "986"
+        codOperadora: "00000000914"
+        dataLocal: "1122"
+        errorMessage: ""
+        valor: "5000"
+        horaLocal: "151032"
+        nsuResposta: "820"
+        dataHora: "1122151032"
+      InfConsultaLimitesEmprestimo:
+        limiteMinimoEmprestimo: "000000500000"
+        limiteMaximoEmprestimo: "000005000000"
+        nomeAgenciaBancaria: "Agência bancária"
+        nomeTitularConta: "Carl Edward Sagan"
+      Cripto:
+        hash: "hash"
+      Terminal:
+        codEstab: "000000000742673"
+        tipo: "008"
+        id: "05100004"
   consultaParcelasEmprestimoReq:
     type: "object"
     required:
@@ -1798,6 +1900,7 @@ definitions:
             primeiroVencimento: "20200928"
         limiteMinimoEmprestimo: "000000500000"
         limiteMaximoEmprestimo: "000005000000"
+        dataPrimeiraParcela: "20181122"
         nomeAgenciaBancaria: "Agência bancária"
         nomeTitularConta: "Carl Edward Sagan"
       InfTransacao:
@@ -2784,6 +2887,40 @@ definitions:
       nomeCliente: "Carl Edward Sagan"
       depositoIdentificado: "00"
       habilitaDeposito: "01"
+  infConsultaLimitesEmprestimoResp:
+    required:
+    - "limiteMaximoEmprestimo"
+    - "limiteMinimoEmprestimo"
+    - "nomeAgenciaBancaria"
+    - "nomeTitularConta"
+    properties:
+      nomeTitularConta:
+        type: "string"
+        example: "Carl Edward Sagan"
+        description: "Nome do titular da conta."
+      nomeAgenciaBancaria:
+        type: "string"
+        example: "Agência bancária"
+        description: "Nome da agencia bancária."
+      limiteMinimoEmprestimo:
+        type: "string"
+        example: "000000500000"
+        description: "Valor mínimo permitido de empréstimo (12 caracteres, incluindo\
+          \ centavos)."
+        pattern: "^\\d{12}$"
+      limiteMaximoEmprestimo:
+        type: "string"
+        example: "000005000000"
+        description: "Valor máximo permitido de empréstimo (12 caracteres, incluindo\
+          \ centavos)."
+        pattern: "^\\d{12}$"
+    description: "Informações da resposta da requisição de consulta de limite de empré\
+      stimos."
+    example:
+      limiteMinimoEmprestimo: "000000500000"
+      limiteMaximoEmprestimo: "000005000000"
+      nomeAgenciaBancaria: "Agência bancária"
+      nomeTitularConta: "Carl Edward Sagan"
   infConsultaParcelasEmprestimoReq:
     type: "object"
     properties:
@@ -2803,6 +2940,9 @@ definitions:
     - "nomeTitularConta"
     - "opcoesParcelas"
     properties:
+      dataPrimeiraParcela:
+        example: "20181122"
+        description: "Data da primeira parcela do empréstimo (AAAAMMDD)."
       nomeTitularConta:
         type: "string"
         example: "Carl Edward Sagan"
@@ -2861,6 +3001,7 @@ definitions:
           primeiroVencimento: "20200928"
       limiteMinimoEmprestimo: "000000500000"
       limiteMaximoEmprestimo: "000005000000"
+      dataPrimeiraParcela: "20181122"
       nomeAgenciaBancaria: "Agência bancária"
       nomeTitularConta: "Carl Edward Sagan"
   installmentsOptionObj:
