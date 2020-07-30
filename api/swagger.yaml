@@ -4,13 +4,13 @@ info:
   description: "Modelo de API para transações da Saque e Pague. O parceiro interessado\
     \ deve implementar as operações desejadas para que a SeP consiga se comunicar\
     \ com o mesmo."
-  version: "1.19.9"
+  version: "1.19.10"
   title: "Saque e Pague Transacional"
   contact:
     name: "Time Saque e Pague"
     url: "http://www.saqueepague.com.br"
 host: "api-saqueepague.sensedia.com"
-basePath: "/saqueepague/SepTransaction/1.19.9"
+basePath: "/saqueepague/SepTransaction/1.19.10"
 tags:
 - name: "Deposito com Cartao"
   description: "Transações necessárias para efetuar um Depósito com Cartão."
@@ -1900,6 +1900,7 @@ definitions:
             primeiroVencimento: "20200928"
         limiteMinimoEmprestimo: "000000500000"
         limiteMaximoEmprestimo: "000005000000"
+        valorTotalDisponivel: "000000700000"
         dataPrimeiraParcela: "20181122"
         nomeAgenciaBancaria: "Agência bancária"
         nomeTitularConta: "Carl Edward Sagan"
@@ -2939,6 +2940,7 @@ definitions:
     - "nomeAgenciaBancaria"
     - "nomeTitularConta"
     - "opcoesParcelas"
+    - "valorTotalDisponivel"
     properties:
       dataPrimeiraParcela:
         example: "20181122"
@@ -2951,6 +2953,12 @@ definitions:
         type: "string"
         example: "Agência bancária"
         description: "Nome da agencia bancária."
+      valorTotalDisponivel:
+        type: "string"
+        example: "000000700000"
+        description: "Valor total disponível para empréstimo (12 caracteres, incluindo\
+          \ centavos)."
+        pattern: "^\\d{12}$"
       limiteMinimoEmprestimo:
         type: "string"
         example: "000000500000"
@@ -3001,6 +3009,7 @@ definitions:
           primeiroVencimento: "20200928"
       limiteMinimoEmprestimo: "000000500000"
       limiteMaximoEmprestimo: "000005000000"
+      valorTotalDisponivel: "000000700000"
       dataPrimeiraParcela: "20181122"
       nomeAgenciaBancaria: "Agência bancária"
       nomeTitularConta: "Carl Edward Sagan"

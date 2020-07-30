@@ -324,6 +324,7 @@ exports.consultaParcelasEmprestimoPOST = function(authenticationType,clientId,to
     } ],
     "limiteMinimoEmprestimo" : "000000500000",
     "limiteMaximoEmprestimo" : "000005000000",
+    "valorTotalDisponivel" : "000000700000",
     "dataPrimeiraParcela" : "20181122",
     "nomeAgenciaBancaria" : "Agência bancária",
     "nomeTitularConta" : "Carl Edward Sagan"
