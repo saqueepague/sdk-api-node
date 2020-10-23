@@ -4,25 +4,27 @@ info:
   description: "Modelo de API para transações da Saque e Pague. O parceiro interessado\
     \ deve implementar as operações desejadas para que a SeP consiga se comunicar\
     \ com o mesmo."
-  version: "1.19.10"
+  version: "1.19.11"
   title: "Saque e Pague Transacional"
   contact:
     name: "Time Saque e Pague"
     url: "http://www.saqueepague.com.br"
 host: "api-saqueepague.sensedia.com"
-basePath: "/saqueepague/SepTransaction/1.19.10"
+basePath: "/saqueepague/SepTransaction/1.19.11"
 tags:
 - name: "Deposito com Cartao"
   description: "Transações necessárias para efetuar um Depósito com Cartão."
 - name: "Deposito sem Cartao"
   description: "Transações necessárias para efetuar um Deposito via Carteira Digital."
 - name: "Deposito via Carteira Digital"
-  description: "Transações necessárias para efetuar transação de Extrato com Cartaoia\
-    \ Carteira Digital."
+  description: "Transações necessárias para efetuar transação de Extrato com Cartã\
+    o via Carteira Digital."
 - name: "Emprestimo com Cartao"
   description: "Transações necessárias para efetuar um Empréstimo com Cartão."
+- name: "Emprestimo sem Cartao"
+  description: "Transações necessárias para efetuar um Empréstimo com Cartão."
 - name: "Extrato com Cartao"
-  description: "Transações necessárias para efetuar um Pagamento com Cartao."
+  description: "Transações necessárias para efetuar um Pagamento com Cartão."
 - name: "Pagamento com Cartao"
   description: "Transações necessárias para efetuar um Pagamento com Cartão."
 - name: "Pagamento sem Cartao"
@@ -342,6 +344,7 @@ paths:
     post:
       tags:
       - "Emprestimo com Cartao"
+      - "Emprestimo sem Cartao"
       - "Default"
       description: "Operação de consulta de condições disponíveis de parcelamento\
         \ do empréstimo."
@@ -770,6 +773,7 @@ paths:
     post:
       tags:
       - "Emprestimo com Cartao"
+      - "Emprestimo sem Cartao"
       - "Default"
       description: "Operação de empréstimo."
       operationId: "emprestimoPOST"
@@ -816,6 +820,7 @@ paths:
     post:
       tags:
       - "Emprestimo com Cartao"
+      - "Emprestimo sem Cartao"
       - "Default"
       description: "Confirmação de operação de empréstimo."
       operationId: "emprestimoConfPOST"
@@ -1466,6 +1471,7 @@ paths:
       - "Deposito sem Cartao"
       - "Deposito via Carteira Digital"
       - "Emprestimo com Cartao"
+      - "Emprestimo sem Cartao"
       - "Extrato com Cartao"
       - "Pagamento com Cartao"
       - "Pagamento sem Cartao"
@@ -2930,6 +2936,21 @@ definitions:
         example: "320"
         description: "Quantidade de parcelas informadas pelo cliente."
         pattern: "^\\d{03}$"
+      numAgencia:
+        type: "string"
+        example: "4029"
+        description: "Número da agência utilizada na operação."
+        pattern: "^\\d+$"
+      numConta:
+        type: "string"
+        example: "0082348296"
+        description: "Número da conta utilizada na operação."
+        pattern: "^\\d+$"
+      cpfFavorecido:
+        type: "string"
+        example: "02358422785"
+        description: "Número do CPF do cliente (11 dígitos)."
+        pattern: "^\\d{11}$"
     description: "Informações da requisição de consulta de condições de parcelamento\
       \ de empréstimo."
   infConsultaParcelasEmprestimoResp:
@@ -3800,6 +3821,16 @@ definitions:
         type: "string"
         example: "6"
         description: "Quantidade de parcelas."
+        pattern: "^\\d+$"
+      numAgencia:
+        type: "string"
+        example: "4029"
+        description: "Número da agência utilizada na operação."
+        pattern: "^\\d+$"
+      numConta:
+        type: "string"
+        example: "0082348296"
+        description: "Número da conta utilizada na operação."
         pattern: "^\\d+$"
     description: "Informações da requisição de empréstimo."
   infEmprestimoResp:
