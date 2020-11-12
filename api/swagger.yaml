@@ -4,27 +4,30 @@ info:
   description: "Modelo de API para transações da Saque e Pague. O parceiro interessado\
     \ deve implementar as operações desejadas para que a SeP consiga se comunicar\
     \ com o mesmo."
-  version: "1.19.13"
+  version: "1.20.0"
   title: "Saque e Pague Transacional"
   contact:
     name: "Time Saque e Pague"
     url: "http://www.saqueepague.com.br"
 host: "api-saqueepague.sensedia.com"
-basePath: "/saqueepague/SepTransaction/1.19.13"
+basePath: "/saqueepague/SepTransaction/1.20.0"
 tags:
 - name: "Deposito com Cartao"
   description: "Transações necessárias para efetuar um Depósito com Cartão."
 - name: "Deposito sem Cartao"
   description: "Transações necessárias para efetuar um Deposito via Carteira Digital."
 - name: "Deposito via Carteira Digital"
-  description: "Transações necessárias para efetuar transação de Extrato com Cartã\
+  description: "Transações necessárias para efetuar transação de deposito com Cartã\
     o via Carteira Digital."
 - name: "Emprestimo com Cartao"
   description: "Transações necessárias para efetuar um Empréstimo com Cartão."
 - name: "Emprestimo sem Cartao"
   description: "Transações necessárias para efetuar um Empréstimo com Cartão."
 - name: "Extrato com Cartao"
-  description: "Transações necessárias para efetuar um Pagamento com Cartão."
+  description: "Transações necessárias para efetuar consulta de extrato com Cartã\
+    o."
+- name: "Demonstrativo INSS com Cartao"
+  description: "Transações necessárias para efetuar consulta de demonstrativo INSS."
 - name: "Pagamento com Cartao"
   description: "Transações necessárias para efetuar um Pagamento com Cartão."
 - name: "Pagamento sem Cartao"
@@ -951,12 +954,103 @@ paths:
         401:
           description: "Acesso não autorizado."
       x-swagger-router-controller: "ExtratoComCartao"
+  /demonstrativoINSS:
+    post:
+      tags:
+      - "Demonstrativo INSS com Cartao"
+      - "Default"
+      description: "Operação de extrato."
+      operationId: "demonstrativoINSSPOST"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "authenticationType"
+        in: "header"
+        description: "Tipo de autenticação requerida."
+        required: true
+        type: "string"
+        x-example: "auth2"
+      - name: "clientId"
+        in: "header"
+        description: "Identificação do cliente."
+        required: true
+        type: "string"
+        x-example: "prd-client"
+      - name: "token"
+        in: "header"
+        description: "Chave para validação do acesso ao serviço."
+        required: true
+        type: "string"
+        x-example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjYsInByb2ZpbGUiOltdLCJpYXQiOjE0OTkwOsY4NDV9.uR5WH3c2ZztGmZVCfcJPu-1ix1w-j7shJw_X_ZlFfAo"
+      - in: "body"
+        name: "body"
+        description: "Requisição de operação de demonstrativo INSS."
+        required: true
+        schema:
+          $ref: "#/definitions/demonstrativoINSSReq"
+      responses:
+        200:
+          description: "Retorno com sucesso ou com Erro de negócio."
+          schema:
+            $ref: "#/definitions/demonstrativoINSSResp"
+        400:
+          description: "Bad Request ou Erro interno ao qual inviabilizou uma resposta."
+        401:
+          description: "Acesso não autorizado."
+      x-swagger-router-controller: "DemonstrativoINSSComCartao"
+  /demonstrativoINSSConf:
+    post:
+      tags:
+      - "Demonstrativo INSS com Cartao"
+      - "Default"
+      description: "Confirmação de operação de demonstrativo INSS."
+      operationId: "demonstrativoINSSConfPOST"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "authenticationType"
+        in: "header"
+        description: "Tipo de autenticação requerida."
+        required: true
+        type: "string"
+        x-example: "auth2"
+      - name: "clientId"
+        in: "header"
+        description: "Identificação do cliente."
+        required: true
+        type: "string"
+        x-example: "prd-client"
+      - name: "token"
+        in: "header"
+        description: "Chave para validação do acesso ao serviço."
+        required: true
+        type: "string"
+        x-example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjYsInByb2ZpbGUiOltdLCJpYXQiOjE0OTkwOsY4NDV9.uR5WH3c2ZztGmZVCfcJPu-1ix1w-j7shJw_X_ZlFfAo"
+      - in: "body"
+        name: "body"
+        description: "Requisição de confirmação de operação de demonstrativo INSS."
+        required: true
+        schema:
+          $ref: "#/definitions/transacConf"
+      responses:
+        200:
+          description: "Retorno com sucesso ou com Erro de negócio."
+        400:
+          description: "Bad Request ou Erro interno ao qual inviabilizou uma resposta."
+        401:
+          description: "Acesso não autorizado."
+      x-swagger-router-controller: "DemonstrativoINSSComCartao"
   /identificacao:
     post:
       tags:
       - "Saque com Cartao"
       - "Saldo com Cartao"
       - "Extrato com Cartao"
+      - "Demonstrativo INSS com Cartao"
       - "Deposito com Cartao"
       - "Emprestimo com Cartao"
       - "Pagamento com Cartao"
@@ -1473,6 +1567,7 @@ paths:
       - "Emprestimo com Cartao"
       - "Emprestimo sem Cartao"
       - "Extrato com Cartao"
+      - "Demonstrativo INSS com Cartao"
       - "Pagamento com Cartao"
       - "Pagamento sem Cartao"
       - "Recarga"
@@ -2592,6 +2687,70 @@ definitions:
           \                                  @ CLIENTE: EUGENIO SCHMITT COELHO   \
           \             @ AGENCIA: 0150 CONTA: 03.013689.0-1             @ SALDO DA\
           \ CONTA                                 @ SALDO DEVEDOR...............R$\
+          \          450,35-@ TOTAL DEVEDOR...............R$          450,35-@ LIMITE\
+          \ DA CONTA.............R$          100,00 @ LIMITE DA CONTA DISPONIVEL..R$\
+          \          350,35-@--------- MOVIMENTOS DA CONTA CORRENTE ---------@@  \
+          \  SALDO ANT EM 18/01/2019               93,56-@    MOVIMENTOS JAN/2019\
+          \                         @    COMPRAS           201218              85,68-@\
+          \    COMPRAS           201218             139,14-@    COMPRAS          \
+          \ 211218              20,70-@    COMPRAS           211218              39,00-@\
+          \    SALDO NA DATA                        378,08-@"
+        qtdPaginas: "000010"
+      InfTransacao:
+        cdProc: "029100"
+        mensagemCliente: "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em\
+          \ tela."
+        nsu: "000080247206"
+        codMoeda: "986"
+        codOperadora: "00000000914"
+        dataLocal: "1122"
+        errorMessage: ""
+        valor: "5000"
+        horaLocal: "151032"
+        nsuResposta: "820"
+        dataHora: "1122151032"
+      Cripto:
+        hash: "hash"
+      Terminal:
+        codEstab: "000000000742673"
+        tipo: "008"
+        id: "05100004"
+  demonstrativoINSSReq:
+    type: "object"
+    required:
+    - "InfTransacao"
+    - "Terminal"
+    properties:
+      Cartao:
+        $ref: "#/definitions/cartao"
+      Cripto:
+        $ref: "#/definitions/cripto"
+      InfDemonstrativoINSS:
+        $ref: "#/definitions/infDemonstrativoINSSReq"
+      InfTransacao:
+        $ref: "#/definitions/infTransacaoReq"
+      Terminal:
+        $ref: "#/definitions/terminal"
+  demonstrativoINSSResp:
+    type: "object"
+    required:
+    - "InfTransacao"
+    - "Terminal"
+    properties:
+      Cripto:
+        $ref: "#/definitions/criptoResp"
+      InfDemonstrativoINSS:
+        $ref: "#/definitions/infDemonstrativoINSSResp"
+      InfTransacao:
+        $ref: "#/definitions/infTransacaoResp"
+      Terminal:
+        $ref: "#/definitions/terminal"
+    example:
+      InfDemonstrativoINSS:
+        recibo: "@                DEMONSTRATIVO INSS                @            \
+          \                                    @ CLIENTE: EUGENIO SCHMITT COELHO \
+          \               @ AGENCIA: 0150 CONTA: 03.013689.0-1             @ SALDO\
+          \ DA CONTA                                 @ SALDO DEVEDOR...............R$\
           \          450,35-@ TOTAL DEVEDOR...............R$          450,35-@ LIMITE\
           \ DA CONTA.............R$          100,00 @ LIMITE DA CONTA DISPONIVEL..R$\
           \          350,35-@--------- MOVIMENTOS DA CONTA CORRENTE ---------@@  \
@@ -3937,6 +4096,89 @@ definitions:
       recibo: "@                EXTRATO DE CONTA                @                \
         \                                @ CLIENTE: EUGENIO SCHMITT COELHO       \
         \         @ AGENCIA: 0150 CONTA: 03.013689.0-1             @ SALDO DA CONTA\
+        \                                 @ SALDO DEVEDOR...............R$       \
+        \   450,35-@ TOTAL DEVEDOR...............R$          450,35-@ LIMITE DA CONTA.............R$\
+        \          100,00 @ LIMITE DA CONTA DISPONIVEL..R$          350,35-@---------\
+        \ MOVIMENTOS DA CONTA CORRENTE ---------@@    SALDO ANT EM 18/01/2019    \
+        \           93,56-@    MOVIMENTOS JAN/2019                         @    COMPRAS\
+        \           201218              85,68-@    COMPRAS           201218      \
+        \       139,14-@    COMPRAS           211218              20,70-@    COMPRAS\
+        \           211218              39,00-@    SALDO NA DATA                 \
+        \       378,08-@"
+      qtdPaginas: "000010"
+  infDemonstrativoINSSReq:
+    type: "object"
+    properties:
+      codBanco:
+        type: "string"
+        example: "237"
+        description: "Código do banco utilizado na operação (3 dígitos)."
+        pattern: "^\\d{3}$"
+      cpf:
+        type: "string"
+        example: "02358422785"
+        description: "Número do CPF do cliente realizando a operação (11 dígitos)."
+        pattern: "^\\d{11}$"
+      numAgencia:
+        type: "string"
+        example: "4029"
+        description: "Número da agência utilizada na operação."
+        pattern: "^\\d+$"
+      numConta:
+        type: "string"
+        example: "0082348296"
+        description: "Número da conta utilizada na operação."
+        pattern: "^\\d+$"
+      telefone:
+        type: "string"
+        example: "51999999999"
+        description: "Telefone do cliente realizando a operação (11 dígitos = DDD\
+          \ com 0 quando número tem 8 dígitos, sem 0 quando número tem 9 dígitos)."
+        pattern: "^\\d{11}$"
+      tipoConta:
+        type: "string"
+        example: "CC"
+        description: "Tipo de conta do extrato (CC = conta corrente, CP = conta poupanç\
+          a, CS = conta salário)."
+        enum:
+        - "CC"
+        - "CP"
+        - "CS"
+    description: "Informações da requisição de demonstrativo INSS."
+  infDemonstrativoINSSResp:
+    type: "object"
+    required:
+    - "qtdPaginas"
+    - "recibo"
+    properties:
+      qtdPaginas:
+        type: "string"
+        example: "000010"
+        description: "Enviar a quantiade de páginas do demonstrativo, caso tenha apenas\
+          \ uma página, enviar 999999"
+        pattern: "^\\d{6}$"
+      recibo:
+        type: "string"
+        example: "@                DEMONSTRATIVO INSS                @           \
+          \                                     @ CLIENTE: EUGENIO SCHMITT COELHO\
+          \                @ AGENCIA: 0150 CONTA: 03.013689.0-1             @ SALDO\
+          \ DA CONTA                                 @ SALDO DEVEDOR...............R$\
+          \          450,35-@ TOTAL DEVEDOR...............R$          450,35-@ LIMITE\
+          \ DA CONTA.............R$          100,00 @ LIMITE DA CONTA DISPONIVEL..R$\
+          \          350,35-@--------- MOVIMENTOS DA CONTA CORRENTE ---------@@  \
+          \  SALDO ANT EM 18/01/2019               93,56-@    MOVIMENTOS JAN/2019\
+          \                         @    COMPRAS           201218              85,68-@\
+          \    COMPRAS           201218             139,14-@    COMPRAS          \
+          \ 211218              20,70-@    COMPRAS           211218              39,00-@\
+          \    SALDO NA DATA                        378,08-@"
+        description: "Recibo com informações do demonstrativo INSS. Linhas com 48\
+          \ posições separadas por \"@\"."
+        pattern: "^[^@]{0,48}(\\@[^@]{0,48})*$"
+    description: "Informações sobre a resposta de requisição de demonstrativo INSS."
+    example:
+      recibo: "@                DEMONSTRATIVO INSS                @              \
+        \                                  @ CLIENTE: EUGENIO SCHMITT COELHO     \
+        \           @ AGENCIA: 0150 CONTA: 03.013689.0-1             @ SALDO DA CONTA\
         \                                 @ SALDO DEVEDOR...............R$       \
         \   450,35-@ TOTAL DEVEDOR...............R$          450,35-@ LIMITE DA CONTA.............R$\
         \          100,00 @ LIMITE DA CONTA DISPONIVEL..R$          350,35-@---------\

@@ -794,6 +794,70 @@ exports.consultaValoresRecargaPOST = function(authenticationType,clientId,token,
 
 
 /**
+ * Confirmação de operação de demonstrativo INSS.
+ *
+ * authenticationType String Tipo de autenticação requerida.
+ * clientId String Identificação do cliente.
+ * token String Chave para validação do acesso ao serviço.
+ * body TransacConf Requisição de confirmação de operação de demonstrativo INSS.
+ * no response value expected for this operation
+ **/
+exports.demonstrativoINSSConfPOST = function(authenticationType,clientId,token,body) {
+  return new Promise(function(resolve, reject) {
+    resolve();
+  });
+}
+
+
+/**
+ * Operação de extrato.
+ *
+ * authenticationType String Tipo de autenticação requerida.
+ * clientId String Identificação do cliente.
+ * token String Chave para validação do acesso ao serviço.
+ * body DemonstrativoINSSReq Requisição de operação de demonstrativo INSS.
+ * returns demonstrativoINSSResp
+ **/
+exports.demonstrativoINSSPOST = function(authenticationType,clientId,token,body) {
+  return new Promise(function(resolve, reject) {
+    var examples = {};
+    examples['application/json'] = {
+  "InfDemonstrativoINSS" : {
+    "recibo" : "@                DEMONSTRATIVO INSS                @                                                @ CLIENTE: EUGENIO SCHMITT COELHO                @ AGENCIA: 0150 CONTA: 03.013689.0-1             @ SALDO DA CONTA                                 @ SALDO DEVEDOR...............R$          450,35-@ TOTAL DEVEDOR...............R$          450,35-@ LIMITE DA CONTA.............R$          100,00 @ LIMITE DA CONTA DISPONIVEL..R$          350,35-@--------- MOVIMENTOS DA CONTA CORRENTE ---------@@    SALDO ANT EM 18/01/2019               93,56-@    MOVIMENTOS JAN/2019                         @    COMPRAS           201218              85,68-@    COMPRAS           201218             139,14-@    COMPRAS           211218              20,70-@    COMPRAS           211218              39,00-@    SALDO NA DATA                        378,08-@",
+    "qtdPaginas" : "000010"
+  },
+  "InfTransacao" : {
+    "cdProc" : "029100",
+    "mensagemCliente" : "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em tela.",
+    "nsu" : "000080247206",
+    "codMoeda" : "986",
+    "codOperadora" : "00000000914",
+    "dataLocal" : "1122",
+    "errorMessage" : "",
+    "valor" : "5000",
+    "horaLocal" : "151032",
+    "nsuResposta" : "820",
+    "dataHora" : "1122151032"
+  },
+  "Cripto" : {
+    "hash" : "hash"
+  },
+  "Terminal" : {
+    "codEstab" : "000000000742673",
+    "tipo" : "008",
+    "id" : "05100004"
+  }
+};
+    if (Object.keys(examples).length > 0) {
+      resolve(examples[Object.keys(examples)[0]]);
+    } else {
+      resolve();
+    }
+  });
+}
+
+
+/**
  * Confirmação de operação de depósito.
  *
  * authenticationType String Tipo de autenticação requerida.
