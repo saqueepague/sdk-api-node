@@ -161,6 +161,73 @@ exports.consultaContaPOST = function(authenticationType,clientId,token,body) {
 
 
 /**
+ * Operação de consulta de condições disponíveis de parcelamento do empréstimo.
+ *
+ * authenticationType String Tipo de autenticação requerida.
+ * clientId String Identificação do cliente.
+ * token String Chave para validação do acesso ao serviço.
+ * body ConsultaFavorecidoReq Requisição de consulta parcelas de empréstimo.
+ * returns consultaFavorecidoResp
+ **/
+exports.consultaFavorecidoPOST = function(authenticationType,clientId,token,body) {
+  return new Promise(function(resolve, reject) {
+    var examples = {};
+    examples['application/json'] = {
+  "InfTransacao" : {
+    "cdProc" : "029100",
+    "mensagemCliente" : "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em tela.",
+    "nsu" : "000080247206",
+    "codMoeda" : "986",
+    "codOperadora" : "00000000914",
+    "dataLocal" : "1122",
+    "errorMessage" : "",
+    "valor" : "5000",
+    "horaLocal" : "151032",
+    "nsuResposta" : "820",
+    "dataHora" : "1122151032"
+  },
+  "Cripto" : {
+    "hash" : "hash"
+  },
+  "Terminal" : {
+    "codEstab" : "000000000742673",
+    "tipo" : "008",
+    "id" : "05100004"
+  },
+  "InfConsultaFavorecido" : {
+    "listaFavorecidos" : [ {
+      "favorecido" : {
+        "numAgencia" : "4029",
+        "numConta" : "0082348296",
+        "nomeBanco" : "BRADESCO",
+        "cpf" : "02358422785",
+        "tipoConta" : "CC",
+        "codBanco" : "237",
+        "nomeTitularConta" : "Carl Edward Sagan"
+      }
+    }, {
+      "favorecido" : {
+        "numAgencia" : "4029",
+        "numConta" : "0082348296",
+        "nomeBanco" : "BRADESCO",
+        "cpf" : "02358422785",
+        "tipoConta" : "CC",
+        "codBanco" : "237",
+        "nomeTitularConta" : "Carl Edward Sagan"
+      }
+    } ]
+  }
+};
+    if (Object.keys(examples).length > 0) {
+      resolve(examples[Object.keys(examples)[0]]);
+    } else {
+      resolve();
+    }
+  });
+}
+
+
+/**
  * Operação de consulta dos limites disponíveis para empréstimo. Esta operação é válida somente com os dados do cartão.
  *
  * authenticationType String Tipo de autenticação requerida.
@@ -1062,6 +1129,7 @@ exports.identificacaoPOST = function(authenticationType,clientId,token,body) {
     examples['application/json'] = {
   "InfIdentificacao" : {
     "pedirToken" : "01",
+    "valorLimiteFavorecido" : "000000030000",
     "frase" : "Informe o token gerado em seu app:",
     "numAgencia" : "4029",
     "perguntas" : [ {
