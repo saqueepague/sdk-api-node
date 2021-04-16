@@ -195,26 +195,22 @@ exports.consultaFavorecidoPOST = function(authenticationType,clientId,token,body
     "id" : "05100004"
   },
   "InfConsultaFavorecido" : {
-    "listaFavorecidos" : [ {
-      "favorecido" : {
-        "numAgencia" : "4029",
-        "numConta" : "0082348296",
-        "nomeBanco" : "BRADESCO",
-        "cpf" : "02358422785",
-        "tipoConta" : "CC",
-        "codBanco" : "237",
-        "nomeTitularConta" : "Carl Edward Sagan"
-      }
+    "favorecidos" : [ {
+      "numAgencia" : "4029",
+      "numConta" : "0082348296",
+      "nomeBanco" : "BRADESCO",
+      "cpf" : "02358422785",
+      "tipoConta" : "CC",
+      "codBanco" : "237",
+      "nomeTitularConta" : "Carl Edward Sagan"
     }, {
-      "favorecido" : {
-        "numAgencia" : "4029",
-        "numConta" : "0082348296",
-        "nomeBanco" : "BRADESCO",
-        "cpf" : "02358422785",
-        "tipoConta" : "CC",
-        "codBanco" : "237",
-        "nomeTitularConta" : "Carl Edward Sagan"
-      }
+      "numAgencia" : "4029",
+      "numConta" : "0082348296",
+      "nomeBanco" : "BRADESCO",
+      "cpf" : "02358422785",
+      "tipoConta" : "CC",
+      "codBanco" : "237",
+      "nomeTitularConta" : "Carl Edward Sagan"
     } ]
   }
 };

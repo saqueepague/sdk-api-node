@@ -4,13 +4,13 @@ info:
   description: "Modelo de API para transações da Saque e Pague. O parceiro interessado\
     \ deve implementar as operações desejadas para que a SeP consiga se comunicar\
     \ com o mesmo."
-  version: "1.22.0"
+  version: "1.23.0"
   title: "Saque e Pague Transacional"
   contact:
     name: "Time Saque e Pague"
     url: "http://www.saqueepague.com.br"
 host: "api-saqueepague.sensedia.com"
-basePath: "/saqueepague/SepTransaction/1.22.0"
+basePath: "/saqueepague/SepTransaction/1.23.0"
 tags:
 - name: "Deposito com Cartao"
   description: "Transações necessárias para efetuar um Depósito com Cartão."
@@ -2120,23 +2120,21 @@ definitions:
         tipo: "008"
         id: "05100004"
       InfConsultaFavorecido:
-        listaFavorecidos:
-        - favorecido:
-            numAgencia: "4029"
-            numConta: "0082348296"
-            nomeBanco: "BRADESCO"
-            cpf: "02358422785"
-            tipoConta: "CC"
-            codBanco: "237"
-            nomeTitularConta: "Carl Edward Sagan"
-        - favorecido:
-            numAgencia: "4029"
-            numConta: "0082348296"
-            nomeBanco: "BRADESCO"
-            cpf: "02358422785"
-            tipoConta: "CC"
-            codBanco: "237"
-            nomeTitularConta: "Carl Edward Sagan"
+        favorecidos:
+        - numAgencia: "4029"
+          numConta: "0082348296"
+          nomeBanco: "BRADESCO"
+          cpf: "02358422785"
+          tipoConta: "CC"
+          codBanco: "237"
+          nomeTitularConta: "Carl Edward Sagan"
+        - numAgencia: "4029"
+          numConta: "0082348296"
+          nomeBanco: "BRADESCO"
+          cpf: "02358422785"
+          tipoConta: "CC"
+          codBanco: "237"
+          nomeTitularConta: "Carl Edward Sagan"
   recargaPrePagoReq:
     type: "object"
     required:
@@ -3343,49 +3341,80 @@ definitions:
         primeiroVencimento: "20200928"
   infConsultaFavorecidoResp:
     type: "object"
-    required:
-    - "listaFavorecidos"
     properties:
-      listaFavorecidos:
+      favorecidos:
         type: "array"
+        description: "Lista de favorecidos cadastrados no parceiro."
         items:
           $ref: "#/definitions/favorecidoListaObj"
     description: "Informações da resposta da requisição de consulta de condições de\
       \ parcelamento de empréstimo."
     example:
-      listaFavorecidos:
-      - favorecido:
-          numAgencia: "4029"
-          numConta: "0082348296"
-          nomeBanco: "BRADESCO"
-          cpf: "02358422785"
-          tipoConta: "CC"
-          codBanco: "237"
-          nomeTitularConta: "Carl Edward Sagan"
-      - favorecido:
-          numAgencia: "4029"
-          numConta: "0082348296"
-          nomeBanco: "BRADESCO"
-          cpf: "02358422785"
-          tipoConta: "CC"
-          codBanco: "237"
-          nomeTitularConta: "Carl Edward Sagan"
-  favorecidoListaObj:
-    type: "object"
-    required:
-    - "favorecido"
-    properties:
-      favorecido:
-        $ref: "#/definitions/favorecidoListaObj_favorecido"
-    example:
-      favorecido:
-        numAgencia: "4029"
+      favorecidos:
+      - numAgencia: "4029"
         numConta: "0082348296"
         nomeBanco: "BRADESCO"
         cpf: "02358422785"
         tipoConta: "CC"
         codBanco: "237"
         nomeTitularConta: "Carl Edward Sagan"
+      - numAgencia: "4029"
+        numConta: "0082348296"
+        nomeBanco: "BRADESCO"
+        cpf: "02358422785"
+        tipoConta: "CC"
+        codBanco: "237"
+        nomeTitularConta: "Carl Edward Sagan"
+  favorecidoListaObj:
+    type: "object"
+    properties:
+      codBanco:
+        type: "string"
+        example: "237"
+        description: "Código do banco do Favorecido Cadastrado (3 dígitos)."
+        pattern: "^\\d{3}$"
+      nomeBanco:
+        type: "string"
+        example: "BRADESCO"
+        description: "Nome do Banco Favorecido Cadastrado (sem acento)."
+      numAgencia:
+        type: "string"
+        example: "4029"
+        description: "Número da agência do Favorecido Cadastrado."
+        pattern: "^\\d+$"
+      numConta:
+        type: "string"
+        example: "0082348296"
+        description: "Número da conta do Favorecido Cadastrado."
+        pattern: "^\\d+$"
+      tipoConta:
+        type: "string"
+        example: "CC"
+        description: "Tipo de conta do extrato do Favorecido Cadastrado (CC = conta\
+          \ corrente, CP = conta poupança)."
+        enum:
+        - "CC"
+        - "CP"
+      nomeTitularConta:
+        type: "string"
+        example: "Carl Edward Sagan"
+        description: "Nome do titular da conta."
+      cpf:
+        type: "string"
+        example: "02358422785"
+        description: "Número do CPF ou CNPJ do Favorecido Cadastrado (11 dígitos ou\
+          \ 14 dígitos, respectivamente)."
+        pattern: "^\\d{14}|\\d{11}$"
+    description: "Informações sobre cada favorecido. (Manter o campo VAZIO, por compatibilidade,\
+      \ caso não exista informação)."
+    example:
+      numAgencia: "4029"
+      numConta: "0082348296"
+      nomeBanco: "BRADESCO"
+      cpf: "02358422785"
+      tipoConta: "CC"
+      codBanco: "237"
+      nomeTitularConta: "Carl Edward Sagan"
   infRecargaPrePagoReq:
     type: "object"
     required:
@@ -5679,55 +5708,6 @@ definitions:
       ultimoVencimento: "20200928"
       iofAdicional: "0809445"
       primeiroVencimento: "20200928"
-  favorecidoListaObj_favorecido:
-    properties:
-      codBanco:
-        type: "string"
-        example: "237"
-        description: "Código do banco do Favorecido Cadastrado (3 dígitos)."
-        pattern: "^\\d{3}$"
-      nomeBanco:
-        type: "string"
-        example: "BRADESCO"
-        description: "Nome do Banco Favorecido Cadastrado (sem acento)."
-      numAgencia:
-        type: "string"
-        example: "4029"
-        description: "Número da agência do Favorecido Cadastrado."
-        pattern: "^\\d+$"
-      numConta:
-        type: "string"
-        example: "0082348296"
-        description: "Número da conta do Favorecido Cadastrado."
-        pattern: "^\\d+$"
-      tipoConta:
-        type: "string"
-        example: "CC"
-        description: "Tipo de conta do extrato do Favorecido Cadastrado (CC = conta\
-          \ corrente, CP = conta poupança)."
-        enum:
-        - "CC"
-        - "CP"
-      nomeTitularConta:
-        type: "string"
-        example: "Carl Edward Sagan"
-        description: "Nome do titular da conta."
-      cpf:
-        type: "string"
-        example: "02358422785"
-        description: "Número do CPF ou CNPJ do Favorecido Cadastrado (11 dígitos ou\
-          \ 14 dígitos, respectivamente)."
-        pattern: "^\\d{14}|\\d{11}$"
-    description: "Informações sobre cada favorecido. (Manter o campo VAZIO, por compatibilidade,\
-      \ caso não exista informação)."
-    example:
-      numAgencia: "4029"
-      numConta: "0082348296"
-      nomeBanco: "BRADESCO"
-      cpf: "02358422785"
-      tipoConta: "CC"
-      codBanco: "237"
-      nomeTitularConta: "Carl Edward Sagan"
   capitalizationBondObj_tema:
     properties:
       estilos:
