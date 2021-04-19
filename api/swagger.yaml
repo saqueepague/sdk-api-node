@@ -4,13 +4,13 @@ info:
   description: "Modelo de API para transações da Saque e Pague. O parceiro interessado\
     \ deve implementar as operações desejadas para que a SeP consiga se comunicar\
     \ com o mesmo."
-  version: "1.23.0"
+  version: "1.24.0"
   title: "Saque e Pague Transacional"
   contact:
     name: "Time Saque e Pague"
     url: "http://www.saqueepague.com.br"
 host: "api-saqueepague.sensedia.com"
-basePath: "/saqueepague/SepTransaction/1.23.0"
+basePath: "/saqueepague/SepTransaction/1.24.0"
 tags:
 - name: "Deposito com Cartao"
   description: "Transações necessárias para efetuar um Depósito com Cartão."
@@ -47,6 +47,9 @@ tags:
     \ Digital."
 - name: "Transferencia com Cartao"
   description: "Transações necessárias para efetuar uma Transferência com Cartão."
+- name: "Transferencia com Cartao em Dinheiro"
+  description: "Transações necessárias para efetuar uma Transferência com Cartão depositando\
+    \ um valor em dinheiro."
 - name: "Transferencia sem Cartao"
   description: "Transações necessárias para efetuar uma Transferência sem Cartão."
 - name: "Titulos de Capitalizacao"
@@ -202,6 +205,7 @@ paths:
       - "Deposito via Carteira Digital"
       - "Transferencia com Cartao"
       - "Transferencia sem Cartao"
+      - "Transferencia com Cartao em Dinheiro"
       - "Default"
       description: "Operação de consulta de conta de favorecido, usada previamente\
         \ ao depósito para verificar se a conta é válida e está habilitada para depó\
@@ -395,6 +399,7 @@ paths:
     post:
       tags:
       - "Transferencia com Cartao"
+      - "Transferencia com Cartao em Dinheiro"
       - "Default"
       description: "Operação de consulta de condições disponíveis de parcelamento\
         \ do empréstimo."
@@ -538,9 +543,8 @@ paths:
       tags:
       - "Saque sem Cartao"
       - "Default"
-      description: "Operação de consulta para saque de moeda estrangeira (câmbio).\
-        \ Efetuada para autenticar cliente, retornando valorde saque, moeda e dados\
-        \ adicionais."
+      description: "Operação de consulta para saque. Efetuada para autenticar cliente,\
+        \ retornando valorde saque, moeda e dados adicionais."
       operationId: "consultaSaquePOST"
       consumes:
       - "application/json"
@@ -1102,6 +1106,7 @@ paths:
       - "Emprestimo com Cartao"
       - "Pagamento com Cartao"
       - "Transferencia com Cartao"
+      - "Transferencia com Cartao em Dinheiro"
       - "Default"
       description: "Operação de identificação do cliente e informações adicionais\
         \ de sua conta."
@@ -1625,6 +1630,7 @@ paths:
       - "Saque via Carteira Digital"
       - "Transferencia com Cartao"
       - "Transferencia sem Cartao"
+      - "Transferencia com Cartao em Dinheiro"
       - "Titulos de Capitalizacao"
       operationId: "tokenPOST"
       consumes:
@@ -1662,6 +1668,7 @@ paths:
       - "Default"
       - "Transferencia com Cartao"
       - "Transferencia sem Cartao"
+      - "Transferencia com Cartao em Dinheiro"
       description: "Operação de transferência entre contas."
       operationId: "transferenciaPOST"
       consumes:
@@ -1709,6 +1716,7 @@ paths:
       - "Default"
       - "Transferencia com Cartao"
       - "Transferencia sem Cartao"
+      - "Transferencia com Cartao em Dinheiro"
       description: "Confirmação de operação de transferência."
       operationId: "transferenciaConfPOST"
       consumes:
@@ -2120,6 +2128,7 @@ definitions:
         tipo: "008"
         id: "05100004"
       InfConsultaFavorecido:
+        nomeCliente: "Carl Edward Sagan"
         favorecidos:
         - numAgencia: "4029"
           numConta: "0082348296"
@@ -3342,6 +3351,10 @@ definitions:
   infConsultaFavorecidoResp:
     type: "object"
     properties:
+      nomeCliente:
+        type: "string"
+        example: "Carl Edward Sagan"
+        description: "Nome do cliente titular da conta."
       favorecidos:
         type: "array"
         description: "Lista de favorecidos cadastrados no parceiro."
@@ -3350,6 +3363,7 @@ definitions:
     description: "Informações da resposta da requisição de consulta de condições de\
       \ parcelamento de empréstimo."
     example:
+      nomeCliente: "Carl Edward Sagan"
       favorecidos:
       - numAgencia: "4029"
         numConta: "0082348296"

@@ -2,7 +2,7 @@
 
 
 /**
- * Operação de consulta para saque de moeda estrangeira (câmbio). Efetuada para autenticar cliente, retornando valorde saque, moeda e dados adicionais.
+ * Operação de consulta para saque. Efetuada para autenticar cliente, retornando valorde saque, moeda e dados adicionais.
  *
  * authenticationType String Tipo de autenticação requerida.
  * clientId String Identificação do cliente.

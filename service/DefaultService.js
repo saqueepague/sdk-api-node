@@ -195,6 +195,7 @@ exports.consultaFavorecidoPOST = function(authenticationType,clientId,token,body
     "id" : "05100004"
   },
   "InfConsultaFavorecido" : {
+    "nomeCliente" : "Carl Edward Sagan",
     "favorecidos" : [ {
       "numAgencia" : "4029",
       "numConta" : "0082348296",
@@ -528,7 +529,7 @@ exports.consultaProdutosRecargaPOST = function(authenticationType,clientId,token
 
 
 /**
- * Operação de consulta para saque de moeda estrangeira (câmbio). Efetuada para autenticar cliente, retornando valorde saque, moeda e dados adicionais.
+ * Operação de consulta para saque. Efetuada para autenticar cliente, retornando valorde saque, moeda e dados adicionais.
  *
  * authenticationType String Tipo de autenticação requerida.
  * clientId String Identificação do cliente.
