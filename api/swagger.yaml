@@ -4,7 +4,7 @@ info:
   description: "Modelo de API para transações da Saque e Pague. O parceiro interessado\
     \ deve implementar as operações desejadas para que a SeP consiga se comunicar\
     \ com o mesmo."
-  version: "1.24.0"
+  version: "1.24.2"
   title: "Saque e Pague Transacional"
   contact:
     name: "Time Saque e Pague"
@@ -203,9 +203,7 @@ paths:
       tags:
       - "Deposito sem Cartao"
       - "Deposito via Carteira Digital"
-      - "Transferencia com Cartao"
       - "Transferencia sem Cartao"
-      - "Transferencia com Cartao em Dinheiro"
       - "Default"
       description: "Operação de consulta de conta de favorecido, usada previamente\
         \ ao depósito para verificar se a conta é válida e está habilitada para depó\
@@ -1929,11 +1927,14 @@ definitions:
         dataHora: "1122151032"
       InfConsultaConta:
         solicDoc: "00"
+        numAgencia: "4029"
+        numConta: "0082348296"
         modalidadeDeposito: "00"
         depositoVarejista: "01"
         nomeCliente: "Carl Edward Sagan"
         depositoIdentificado: "00"
         habilitaDeposito: "01"
+        codBanco: "237"
       Cripto:
         hash: "hash"
       Terminal:
@@ -3166,14 +3167,32 @@ definitions:
         enum:
         - "00"
         - "01"
+      codBanco:
+        type: "string"
+        example: "237"
+        description: "Código do banco utilizado na operação (3 dígitos)."
+        pattern: "^\\d{3}$"
+      numAgencia:
+        type: "string"
+        example: "4029"
+        description: "Número da agência utilizada na operação."
+        pattern: "^\\d+$"
+      numConta:
+        type: "string"
+        example: "0082348296"
+        description: "Número da conta utilizada na operação."
+        pattern: "^\\d+$"
     description: "Informações da resposta da requisição de consulta de conta do favorecido."
     example:
       solicDoc: "00"
+      numAgencia: "4029"
+      numConta: "0082348296"
       modalidadeDeposito: "00"
       depositoVarejista: "01"
       nomeCliente: "Carl Edward Sagan"
       depositoIdentificado: "00"
       habilitaDeposito: "01"
+      codBanco: "237"
   infConsultaLimitesEmprestimoResp:
     required:
     - "limiteMaximoEmprestimo"
