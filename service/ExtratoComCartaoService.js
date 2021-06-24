@@ -80,7 +80,6 @@ exports.identificacaoPOST = function(authenticationType,clientId,token,body) {
     examples['application/json'] = {
   "InfIdentificacao" : {
     "pedirToken" : "01",
-    "valorLimiteFavorecido" : "000000030000",
     "frase" : "Informe o token gerado em seu app:",
     "numAgencia" : "4029",
     "perguntas" : [ {

@@ -2,15 +2,15 @@
 
 
 /**
- * Operação de consulta de condições disponíveis de parcelamento do empréstimo.
+ * Operação de consulta de conta de favorecido, usada previamente ao depósito para verificar se a conta é válida e está habilitada para depósito.
  *
  * authenticationType String Tipo de autenticação requerida.
  * clientId String Identificação do cliente.
  * token String Chave para validação do acesso ao serviço.
- * body ConsultaFavorecidoReq Requisição de consulta parcelas de empréstimo.
- * returns consultaFavorecidoResp
+ * body ConsultaContaReq Requisição de consulta de conta.
+ * returns consultaContaResp
  **/
-exports.consultaFavorecidoPOST = function(authenticationType,clientId,token,body) {
+exports.consultaContaPOST = function(authenticationType,clientId,token,body) {
   return new Promise(function(resolve, reject) {
     var examples = {};
     examples['application/json'] = {
@@ -27,6 +27,17 @@ exports.consultaFavorecidoPOST = function(authenticationType,clientId,token,body
     "nsuResposta" : "820",
     "dataHora" : "1122151032"
   },
+  "InfConsultaConta" : {
+    "solicDoc" : "00",
+    "numAgencia" : "4029",
+    "numConta" : "0082348296",
+    "modalidadeDeposito" : "00",
+    "depositoVarejista" : "01",
+    "nomeCliente" : "Carl Edward Sagan",
+    "depositoIdentificado" : "00",
+    "habilitaDeposito" : "01",
+    "codBanco" : "237"
+  },
   "Cripto" : {
     "hash" : "hash"
   },
@@ -34,26 +45,6 @@ exports.consultaFavorecidoPOST = function(authenticationType,clientId,token,body
     "codEstab" : "000000000742673",
     "tipo" : "008",
     "id" : "05100004"
-  },
-  "InfConsultaFavorecido" : {
-    "nomeCliente" : "Carl Edward Sagan",
-    "favorecidos" : [ {
-      "numAgencia" : "4029",
-      "numConta" : "0082348296",
-      "nomeBanco" : "BRADESCO",
-      "cpf" : "02358422785",
-      "tipoConta" : "CC",
-      "codBanco" : "237",
-      "nomeTitularConta" : "Carl Edward Sagan"
-    }, {
-      "numAgencia" : "4029",
-      "numConta" : "0082348296",
-      "nomeBanco" : "BRADESCO",
-      "cpf" : "02358422785",
-      "tipoConta" : "CC",
-      "codBanco" : "237",
-      "nomeTitularConta" : "Carl Edward Sagan"
-    } ]
   }
 };
     if (Object.keys(examples).length > 0) {
@@ -80,7 +71,6 @@ exports.identificacaoPOST = function(authenticationType,clientId,token,body) {
     examples['application/json'] = {
   "InfIdentificacao" : {
     "pedirToken" : "01",
-    "valorLimiteFavorecido" : "000000030000",
     "frase" : "Informe o token gerado em seu app:",
     "numAgencia" : "4029",
     "perguntas" : [ {
