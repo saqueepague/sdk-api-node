@@ -16,6 +16,7 @@ exports.identificacaoPOST = function(authenticationType,clientId,token,body) {
     examples['application/json'] = {
   "InfIdentificacao" : {
     "pedirToken" : "01",
+    "valorLimiteFavorecido" : "000000030000",
     "frase" : "Informe o token gerado em seu app:",
     "numAgencia" : "4029",
     "perguntas" : [ {
@@ -113,7 +114,8 @@ exports.saquePOST = function(authenticationType,clientId,token,body) {
     var examples = {};
     examples['application/json'] = {
   "InfSaque" : {
-    "recibo" : "                 SAQUE DE CONTA                 @                036200005433591                @               13/10/2018  20:24               @                 BANCO: BANCO                  @                AGENCIA: 4029                  @              CONTA: 0082348296                @               %VALOR%: R$ 50,00                 "
+    "recibo" : "                 SAQUE DE CONTA                 @                036200005433591                @               13/10/2018  20:24               @                 BANCO: BANCO                  @                AGENCIA: 4029                  @              CONTA: 0082348296                @               %VALOR%: R$ 50,00                 ",
+    "ispb" : "01234567"
   },
   "InfTransacao" : {
     "cdProc" : "029100",

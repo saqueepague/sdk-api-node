@@ -136,14 +136,11 @@ exports.consultaContaPOST = function(authenticationType,clientId,token,body) {
   },
   "InfConsultaConta" : {
     "solicDoc" : "00",
-    "numAgencia" : "4029",
-    "numConta" : "0082348296",
     "modalidadeDeposito" : "00",
     "depositoVarejista" : "01",
     "nomeCliente" : "Carl Edward Sagan",
     "depositoIdentificado" : "00",
-    "habilitaDeposito" : "01",
-    "codBanco" : "237"
+    "habilitaDeposito" : "01"
   },
   "Cripto" : {
     "hash" : "hash"
@@ -152,6 +149,70 @@ exports.consultaContaPOST = function(authenticationType,clientId,token,body) {
     "codEstab" : "000000000742673",
     "tipo" : "008",
     "id" : "05100004"
+  }
+};
+    if (Object.keys(examples).length > 0) {
+      resolve(examples[Object.keys(examples)[0]]);
+    } else {
+      resolve();
+    }
+  });
+}
+
+
+/**
+ * Operação de consulta de condições disponíveis de parcelamento do empréstimo.
+ *
+ * authenticationType String Tipo de autenticação requerida.
+ * clientId String Identificação do cliente.
+ * token String Chave para validação do acesso ao serviço.
+ * body ConsultaFavorecidoReq Requisição de consulta parcelas de empréstimo.
+ * returns consultaFavorecidoResp
+ **/
+exports.consultaFavorecidoPOST = function(authenticationType,clientId,token,body) {
+  return new Promise(function(resolve, reject) {
+    var examples = {};
+    examples['application/json'] = {
+  "InfTransacao" : {
+    "cdProc" : "029100",
+    "mensagemCliente" : "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em tela.",
+    "nsu" : "000080247206",
+    "codMoeda" : "986",
+    "codOperadora" : "00000000914",
+    "dataLocal" : "1122",
+    "errorMessage" : "",
+    "valor" : "5000",
+    "horaLocal" : "151032",
+    "nsuResposta" : "820",
+    "dataHora" : "1122151032"
+  },
+  "Cripto" : {
+    "hash" : "hash"
+  },
+  "Terminal" : {
+    "codEstab" : "000000000742673",
+    "tipo" : "008",
+    "id" : "05100004"
+  },
+  "InfConsultaFavorecido" : {
+    "nomeCliente" : "Carl Edward Sagan",
+    "favorecidos" : [ {
+      "numAgencia" : "4029",
+      "numConta" : "0082348296",
+      "nomeBanco" : "BRADESCO",
+      "cpf" : "02358422785",
+      "tipoConta" : "CC",
+      "codBanco" : "237",
+      "nomeTitularConta" : "Carl Edward Sagan"
+    }, {
+      "numAgencia" : "4029",
+      "numConta" : "0082348296",
+      "nomeBanco" : "BRADESCO",
+      "cpf" : "02358422785",
+      "tipoConta" : "CC",
+      "codBanco" : "237",
+      "nomeTitularConta" : "Carl Edward Sagan"
+    } ]
   }
 };
     if (Object.keys(examples).length > 0) {
@@ -296,32 +357,34 @@ exports.consultaParcelasEmprestimoPOST = function(authenticationType,clientId,to
       "valorParcela" : "000000005000",
       "qntParcelas" : "5",
       "tributos" : {
-        "taxaJurosMensal" : "0809445",
-        "iof" : "0809445",
-        "cetAnual" : "0809445",
-        "cetMensal" : "0809445",
+        "taxaJurosMensal" : "0008094",
+        "iof" : "0008094",
+        "cetAnual" : "0008094",
+        "cetMensal" : "0008094",
+        "valorTotalParcelas" : "000000500010",
         "valorSolicitado" : "000000000499",
         "dataContratacao" : "20200928",
-        "valorJuros" : "0002422",
-        "taxaJurosAnual" : "0809445",
+        "valorJuros" : "000000001099",
+        "taxaJurosAnual" : "0008094",
         "ultimoVencimento" : "20200928",
-        "iofAdicional" : "0809445",
+        "iofAdicional" : "0008094",
         "primeiroVencimento" : "20200928"
       }
     }, {
       "valorParcela" : "000000005000",
       "qntParcelas" : "5",
       "tributos" : {
-        "taxaJurosMensal" : "0809445",
-        "iof" : "0809445",
-        "cetAnual" : "0809445",
-        "cetMensal" : "0809445",
+        "taxaJurosMensal" : "0008094",
+        "iof" : "0008094",
+        "cetAnual" : "0008094",
+        "cetMensal" : "0008094",
+        "valorTotalParcelas" : "000000500010",
         "valorSolicitado" : "000000000499",
         "dataContratacao" : "20200928",
-        "valorJuros" : "0002422",
-        "taxaJurosAnual" : "0809445",
+        "valorJuros" : "000000001099",
+        "taxaJurosAnual" : "0008094",
         "ultimoVencimento" : "20200928",
-        "iofAdicional" : "0809445",
+        "iofAdicional" : "0008094",
         "primeiroVencimento" : "20200928"
       }
     } ],
@@ -468,7 +531,7 @@ exports.consultaProdutosRecargaPOST = function(authenticationType,clientId,token
 
 
 /**
- * Operação de consulta para saque de moeda estrangeira (câmbio). Efetuada para autenticar cliente, retornando valorde saque, moeda e dados adicionais.
+ * Operação de consulta para saque. Efetuada para autenticar cliente, retornando valorde saque, moeda e dados adicionais.
  *
  * authenticationType String Tipo de autenticação requerida.
  * clientId String Identificação do cliente.
@@ -1065,6 +1128,7 @@ exports.identificacaoPOST = function(authenticationType,clientId,token,body) {
     examples['application/json'] = {
   "InfIdentificacao" : {
     "pedirToken" : "01",
+    "valorLimiteFavorecido" : "000000030000",
     "frase" : "Informe o token gerado em seu app:",
     "numAgencia" : "4029",
     "perguntas" : [ {
@@ -1418,7 +1482,8 @@ exports.saquePOST = function(authenticationType,clientId,token,body) {
     var examples = {};
     examples['application/json'] = {
   "InfSaque" : {
-    "recibo" : "                 SAQUE DE CONTA                 @                036200005433591                @               13/10/2018  20:24               @                 BANCO: BANCO                  @                AGENCIA: 4029                  @              CONTA: 0082348296                @               %VALOR%: R$ 50,00                 "
+    "recibo" : "                 SAQUE DE CONTA                 @                036200005433591                @               13/10/2018  20:24               @                 BANCO: BANCO                  @                AGENCIA: 4029                  @              CONTA: 0082348296                @               %VALOR%: R$ 50,00                 ",
+    "ispb" : "01234567"
   },
   "InfTransacao" : {
     "cdProc" : "029100",

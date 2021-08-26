@@ -2,7 +2,7 @@
 
 
 /**
- * Operação de consulta para saque de moeda estrangeira (câmbio). Efetuada para autenticar cliente, retornando valorde saque, moeda e dados adicionais.
+ * Operação de consulta para saque. Efetuada para autenticar cliente, retornando valorde saque, moeda e dados adicionais.
  *
  * authenticationType String Tipo de autenticação requerida.
  * clientId String Identificação do cliente.
@@ -84,7 +84,8 @@ exports.saquePOST = function(authenticationType,clientId,token,body) {
     var examples = {};
     examples['application/json'] = {
   "InfSaque" : {
-    "recibo" : "                 SAQUE DE CONTA                 @                036200005433591                @               13/10/2018  20:24               @                 BANCO: BANCO                  @                AGENCIA: 4029                  @              CONTA: 0082348296                @               %VALOR%: R$ 50,00                 "
+    "recibo" : "                 SAQUE DE CONTA                 @                036200005433591                @               13/10/2018  20:24               @                 BANCO: BANCO                  @                AGENCIA: 4029                  @              CONTA: 0082348296                @               %VALOR%: R$ 50,00                 ",
+    "ispb" : "01234567"
   },
   "InfTransacao" : {
     "cdProc" : "029100",
