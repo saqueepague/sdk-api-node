@@ -45,6 +45,20 @@ module.exports.compraTitulosCapitalizacaoPOST = function compraTitulosCapitaliza
     });
 };
 
+module.exports.consultaCatalogoCartaoPresentePOST = function consultaCatalogoCartaoPresentePOST (req, res, next) {
+  var authenticationType = req.swagger.params['authenticationType'].value;
+  var clientId = req.swagger.params['clientId'].value;
+  var token = req.swagger.params['token'].value;
+  var body = req.swagger.params['body'].value;
+  Default.consultaCatalogoCartaoPresentePOST(authenticationType,clientId,token,body)
+    .then(function (response) {
+      utils.writeJson(res, response);
+    })
+    .catch(function (response) {
+      utils.writeJson(res, response);
+    });
+};
+
 module.exports.consultaContaPOST = function consultaContaPOST (req, res, next) {
   var authenticationType = req.swagger.params['authenticationType'].value;
   var clientId = req.swagger.params['clientId'].value;
@@ -247,6 +261,34 @@ module.exports.depositoPOST = function depositoPOST (req, res, next) {
   var token = req.swagger.params['token'].value;
   var body = req.swagger.params['body'].value;
   Default.depositoPOST(authenticationType,clientId,token,body)
+    .then(function (response) {
+      utils.writeJson(res, response);
+    })
+    .catch(function (response) {
+      utils.writeJson(res, response);
+    });
+};
+
+module.exports.efetuarCompraCartaoPresenteConfPOST = function efetuarCompraCartaoPresenteConfPOST (req, res, next) {
+  var authenticationType = req.swagger.params['authenticationType'].value;
+  var clientId = req.swagger.params['clientId'].value;
+  var token = req.swagger.params['token'].value;
+  var body = req.swagger.params['body'].value;
+  Default.efetuarCompraCartaoPresenteConfPOST(authenticationType,clientId,token,body)
+    .then(function (response) {
+      utils.writeJson(res, response);
+    })
+    .catch(function (response) {
+      utils.writeJson(res, response);
+    });
+};
+
+module.exports.efetuarCompraCartaoPresentePOST = function efetuarCompraCartaoPresentePOST (req, res, next) {
+  var authenticationType = req.swagger.params['authenticationType'].value;
+  var clientId = req.swagger.params['clientId'].value;
+  var token = req.swagger.params['token'].value;
+  var body = req.swagger.params['body'].value;
+  Default.efetuarCompraCartaoPresentePOST(authenticationType,clientId,token,body)
     .then(function (response) {
       utils.writeJson(res, response);
     })

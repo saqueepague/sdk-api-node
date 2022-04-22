@@ -109,6 +109,80 @@ exports.compraTitulosCapitalizacaoPOST = function(authenticationType,clientId,to
 
 
 /**
+ * Operação de consulta dos produtos de catálogo cartão presente. Traz uma lista de todas as operadoras e seus respectivos produtos/valores.
+ *
+ * authenticationType String Tipo de autenticação requerida.
+ * clientId String Identificação do cliente.
+ * token String Chave para validação do acesso ao serviço.
+ * body ConsultaCatalogoCartaoPresenteReq Requisição de consulta valores de recarga de cartão.
+ * returns consultaCatalogoCartaoPresenteResp
+ **/
+exports.consultaCatalogoCartaoPresentePOST = function(authenticationType,clientId,token,body) {
+  return new Promise(function(resolve, reject) {
+    var examples = {};
+    examples['application/json'] = {
+  "InfConsultaCatalogoCartaoPresente" : {
+    "produtos" : [ {
+      "nomeProvedor" : "STEAM",
+      "valor" : "0003000",
+      "eanProduto" : "4260433452913",
+      "priority" : "1",
+      "descricaoProduto" : "Cartao Presente",
+      "valorMaximo" : "0003000",
+      "idProvedor" : "132",
+      "idProduto" : "1",
+      "statusProduto" : "1",
+      "valorMinimo" : "0003000",
+      "tipoProduto" : "PIN",
+      "informacoes" : "\"dHUgw6kgbyBjYXJhIDsp\"",
+      "nomeProduto" : "Cartao Presente",
+      "tipoMoeda" : "BRL"
+    }, {
+      "nomeProvedor" : "STEAM",
+      "valor" : "0003000",
+      "eanProduto" : "4260433452913",
+      "priority" : "1",
+      "descricaoProduto" : "Cartao Presente",
+      "valorMaximo" : "0003000",
+      "idProvedor" : "132",
+      "idProduto" : "1",
+      "statusProduto" : "1",
+      "valorMinimo" : "0003000",
+      "tipoProduto" : "PIN",
+      "informacoes" : "\"dHUgw6kgbyBjYXJhIDsp\"",
+      "nomeProduto" : "Cartao Presente",
+      "tipoMoeda" : "BRL"
+    } ]
+  },
+  "InfTransacao" : {
+    "cdProc" : "029100",
+    "mensagemCliente" : "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em tela.",
+    "nsu" : "000080247206",
+    "codMoeda" : "986",
+    "codOperadora" : "00000000914",
+    "dataLocal" : "1122",
+    "errorMessage" : "",
+    "valor" : "5000",
+    "horaLocal" : "151032",
+    "nsuResposta" : "820",
+    "dataHora" : "1122151032"
+  },
+  "Terminal" : {
+    "codEstab" : "000000000742673",
+    "tipo" : "008",
+    "id" : "05100004"
+  }
+};
+    if (Object.keys(examples).length > 0) {
+      resolve(examples[Object.keys(examples)[0]]);
+    } else {
+      resolve();
+    }
+  });
+}
+
+
+/**
  * Operação de consulta de conta de favorecido, usada previamente ao depósito para verificar se a conta é válida e está habilitada para depósito.
  *
  * authenticationType String Tipo de autenticação requerida.
@@ -136,16 +210,11 @@ exports.consultaContaPOST = function(authenticationType,clientId,token,body) {
   },
   "InfConsultaConta" : {
     "solicDoc" : "00",
-    "numAgencia" : "4029",
-    "numConta" : "0082348296",
     "modalidadeDeposito" : "00",
     "depositoVarejista" : "01",
     "nomeCliente" : "Carl Edward Sagan",
-    "cpfFavorecido" : "02358422785",
-    "ispb" : "01234567",
     "depositoIdentificado" : "00",
-    "habilitaDeposito" : "01",
-    "codBanco" : "237"
+    "habilitaDeposito" : "01"
   },
   "Cripto" : {
     "hash" : "hash"
@@ -362,39 +431,35 @@ exports.consultaParcelasEmprestimoPOST = function(authenticationType,clientId,to
       "valorParcela" : "000000005000",
       "qntParcelas" : "5",
       "tributos" : {
+        "taxaJurosMensal" : "0008094",
         "iof" : "0008094",
         "cetAnual" : "0008094",
-        "valorJuros" : "000000001099",
-        "taxaJurosAnual" : "0008094",
-        "ultimoVencimento" : "20200928",
-        "taxaValorIof" : "0005012",
-        "iofAdicional" : "0008094",
-        "taxaJurosMensal" : "0008094",
         "cetMensal" : "0008094",
         "valorTotalParcelas" : "000000500010",
         "valorSolicitado" : "000000000499",
         "dataContratacao" : "20200928",
-        "primeiroVencimento" : "20200928",
-        "taxaValorSolicitado" : "0000700"
+        "valorJuros" : "000000001099",
+        "taxaJurosAnual" : "0008094",
+        "ultimoVencimento" : "20200928",
+        "iofAdicional" : "0008094",
+        "primeiroVencimento" : "20200928"
       }
     }, {
       "valorParcela" : "000000005000",
       "qntParcelas" : "5",
       "tributos" : {
+        "taxaJurosMensal" : "0008094",
         "iof" : "0008094",
         "cetAnual" : "0008094",
-        "valorJuros" : "000000001099",
-        "taxaJurosAnual" : "0008094",
-        "ultimoVencimento" : "20200928",
-        "taxaValorIof" : "0005012",
-        "iofAdicional" : "0008094",
-        "taxaJurosMensal" : "0008094",
         "cetMensal" : "0008094",
         "valorTotalParcelas" : "000000500010",
         "valorSolicitado" : "000000000499",
         "dataContratacao" : "20200928",
-        "primeiroVencimento" : "20200928",
-        "taxaValorSolicitado" : "0000700"
+        "valorJuros" : "000000001099",
+        "taxaJurosAnual" : "0008094",
+        "ultimoVencimento" : "20200928",
+        "iofAdicional" : "0008094",
+        "primeiroVencimento" : "20200928"
       }
     } ],
     "limiteMinimoEmprestimo" : "000000500000",
@@ -979,6 +1044,69 @@ exports.depositoPOST = function(authenticationType,clientId,token,body) {
   },
   "InfDeposito" : {
     "recibo" : "@            COMPROVANTE DE DEPOSITO             @------------------------------------------------@ Agencia....: 0101                              @ Conta......: 74414-0                           @ Nome.......: EUGENIO SCHMITT COELHO            @@------------------------------------------------@ Favorecido: EUGENIO SCHMITT COELHO             @ Agencia Destino:                           0101@ Conta Destino:         Conta Corrente - 74414-0@@Tipo            NSU                        Valor@Dinheiro        697841472523             R$20,00@------------------------------------------------@               SAC - 0800 123 4569@      SAC - DEF. AUDITIVO - 0800 123 4568@            OUVIDORIA - 0800 123 4567@@             www.siteparceiro.com.br@"
+  },
+  "Terminal" : {
+    "codEstab" : "000000000742673",
+    "tipo" : "008",
+    "id" : "05100004"
+  }
+};
+    if (Object.keys(examples).length > 0) {
+      resolve(examples[Object.keys(examples)[0]]);
+    } else {
+      resolve();
+    }
+  });
+}
+
+
+/**
+ * Confirmação de operação de compra de cartão presente.
+ *
+ * authenticationType String Tipo de autenticação requerida.
+ * clientId String Identificação do cliente.
+ * token String Chave para validação do acesso ao serviço.
+ * body TransacConf Requisição de confirmação de operação de compra de cartão presente.
+ * no response value expected for this operation
+ **/
+exports.efetuarCompraCartaoPresenteConfPOST = function(authenticationType,clientId,token,body) {
+  return new Promise(function(resolve, reject) {
+    resolve();
+  });
+}
+
+
+/**
+ * Operação de compra de cartão presente.
+ *
+ * authenticationType String Tipo de autenticação requerida.
+ * clientId String Identificação do cliente.
+ * token String Chave para validação do acesso ao serviço.
+ * body EfetuarCompraCartaoPresenteReq Requisição para a compra de cartão presente.
+ * returns efetuarCompraCartaoPresenteResp
+ **/
+exports.efetuarCompraCartaoPresentePOST = function(authenticationType,clientId,token,body) {
+  return new Promise(function(resolve, reject) {
+    var examples = {};
+    examples['application/json'] = {
+  "InfEfetuarCompraCartaoPresente" : {
+    "validadeChave" : "AAAAMMDDhhmmss",
+    "chaveSerial" : "9999999999999999999",
+    "idCompra" : "b1a5c4bd-a914-4506-8d1d-744a6b3a285c",
+    "chaveResgate" : "93215783"
+  },
+  "InfTransacao" : {
+    "cdProc" : "029100",
+    "mensagemCliente" : "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em tela.",
+    "nsu" : "000080247206",
+    "codMoeda" : "986",
+    "codOperadora" : "00000000914",
+    "dataLocal" : "1122",
+    "errorMessage" : "",
+    "valor" : "5000",
+    "horaLocal" : "151032",
+    "nsuResposta" : "820",
+    "dataHora" : "1122151032"
   },
   "Terminal" : {
     "codEstab" : "000000000742673",

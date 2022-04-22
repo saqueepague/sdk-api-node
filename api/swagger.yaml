@@ -4,13 +4,13 @@ info:
   description: "Modelo de API para transações da Saque e Pague. O parceiro interessado\
     \ deve implementar as operações desejadas para que a SeP consiga se comunicar\
     \ com o mesmo."
-  version: "1.25.8"
+  version: "1.27.0"
   title: "Saque e Pague Transacional"
   contact:
     name: "Time Saque e Pague"
     url: "http://www.saqueepague.com.br"
 host: "api-saqueepague.sensedia.com"
-basePath: "/saqueepague/SepTransaction/1.25.8"
+basePath: "/saqueepague/SepTransaction/1.27.0"
 tags:
 - name: "Deposito com Cartao"
   description: "Transações necessárias para efetuar um Depósito com Cartão."
@@ -36,6 +36,8 @@ tags:
   description: "Transações necessárias para efetuar uma Recarga de cartão Pré-Pago."
 - name: "Recarga Celular"
   description: "Transações necessárias para efetuar uma Recarga de celular Pré-Pago."
+- name: "Cartao Presente"
+  description: "Transações necessárias para efetuar a compra de um Cartão Presente."
 - name: "Saldo com Cartao"
   description: "Transações necessárias para efetuar um Saldo com Cartão."
 - name: "Saque com Cartao"
@@ -726,6 +728,53 @@ paths:
         401:
           description: "Acesso não autorizado."
       x-swagger-router-controller: "Recarga"
+  /consultaCatalogoCartaoPresente:
+    post:
+      tags:
+      - "Cartao Presente"
+      - "Default"
+      description: "Operação de consulta dos produtos de catálogo cartão presente.\
+        \ Traz uma lista de todas as operadoras e seus respectivos produtos/valores."
+      operationId: "consultaCatalogoCartaoPresentePOST"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "authenticationType"
+        in: "header"
+        description: "Tipo de autenticação requerida."
+        required: true
+        type: "string"
+        x-example: "auth2"
+      - name: "clientId"
+        in: "header"
+        description: "Identificação do cliente."
+        required: true
+        type: "string"
+        x-example: "prd-client"
+      - name: "token"
+        in: "header"
+        description: "Chave para validação do acesso ao serviço."
+        required: true
+        type: "string"
+        x-example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjYsInByb2ZpbGUiOltdLCJpYXQiOjE0OTkwOsY4NDV9.uR5WH3c2ZztGmZVCfcJPu-1ix1w-j7shJw_X_ZlFfAo"
+      - in: "body"
+        name: "body"
+        description: "Requisição de consulta valores de recarga de cartão."
+        required: true
+        schema:
+          $ref: "#/definitions/consultaCatalogoCartaoPresenteReq"
+      responses:
+        200:
+          description: "Retorno com sucesso ou com Erro de negócio."
+          schema:
+            $ref: "#/definitions/consultaCatalogoCartaoPresenteResp"
+        400:
+          description: "Bad Request ou Erro interno ao qual inviabilizou uma resposta."
+        401:
+          description: "Acesso não autorizado."
+      x-swagger-router-controller: "CartaoPresente"
   /deposito:
     post:
       tags:
@@ -1423,6 +1472,96 @@ paths:
         401:
           description: "Acesso não autorizado."
       x-swagger-router-controller: "RecargaCelular"
+  /efetuarCompraCartaoPresente:
+    post:
+      tags:
+      - "Cartao Presente"
+      - "Default"
+      description: "Operação de compra de cartão presente."
+      operationId: "efetuarCompraCartaoPresentePOST"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "authenticationType"
+        in: "header"
+        description: "Tipo de autenticação requerida."
+        required: true
+        type: "string"
+        x-example: "auth2"
+      - name: "clientId"
+        in: "header"
+        description: "Identificação do cliente."
+        required: true
+        type: "string"
+        x-example: "prd-client"
+      - name: "token"
+        in: "header"
+        description: "Chave para validação do acesso ao serviço."
+        required: true
+        type: "string"
+        x-example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjYsInByb2ZpbGUiOltdLCJpYXQiOjE0OTkwOsY4NDV9.uR5WH3c2ZztGmZVCfcJPu-1ix1w-j7shJw_X_ZlFfAo"
+      - in: "body"
+        name: "body"
+        description: "Requisição para a compra de cartão presente."
+        required: true
+        schema:
+          $ref: "#/definitions/efetuarCompraCartaoPresenteReq"
+      responses:
+        200:
+          description: "Retorno com sucesso ou com Erro de negócio."
+          schema:
+            $ref: "#/definitions/efetuarCompraCartaoPresenteResp"
+        400:
+          description: "Bad Request ou Erro interno ao qual inviabilizou uma resposta."
+        401:
+          description: "Acesso não autorizado."
+      x-swagger-router-controller: "CartaoPresente"
+  /efetuarCompraCartaoPresenteConf:
+    post:
+      tags:
+      - "Cartao Presente"
+      - "Default"
+      description: "Confirmação de operação de compra de cartão presente."
+      operationId: "efetuarCompraCartaoPresenteConfPOST"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "authenticationType"
+        in: "header"
+        description: "Tipo de autenticação requerida."
+        required: true
+        type: "string"
+        x-example: "auth2"
+      - name: "clientId"
+        in: "header"
+        description: "Identificação do cliente."
+        required: true
+        type: "string"
+        x-example: "prd-client"
+      - name: "token"
+        in: "header"
+        description: "Chave para validação do acesso ao serviço."
+        required: true
+        type: "string"
+        x-example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjYsInByb2ZpbGUiOltdLCJpYXQiOjE0OTkwOsY4NDV9.uR5WH3c2ZztGmZVCfcJPu-1ix1w-j7shJw_X_ZlFfAo"
+      - in: "body"
+        name: "body"
+        description: "Requisição de confirmação de operação de compra de cartão presente."
+        required: true
+        schema:
+          $ref: "#/definitions/transacConf"
+      responses:
+        200:
+          description: "Retorno com sucesso ou com Erro de negócio."
+        400:
+          description: "Bad Request ou Erro interno ao qual inviabilizou uma resposta."
+        401:
+          description: "Acesso não autorizado."
+      x-swagger-router-controller: "CartaoPresente"
   /saldo:
     post:
       tags:
@@ -1622,6 +1761,7 @@ paths:
       - "Pagamento sem Cartao"
       - "Recarga"
       - "Recarga Celular"
+      - "Cartao Presente"
       - "Saldo com Cartao"
       - "Saque com Cartao"
       - "Saque sem Cartao"
@@ -1927,16 +2067,11 @@ definitions:
         dataHora: "1122151032"
       InfConsultaConta:
         solicDoc: "00"
-        numAgencia: "4029"
-        numConta: "0082348296"
         modalidadeDeposito: "00"
         depositoVarejista: "01"
         nomeCliente: "Carl Edward Sagan"
-        cpfFavorecido: "02358422785"
-        ispb: "01234567"
         depositoIdentificado: "00"
         habilitaDeposito: "01"
-        codBanco: "237"
       Cripto:
         hash: "hash"
       Terminal:
@@ -2032,37 +2167,33 @@ definitions:
         - valorParcela: "000000005000"
           qntParcelas: "5"
           tributos:
+            taxaJurosMensal: "0008094"
             iof: "0008094"
             cetAnual: "0008094"
-            valorJuros: "000000001099"
-            taxaJurosAnual: "0008094"
-            ultimoVencimento: "20200928"
-            taxaValorIof: "0005012"
-            iofAdicional: "0008094"
-            taxaJurosMensal: "0008094"
             cetMensal: "0008094"
             valorTotalParcelas: "000000500010"
             valorSolicitado: "000000000499"
             dataContratacao: "20200928"
+            valorJuros: "000000001099"
+            taxaJurosAnual: "0008094"
+            ultimoVencimento: "20200928"
+            iofAdicional: "0008094"
             primeiroVencimento: "20200928"
-            taxaValorSolicitado: "0000700"
         - valorParcela: "000000005000"
           qntParcelas: "5"
           tributos:
+            taxaJurosMensal: "0008094"
             iof: "0008094"
             cetAnual: "0008094"
-            valorJuros: "000000001099"
-            taxaJurosAnual: "0008094"
-            ultimoVencimento: "20200928"
-            taxaValorIof: "0005012"
-            iofAdicional: "0008094"
-            taxaJurosMensal: "0008094"
             cetMensal: "0008094"
             valorTotalParcelas: "000000500010"
             valorSolicitado: "000000000499"
             dataContratacao: "20200928"
+            valorJuros: "000000001099"
+            taxaJurosAnual: "0008094"
+            ultimoVencimento: "20200928"
+            iofAdicional: "0008094"
             primeiroVencimento: "20200928"
-            taxaValorSolicitado: "0000700"
         limiteMinimoEmprestimo: "000000500000"
         limiteMaximoEmprestimo: "000005000000"
         valorTotalDisponivel: "000000700000"
@@ -2605,6 +2736,129 @@ definitions:
         codEstab: "000000000742673"
         tipo: "008"
         id: "05100004"
+  consultaCatalogoCartaoPresenteReq:
+    type: "object"
+    required:
+    - "InfConsultaCatalogoCartaoPresente"
+    - "InfTransacao"
+    - "Terminal"
+    properties:
+      InfConsultaCatalogoCartaoPresente:
+        $ref: "#/definitions/infConsultaCatalogoCartaoPresenteReq"
+      InfTransacao:
+        $ref: "#/definitions/infTransacaoReq"
+      Terminal:
+        $ref: "#/definitions/terminal"
+  consultaCatalogoCartaoPresenteResp:
+    type: "object"
+    required:
+    - "InfConsultaCatalogoCartaoPresente"
+    - "InfTransacao"
+    - "Terminal"
+    properties:
+      InfConsultaCatalogoCartaoPresente:
+        $ref: "#/definitions/infConsultaCatalogoCartaoPresenteResp"
+      InfTransacao:
+        $ref: "#/definitions/infTransacaoResp"
+      Terminal:
+        $ref: "#/definitions/terminal"
+    example:
+      InfConsultaCatalogoCartaoPresente:
+        produtos:
+        - nomeProvedor: "STEAM"
+          valor: "0003000"
+          eanProduto: "4260433452913"
+          priority: "1"
+          descricaoProduto: "Cartao Presente"
+          valorMaximo: "0003000"
+          idProvedor: "132"
+          idProduto: "1"
+          statusProduto: "1"
+          valorMinimo: "0003000"
+          tipoProduto: "PIN"
+          informacoes: "\"dHUgw6kgbyBjYXJhIDsp\""
+          nomeProduto: "Cartao Presente"
+          tipoMoeda: "BRL"
+        - nomeProvedor: "STEAM"
+          valor: "0003000"
+          eanProduto: "4260433452913"
+          priority: "1"
+          descricaoProduto: "Cartao Presente"
+          valorMaximo: "0003000"
+          idProvedor: "132"
+          idProduto: "1"
+          statusProduto: "1"
+          valorMinimo: "0003000"
+          tipoProduto: "PIN"
+          informacoes: "\"dHUgw6kgbyBjYXJhIDsp\""
+          nomeProduto: "Cartao Presente"
+          tipoMoeda: "BRL"
+      InfTransacao:
+        cdProc: "029100"
+        mensagemCliente: "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em\
+          \ tela."
+        nsu: "000080247206"
+        codMoeda: "986"
+        codOperadora: "00000000914"
+        dataLocal: "1122"
+        errorMessage: ""
+        valor: "5000"
+        horaLocal: "151032"
+        nsuResposta: "820"
+        dataHora: "1122151032"
+      Terminal:
+        codEstab: "000000000742673"
+        tipo: "008"
+        id: "05100004"
+  efetuarCompraCartaoPresenteReq:
+    type: "object"
+    required:
+    - "InfEfetuarCompraCartaoPresente"
+    - "InfTransacao"
+    - "Terminal"
+    properties:
+      InfEfetuarCompraCartaoPresente:
+        $ref: "#/definitions/infEfetuarCompraCartaoPresenteReq"
+      InfTransacao:
+        $ref: "#/definitions/infTransacaoReq"
+      Terminal:
+        $ref: "#/definitions/terminal"
+  efetuarCompraCartaoPresenteResp:
+    type: "object"
+    required:
+    - "InfEfetuarCompraCartaoPresente"
+    - "InfTransacao"
+    - "Terminal"
+    properties:
+      InfEfetuarCompraCartaoPresente:
+        $ref: "#/definitions/infEfetuarCompraCartaoPresenteResp"
+      InfTransacao:
+        $ref: "#/definitions/infTransacaoResp"
+      Terminal:
+        $ref: "#/definitions/terminal"
+    example:
+      InfEfetuarCompraCartaoPresente:
+        validadeChave: "AAAAMMDDhhmmss"
+        chaveSerial: "9999999999999999999"
+        idCompra: "b1a5c4bd-a914-4506-8d1d-744a6b3a285c"
+        chaveResgate: "93215783"
+      InfTransacao:
+        cdProc: "029100"
+        mensagemCliente: "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em\
+          \ tela."
+        nsu: "000080247206"
+        codMoeda: "986"
+        codOperadora: "00000000914"
+        dataLocal: "1122"
+        errorMessage: ""
+        valor: "5000"
+        horaLocal: "151032"
+        nsuResposta: "820"
+        dataHora: "1122151032"
+      Terminal:
+        codEstab: "000000000742673"
+        tipo: "008"
+        id: "05100004"
   cripto:
     type: "object"
     properties:
@@ -3121,13 +3375,6 @@ definitions:
         description: "Telefone do cliente favorecido da transação (11 dígitos = DDD\
           \ com 0 quando número tem 8 dígitos, sem 0 quando número tem 9 dígitos)."
         pattern: "^\\d{11}$"
-      ispb:
-        type: "string"
-        example: "01234567"
-        description: "Código da Intituição registrada no Sistema Brasileiro de Pagamentos.\
-          \ Campo obrigatório, para transações de Saque QR Code, afim de identificar\
-          \ a instituição parceira da transação."
-        pattern: "^\\d{8}$"
     description: "Informações da requisição de consulta de conta do favorecido do\
       \ depósito."
   infConsultaContaResp:
@@ -3182,47 +3429,14 @@ definitions:
         enum:
         - "00"
         - "01"
-      codBanco:
-        type: "string"
-        example: "237"
-        description: "Código do banco utilizado na operação (3 dígitos)."
-        pattern: "^\\d{3}$"
-      numAgencia:
-        type: "string"
-        example: "4029"
-        description: "Número da agência utilizada na operação."
-        pattern: "^\\d+$"
-      numConta:
-        type: "string"
-        example: "0082348296"
-        description: "Número da conta utilizada na operação."
-        pattern: "^\\d+$"
-      cpfFavorecido:
-        type: "string"
-        example: "02358422785"
-        description: "Número do CPF ou CNPJ do cliente favorecido da transação (11\
-          \ dígitos ou 14 dígitos respectivamente)."
-        pattern: "^\\d{14}|\\d{11}$"
-      ispb:
-        type: "string"
-        example: "01234567"
-        description: "Código da Intituição registrada no Sistema Brasileiro de Pagamentos.\
-          \ Campo obrigatório, para transações de Saque QR Code, afim de identificar\
-          \ a instituição parceira da transação."
-        pattern: "^\\d{8}$"
     description: "Informações da resposta da requisição de consulta de conta do favorecido."
     example:
       solicDoc: "00"
-      numAgencia: "4029"
-      numConta: "0082348296"
       modalidadeDeposito: "00"
       depositoVarejista: "01"
       nomeCliente: "Carl Edward Sagan"
-      cpfFavorecido: "02358422785"
-      ispb: "01234567"
       depositoIdentificado: "00"
       habilitaDeposito: "01"
-      codBanco: "237"
   infConsultaLimitesEmprestimoResp:
     required:
     - "limiteMaximoEmprestimo"
@@ -3332,37 +3546,33 @@ definitions:
       - valorParcela: "000000005000"
         qntParcelas: "5"
         tributos:
+          taxaJurosMensal: "0008094"
           iof: "0008094"
           cetAnual: "0008094"
-          valorJuros: "000000001099"
-          taxaJurosAnual: "0008094"
-          ultimoVencimento: "20200928"
-          taxaValorIof: "0005012"
-          iofAdicional: "0008094"
-          taxaJurosMensal: "0008094"
           cetMensal: "0008094"
           valorTotalParcelas: "000000500010"
           valorSolicitado: "000000000499"
           dataContratacao: "20200928"
+          valorJuros: "000000001099"
+          taxaJurosAnual: "0008094"
+          ultimoVencimento: "20200928"
+          iofAdicional: "0008094"
           primeiroVencimento: "20200928"
-          taxaValorSolicitado: "0000700"
       - valorParcela: "000000005000"
         qntParcelas: "5"
         tributos:
+          taxaJurosMensal: "0008094"
           iof: "0008094"
           cetAnual: "0008094"
-          valorJuros: "000000001099"
-          taxaJurosAnual: "0008094"
-          ultimoVencimento: "20200928"
-          taxaValorIof: "0005012"
-          iofAdicional: "0008094"
-          taxaJurosMensal: "0008094"
           cetMensal: "0008094"
           valorTotalParcelas: "000000500010"
           valorSolicitado: "000000000499"
           dataContratacao: "20200928"
+          valorJuros: "000000001099"
+          taxaJurosAnual: "0008094"
+          ultimoVencimento: "20200928"
+          iofAdicional: "0008094"
           primeiroVencimento: "20200928"
-          taxaValorSolicitado: "0000700"
       limiteMinimoEmprestimo: "000000500000"
       limiteMaximoEmprestimo: "000005000000"
       valorTotalDisponivel: "000000700000"
@@ -3392,20 +3602,18 @@ definitions:
       valorParcela: "000000005000"
       qntParcelas: "5"
       tributos:
+        taxaJurosMensal: "0008094"
         iof: "0008094"
         cetAnual: "0008094"
-        valorJuros: "000000001099"
-        taxaJurosAnual: "0008094"
-        ultimoVencimento: "20200928"
-        taxaValorIof: "0005012"
-        iofAdicional: "0008094"
-        taxaJurosMensal: "0008094"
         cetMensal: "0008094"
         valorTotalParcelas: "000000500010"
         valorSolicitado: "000000000499"
         dataContratacao: "20200928"
+        valorJuros: "000000001099"
+        taxaJurosAnual: "0008094"
+        ultimoVencimento: "20200928"
+        iofAdicional: "0008094"
         primeiroVencimento: "20200928"
-        taxaValorSolicitado: "0000700"
   infConsultaFavorecidoResp:
     type: "object"
     properties:
@@ -3536,6 +3744,74 @@ definitions:
     example:
       idRecarga: "b1a5c4bd-a914-4506-8d1d-744a6b3a285c"
       bonus: "000000000400"
+  infEfetuarCompraCartaoPresenteReq:
+    type: "object"
+    required:
+    - "cpf"
+    - "ddd"
+    - "id"
+    - "telefone"
+    - "valor"
+    properties:
+      cpf:
+        type: "string"
+        example: "12345678901"
+        description: "CPF do cliente para a compra de cartão presente."
+        pattern: "^\\d{11}$"
+      id:
+        type: "string"
+        example: "113183"
+        description: "ID do produto para a compra de cartão presente."
+        pattern: "^.*$"
+      valor:
+        type: "string"
+        example: "000000005000"
+        description: "Valor do cartão presente."
+        pattern: "^\\d{12}$"
+      ddd:
+        type: "string"
+        example: "51"
+        description: "Código da área do telefone do cliente."
+        pattern: "^\\d{2}$"
+      telefone:
+        type: "string"
+        example: "982041311"
+        description: "Número do telefone, sem DDD, do cliente efetuando a compra."
+        pattern: "^\\d+$"
+    description: "Informações da requisição de compra de cartão presente."
+  infEfetuarCompraCartaoPresenteResp:
+    type: "object"
+    required:
+    - "chaveResgate"
+    - "chaveSerial"
+    - "idCompra"
+    - "validadeChave"
+    properties:
+      idCompra:
+        type: "string"
+        example: "b1a5c4bd-a914-4506-8d1d-744a6b3a285c"
+        description: "Código de identificação compra de cartão presente, em caso de\
+          \ sucesso."
+        pattern: "^\\.*$"
+      chaveResgate:
+        type: "string"
+        example: "93215783"
+        description: "Número PIN para resgate do cartão presente, em caso de sucesso."
+      validadeChave:
+        type: "string"
+        example: "AAAAMMDDhhmmss"
+        description: "Validade do número PIN, em caso de sucesso."
+        pattern: "^\\d{14}$"
+      chaveSerial:
+        type: "string"
+        example: "9999999999999999999"
+        description: "Número serial para suporte, em caso de sucesso."
+    description: "Informações de retorno da compra de cartão presente."
+    example:
+      validadeChave: "AAAAMMDDhhmmss"
+      chaveSerial: "9999999999999999999"
+      idCompra: "b1a5c4bd-a914-4506-8d1d-744a6b3a285c"
+      chaveResgate: "93215783"
   infConsultaPrePagoReq:
     type: "object"
     required:
@@ -3659,6 +3935,153 @@ definitions:
     example:
       name: "Produto de Recarga"
       id: "1"
+  infConsultaCatalogoCartaoPresenteReq:
+    type: "object"
+    properties:
+      ddd:
+        type: "string"
+        example: "51"
+        description: "Código da área do número de celular."
+        pattern: "^\\d{2}$"
+      telefone:
+        type: "string"
+        example: "982041311"
+        description: "Número do telefone sem DDD."
+        pattern: "^\\d+$"
+      cpf:
+        type: "string"
+        example: "12345678901"
+        description: "Número de cpf do cliente (11 dígitos)"
+        pattern: "^\\d{11}\\d*$"
+    description: "Informações da requisição de consulta de catálogo de cartões presente."
+  infConsultaCatalogoCartaoPresenteResp:
+    type: "object"
+    properties:
+      produtos:
+        type: "array"
+        description: "Lista de produtos de cartões presente disponibilizados pela\
+          \ Epay."
+        items:
+          $ref: "#/definitions/cartaoPresenteProdutoObj"
+    description: "Informações de retorno da consulta de catálogo de cartões presente."
+    example:
+      produtos:
+      - nomeProvedor: "STEAM"
+        valor: "0003000"
+        eanProduto: "4260433452913"
+        priority: "1"
+        descricaoProduto: "Cartao Presente"
+        valorMaximo: "0003000"
+        idProvedor: "132"
+        idProduto: "1"
+        statusProduto: "1"
+        valorMinimo: "0003000"
+        tipoProduto: "PIN"
+        informacoes: "\"dHUgw6kgbyBjYXJhIDsp\""
+        nomeProduto: "Cartao Presente"
+        tipoMoeda: "BRL"
+      - nomeProvedor: "STEAM"
+        valor: "0003000"
+        eanProduto: "4260433452913"
+        priority: "1"
+        descricaoProduto: "Cartao Presente"
+        valorMaximo: "0003000"
+        idProvedor: "132"
+        idProduto: "1"
+        statusProduto: "1"
+        valorMinimo: "0003000"
+        tipoProduto: "PIN"
+        informacoes: "\"dHUgw6kgbyBjYXJhIDsp\""
+        nomeProduto: "Cartao Presente"
+        tipoMoeda: "BRL"
+  cartaoPresenteProdutoObj:
+    type: "object"
+    properties:
+      idProduto:
+        type: "string"
+        example: "1"
+        description: "Identificador do produto disponível com base na lista gerada\
+          \ na operação /consultaCatalogoCartaoPresente."
+        pattern: "^\\d+$"
+      nomeProduto:
+        type: "string"
+        example: "Cartao Presente"
+        description: "Nome do produto disponível."
+      descricaoProduto:
+        type: "string"
+        example: "Cartao Presente"
+        description: "Descricao do produto."
+      valor:
+        type: "string"
+        example: "0003000"
+        description: "Valor do produto disponível em reais incluindo centavos exemplo\
+          \ (R$ 30,00)."
+        pattern: "^\\d{7}\\d*$"
+      valorMinimo:
+        type: "string"
+        example: "0003000"
+        description: "Valor mínimo para este produto, expresso em reais incluindo\
+          \ centavos exemplo (R$ 30,00)."
+        pattern: "^\\d{7}\\d*$"
+      valorMaximo:
+        type: "string"
+        example: "0003000"
+        description: "Valor mínimo para este produto, expresso em reais incluindo\
+          \ centavos exemplo (R$ 30,00)."
+        pattern: "^\\d{7}\\d*$"
+      statusProduto:
+        type: "string"
+        example: "1"
+        description: "Status do produto, se o mesmo está ativo ou não, ativo = 1."
+        pattern: "^\\d{1}$"
+      tipoProduto:
+        type: "string"
+        example: "PIN"
+        description: "Tipo do produto."
+      nomeProvedor:
+        type: "string"
+        example: "STEAM"
+        description: "Nome do provedor do produto."
+      idProvedor:
+        type: "string"
+        example: "132"
+        description: "ID do provedor do produto."
+        pattern: "^\\d+$"
+      tipoMoeda:
+        type: "string"
+        example: "BRL"
+        description: "Moeda que está sendo vendido o produto."
+        pattern: "^\\d+$"
+      eanProduto:
+        type: "string"
+        example: "4260433452913"
+        description: "Código de barras do produto disponível com base na lista gerada\
+          \ na operação /consultaCatalogoCartaoPresente."
+        pattern: "^\\d+$"
+      informacoes:
+        $ref: "#/definitions/cartaoPresenteProdutoObj_informacoes"
+      priority:
+        type: "string"
+        example: "1"
+        description: "Prioridade para aparecer para o cliente. Quanto maior, maior\
+          \ a prioridade."
+        pattern: "^\\d+$"
+    description: ""
+    example:
+      nomeProvedor: "STEAM"
+      valor: "0003000"
+      eanProduto: "4260433452913"
+      priority: "1"
+      descricaoProduto: "Cartao Presente"
+      valorMaximo: "0003000"
+      idProvedor: "132"
+      idProduto: "1"
+      statusProduto: "1"
+      valorMinimo: "0003000"
+      tipoProduto: "PIN"
+      informacoes: "\"dHUgw6kgbyBjYXJhIDsp\""
+      nomeProduto: "Cartao Presente"
+      tipoMoeda: "BRL"
   infConsultaSaqueReq:
     type: "object"
     properties:
@@ -4199,14 +4622,6 @@ definitions:
         description: "Telefone do cliente que receberá o depósito (11 dígitos = DDD\
           \ com 0 quando número tem 8 dígitos, sem 0 quando número tem 9 dígitos)."
         pattern: "^\\d{11}$"
-      tipoConta:
-        type: "string"
-        description: "Tipo de conta do extrato (CC = conta corrente, CP = conta poupanç\
-          a, CS = conta salário)."
-        enum:
-        - "CC"
-        - "CP"
-        - "CS"
     description: "Informações da requisição de depósito."
   infDepositoResp:
     type: "object"
@@ -5053,6 +5468,13 @@ definitions:
         example: "000000005000"
         description: "Valor da transação (12 dígitos, incluindo centavos)."
         pattern: "^\\d{12}$"
+      fintechCode:
+        type: "string"
+        example: "123"
+        description: "Código fornecido pelo parceiro que identifica a Fintech (má\
+          ximo 20 dígitos). Campo utilizado somente para parceiros que operam no modelo\
+          \ HUB."
+        maxLength: 20
     description: "Informações genéricas sobre a requisição de transação."
   infTransacaoResp:
     type: "object"
@@ -5790,34 +6212,32 @@ definitions:
         description: "Informações sobre o valor total da soma de todas parcelas (12\
           \ dígitos, incluindo centavos)."
         pattern: "^\\d{12}$"
-      taxaValorSolicitado:
-        type: "string"
-        example: "0000700"
-        description: "Representa o quanto o valor solicitado representa sobre o valor\
-          \ financiado. (07 digitos, valor total = 70,00%)"
-        pattern: "^\\d{07}$"
-      taxaValorIof:
-        type: "string"
-        example: "0005012"
-        description: "Representa o quanto o valor do iof representa sobre o valor\
-          \ financiado. (07 digitos, valor total = 50,12%)"
-        pattern: "^\\d{07}$"
     description: "Informações sobre cada parcela."
     example:
+      taxaJurosMensal: "0008094"
       iof: "0008094"
       cetAnual: "0008094"
-      valorJuros: "000000001099"
-      taxaJurosAnual: "0008094"
-      ultimoVencimento: "20200928"
-      taxaValorIof: "0005012"
-      iofAdicional: "0008094"
-      taxaJurosMensal: "0008094"
       cetMensal: "0008094"
       valorTotalParcelas: "000000500010"
       valorSolicitado: "000000000499"
       dataContratacao: "20200928"
+      valorJuros: "000000001099"
+      taxaJurosAnual: "0008094"
+      ultimoVencimento: "20200928"
+      iofAdicional: "0008094"
       primeiroVencimento: "20200928"
-      taxaValorSolicitado: "0000700"
+  cartaoPresenteProdutoObj_informacoes:
+    properties:
+      termoDeUso:
+        type: "string"
+        example: "O produto só poderá ser resgatado uma vez."
+        description: "Termo de uso do produto."
+      descricaoResgate:
+        type: "string"
+        example: "O cartão presente deve ser resgatado de tal forma."
+        description: "Descrição de como resgatar o produto."
+    description: "Logo do produto no formato base64."
+    example: "\"dHUgw6kgbyBjYXJhIDsp\""
   capitalizationBondObj_tema:
     properties:
       estilos:

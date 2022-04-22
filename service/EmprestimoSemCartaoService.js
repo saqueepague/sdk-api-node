@@ -19,39 +19,35 @@ exports.consultaParcelasEmprestimoPOST = function(authenticationType,clientId,to
       "valorParcela" : "000000005000",
       "qntParcelas" : "5",
       "tributos" : {
+        "taxaJurosMensal" : "0008094",
         "iof" : "0008094",
         "cetAnual" : "0008094",
-        "valorJuros" : "000000001099",
-        "taxaJurosAnual" : "0008094",
-        "ultimoVencimento" : "20200928",
-        "taxaValorIof" : "0005012",
-        "iofAdicional" : "0008094",
-        "taxaJurosMensal" : "0008094",
         "cetMensal" : "0008094",
         "valorTotalParcelas" : "000000500010",
         "valorSolicitado" : "000000000499",
         "dataContratacao" : "20200928",
-        "primeiroVencimento" : "20200928",
-        "taxaValorSolicitado" : "0000700"
+        "valorJuros" : "000000001099",
+        "taxaJurosAnual" : "0008094",
+        "ultimoVencimento" : "20200928",
+        "iofAdicional" : "0008094",
+        "primeiroVencimento" : "20200928"
       }
     }, {
       "valorParcela" : "000000005000",
       "qntParcelas" : "5",
       "tributos" : {
+        "taxaJurosMensal" : "0008094",
         "iof" : "0008094",
         "cetAnual" : "0008094",
-        "valorJuros" : "000000001099",
-        "taxaJurosAnual" : "0008094",
-        "ultimoVencimento" : "20200928",
-        "taxaValorIof" : "0005012",
-        "iofAdicional" : "0008094",
-        "taxaJurosMensal" : "0008094",
         "cetMensal" : "0008094",
         "valorTotalParcelas" : "000000500010",
         "valorSolicitado" : "000000000499",
         "dataContratacao" : "20200928",
-        "primeiroVencimento" : "20200928",
-        "taxaValorSolicitado" : "0000700"
+        "valorJuros" : "000000001099",
+        "taxaJurosAnual" : "0008094",
+        "ultimoVencimento" : "20200928",
+        "iofAdicional" : "0008094",
+        "primeiroVencimento" : "20200928"
       }
     } ],
     "limiteMinimoEmprestimo" : "000000500000",
