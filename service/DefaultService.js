@@ -127,6 +127,7 @@ exports.consultaCatalogoCartaoPresentePOST = function(authenticationType,clientI
       "valor" : "0003000",
       "eanProduto" : "4260433452913",
       "priority" : "1",
+      "logoURL" : "dHUgw6kgbyBjYXJhIDsp",
       "descricaoProduto" : "Cartao Presente",
       "valorMaximo" : "0003000",
       "idProvedor" : "132",
@@ -134,7 +135,10 @@ exports.consultaCatalogoCartaoPresentePOST = function(authenticationType,clientI
       "statusProduto" : "1",
       "valorMinimo" : "0003000",
       "tipoProduto" : "PIN",
-      "informacoes" : "\"dHUgw6kgbyBjYXJhIDsp\"",
+      "informacoes" : {
+        "descricaoResgate" : "O cartão presente deve ser resgatado de tal forma.",
+        "termoDeUso" : "O produto só poderá ser resgatado uma vez."
+      },
       "nomeProduto" : "Cartao Presente",
       "tipoMoeda" : "BRL"
     }, {
@@ -142,6 +146,7 @@ exports.consultaCatalogoCartaoPresentePOST = function(authenticationType,clientI
       "valor" : "0003000",
       "eanProduto" : "4260433452913",
       "priority" : "1",
+      "logoURL" : "dHUgw6kgbyBjYXJhIDsp",
       "descricaoProduto" : "Cartao Presente",
       "valorMaximo" : "0003000",
       "idProvedor" : "132",
@@ -149,7 +154,10 @@ exports.consultaCatalogoCartaoPresentePOST = function(authenticationType,clientI
       "statusProduto" : "1",
       "valorMinimo" : "0003000",
       "tipoProduto" : "PIN",
-      "informacoes" : "\"dHUgw6kgbyBjYXJhIDsp\"",
+      "informacoes" : {
+        "descricaoResgate" : "O cartão presente deve ser resgatado de tal forma.",
+        "termoDeUso" : "O produto só poderá ser resgatado uma vez."
+      },
       "nomeProduto" : "Cartao Presente",
       "tipoMoeda" : "BRL"
     } ]
