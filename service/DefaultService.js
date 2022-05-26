@@ -218,11 +218,16 @@ exports.consultaContaPOST = function(authenticationType,clientId,token,body) {
   },
   "InfConsultaConta" : {
     "solicDoc" : "00",
+    "numAgencia" : "4029",
+    "numConta" : "0082348296",
     "modalidadeDeposito" : "00",
     "depositoVarejista" : "01",
     "nomeCliente" : "Carl Edward Sagan",
+    "cpfFavorecido" : "02358422785",
+    "ispb" : "01234567",
     "depositoIdentificado" : "00",
-    "habilitaDeposito" : "01"
+    "habilitaDeposito" : "01",
+    "codBanco" : "237"
   },
   "Cripto" : {
     "hash" : "hash"
@@ -439,35 +444,39 @@ exports.consultaParcelasEmprestimoPOST = function(authenticationType,clientId,to
       "valorParcela" : "000000005000",
       "qntParcelas" : "5",
       "tributos" : {
-        "taxaJurosMensal" : "0008094",
         "iof" : "0008094",
         "cetAnual" : "0008094",
+        "valorJuros" : "000000001099",
+        "taxaJurosAnual" : "0008094",
+        "ultimoVencimento" : "20200928",
+        "taxaValorIof" : "0005012",
+        "iofAdicional" : "0008094",
+        "taxaJurosMensal" : "0008094",
         "cetMensal" : "0008094",
         "valorTotalParcelas" : "000000500010",
         "valorSolicitado" : "000000000499",
         "dataContratacao" : "20200928",
-        "valorJuros" : "000000001099",
-        "taxaJurosAnual" : "0008094",
-        "ultimoVencimento" : "20200928",
-        "iofAdicional" : "0008094",
-        "primeiroVencimento" : "20200928"
+        "primeiroVencimento" : "20200928",
+        "taxaValorSolicitado" : "0000700"
       }
     }, {
       "valorParcela" : "000000005000",
       "qntParcelas" : "5",
       "tributos" : {
-        "taxaJurosMensal" : "0008094",
         "iof" : "0008094",
         "cetAnual" : "0008094",
+        "valorJuros" : "000000001099",
+        "taxaJurosAnual" : "0008094",
+        "ultimoVencimento" : "20200928",
+        "taxaValorIof" : "0005012",
+        "iofAdicional" : "0008094",
+        "taxaJurosMensal" : "0008094",
         "cetMensal" : "0008094",
         "valorTotalParcelas" : "000000500010",
         "valorSolicitado" : "000000000499",
         "dataContratacao" : "20200928",
-        "valorJuros" : "000000001099",
-        "taxaJurosAnual" : "0008094",
-        "ultimoVencimento" : "20200928",
-        "iofAdicional" : "0008094",
-        "primeiroVencimento" : "20200928"
+        "primeiroVencimento" : "20200928",
+        "taxaValorSolicitado" : "0000700"
       }
     } ],
     "limiteMinimoEmprestimo" : "000000500000",
