@@ -35,15 +35,17 @@ exports.compraTitulosCapitalizacaoPOST = function(authenticationType,clientId,to
   },
   "InfTransacao" : {
     "cdProc" : "029100",
-    "mensagemCliente" : "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em tela.",
-    "nsu" : "000080247206",
-    "codMoeda" : "986",
     "codOperadora" : "00000000914",
     "dataLocal" : "1122",
     "errorMessage" : "",
     "valor" : "5000",
     "horaLocal" : "151032",
     "nsuResposta" : "820",
+    "mensagemCliente" : "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em tela.",
+    "nsu" : "000080247206",
+    "codMoeda" : "986",
+    "numAgencia" : "4029",
+    "numConta" : "0082348296",
     "dataHora" : "1122151032"
   },
   "Terminal" : {
@@ -76,15 +78,17 @@ exports.consultaTitulosCapitalizacaoPOST = function(authenticationType,clientId,
     examples['application/json'] = {
   "InfTransacao" : {
     "cdProc" : "029100",
-    "mensagemCliente" : "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em tela.",
-    "nsu" : "000080247206",
-    "codMoeda" : "986",
     "codOperadora" : "00000000914",
     "dataLocal" : "1122",
     "errorMessage" : "",
     "valor" : "5000",
     "horaLocal" : "151032",
     "nsuResposta" : "820",
+    "mensagemCliente" : "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em tela.",
+    "nsu" : "000080247206",
+    "codMoeda" : "986",
+    "numAgencia" : "4029",
+    "numConta" : "0082348296",
     "dataHora" : "1122151032"
   },
   "InfConsultaTitulosCapitalizacao" : {

@@ -1926,16 +1926,18 @@ definitions:
     example:
       InfTransacao:
         cdProc: "029100"
-        mensagemCliente: "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em\
-          \ tela."
-        nsu: "000080247206"
-        codMoeda: "986"
         codOperadora: "00000000914"
         dataLocal: "1122"
         errorMessage: ""
         valor: "5000"
         horaLocal: "151032"
         nsuResposta: "820"
+        mensagemCliente: "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em\
+          \ tela."
+        nsu: "000080247206"
+        codMoeda: "986"
+        numAgencia: "4029"
+        numConta: "0082348296"
         dataHora: "1122151032"
       Cripto:
         hash: "hash"
@@ -2004,16 +2006,18 @@ definitions:
           \ CPF: 02358422785                               "
       InfTransacao:
         cdProc: "029100"
-        mensagemCliente: "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em\
-          \ tela."
-        nsu: "000080247206"
-        codMoeda: "986"
         codOperadora: "00000000914"
         dataLocal: "1122"
         errorMessage: ""
         valor: "5000"
         horaLocal: "151032"
         nsuResposta: "820"
+        mensagemCliente: "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em\
+          \ tela."
+        nsu: "000080247206"
+        codMoeda: "986"
+        numAgencia: "4029"
+        numConta: "0082348296"
         dataHora: "1122151032"
       Terminal:
         codEstab: "000000000742673"
@@ -2054,16 +2058,18 @@ definitions:
     example:
       InfTransacao:
         cdProc: "029100"
-        mensagemCliente: "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em\
-          \ tela."
-        nsu: "000080247206"
-        codMoeda: "986"
         codOperadora: "00000000914"
         dataLocal: "1122"
         errorMessage: ""
         valor: "5000"
         horaLocal: "151032"
         nsuResposta: "820"
+        mensagemCliente: "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em\
+          \ tela."
+        nsu: "000080247206"
+        codMoeda: "986"
+        numAgencia: "4029"
+        numConta: "0082348296"
         dataHora: "1122151032"
       InfConsultaConta:
         solicDoc: "00"
@@ -2114,16 +2120,18 @@ definitions:
     example:
       InfTransacao:
         cdProc: "029100"
-        mensagemCliente: "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em\
-          \ tela."
-        nsu: "000080247206"
-        codMoeda: "986"
         codOperadora: "00000000914"
         dataLocal: "1122"
         errorMessage: ""
         valor: "5000"
         horaLocal: "151032"
         nsuResposta: "820"
+        mensagemCliente: "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em\
+          \ tela."
+        nsu: "000080247206"
+        codMoeda: "986"
+        numAgencia: "4029"
+        numConta: "0082348296"
         dataHora: "1122151032"
       InfConsultaLimitesEmprestimo:
         limiteMinimoEmprestimo: "000000500000"
@@ -2211,16 +2219,18 @@ definitions:
         nomeTitularConta: "Carl Edward Sagan"
       InfTransacao:
         cdProc: "029100"
-        mensagemCliente: "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em\
-          \ tela."
-        nsu: "000080247206"
-        codMoeda: "986"
         codOperadora: "00000000914"
         dataLocal: "1122"
         errorMessage: ""
         valor: "5000"
         horaLocal: "151032"
         nsuResposta: "820"
+        mensagemCliente: "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em\
+          \ tela."
+        nsu: "000080247206"
+        codMoeda: "986"
+        numAgencia: "4029"
+        numConta: "0082348296"
         dataHora: "1122151032"
       Cripto:
         hash: "hash"
@@ -2259,16 +2269,18 @@ definitions:
     example:
       InfTransacao:
         cdProc: "029100"
-        mensagemCliente: "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em\
-          \ tela."
-        nsu: "000080247206"
-        codMoeda: "986"
         codOperadora: "00000000914"
         dataLocal: "1122"
         errorMessage: ""
         valor: "5000"
         horaLocal: "151032"
         nsuResposta: "820"
+        mensagemCliente: "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em\
+          \ tela."
+        nsu: "000080247206"
+        codMoeda: "986"
+        numAgencia: "4029"
+        numConta: "0082348296"
         dataHora: "1122151032"
       Cripto:
         hash: "hash"
@@ -2322,16 +2334,18 @@ definitions:
     example:
       InfTransacao:
         cdProc: "029100"
-        mensagemCliente: "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em\
-          \ tela."
-        nsu: "000080247206"
-        codMoeda: "986"
         codOperadora: "00000000914"
         dataLocal: "1122"
         errorMessage: ""
         valor: "5000"
         horaLocal: "151032"
         nsuResposta: "820"
+        mensagemCliente: "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em\
+          \ tela."
+        nsu: "000080247206"
+        codMoeda: "986"
+        numAgencia: "4029"
+        numConta: "0082348296"
         dataHora: "1122151032"
       InfRecargaPrePago:
         idRecarga: "b1a5c4bd-a914-4506-8d1d-744a6b3a285c"
@@ -2369,16 +2383,18 @@ definitions:
     example:
       InfTransacao:
         cdProc: "029100"
-        mensagemCliente: "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em\
-          \ tela."
-        nsu: "000080247206"
-        codMoeda: "986"
         codOperadora: "00000000914"
         dataLocal: "1122"
         errorMessage: ""
         valor: "5000"
         horaLocal: "151032"
         nsuResposta: "820"
+        mensagemCliente: "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em\
+          \ tela."
+        nsu: "000080247206"
+        codMoeda: "986"
+        numAgencia: "4029"
+        numConta: "0082348296"
         dataHora: "1122151032"
       InfConsultaPrePago:
         produtos:
@@ -2423,16 +2439,18 @@ definitions:
     example:
       InfTransacao:
         cdProc: "029100"
-        mensagemCliente: "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em\
-          \ tela."
-        nsu: "000080247206"
-        codMoeda: "986"
         codOperadora: "00000000914"
         dataLocal: "1122"
         errorMessage: ""
         valor: "5000"
         horaLocal: "151032"
         nsuResposta: "820"
+        mensagemCliente: "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em\
+          \ tela."
+        nsu: "000080247206"
+        codMoeda: "986"
+        numAgencia: "4029"
+        numConta: "0082348296"
         dataHora: "1122151032"
       InfConsultaProdutosRecarga:
         products:
@@ -2475,16 +2493,18 @@ definitions:
     example:
       InfTransacao:
         cdProc: "029100"
-        mensagemCliente: "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em\
-          \ tela."
-        nsu: "000080247206"
-        codMoeda: "986"
         codOperadora: "00000000914"
         dataLocal: "1122"
         errorMessage: ""
         valor: "5000"
         horaLocal: "151032"
         nsuResposta: "820"
+        mensagemCliente: "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em\
+          \ tela."
+        nsu: "000080247206"
+        codMoeda: "986"
+        numAgencia: "4029"
+        numConta: "0082348296"
         dataHora: "1122151032"
       InfConsultaSaque:
         perguntas:
@@ -2551,16 +2571,18 @@ definitions:
           id: "01"
       InfTransacao:
         cdProc: "029100"
-        mensagemCliente: "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em\
-          \ tela."
-        nsu: "000080247206"
-        codMoeda: "986"
         codOperadora: "00000000914"
         dataLocal: "1122"
         errorMessage: ""
         valor: "5000"
         horaLocal: "151032"
         nsuResposta: "820"
+        mensagemCliente: "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em\
+          \ tela."
+        nsu: "000080247206"
+        codMoeda: "986"
+        numAgencia: "4029"
+        numConta: "0082348296"
         dataHora: "1122151032"
       Cripto:
         hash: "hash"
@@ -2594,16 +2616,18 @@ definitions:
     example:
       InfTransacao:
         cdProc: "029100"
-        mensagemCliente: "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em\
-          \ tela."
-        nsu: "000080247206"
-        codMoeda: "986"
         codOperadora: "00000000914"
         dataLocal: "1122"
         errorMessage: ""
         valor: "5000"
         horaLocal: "151032"
         nsuResposta: "820"
+        mensagemCliente: "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em\
+          \ tela."
+        nsu: "000080247206"
+        codMoeda: "986"
+        numAgencia: "4029"
+        numConta: "0082348296"
         dataHora: "1122151032"
       InfConsultaTitulosCapitalizacao:
         produtos:
@@ -2667,16 +2691,18 @@ definitions:
     example:
       InfTransacao:
         cdProc: "029100"
-        mensagemCliente: "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em\
-          \ tela."
-        nsu: "000080247206"
-        codMoeda: "986"
         codOperadora: "00000000914"
         dataLocal: "1122"
         errorMessage: ""
         valor: "5000"
         horaLocal: "151032"
         nsuResposta: "820"
+        mensagemCliente: "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em\
+          \ tela."
+        nsu: "000080247206"
+        codMoeda: "986"
+        numAgencia: "4029"
+        numConta: "0082348296"
         dataHora: "1122151032"
       InfConsultaValoresRecarga:
         valores:
@@ -2810,16 +2836,18 @@ definitions:
           tipoMoeda: "BRL"
       InfTransacao:
         cdProc: "029100"
-        mensagemCliente: "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em\
-          \ tela."
-        nsu: "000080247206"
-        codMoeda: "986"
         codOperadora: "00000000914"
         dataLocal: "1122"
         errorMessage: ""
         valor: "5000"
         horaLocal: "151032"
         nsuResposta: "820"
+        mensagemCliente: "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em\
+          \ tela."
+        nsu: "000080247206"
+        codMoeda: "986"
+        numAgencia: "4029"
+        numConta: "0082348296"
         dataHora: "1122151032"
       Terminal:
         codEstab: "000000000742673"
@@ -2859,16 +2887,18 @@ definitions:
         chaveResgate: "93215783"
       InfTransacao:
         cdProc: "029100"
-        mensagemCliente: "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em\
-          \ tela."
-        nsu: "000080247206"
-        codMoeda: "986"
         codOperadora: "00000000914"
         dataLocal: "1122"
         errorMessage: ""
         valor: "5000"
         horaLocal: "151032"
         nsuResposta: "820"
+        mensagemCliente: "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em\
+          \ tela."
+        nsu: "000080247206"
+        codMoeda: "986"
+        numAgencia: "4029"
+        numConta: "0082348296"
         dataHora: "1122151032"
       Terminal:
         codEstab: "000000000742673"
@@ -2955,16 +2985,18 @@ definitions:
     example:
       InfTransacao:
         cdProc: "029100"
-        mensagemCliente: "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em\
-          \ tela."
-        nsu: "000080247206"
-        codMoeda: "986"
         codOperadora: "00000000914"
         dataLocal: "1122"
         errorMessage: ""
         valor: "5000"
         horaLocal: "151032"
         nsuResposta: "820"
+        mensagemCliente: "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em\
+          \ tela."
+        nsu: "000080247206"
+        codMoeda: "986"
+        numAgencia: "4029"
+        numConta: "0082348296"
         dataHora: "1122151032"
       Cripto:
         hash: "hash"
@@ -3019,16 +3051,18 @@ definitions:
     example:
       InfTransacao:
         cdProc: "029100"
-        mensagemCliente: "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em\
-          \ tela."
-        nsu: "000080247206"
-        codMoeda: "986"
         codOperadora: "00000000914"
         dataLocal: "1122"
         errorMessage: ""
         valor: "5000"
         horaLocal: "151032"
         nsuResposta: "820"
+        mensagemCliente: "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em\
+          \ tela."
+        nsu: "000080247206"
+        codMoeda: "986"
+        numAgencia: "4029"
+        numConta: "0082348296"
         dataHora: "1122151032"
       Cripto:
         hash: "hash"
@@ -3096,16 +3130,18 @@ definitions:
         qtdPaginas: "000010"
       InfTransacao:
         cdProc: "029100"
-        mensagemCliente: "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em\
-          \ tela."
-        nsu: "000080247206"
-        codMoeda: "986"
         codOperadora: "00000000914"
         dataLocal: "1122"
         errorMessage: ""
         valor: "5000"
         horaLocal: "151032"
         nsuResposta: "820"
+        mensagemCliente: "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em\
+          \ tela."
+        nsu: "000080247206"
+        codMoeda: "986"
+        numAgencia: "4029"
+        numConta: "0082348296"
         dataHora: "1122151032"
       Cripto:
         hash: "hash"
@@ -3160,16 +3196,18 @@ definitions:
         qtdPaginas: "000010"
       InfTransacao:
         cdProc: "029100"
-        mensagemCliente: "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em\
-          \ tela."
-        nsu: "000080247206"
-        codMoeda: "986"
         codOperadora: "00000000914"
         dataLocal: "1122"
         errorMessage: ""
         valor: "5000"
         horaLocal: "151032"
         nsuResposta: "820"
+        mensagemCliente: "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em\
+          \ tela."
+        nsu: "000080247206"
+        codMoeda: "986"
+        numAgencia: "4029"
+        numConta: "0082348296"
         dataHora: "1122151032"
       Cripto:
         hash: "hash"
@@ -3248,16 +3286,18 @@ definitions:
         saldo: "000000005000"
       InfTransacao:
         cdProc: "029100"
-        mensagemCliente: "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em\
-          \ tela."
-        nsu: "000080247206"
-        codMoeda: "986"
         codOperadora: "00000000914"
         dataLocal: "1122"
         errorMessage: ""
         valor: "5000"
         horaLocal: "151032"
         nsuResposta: "820"
+        mensagemCliente: "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em\
+          \ tela."
+        nsu: "000080247206"
+        codMoeda: "986"
+        numAgencia: "4029"
+        numConta: "0082348296"
         dataHora: "1122151032"
       Cripto:
         hash: "hash"
@@ -5582,6 +5622,16 @@ definitions:
         example: "00000000914"
         description: "Igual à requisição."
         pattern: "^\\d{11}$"
+      numAgencia:
+        type: "string"
+        example: "4029"
+        description: "Número da agência utilizada na operação."
+        pattern: "^\\d+$"
+      numConta:
+        type: "string"
+        example: "0082348296"
+        description: "Número da conta utilizada na operação."
+        pattern: "^\\d+$"
       dataHora:
         type: "string"
         example: "1122151032"
@@ -5627,16 +5677,18 @@ definitions:
     description: "Informações sobre a resposta da requisição de transação."
     example:
       cdProc: "029100"
-      mensagemCliente: "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em\
-        \ tela."
-      nsu: "000080247206"
-      codMoeda: "986"
       codOperadora: "00000000914"
       dataLocal: "1122"
       errorMessage: ""
       valor: "5000"
       horaLocal: "151032"
       nsuResposta: "820"
+      mensagemCliente: "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em\
+        \ tela."
+      nsu: "000080247206"
+      codMoeda: "986"
+      numAgencia: "4029"
+      numConta: "0082348296"
       dataHora: "1122151032"
   infTransferenciaReq:
     type: "object"
@@ -5806,16 +5858,18 @@ definitions:
           \                    "
       InfTransacao:
         cdProc: "029100"
-        mensagemCliente: "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em\
-          \ tela."
-        nsu: "000080247206"
-        codMoeda: "986"
         codOperadora: "00000000914"
         dataLocal: "1122"
         errorMessage: ""
         valor: "5000"
         horaLocal: "151032"
         nsuResposta: "820"
+        mensagemCliente: "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em\
+          \ tela."
+        nsu: "000080247206"
+        codMoeda: "986"
+        numAgencia: "4029"
+        numConta: "0082348296"
         dataHora: "1122151032"
       Cripto:
         hash: "hash"
@@ -5872,16 +5926,18 @@ definitions:
         cedente: "Saque e Pague"
       InfTransacao:
         cdProc: "029100"
-        mensagemCliente: "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em\
-          \ tela."
-        nsu: "000080247206"
-        codMoeda: "986"
         codOperadora: "00000000914"
         dataLocal: "1122"
         errorMessage: ""
         valor: "5000"
         horaLocal: "151032"
         nsuResposta: "820"
+        mensagemCliente: "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em\
+          \ tela."
+        nsu: "000080247206"
+        codMoeda: "986"
+        numAgencia: "4029"
+        numConta: "0082348296"
         dataHora: "1122151032"
       Terminal:
         codEstab: "000000000742673"
@@ -5923,16 +5979,18 @@ definitions:
     example:
       InfTransacao:
         cdProc: "029100"
-        mensagemCliente: "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em\
-          \ tela."
-        nsu: "000080247206"
-        codMoeda: "986"
         codOperadora: "00000000914"
         dataLocal: "1122"
         errorMessage: ""
         valor: "5000"
         horaLocal: "151032"
         nsuResposta: "820"
+        mensagemCliente: "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em\
+          \ tela."
+        nsu: "000080247206"
+        codMoeda: "986"
+        numAgencia: "4029"
+        numConta: "0082348296"
         dataHora: "1122151032"
       Terminal:
         codEstab: "000000000742673"
@@ -5999,16 +6057,18 @@ definitions:
           \          VALOR NA DATA: R$ 50,00              "
       InfTransacao:
         cdProc: "029100"
-        mensagemCliente: "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em\
-          \ tela."
-        nsu: "000080247206"
-        codMoeda: "986"
         codOperadora: "00000000914"
         dataLocal: "1122"
         errorMessage: ""
         valor: "5000"
         horaLocal: "151032"
         nsuResposta: "820"
+        mensagemCliente: "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em\
+          \ tela."
+        nsu: "000080247206"
+        codMoeda: "986"
+        numAgencia: "4029"
+        numConta: "0082348296"
         dataHora: "1122151032"
       Cripto:
         hash: "hash"
@@ -6057,16 +6117,18 @@ definitions:
         ispb: "01234567"
       InfTransacao:
         cdProc: "029100"
-        mensagemCliente: "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em\
-          \ tela."
-        nsu: "000080247206"
-        codMoeda: "986"
         codOperadora: "00000000914"
         dataLocal: "1122"
         errorMessage: ""
         valor: "5000"
         horaLocal: "151032"
         nsuResposta: "820"
+        mensagemCliente: "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em\
+          \ tela."
+        nsu: "000080247206"
+        codMoeda: "986"
+        numAgencia: "4029"
+        numConta: "0082348296"
         dataHora: "1122151032"
       Cripto:
         hash: "hash"
@@ -6117,16 +6179,18 @@ definitions:
           nome: "William Thomas Riker"
       InfTransacao:
         cdProc: "029100"
-        mensagemCliente: "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em\
-          \ tela."
-        nsu: "000080247206"
-        codMoeda: "986"
         codOperadora: "00000000914"
         dataLocal: "1122"
         errorMessage: ""
         valor: "5000"
         horaLocal: "151032"
         nsuResposta: "820"
+        mensagemCliente: "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em\
+          \ tela."
+        nsu: "000080247206"
+        codMoeda: "986"
+        numAgencia: "4029"
+        numConta: "0082348296"
         dataHora: "1122151032"
       Cripto:
         hash: "hash"

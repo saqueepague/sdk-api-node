@@ -16,15 +16,17 @@ exports.autenticacaoPOST = function(authenticationType,clientId,token,body) {
     examples['application/json'] = {
   "InfTransacao" : {
     "cdProc" : "029100",
-    "mensagemCliente" : "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em tela.",
-    "nsu" : "000080247206",
-    "codMoeda" : "986",
     "codOperadora" : "00000000914",
     "dataLocal" : "1122",
     "errorMessage" : "",
     "valor" : "5000",
     "horaLocal" : "151032",
     "nsuResposta" : "820",
+    "mensagemCliente" : "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em tela.",
+    "nsu" : "000080247206",
+    "codMoeda" : "986",
+    "numAgencia" : "4029",
+    "numConta" : "0082348296",
     "dataHora" : "1122151032"
   },
   "Cripto" : {
@@ -82,15 +84,17 @@ exports.compraTitulosCapitalizacaoPOST = function(authenticationType,clientId,to
   },
   "InfTransacao" : {
     "cdProc" : "029100",
-    "mensagemCliente" : "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em tela.",
-    "nsu" : "000080247206",
-    "codMoeda" : "986",
     "codOperadora" : "00000000914",
     "dataLocal" : "1122",
     "errorMessage" : "",
     "valor" : "5000",
     "horaLocal" : "151032",
     "nsuResposta" : "820",
+    "mensagemCliente" : "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em tela.",
+    "nsu" : "000080247206",
+    "codMoeda" : "986",
+    "numAgencia" : "4029",
+    "numConta" : "0082348296",
     "dataHora" : "1122151032"
   },
   "Terminal" : {
@@ -164,15 +168,17 @@ exports.consultaCatalogoCartaoPresentePOST = function(authenticationType,clientI
   },
   "InfTransacao" : {
     "cdProc" : "029100",
-    "mensagemCliente" : "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em tela.",
-    "nsu" : "000080247206",
-    "codMoeda" : "986",
     "codOperadora" : "00000000914",
     "dataLocal" : "1122",
     "errorMessage" : "",
     "valor" : "5000",
     "horaLocal" : "151032",
     "nsuResposta" : "820",
+    "mensagemCliente" : "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em tela.",
+    "nsu" : "000080247206",
+    "codMoeda" : "986",
+    "numAgencia" : "4029",
+    "numConta" : "0082348296",
     "dataHora" : "1122151032"
   },
   "Terminal" : {
@@ -205,15 +211,17 @@ exports.consultaContaPOST = function(authenticationType,clientId,token,body) {
     examples['application/json'] = {
   "InfTransacao" : {
     "cdProc" : "029100",
-    "mensagemCliente" : "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em tela.",
-    "nsu" : "000080247206",
-    "codMoeda" : "986",
     "codOperadora" : "00000000914",
     "dataLocal" : "1122",
     "errorMessage" : "",
     "valor" : "5000",
     "horaLocal" : "151032",
     "nsuResposta" : "820",
+    "mensagemCliente" : "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em tela.",
+    "nsu" : "000080247206",
+    "codMoeda" : "986",
+    "numAgencia" : "4029",
+    "numConta" : "0082348296",
     "dataHora" : "1122151032"
   },
   "InfConsultaConta" : {
@@ -262,15 +270,17 @@ exports.consultaFavorecidoPOST = function(authenticationType,clientId,token,body
     examples['application/json'] = {
   "InfTransacao" : {
     "cdProc" : "029100",
-    "mensagemCliente" : "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em tela.",
-    "nsu" : "000080247206",
-    "codMoeda" : "986",
     "codOperadora" : "00000000914",
     "dataLocal" : "1122",
     "errorMessage" : "",
     "valor" : "5000",
     "horaLocal" : "151032",
     "nsuResposta" : "820",
+    "mensagemCliente" : "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em tela.",
+    "nsu" : "000080247206",
+    "codMoeda" : "986",
+    "numAgencia" : "4029",
+    "numConta" : "0082348296",
     "dataHora" : "1122151032"
   },
   "Cripto" : {
@@ -326,15 +336,17 @@ exports.consultaLimitesEmprestimoPOST = function(authenticationType,clientId,tok
     examples['application/json'] = {
   "InfTransacao" : {
     "cdProc" : "029100",
-    "mensagemCliente" : "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em tela.",
-    "nsu" : "000080247206",
-    "codMoeda" : "986",
     "codOperadora" : "00000000914",
     "dataLocal" : "1122",
     "errorMessage" : "",
     "valor" : "5000",
     "horaLocal" : "151032",
     "nsuResposta" : "820",
+    "mensagemCliente" : "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em tela.",
+    "nsu" : "000080247206",
+    "codMoeda" : "986",
+    "numAgencia" : "4029",
+    "numConta" : "0082348296",
     "dataHora" : "1122151032"
   },
   "InfConsultaLimitesEmprestimo" : {
@@ -376,15 +388,17 @@ exports.consultaPagamentoPOST = function(authenticationType,clientId,token,body)
     examples['application/json'] = {
   "InfTransacao" : {
     "cdProc" : "029100",
-    "mensagemCliente" : "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em tela.",
-    "nsu" : "000080247206",
-    "codMoeda" : "986",
     "codOperadora" : "00000000914",
     "dataLocal" : "1122",
     "errorMessage" : "",
     "valor" : "5000",
     "horaLocal" : "151032",
     "nsuResposta" : "820",
+    "mensagemCliente" : "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em tela.",
+    "nsu" : "000080247206",
+    "codMoeda" : "986",
+    "numAgencia" : "4029",
+    "numConta" : "0082348296",
     "dataHora" : "1122151032"
   },
   "Terminal" : {
@@ -488,15 +502,17 @@ exports.consultaParcelasEmprestimoPOST = function(authenticationType,clientId,to
   },
   "InfTransacao" : {
     "cdProc" : "029100",
-    "mensagemCliente" : "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em tela.",
-    "nsu" : "000080247206",
-    "codMoeda" : "986",
     "codOperadora" : "00000000914",
     "dataLocal" : "1122",
     "errorMessage" : "",
     "valor" : "5000",
     "horaLocal" : "151032",
     "nsuResposta" : "820",
+    "mensagemCliente" : "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em tela.",
+    "nsu" : "000080247206",
+    "codMoeda" : "986",
+    "numAgencia" : "4029",
+    "numConta" : "0082348296",
     "dataHora" : "1122151032"
   },
   "Cripto" : {
@@ -532,15 +548,17 @@ exports.consultaPrePagoPOST = function(authenticationType,clientId,token,body) {
     examples['application/json'] = {
   "InfTransacao" : {
     "cdProc" : "029100",
-    "mensagemCliente" : "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em tela.",
-    "nsu" : "000080247206",
-    "codMoeda" : "986",
     "codOperadora" : "00000000914",
     "dataLocal" : "1122",
     "errorMessage" : "",
     "valor" : "5000",
     "horaLocal" : "151032",
     "nsuResposta" : "820",
+    "mensagemCliente" : "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em tela.",
+    "nsu" : "000080247206",
+    "codMoeda" : "986",
+    "numAgencia" : "4029",
+    "numConta" : "0082348296",
     "dataHora" : "1122151032"
   },
   "InfConsultaPrePago" : {
@@ -586,15 +604,17 @@ exports.consultaProdutosRecargaPOST = function(authenticationType,clientId,token
     examples['application/json'] = {
   "InfTransacao" : {
     "cdProc" : "029100",
-    "mensagemCliente" : "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em tela.",
-    "nsu" : "000080247206",
-    "codMoeda" : "986",
     "codOperadora" : "00000000914",
     "dataLocal" : "1122",
     "errorMessage" : "",
     "valor" : "5000",
     "horaLocal" : "151032",
     "nsuResposta" : "820",
+    "mensagemCliente" : "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em tela.",
+    "nsu" : "000080247206",
+    "codMoeda" : "986",
+    "numAgencia" : "4029",
+    "numConta" : "0082348296",
     "dataHora" : "1122151032"
   },
   "InfConsultaProdutosRecarga" : {
@@ -636,15 +656,17 @@ exports.consultaSaquePOST = function(authenticationType,clientId,token,body) {
     examples['application/json'] = {
   "InfTransacao" : {
     "cdProc" : "029100",
-    "mensagemCliente" : "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em tela.",
-    "nsu" : "000080247206",
-    "codMoeda" : "986",
     "codOperadora" : "00000000914",
     "dataLocal" : "1122",
     "errorMessage" : "",
     "valor" : "5000",
     "horaLocal" : "151032",
     "nsuResposta" : "820",
+    "mensagemCliente" : "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em tela.",
+    "nsu" : "000080247206",
+    "codMoeda" : "986",
+    "numAgencia" : "4029",
+    "numConta" : "0082348296",
     "dataHora" : "1122151032"
   },
   "InfConsultaSaque" : {
@@ -720,15 +742,17 @@ exports.consultaTaxasPOST = function(authenticationType,clientId,token,body) {
   },
   "InfTransacao" : {
     "cdProc" : "029100",
-    "mensagemCliente" : "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em tela.",
-    "nsu" : "000080247206",
-    "codMoeda" : "986",
     "codOperadora" : "00000000914",
     "dataLocal" : "1122",
     "errorMessage" : "",
     "valor" : "5000",
     "horaLocal" : "151032",
     "nsuResposta" : "820",
+    "mensagemCliente" : "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em tela.",
+    "nsu" : "000080247206",
+    "codMoeda" : "986",
+    "numAgencia" : "4029",
+    "numConta" : "0082348296",
     "dataHora" : "1122151032"
   },
   "Cripto" : {
@@ -764,15 +788,17 @@ exports.consultaTitulosCapitalizacaoPOST = function(authenticationType,clientId,
     examples['application/json'] = {
   "InfTransacao" : {
     "cdProc" : "029100",
-    "mensagemCliente" : "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em tela.",
-    "nsu" : "000080247206",
-    "codMoeda" : "986",
     "codOperadora" : "00000000914",
     "dataLocal" : "1122",
     "errorMessage" : "",
     "valor" : "5000",
     "horaLocal" : "151032",
     "nsuResposta" : "820",
+    "mensagemCliente" : "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em tela.",
+    "nsu" : "000080247206",
+    "codMoeda" : "986",
+    "numAgencia" : "4029",
+    "numConta" : "0082348296",
     "dataHora" : "1122151032"
   },
   "InfConsultaTitulosCapitalizacao" : {
@@ -844,15 +870,17 @@ exports.consultaValoresRecargaPOST = function(authenticationType,clientId,token,
     examples['application/json'] = {
   "InfTransacao" : {
     "cdProc" : "029100",
-    "mensagemCliente" : "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em tela.",
-    "nsu" : "000080247206",
-    "codMoeda" : "986",
     "codOperadora" : "00000000914",
     "dataLocal" : "1122",
     "errorMessage" : "",
     "valor" : "5000",
     "horaLocal" : "151032",
     "nsuResposta" : "820",
+    "mensagemCliente" : "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em tela.",
+    "nsu" : "000080247206",
+    "codMoeda" : "986",
+    "numAgencia" : "4029",
+    "numConta" : "0082348296",
     "dataHora" : "1122151032"
   },
   "InfConsultaValoresRecarga" : {
@@ -985,15 +1013,17 @@ exports.demonstrativoINSSPOST = function(authenticationType,clientId,token,body)
   },
   "InfTransacao" : {
     "cdProc" : "029100",
-    "mensagemCliente" : "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em tela.",
-    "nsu" : "000080247206",
-    "codMoeda" : "986",
     "codOperadora" : "00000000914",
     "dataLocal" : "1122",
     "errorMessage" : "",
     "valor" : "5000",
     "horaLocal" : "151032",
     "nsuResposta" : "820",
+    "mensagemCliente" : "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em tela.",
+    "nsu" : "000080247206",
+    "codMoeda" : "986",
+    "numAgencia" : "4029",
+    "numConta" : "0082348296",
     "dataHora" : "1122151032"
   },
   "Cripto" : {
@@ -1045,15 +1075,17 @@ exports.depositoPOST = function(authenticationType,clientId,token,body) {
     examples['application/json'] = {
   "InfTransacao" : {
     "cdProc" : "029100",
-    "mensagemCliente" : "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em tela.",
-    "nsu" : "000080247206",
-    "codMoeda" : "986",
     "codOperadora" : "00000000914",
     "dataLocal" : "1122",
     "errorMessage" : "",
     "valor" : "5000",
     "horaLocal" : "151032",
     "nsuResposta" : "820",
+    "mensagemCliente" : "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em tela.",
+    "nsu" : "000080247206",
+    "codMoeda" : "986",
+    "numAgencia" : "4029",
+    "numConta" : "0082348296",
     "dataHora" : "1122151032"
   },
   "Cripto" : {
@@ -1114,15 +1146,17 @@ exports.efetuarCompraCartaoPresentePOST = function(authenticationType,clientId,t
   },
   "InfTransacao" : {
     "cdProc" : "029100",
-    "mensagemCliente" : "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em tela.",
-    "nsu" : "000080247206",
-    "codMoeda" : "986",
     "codOperadora" : "00000000914",
     "dataLocal" : "1122",
     "errorMessage" : "",
     "valor" : "5000",
     "horaLocal" : "151032",
     "nsuResposta" : "820",
+    "mensagemCliente" : "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em tela.",
+    "nsu" : "000080247206",
+    "codMoeda" : "986",
+    "numAgencia" : "4029",
+    "numConta" : "0082348296",
     "dataHora" : "1122151032"
   },
   "Terminal" : {
@@ -1171,15 +1205,17 @@ exports.emprestimoPOST = function(authenticationType,clientId,token,body) {
     examples['application/json'] = {
   "InfTransacao" : {
     "cdProc" : "029100",
-    "mensagemCliente" : "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em tela.",
-    "nsu" : "000080247206",
-    "codMoeda" : "986",
     "codOperadora" : "00000000914",
     "dataLocal" : "1122",
     "errorMessage" : "",
     "valor" : "5000",
     "horaLocal" : "151032",
     "nsuResposta" : "820",
+    "mensagemCliente" : "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em tela.",
+    "nsu" : "000080247206",
+    "codMoeda" : "986",
+    "numAgencia" : "4029",
+    "numConta" : "0082348296",
     "dataHora" : "1122151032"
   },
   "Cripto" : {
@@ -1238,15 +1274,17 @@ exports.extratoPOST = function(authenticationType,clientId,token,body) {
   },
   "InfTransacao" : {
     "cdProc" : "029100",
-    "mensagemCliente" : "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em tela.",
-    "nsu" : "000080247206",
-    "codMoeda" : "986",
     "codOperadora" : "00000000914",
     "dataLocal" : "1122",
     "errorMessage" : "",
     "valor" : "5000",
     "horaLocal" : "151032",
     "nsuResposta" : "820",
+    "mensagemCliente" : "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em tela.",
+    "nsu" : "000080247206",
+    "codMoeda" : "986",
+    "numAgencia" : "4029",
+    "numConta" : "0082348296",
     "dataHora" : "1122151032"
   },
   "Cripto" : {
@@ -1321,15 +1359,17 @@ exports.identificacaoPOST = function(authenticationType,clientId,token,body) {
   },
   "InfTransacao" : {
     "cdProc" : "029100",
-    "mensagemCliente" : "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em tela.",
-    "nsu" : "000080247206",
-    "codMoeda" : "986",
     "codOperadora" : "00000000914",
     "dataLocal" : "1122",
     "errorMessage" : "",
     "valor" : "5000",
     "horaLocal" : "151032",
     "nsuResposta" : "820",
+    "mensagemCliente" : "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em tela.",
+    "nsu" : "000080247206",
+    "codMoeda" : "986",
+    "numAgencia" : "4029",
+    "numConta" : "0082348296",
     "dataHora" : "1122151032"
   },
   "Cripto" : {
@@ -1390,15 +1430,17 @@ exports.pagamentoPOST = function(authenticationType,clientId,token,body) {
   },
   "InfTransacao" : {
     "cdProc" : "029100",
-    "mensagemCliente" : "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em tela.",
-    "nsu" : "000080247206",
-    "codMoeda" : "986",
     "codOperadora" : "00000000914",
     "dataLocal" : "1122",
     "errorMessage" : "",
     "valor" : "5000",
     "horaLocal" : "151032",
     "nsuResposta" : "820",
+    "mensagemCliente" : "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em tela.",
+    "nsu" : "000080247206",
+    "codMoeda" : "986",
+    "numAgencia" : "4029",
+    "numConta" : "0082348296",
     "dataHora" : "1122151032"
   },
   "Terminal" : {
@@ -1453,15 +1495,17 @@ exports.recargaPOST = function(authenticationType,clientId,token,body) {
   },
   "InfTransacao" : {
     "cdProc" : "029100",
-    "mensagemCliente" : "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em tela.",
-    "nsu" : "000080247206",
-    "codMoeda" : "986",
     "codOperadora" : "00000000914",
     "dataLocal" : "1122",
     "errorMessage" : "",
     "valor" : "5000",
     "horaLocal" : "151032",
     "nsuResposta" : "820",
+    "mensagemCliente" : "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em tela.",
+    "nsu" : "000080247206",
+    "codMoeda" : "986",
+    "numAgencia" : "4029",
+    "numConta" : "0082348296",
     "dataHora" : "1122151032"
   },
   "Cripto" : {
@@ -1513,15 +1557,17 @@ exports.recargaPrePagoPOST = function(authenticationType,clientId,token,body) {
     examples['application/json'] = {
   "InfTransacao" : {
     "cdProc" : "029100",
-    "mensagemCliente" : "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em tela.",
-    "nsu" : "000080247206",
-    "codMoeda" : "986",
     "codOperadora" : "00000000914",
     "dataLocal" : "1122",
     "errorMessage" : "",
     "valor" : "5000",
     "horaLocal" : "151032",
     "nsuResposta" : "820",
+    "mensagemCliente" : "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em tela.",
+    "nsu" : "000080247206",
+    "codMoeda" : "986",
+    "numAgencia" : "4029",
+    "numConta" : "0082348296",
     "dataHora" : "1122151032"
   },
   "InfRecargaPrePago" : {
@@ -1577,15 +1623,17 @@ exports.saldoPOST = function(authenticationType,clientId,token,body) {
   },
   "InfTransacao" : {
     "cdProc" : "029100",
-    "mensagemCliente" : "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em tela.",
-    "nsu" : "000080247206",
-    "codMoeda" : "986",
     "codOperadora" : "00000000914",
     "dataLocal" : "1122",
     "errorMessage" : "",
     "valor" : "5000",
     "horaLocal" : "151032",
     "nsuResposta" : "820",
+    "mensagemCliente" : "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em tela.",
+    "nsu" : "000080247206",
+    "codMoeda" : "986",
+    "numAgencia" : "4029",
+    "numConta" : "0082348296",
     "dataHora" : "1122151032"
   },
   "Cripto" : {
@@ -1641,15 +1689,17 @@ exports.saquePOST = function(authenticationType,clientId,token,body) {
   },
   "InfTransacao" : {
     "cdProc" : "029100",
-    "mensagemCliente" : "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em tela.",
-    "nsu" : "000080247206",
-    "codMoeda" : "986",
     "codOperadora" : "00000000914",
     "dataLocal" : "1122",
     "errorMessage" : "",
     "valor" : "5000",
     "horaLocal" : "151032",
     "nsuResposta" : "820",
+    "mensagemCliente" : "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em tela.",
+    "nsu" : "000080247206",
+    "codMoeda" : "986",
+    "numAgencia" : "4029",
+    "numConta" : "0082348296",
     "dataHora" : "1122151032"
   },
   "Cripto" : {
@@ -1733,15 +1783,17 @@ exports.transferenciaPOST = function(authenticationType,clientId,token,body) {
   },
   "InfTransacao" : {
     "cdProc" : "029100",
-    "mensagemCliente" : "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em tela.",
-    "nsu" : "000080247206",
-    "codMoeda" : "986",
     "codOperadora" : "00000000914",
     "dataLocal" : "1122",
     "errorMessage" : "",
     "valor" : "5000",
     "horaLocal" : "151032",
     "nsuResposta" : "820",
+    "mensagemCliente" : "Esta &eacute; uma mensagem para exibi&ccedil;&atilde;o em tela.",
+    "nsu" : "000080247206",
+    "codMoeda" : "986",
+    "numAgencia" : "4029",
+    "numConta" : "0082348296",
     "dataHora" : "1122151032"
   },
   "Cripto" : {
