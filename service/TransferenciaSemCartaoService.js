@@ -30,16 +30,18 @@ exports.consultaContaPOST = function(authenticationType,clientId,token,body) {
     "dataHora" : "1122151032"
   },
   "InfConsultaConta" : {
-    "solicDoc" : "00",
-    "numAgencia" : "4029",
-    "numConta" : "0082348296",
     "modalidadeDeposito" : "00",
+    "informarCpfPortador" : "00",
     "depositoVarejista" : "01",
-    "nomeCliente" : "Carl Edward Sagan",
-    "cpfFavorecido" : "02358422785",
+    "informarDataNascPortador" : "00",
     "ispb" : "01234567",
     "depositoIdentificado" : "00",
     "habilitaDeposito" : "01",
+    "solicDoc" : "00",
+    "numAgencia" : "4029",
+    "numConta" : "0082348296",
+    "nomeCliente" : "Carl Edward Sagan",
+    "cpfFavorecido" : "02358422785",
     "codBanco" : "237"
   },
   "Cripto" : {

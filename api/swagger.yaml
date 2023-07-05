@@ -4,7 +4,7 @@ info:
   description: "Modelo de API para transações da Saque e Pague. O parceiro interessado\
     \ deve implementar as operações desejadas para que a SeP consiga se comunicar\
     \ com o mesmo."
-  version: "1.27.3"
+  version: "1.28.2"
   title: "Saque e Pague Transacional"
   contact:
     name: "Time Saque e Pague"
@@ -2072,16 +2072,18 @@ definitions:
         numConta: "0082348296"
         dataHora: "1122151032"
       InfConsultaConta:
-        solicDoc: "00"
-        numAgencia: "4029"
-        numConta: "0082348296"
         modalidadeDeposito: "00"
+        informarCpfPortador: "00"
         depositoVarejista: "01"
-        nomeCliente: "Carl Edward Sagan"
-        cpfFavorecido: "02358422785"
+        informarDataNascPortador: "00"
         ispb: "01234567"
         depositoIdentificado: "00"
         habilitaDeposito: "01"
+        solicDoc: "00"
+        numAgencia: "4029"
+        numConta: "0082348296"
+        nomeCliente: "Carl Edward Sagan"
+        cpfFavorecido: "02358422785"
         codBanco: "237"
       Cripto:
         hash: "hash"
@@ -3519,18 +3521,36 @@ definitions:
           \ Campo obrigatório, para transações de Saque QR Code, afim de identificar\
           \ a instituição parceira da transação."
         pattern: "^\\d{8}$"
+      informarCpfPortador:
+        type: "string"
+        example: "00"
+        description: "Indica se deve ser informado CPF do portador (00 = Não / 01\
+          \ = Sim)."
+        enum:
+        - "00"
+        - "01"
+      informarDataNascPortador:
+        type: "string"
+        example: "00"
+        description: "Indica se deve ser informado a data de nasc do portador (00\
+          \ = Não / 01 = Sim)."
+        enum:
+        - "00"
+        - "01"
     description: "Informações da resposta da requisição de consulta de conta do favorecido."
     example:
-      solicDoc: "00"
-      numAgencia: "4029"
-      numConta: "0082348296"
       modalidadeDeposito: "00"
+      informarCpfPortador: "00"
       depositoVarejista: "01"
-      nomeCliente: "Carl Edward Sagan"
-      cpfFavorecido: "02358422785"
+      informarDataNascPortador: "00"
       ispb: "01234567"
       depositoIdentificado: "00"
       habilitaDeposito: "01"
+      solicDoc: "00"
+      numAgencia: "4029"
+      numConta: "0082348296"
+      nomeCliente: "Carl Edward Sagan"
+      cpfFavorecido: "02358422785"
       codBanco: "237"
   infConsultaLimitesEmprestimoResp:
     required:
@@ -4742,6 +4762,16 @@ definitions:
         - "CC"
         - "CP"
         - "CS"
+      cpfPortador:
+        type: "string"
+        example: "02358422785"
+        description: "Número do CPF do portador (11 dígitos)."
+        pattern: "^\\\\d{11}$"
+      dataNascPortador:
+        type: "string"
+        example: "2018-11-22"
+        description: "Data de nascimento do portador (AAAA-MM-DD)."
+        pattern: "^\\d{4}-\\d{2}-\\d{2}*$"
     description: "Informações da requisição de depósito."
   infDepositoResp:
     type: "object"
